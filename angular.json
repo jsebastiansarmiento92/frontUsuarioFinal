@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "usuarioFinalFront"
+    }
+  },
+  "defaultProject": "usuarioFinalFront",
+  "cli": {
+    "analytics": false
+  }
 }
