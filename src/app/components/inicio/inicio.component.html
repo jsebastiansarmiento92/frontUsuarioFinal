@@ -232,8 +232,6 @@
                           </span>
                         </label>
                                                 </div>
-
-
                                                 <div class="form-check">
                                                     <label class="form-check-label">
                           <input class="form-check-input" type="checkbox" value="">
@@ -480,22 +478,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9" *ngFor="let producto of productos">
+                    <div class="col-md-9">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4" *ngFor="let producto of productos">
                                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                                     <div class="card-header card-header-image">
-                                        <a>
-                                            <div class="background" *ngIf="producto.retrievedImage; else elseBlock">
-                                                <img [src]="producto.retrievedImage">
-                                            </div>
-                                            <ng-template #elseBlock>
-                                                <td>
-                                                    <img src="assets/images/IsotipoPositivoVectorial120x120.png">
-                                                </td>
-                                            </ng-template>
+                                        <a *ngIf="producto.retrievedImage; else elseBlock">
+                                            <img [src]="producto.retrievedImage">
                                         </a>
-
+                                        <ng-template #elseBlock>
+                                            <td>
+                                                <img src="assets/img/IsotipoPositivoVectorial120x120.png">
+                                            </td>
+                                        </ng-template>
                                     </div>
                                     <div class="card-body">
                                         <a href="#">
@@ -507,173 +502,14 @@
                                     </div>
                                     <div class="card-footer justify-content-between">
                                         <div class="price-container">
-                                            <span class="price"> $ {{producto.valorProducto}}</span>
+                                            <span class="price"> $ {{producto.valorProducto}} </span>
                                         </div>
-                                        <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Remove from wishlist">
-                                     <i class="material-icons">favorite</i>
-                                    </button>
+                                        <h5>
+                                            <button type="button" (click)="ordenarProducto(producto,confirmarModal)" class="btn btn-outline-light float-right" style="margin-left: 10px;">Ordenar</button></h5>
+
                                     </div>
                                 </div>
                                 <!-- end card -->
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                                    <div class="card-header card-header-image">
-                                        <a href="#">
-                                            <img src="../assets/img/examples/suit-1.jpg" alt="...">
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h4 class="card-title">Polo Ralph Lauren</h4>
-                                        </a>
-                                        <p class="description">
-                                            Impeccably tailored in Italy from lightweight navy wool.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer justify-content-between">
-                                        <div class="price-container">
-                                            <span class="price"> € 800</span>
-                                        </div>
-                                        <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Remove from wishlist">
-                                         <i class="material-icons">favorite</i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                                    <div class="card-header card-header-image">
-                                        <a href="#">
-                                            <img src="../assets/img/examples/suit-2.jpg" alt="...">
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h4 class="card-title">Wooyoungmi</h4>
-                                        </a>
-                                        <p class="description">
-                                            Dark-grey slub wool, pintucked notch lapels.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer justify-content-between">
-                                        <div class="price-container">
-                                            <span class="price">€ 555</span>
-                                        </div>
-                                        <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                    <i class="material-icons">favorite_border</i>
-                  </button>
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                                    <div class="card-header card-header-image">
-                                        <a href="#">
-                                            <img src="../assets/img/examples/suit-3.jpg" alt="...">
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h4 class="card-title">Tom Ford</h4>
-                                        </a>
-                                        <p class="description">
-                                            Immaculate tailoring is TOM FORD's forte.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer justify-content-between">
-                                        <div class="price-container">
-                                            <span class="price"> € 879</span>
-                                        </div>
-                                        <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                    <i class="material-icons">favorite_border</i>
-                  </button>
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                                    <div class="card-header card-header-image">
-                                        <a href="#">
-                                            <img src="../assets/img/examples/suit-4.jpg" alt="...">
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h4 class="card-title">Thom Sweeney</h4>
-                                        </a>
-                                        <p class="description">
-                                            It's made from lightweight grey wool woven.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer justify-content-between">
-                                        <div class="price-container">
-                                            <span class="price"> € 680</span>
-                                        </div>
-                                        <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                    <i class="material-icons">favorite_border</i>
-                  </button>
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                                    <div class="card-header card-header-image">
-                                        <a href="#">
-                                            <img src="../assets/img/examples/suit-5.jpg" alt="...">
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h4 class="card-title">Kingsman</h4>
-                                        </a>
-                                        <p class="description">
-                                            Crafted from khaki cotton and fully canvassed.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer justify-content-between">
-                                        <div class="price-container">
-                                            <span class="price"> € 725</span>
-                                        </div>
-                                        <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Remove from wishlist">
-                    <i class="material-icons">favorite</i>
-                  </button>
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                                    <div class="card-header card-header-image">
-                                        <a href="#">
-                                            <img src="../assets/img/examples/suit-6.jpg" alt="...">
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h4 class="card-title">Boglioli</h4>
-                                        </a>
-                                        <p class="description">
-                                            Masterfully crafted in Northern Italy.
-                                        </p>
-                                    </div>
-                                    <div class="card-footer justify-content-between">
-                                        <div class="price-container">
-                                            <span class="price">€ 699</span>
-                                        </div>
-                                        <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                    <i class="material-icons">favorite_border</i>
-                  </button>
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-                            <div class="col-md-3 ml-auto mr-auto">
-                                <button rel="tooltip" class="btn btn-rose btn-round" data-original-title="" title="">Load more...</button>
                             </div>
                         </div>
                     </div>
@@ -861,6 +697,18 @@
                                     </div>
                                 </div>
                             </form>
+                            <ng-template #confirmarModal>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <h3>Confirmacion </h3>
+                                            <h4>cantidad de {{producto.nombreProducto}} que deseas </h4>
+                                            <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad" placeholder="ingresar cantidad" value="1">
+                                        </div>
+                                        <button (click)="confirmarAgregar()" class="btn btn-danger">Confirmar</button>
+                                    </form>
+                                </div>
+                            </ng-template>
                         </div>
                     </div>
                 </div>
@@ -868,3 +716,15 @@
         </div>
     </div>
 </div>
+<ng-template #confirmarModal>
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+                <h3>Confirmacion </h3>
+                <h4>cantidad de {{producto.nombreProducto}} que deseas </h4>
+                <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad" placeholder="ingresar cantidad" value="1">
+            </div>
+            <button (click)="confirmarAgregar()" class="btn btn-danger">Confirmar</button>
+        </form>
+    </div>
+</ng-template>

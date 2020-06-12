@@ -1,0 +1,88 @@
+<div class="container main-container" id="main-container">
+
+    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/examples/clark-street-merc.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <div class="brand">
+                        <h1 class="title">Confirma tu pedido</h1>
+                        <h4>los mejores precios <b>verifica el valor del pedido antes de confirmar</b> </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="font-weight-light text-center mt-3">Carrito</h3>
+    <p class="text-template-primary text-center mb-5">Confirma pedido para que llegue a tu casa</p>
+
+
+
+
+
+
+
+    <div>
+        <button (click)="confirmarPedido()" style="margin: 10px" class="btn btn-light">Confirmar pedido</button>
+        <button (click)="cancelarCarrito()" style="margin: 10px" class="btn btn-dark">Cancelar carrito</button>
+    </div>
+
+
+    <div class="page-subtitle">Listado</div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-4" *ngFor="let producto of productos">
+                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
+                    <div class="card-header card-header-image">
+                        <a *ngIf="producto.retrievedImage; else elseBlock">
+                            <img [src]="producto.retrievedImage">
+                        </a>
+                        <ng-template #elseBlock>
+                            <td>
+                                <img src="assets/img/IsotipoPositivoVectorial120x120.png">
+                            </td>
+                        </ng-template>
+                    </div>
+                    <div class="card-body">
+                        <a href="#">
+                            <h4 class="card-title">{{producto.nombreProducto}}</h4>
+                        </a>
+                        <p class="description">
+                            {{producto.descripcion}}
+                        </p>
+                    </div>
+                    <div class="card-footer justify-content-between">
+                        <div class="price-container">
+                            <span class="price"> $ {{producto.valorProducto}} </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+            </div>
+        </div>
+    </div>
+    <ng-template #agregarDireccionNueva>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <h3>Selecciona barrio: </h3>
+                    <div class="center-loader" *ngIf="loader">
+                        <strong>Cargando barrios
+                          <span class="loader__dot">.</span>
+                          <span class="loader__dot">.</span>
+                          <span class="loader__dot">.</span></strong>
+                    </div>
+                    <select *ngIf="!loader" class="form-control" name="barrioSeleccionado" [(ngModel)]="barrioSeleccionado" name="barrioSeleccionado" (change)="capturar()">
+                    <option value="0">Selecciona un barrio</option>
+                    <option *ngFor="let barrio of barrios" style="margin-block: 10px">
+                        {{barrio.nombreBarrio}}
+                    </option>
+                </select>
+                    <h4>Ingresa direccion </h4>
+                    <input type="text" class="form-control" [(ngModel)]="direccion" name="direccion" placeholder="ingresar direccion">
+                </div>
+                <button (click)="confirmarDireccion()" class="btn btn-danger">Aceptar</button>
+            </form>
+
+
+        </div>
+    </ng-template>

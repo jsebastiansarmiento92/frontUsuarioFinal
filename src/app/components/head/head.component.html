@@ -13,6 +13,12 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="dropdown nav-item">
+                    <a [routerLink]="['carrito']" [routerLinkActive]="['active']" data-toggle="dropdown">
+                        <i class="material-icons">shopping_cart</i> Carrito
+                    </a>
+
+                </li>
+                <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="material-icons">apps</i> Ayuda en linea
                     </a>
@@ -102,7 +108,7 @@
                         </a>
                     </div>
                 </li>-->
-                <div *ngIf="!isLogin; else elseBlock">
+                <div *ngIf="!getIslogin(); else elseBlock">
                     <li class="button-container nav-item iframe-extern">
 
                         <a href="login" class="btn  btn-rose   btn-round btn-block">

@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.logingIn=true;
     this.loader=true;
     this.authService.login(this.usuario).subscribe(data => {
-      console.log(data);
+      console.log(data);    
       this.tokenService.setToken(data.token);
       this.tokenService.setUserName(data.nombreUsuario);
       this.tokenService.setAuthorities(data.authorities);
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('isLoggedin', 'true');
       
       //window.location.reload();
-      this.router.navigate(['/inicio']);
+      this.router.navigate(['']);
       this.loader=false;
       //window.location.href = '';
     },
