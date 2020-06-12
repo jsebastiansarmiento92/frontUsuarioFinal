@@ -17,7 +17,8 @@ export class HeadComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(){
-    if(this.tokenService.getToken){
+    console.log("verificacion is login");
+    if(localStorage.getItem("isLoggedin")){
       this.isLogin=true;
     }
   }
@@ -27,10 +28,15 @@ export class HeadComponent implements OnInit {
       this.tokenService.logOut();
       this.isLogin = false;
       this.authority = '';
-      this.router.navigate([""]);
+      //this.router.navigate([""]);
     }else{
       
     }
     
 }
+getIslogin(){
+      return localStorage.getItem("isLoggedin");
+    }
+
+    
 }

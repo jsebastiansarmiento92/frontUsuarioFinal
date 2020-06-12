@@ -63,6 +63,7 @@
 
         <a class="btn btn-rose btn-link btn-lg" (click)="onLoggedin()">Confirmar</a>
     </div>
+    <div *ngIf="logingIn && isLoginFail" class="alert alert-danger mt-3">Error al loguearse: {{ errorMsg }}</div>
 </ng-template>
 </div>
 </form>

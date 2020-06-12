@@ -22,5 +22,8 @@ export class ProductoServiceService {
      //alert("nombre que se envia es "+ usuario.nombreUsuario)
      return this.httpClient.get<Producto[]>(this.productoURL);
   }
-  
+  listarUsuarioFinal() : Observable<any>{
+    //alert("nombre que se envia es "+ usuario.nombreUsuario)
+    return this.httpClient.get<Producto[]>(this.productoURL+"/listarUsuarioFinal");
+ }
 }
