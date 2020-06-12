@@ -1,10 +1,10 @@
 <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
+            <a class="navbar-brand" href="">
           QuickDomicilios </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="sr-only">Toggle navigation</span>
+          <span class="sr-only"></span>
           <span class="navbar-toggler-icon"></span>
           <span class="navbar-toggler-icon"></span>
           <span class="navbar-toggler-icon"></span>
@@ -14,17 +14,17 @@
             <ul class="navbar-nav ml-auto">
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <i class="material-icons">apps</i> Components
+                        <i class="material-icons">apps</i> Ayuda en linea
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
                         <a href="../presentation.html" class="dropdown-item">
-                            <i class="material-icons">line_style</i> Presentation
+                            <i class="material-icons">line_style</i> Presentacion
                         </a>
                         <a href="../index.html" class="dropdown-item">
-                            <i class="material-icons">layers</i> All Components
+                            <i class="material-icons">layers</i>Nuestra app
                         </a>
                         <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
-                            <i class="material-icons">content_paste</i> Documentation
+                            <i class="material-icons">content_paste</i> Terminos y condiciones
                         </a>
                     </div>
                 </li>
@@ -59,7 +59,7 @@
                         </a>
                     </div>
                 </li>
-                <li class="dropdown nav-item">
+                <!--  <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="material-icons">view_carousel</i> Examples
                     </a>
@@ -101,12 +101,27 @@
                             <i class="material-icons">person_add</i> Signup Page
                         </a>
                     </div>
-                </li>
-                <li class="button-container nav-item iframe-extern">
-                    <a href="https://www.creative-tim.com/product/material-kit-pro?ref=presentation" target="_blank" class="btn  btn-rose   btn-round btn-block">
-                        <i class="material-icons">shopping_cart</i> Buy Now
-                    </a>
-                </li>
+                </li>-->
+                <div *ngIf="!isLogin; else elseBlock">
+                    <li class="button-container nav-item iframe-extern">
+
+                        <a href="login" class="btn  btn-rose   btn-round btn-block">
+                            <i class="material-icons">login</i> Iniciar Sesion
+                        </a>
+                    </li>
+
+                </div>
+                <ng-template #elseBlock>
+                    <li class="button-container nav-item iframe-extern">
+
+                        <a (click)="logOut()" class="btn  btn-rose   btn-round btn-block">
+                            <i class="material-icons">clear</i> Cerrar Sesion
+                        </a>
+                    </li>
+                </ng-template>
+
+
+
             </ul>
         </div>
     </div>

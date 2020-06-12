@@ -10,7 +10,7 @@ import { InicioComponent } from './inicio.component';
       CommonModule,
       //TranslateModule,
       InicioRoutingModule,
-      FormsModule
+     FormsModule
   ],
   declarations: [InicioComponent]
 })
