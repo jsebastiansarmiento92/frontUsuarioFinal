@@ -12,7 +12,7 @@ const cabecera = { headers: new HttpHeaders({ 'Content-TYpe': 'application/json'
 
 
 export class CajaService {
-  cajaURL = 'http://localhost:8080/cajas';
+  cajaURL = 'https://quick-domicilio-uno.herokuapp.com/cajas';
 
   constructor(private http: HttpClient) { }
 

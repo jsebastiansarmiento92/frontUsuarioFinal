@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class DetalleServicioService {
 
-  detalleservicioURL = 'http://localhost:8080/detalleServicio';
+  detalleservicioURL = 'https://quick-domicilio-uno.herokuapp.com/detalleServicio';
 
   constructor(private http: HttpClient) {
 
