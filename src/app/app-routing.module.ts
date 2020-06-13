@@ -6,8 +6,7 @@ import { GuardService as guard} from './services/guard.service';
 const routes: Routes = [
     { path: '', loadChildren: () => import('./components/inicio/inicio.module').then(m => m.InicioModule),
     canActivate:[guard]},
-    { path: 'inicio', loadChildren: () => import('./components/inicio/inicio.module').then(m => m.InicioModule),
-    canActivate:[guard] },
+    { path: 'inicio', loadChildren: () => import('./components/inicio/inicio.module').then(m => m.InicioModule) },
     { path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)},
     { path: 'head', loadChildren: () => import('./components/head/head.module').then(m => m.HeadModule),
     canActivate:[guard] },
