@@ -11,7 +11,7 @@ const cabecera = {headers: new HttpHeaders({'Content-TYpe': 'application/json'})
 })
 export class CategoriaService {
 
-  categoriaURL = 'http://localhost:8080/categorias';
+  categoriaURL = 'http://localhost:8080/QuickDomiciliosCrud-0.0.1-SNAPSHOT/categorias';
 
   constructor(private http: HttpClient) { }
 

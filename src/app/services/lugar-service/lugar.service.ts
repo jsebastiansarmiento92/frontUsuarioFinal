@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LugarService {
-  lugarURL = 'http://localhost:8080/lugar';
+  lugarURL = 'http://localhost:8080/QuickDomiciliosCrud-0.0.1-SNAPSHOT/lugar';
   constructor(private http: HttpClient) { }
 
 

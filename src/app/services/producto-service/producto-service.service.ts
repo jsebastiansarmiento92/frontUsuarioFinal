@@ -10,7 +10,7 @@ import { Producto } from 'src/app/models/producto';
   providedIn: 'root'
 })
 export class ProductoServiceService {
-  productoURL = 'http://localhost:8080/productos';
+  productoURL = 'http://localhost:8080/QuickDomiciliosCrud-0.0.1-SNAPSHOT/productos';
   constructor(private httpClient: HttpClient) { }
 
   creaProducto(producto: Producto): Observable<any> {

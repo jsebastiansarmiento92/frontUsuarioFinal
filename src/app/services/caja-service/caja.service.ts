@@ -12,7 +12,7 @@ const cabecera = { headers: new HttpHeaders({ 'Content-TYpe': 'application/json'
 
 
 export class CajaService {
-  cajaURL = 'http://localhost:8080/cajas';
+  cajaURL = 'http://localhost:8080/QuickDomiciliosCrud-0.0.1-SNAPSHOT/cajas';
 
   constructor(private http: HttpClient) { }
 

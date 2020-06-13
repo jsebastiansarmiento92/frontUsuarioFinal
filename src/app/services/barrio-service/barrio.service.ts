@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BarrioService {
-  barrioURL = 'http://localhost:8080/barrios';
+  barrioURL = 'http://localhost:8080/QuickDomiciliosCrud-0.0.1-SNAPSHOT/barrios';
   constructor(private http: HttpClient) { }
 
   getBarrios() {

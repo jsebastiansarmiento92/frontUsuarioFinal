@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ConsignacionService {
-  consignacionURL = 'http://localhost:8080/consignaciones';
+  consignacionURL = 'http://localhost:8080/QuickDomiciliosCrud-0.0.1-SNAPSHOT/consignaciones';
 
   
   constructor(private http: HttpClient) { }

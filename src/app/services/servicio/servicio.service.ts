@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ServicioService {
-  servicioURL = 'http://localhost:8080/servicio';
+  servicioURL = 'http://localhost:8080/QuickDomiciliosCrud-0.0.1-SNAPSHOT/servicio';
   constructor(private http: HttpClient) { }
 
   updateServicio(servicio:Servicio): Observable<any>{
