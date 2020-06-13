@@ -3,6 +3,7 @@ import { ProductoServiceService } from 'src/app/services/producto-service/produc
 import { ImageService } from 'src/app/services/image-service/image.service';
 import { Producto } from 'src/app/models/producto';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -20,9 +21,12 @@ export class InicioComponent implements OnInit {
   productosCarrito:Producto[]=[];
   constructor(private productosService:ProductoServiceService,
   private imagenService:ImageService,
-  private serviceModal: NgbModal) { }
+  private serviceModal: NgbModal,
+  private router:Router) { }
 
   ngOnInit() {
+    if(!localStorage.getItem("isLoggedin"))
+    localStorage.clear();
     this.cargarProductos();
   }
 cargarProductos() {
@@ -47,8 +51,13 @@ cargarProductos() {
     
   }
   ordenarProducto(producto: Producto, modal) {
-    this.producto = producto;
-    this.serviceModal.open(modal);
+    if(localStorage.getItem("isLoggedin")){
+      this.producto = producto;
+      this.serviceModal.open(modal);
+    }else{
+      this.router.navigate(["login"]);
+    }
+   
   }
   confirmarAgregar(){
     this.productosCarrito.push(this.producto);
