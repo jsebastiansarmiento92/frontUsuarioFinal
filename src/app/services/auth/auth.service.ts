@@ -11,7 +11,7 @@ const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json'
   providedIn: 'root'
 })
 export class AuthService {
-  private authURL = 'http://localhost:8080/QuickDomiciliosCrud-0.0.1-SNAPSHOT/auth/';
+  private authURL = 'https://quick-domicilio-uno.herokuapp.com/auth/';
 
   constructor(private httpClient: HttpClient) { }
 

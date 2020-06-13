@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ConsignacionService {
-  consignacionURL = 'http://localhost:8080/QuickDomiciliosCrud-0.0.1-SNAPSHOT/consignaciones';
+  consignacionURL = 'https://quick-domicilio-uno.herokuapp.com/consignaciones';
 
   
   constructor(private http: HttpClient) { }
