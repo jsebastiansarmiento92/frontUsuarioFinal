@@ -8,7 +8,7 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "cordova": "ng build --base-href . --output-path cordova/www",
+        "cordova": "ng build --base-href . --output-path auickDomicilios-cordova/www",
         "cordova-run": "npm run cordova && cd cordova && cordova run android",
         "cordova-run-browser": "npm run cordova && cd cordova && cordova run browser",
         "cordova-run-android": "npm run cordova && cd cordova && cordova run android"
