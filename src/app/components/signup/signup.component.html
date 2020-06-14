@@ -1,66 +1,66 @@
 <div class="signup-page sidebar-collapse">
     <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
-      <div class="container">
-        <div class="navbar-translate">
-          <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit-pro/index.html">
             QuickDomicilios </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Navegación de palanca</span>
             <span class="navbar-toggler-icon"></span>
             <span class="navbar-toggler-icon"></span>
             <span class="navbar-toggler-icon"></span>
           </button>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav ml-auto">
-            <li class="dropdown nav-item">
-              <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                <i class="material-icons">apps</i> Componentes
-              </a>
-              <div class="dropdown-menu dropdown-with-icons">
-                <a href="../presentation.html" class="dropdown-item">
-                  <i class="material-icons">line_style</i> Presentación
-                </a>
-                <a href="../index.html" class="dropdown-item">
-                  <i class="material-icons">layers</i> Todos los Comopnentes
-                </a>
-                <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
-                  <i class="material-icons">content_paste</i> Documentación
-                </a>
-              </div>
-            </li>
-            <li class="dropdown nav-item">
-              <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <i class="material-icons">view_day</i> Secciones
-              </a>
-              <div class="dropdown-menu dropdown-with-icons">
-                  <a href="../sections.html#headers" class="dropdown-item">
-                      <i class="material-icons">dns</i> Emcabezados
-                  </a>
-                  <a href="../sections.html#features" class="dropdown-item">
-                      <i class="material-icons">build</i> Caracteristicas
-                  </a>
-                  <a href="../sections.html#blogs" class="dropdown-item">
-                      <i class="material-icons">list</i> Blogs
-                  </a>
-                  <a href="../sections.html#teams" class="dropdown-item">
-                      <i class="material-icons">people</i> Equipos
-                  </a>
-                  <a href="../sections.html#projects" class="dropdown-item">
-                      <i class="material-icons">assignment</i> Proyectos
-                  </a>
-                  <a href="../sections.html#pricing" class="dropdown-item">
-                      <i class="material-icons">monetization_on</i>Precios
-                  </a>
-                  <a href="../sections.html#testimonials" class="dropdown-item">
-                      <i class="material-icons">chat</i> Testimonios
-                  </a>
-                  <a href="../sections.html#contactus" class="dropdown-item">
-                      <i class="material-icons">call</i> Contactos
-                  </a>
-              </div>
-          </li>
-            <!--li class="dropdown nav-item">
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="dropdown nav-item">
+                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                            <i class="material-icons">apps</i> Componentes
+                        </a>
+                        <div class="dropdown-menu dropdown-with-icons">
+                            <a href="../presentation.html" class="dropdown-item">
+                                <i class="material-icons">line_style</i> Presentación
+                            </a>
+                            <a href="../index.html" class="dropdown-item">
+                                <i class="material-icons">layers</i> Todos los Comopnentes
+                            </a>
+                            <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                                <i class="material-icons">content_paste</i> Documentación
+                            </a>
+                        </div>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                            <i class="material-icons">view_day</i> Secciones
+                        </a>
+                        <div class="dropdown-menu dropdown-with-icons">
+                            <a href="../sections.html#headers" class="dropdown-item">
+                                <i class="material-icons">dns</i> Emcabezados
+                            </a>
+                            <a href="../sections.html#features" class="dropdown-item">
+                                <i class="material-icons">build</i> Caracteristicas
+                            </a>
+                            <a href="../sections.html#blogs" class="dropdown-item">
+                                <i class="material-icons">list</i> Blogs
+                            </a>
+                            <a href="../sections.html#teams" class="dropdown-item">
+                                <i class="material-icons">people</i> Equipos
+                            </a>
+                            <a href="../sections.html#projects" class="dropdown-item">
+                                <i class="material-icons">assignment</i> Proyectos
+                            </a>
+                            <a href="../sections.html#pricing" class="dropdown-item">
+                                <i class="material-icons">monetization_on</i>Precios
+                            </a>
+                            <a href="../sections.html#testimonials" class="dropdown-item">
+                                <i class="material-icons">chat</i> Testimonios
+                            </a>
+                            <a href="../sections.html#contactus" class="dropdown-item">
+                                <i class="material-icons">call</i> Contactos
+                            </a>
+                        </div>
+                    </li>
+                    <!--li class="dropdown nav-item">
               <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 <i class="material-icons">view_carousel</i> Examples
               </a>
@@ -103,133 +103,133 @@
                 </a>
               </div>
             </li-->
-            <div *ngIf="!getIslogin(); else elseBlock">
-              <li class="button-container nav-item iframe-extern">
+                    <div *ngIf="!getIslogin(); else elseBlock">
+                        <li class="button-container nav-item iframe-extern">
 
-                  <a href="login" class="btn  btn-rose   btn-round btn-block">
-                      <i class="material-icons">login</i> Iniciar Sesion
-                  </a>
-              </li>
+                            <a href="login" class="btn  btn-rose   btn-round btn-block">
+                                <i class="material-icons">login</i> Iniciar Sesion
+                            </a>
+                        </li>
+                    </div>
+                    <ng-template #elseBlock>
+                        <li class="button-container nav-item iframe-extern">
+
+                            <a (click)="logOut()" class="btn  btn-rose   btn-round btn-block">
+                                <i class="material-icons">clear</i> Cerrar Sesion
+                            </a>
+                        </li>
+                    </ng-template>
+
+                </ul>
             </div>
-          <ng-template #elseBlock>
-              <li class="button-container nav-item iframe-extern">
-
-                  <a (click)="logOut()" class="btn  btn-rose   btn-round btn-block">
-                      <i class="material-icons">clear</i> Cerrar Sesion
-                  </a>
-              </li>
-          </ng-template>
-
-          </ul>
         </div>
-      </div>
     </nav>
     <div class="page-header header-filter" filter-color="purple" style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-10 ml-auto mr-auto">
-            <div class="card card-signup">
-              <h2 class="card-title text-center">Registrase</h2>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-5 ml-auto">
-                    <div class="info info-horizontal">
-                      <div class="icon icon-rose">
-                        <i class="material-icons">cronograma</i>
-                      </div>
-                      <div class="description">
-                        <h4 class="info-title">Marketing</h4>
-                        <p class="description">
-                          Hemos creado la campaña de marketing del sitio web. Fue una colaboración muy interesante.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="info info-horizontal">
-                      <div class="icon icon-primary">
-                        <i class="material-icons">Codigo</i>
-                      </div>
-                      <div class="description">
-                        <h4 class="info-title">Totalmente codificado en HTML5</h4>
-                        <p class="description">
-                          Desarrollamos el sitio web con HTML5 y CSS3. El cliente tiene acceso al código usando GitHub.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="info info-horizontal">
-                      <div class="icon icon-info">
-                        <i class="material-icons">group</i>
-                      </div>
-                      <div class="description">
-                        <h4 class="info-title">Audiencia Construida</h4>
-                        <p class="description">
-                          También hay un Panel de administración de CMS totalmente personalizable para este producto.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-5 mr-auto">
-                    <div class="social text-center">
-                      <button class="btn btn-just-icon btn-round btn-twitter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 ml-auto mr-auto">
+                    <div class="card card-signup">
+                        <h2 class="card-title text-center">Registrase</h2>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-5 ml-auto">
+                                    <div class="info info-horizontal">
+                                        <div class="icon icon-rose">
+                                            <i class="material-icons">cronograma</i>
+                                        </div>
+                                        <div class="description">
+                                            <h4 class="info-title">Marketing</h4>
+                                            <p class="description">
+                                                Hemos creado la campaña de marketing del sitio web. Fue una colaboración muy interesante.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="info info-horizontal">
+                                        <div class="icon icon-primary">
+                                            <i class="material-icons">Codigo</i>
+                                        </div>
+                                        <div class="description">
+                                            <h4 class="info-title">Totalmente codificado en HTML5</h4>
+                                            <p class="description">
+                                                Desarrollamos el sitio web con HTML5 y CSS3. El cliente tiene acceso al código usando GitHub.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="info info-horizontal">
+                                        <div class="icon icon-info">
+                                            <i class="material-icons">group</i>
+                                        </div>
+                                        <div class="description">
+                                            <h4 class="info-title">Audiencia Construida</h4>
+                                            <p class="description">
+                                                También hay un Panel de administración de CMS totalmente personalizable para este producto.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 mr-auto">
+                                    <div class="social text-center">
+                                        <button class="btn btn-just-icon btn-round btn-twitter">
                         <i class="fa fa-twitter"></i>
                       </button>
-                      <button class="btn btn-just-icon btn-round btn-dribbble">
+                                        <button class="btn btn-just-icon btn-round btn-dribbble">
                         <i class="fa fa-dribbble"></i>
                       </button>
-                      <button class="btn btn-just-icon btn-round btn-facebook">
+                                        <button class="btn btn-just-icon btn-round btn-facebook">
                         <i class="fa fa-facebook"> </i>
                       </button>
-                      <h4> O ser clásico </h4>
-                    </div>
-                    <form class="form" method="" action="">
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">
+                                        <h4> O ser clásico </h4>
+                                    </div>
+                                    <form class="form" method="" action="">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
                               <i class="material-icons">face</i>
                             </span>
-                          </div>
-                          <input type="text" class="form-control" placeholder="Primer nombre...">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Primer nombre...">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
                               <i class="material-icons">mail</i>
                             </span>
-                          </div>
-                          <input type="text" class="form-control" placeholder="Correo electronico...">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Correo electronico...">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
                               <i class="material-icons">lock_outline</i>
                             </span>
-                          </div>
-                          <input type="password" placeholder="Contaseña..." class="form-control" />
-                        </div>
-                      </div>
-                      <div class="form-check">
-                        <label class="form-check-label">
+                                                </div>
+                                                <input type="password" placeholder="Contaseña..." class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
                           <input class="form-check-input" type="checkbox" value="" checked>
                           <span class="form-check-sign">
                             <span class="check"></span>
                           </span>
                           I agree to the <a href="#something">terms and conditions</a>.
                         </label>
-                      </div>
-                      <div class="text-center">
-                        <a href="#pablo" class="btn btn-primary btn-round">Get Started</a>
-                      </div>
-                    </form>
-                  </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <a href="#pablo" class="btn btn-primary btn-round">Get Started</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
 </div>

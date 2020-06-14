@@ -11,5 +11,10 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  getIslogin():boolean{
+    return false
+  }
+  logOut(){
+    
+  }
 }
