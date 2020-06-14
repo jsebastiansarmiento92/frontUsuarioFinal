@@ -26,13 +26,16 @@ export class CarritoComponent implements OnInit {
   pedido: Pedido = new Pedido();
   servicio: Servicio = new Servicio();
   lugar:Lugar=new Lugar();
+  lugares:Lugar[]=[];
   @ViewChild('agregarDireccionNueva', {static: false}) agregarDireccionNueva;
+  modalDetalle;
   loader=true;
   direccion:string;
   barrioSeleccionado:string="";
   ganancia:number;
   idservicio: number;
   totalServicio:number;
+  loaderPedido=false;
 
   constructor(private pedidoService: PedidoService,
     private tokenService: TokenService,
@@ -60,15 +63,19 @@ export class CarritoComponent implements OnInit {
     console.log("carrito pendiente");
     console.log('objetoObtenido: ', this.productos);
   }
-
+  modalDetallePedido(modal){
+    this.modalDetalle=modal;
+    console.log("detalle del pedido es:"+this.pedido);
+    this.serviceModal.open(modal);
+  }
   confirmarPedido() {
     if (!confirm('¿Estás seguro desea confirmar el servicio?')) {
-
     } else {
       console.log("id lugar de la sesion es "+ this.getidLugar());
       if (this.getidLugar()==0){
         if (confirm('No tiene direccion guardada de domicilio, ¿desea guardar una?')) {
           this.asignarLugarNuevo();
+        }else{
 
         }
       }else{
@@ -101,6 +108,7 @@ export class CarritoComponent implements OnInit {
     return valor;
   }
   confirmarTransaccion(){
+    this.loaderPedido=true;
       this.pedido.idCliente = this.getidSesion();
       this.pedido.lugar=this.lugar;
       this.pedido.idEmpresa = this.productos[0].idEmpresa;
@@ -109,6 +117,7 @@ export class CarritoComponent implements OnInit {
       this.pedido.valorComision = 0;
       this.pedido.valorGanancia = 0;
       this.pedido.valorTotalPedido = 0;
+      this.serviceModal.dismissAll();
       console.log("valor gananacia "+ this.ganancia);
       this.pedido.valorGanancia=this.ganancia;
       console.log("ingreso a crear el pedido");
@@ -140,6 +149,7 @@ export class CarritoComponent implements OnInit {
      console.log("lugar obtenido es ");
     console.log(data);
       this.tokenService.setLugar(data.lugar.idLugar+"");
+      this.loaderPedido=false;
     })
   }
   getidSesion(): number {
@@ -189,6 +199,8 @@ export class CarritoComponent implements OnInit {
   asignarLugarNuevo() {
     //this.pedido = pedido;
    // this.getDomiciliariosDisponibles();
+  // this.serviceModal.dismissAll();
+    //this.getLugaresUsuario();
     this.serviceModal.open(this.agregarDireccionNueva);
     this.serviceBarrio.getBarrios().subscribe(data=>{
       this.barrios=data;
@@ -218,17 +230,26 @@ export class CarritoComponent implements OnInit {
     this.lugar.idUsuario=this.getidSesion();
     console.log("datos de lugar");
     console.log(this.lugar);
-    if (confirm('valor total del pedido: $'+this.getValorPedido()+ ' ¿Estás seguro desea confirmar el pedido?')) {
+    this.totalServicio=this.getValorPedido()
+    
+   
       this.serviceLugar.createLugar(this.lugar).subscribe(data=>{
       
-        this.confirmarTransaccion();
+        //this.confirmarTransaccion();
       },(err: any) => {
         
         console.log(err.error.mensaje)
       })
-
-    }
+      this.serviceModal.dismissAll()
+      this.serviceModal.open(this.modalDetalle);
   
     
+  }
+  getLugaresUsuario1(){
+    this.serviceLugar.getLugaresIdUsuario1(parseInt(this.tokenService.getIdUser())).subscribe(data=>{
+      console.log("listado de lugares del usuario");
+      console.log(data);
+      this.lugares=data;
+    })
   }
 }

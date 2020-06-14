@@ -21,8 +21,8 @@ export class LugarService {
     // console.log("el ide seleccionado es "+ id)
     return this.http.get<Lugar>(this.lugarURL + "/" + id);
   }
-  getLugarIdUsuario(id: number): Observable<Lugar> {
+  getLugaresIdUsuario1(id: number): Observable<any> {
     // console.log("el ide seleccionado es "+ id)
-    return this.http.get<Lugar>(this.lugarURL + "/usuario/" + id);
+    return this.http.get<Lugar[]>(this.lugarURL + "/usuario/" + id);
   }
 }

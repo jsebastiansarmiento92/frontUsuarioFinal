@@ -22,12 +22,21 @@
 
 
     <div>
-        <button (click)="confirmarPedido()" style="margin: 10px" class="btn btn-light">Confirmar pedido</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" (click)="modalDetallePedido(detalleModal)">Confirmar pedido</button>
+
         <button (click)="cancelarCarrito()" style="margin: 10px" class="btn btn-dark">Cancelar carrito</button>
     </div>
 
 
     <div class="page-subtitle">Listado</div>
+
+    <div class="center-loader" *ngIf="loaderPedido">
+        <strong>Solicitud en proceso....
+            <span class="loader__dot">.</span>
+            <span class="loader__dot">.</span>
+            <span class="loader__dot">.</span></strong>
+    </div>
+
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-4" *ngFor="let producto of productos">
@@ -84,5 +93,37 @@
             </form>
 
 
+        </div>
+    </ng-template>
+    <ng-template #detalleModal>
+        <div role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form>
+
+                        <div class="form-group" style="margin: 20px;">
+                            <label for="inputAddress">Valor Servicio</label>
+                            <h4>${{totalServicio}}</h4>
+                        </div>
+
+                        <div class="form-row" style="margin: 20px;">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Direccion</label>
+                                <h5>{{lugar.direccionLugar}}</h5>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputState">Barrio</label>
+                                <h5>{{lugar.barrio.nombreBarrio}}</h5>
+
+                            </div>
+                            <div class="form-group col-md-2 ml-auto" style="margin: 20px;">
+
+                                <button type="button" class="btn btn-warning" (click)="asignarLugarNuevo()">Cambiar</button>
+                            </div>
+                        </div>
+                        <button type="submit" (click)="confirmarTransaccion()" class="btn btn-primary" style="margin: 20px;">Confirmar</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </ng-template>

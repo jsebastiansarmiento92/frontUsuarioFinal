@@ -4,6 +4,9 @@ import { ImageService } from 'src/app/services/image-service/image.service';
 import { Producto } from 'src/app/models/producto';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { CategoriaService } from 'src/app/services/categoria-service/categoria.service';
+import { Categoria } from 'src/app/models/categoria';
+import { TokenService } from 'src/app/services/auth/token.service';
 
 @Component({
   selector: 'app-inicio',
@@ -19,15 +22,25 @@ export class InicioComponent implements OnInit {
 
   producto:Producto=new Producto();
   productosCarrito:Producto[]=[];
+  categorias:Categoria[]=[];
+
   constructor(private productosService:ProductoServiceService,
   private imagenService:ImageService,
   private serviceModal: NgbModal,
-  private router:Router) { }
+  private router:Router,
+  private categoriaService:CategoriaService,
+  private tokenService:TokenService) { }
 
   ngOnInit() {
-    if(!localStorage.getItem("isLoggedin"))
-    localStorage.clear();
+    if(this.tokenService.getToken()==null){
+      localStorage.clear();
+      console.log("se limpia el locar storage en inicio");
+    }else{
+      localStorage.setItem('isLoggedin', 'true');
+    }
+    
     this.cargarProductos();
+    this.cargarCategorias();
   }
 cargarProductos() {
     console.log("metodo de listar productos oinit");
@@ -65,5 +78,10 @@ cargarProductos() {
     console.log(this.productosCarrito);
     localStorage.setItem('myArray', JSON.stringify(this.productosCarrito));
     this.serviceModal.dismissAll();
+  }
+  cargarCategorias(){
+    this.categoriaService.getCategorias().subscribe(data=>{
+      this.categorias=data;
+    })
   }
 }
