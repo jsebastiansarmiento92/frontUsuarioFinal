@@ -4,12 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { GuardService as guard} from './services/guard.service';
 
 const routes: Routes = [
-    { path: '', loadChildren: () => import('./components/inicio/inicio.module').then(m => m.InicioModule),
-    canActivate:[guard]},
+    { path: '', loadChildren: () => import('./components/inicio/inicio.module').then(m => m.InicioModule)},
     { path: 'inicio', loadChildren: () => import('./components/inicio/inicio.module').then(m => m.InicioModule) },
     { path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)},
-    { path: 'head', loadChildren: () => import('./components/head/head.module').then(m => m.HeadModule),
-    canActivate:[guard] },
+    { path: 'head', loadChildren: () => import('./components/head/head.module').then(m => m.HeadModule)},
     { path: 'carrito', loadChildren: () => import('./components/carrito/carrito.module').then(m => m.CarritoModule),
     canActivate:[guard]},
    // { path: 'access-denied', loadChildren: () => import('./access-denied/access-denied.module').then(m => m.AccessDeniedModule) },

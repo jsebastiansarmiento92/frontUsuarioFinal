@@ -12,6 +12,7 @@ const ID_LUGAR = 'IdLugar';
 })
 export class TokenService {
   roles: Array<string> = [];
+  
   constructor() { }
 
   public setLugar(idLugar: string): void {
