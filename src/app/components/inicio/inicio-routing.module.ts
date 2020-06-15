@@ -10,7 +10,7 @@ const routes: Routes = [
       path: '',
       component: InicioComponent,
       children: [
-          { path: '', redirectTo: '', pathMatch: 'prefix' }
+          { path: '', redirectTo: 'inicio', pathMatch: 'prefix' }
           
     //      { path: 'carrito', loadChildren: () => import('../carrito/carrito.module').then(m => m.CarritoModule)}
           
