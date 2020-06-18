@@ -80,7 +80,7 @@ cargarProductos() {
     this.serviceModal.dismissAll();
   }
   cargarCategorias(){
-    this.categoriaService.getCategorias().subscribe(data=>{
+    this.categoriaService.getCategoriasUsuarioFinal().subscribe(data=>{
       this.categorias=data;
     })
   }

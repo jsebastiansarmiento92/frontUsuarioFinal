@@ -33,4 +33,10 @@ export class CategoriaService {
     return this.http.delete<Categoria>(this.categoriaURL+"/"+categoria.idCategoria);
   }
 
+  
+
+  getCategoriasUsuarioFinal(){
+    return this.http.get<Categoria[]>(this.categoriaURL+"/listarUsuarioFinal");
+
+}
 }
