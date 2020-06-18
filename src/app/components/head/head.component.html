@@ -1,7 +1,7 @@
 <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" href="inicio">
+            <a class="navbar-brand" (click)="inicio()">
           QuickDomicilios </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only"></span>
@@ -20,21 +20,21 @@
                 </li>
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <i class="material-icons">apps</i> Ayuda en linea
+                        <i class="material-icons">apps</i> Nuestro servicios y ayuda
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
-                        <a href="../presentation.html" class="dropdown-item">
+                        <a class="dropdown-item">
                             <i class="material-icons">line_style</i> Presentacion
                         </a>
-                        <a href="../index.html" class="dropdown-item">
+                        <a class="dropdown-item">
                             <i class="material-icons">layers</i>Nuestra app
                         </a>
-                        <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html" class="dropdown-item">
+                        <a class="dropdown-item">
                             <i class="material-icons">content_paste</i> Terminos y condiciones
                         </a>
                     </div>
                 </li>
-                <li class="dropdown nav-item">
+                <!--<li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="material-icons">view_day</i> Secciones
                     </a>
@@ -64,7 +64,7 @@
                             <i class="material-icons">call</i> Contactos
                         </a>
                     </div>
-                </li>
+                </li>-->
                 <!--  <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="material-icons">view_carousel</i> Examples
@@ -111,7 +111,7 @@
                 <div *ngIf="!getIslogin(); else elseBlock">
                     <li class="button-container nav-item iframe-extern">
 
-                        <a href="login" class="btn  btn-rose   btn-round btn-block">
+                        <a (click)="login()" class="btn  btn-rose   btn-round btn-block">
                             <i class="material-icons">login</i> Iniciar Sesion
                         </a>
                     </li>

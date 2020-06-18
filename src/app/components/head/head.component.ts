@@ -13,30 +13,37 @@ export class HeadComponent implements OnInit {
   roles: string[];
   authority: string;
 
-  constructor(private tokenService:TokenService,
+  constructor(private tokenService: TokenService,
     private router: Router) { }
 
-  ngOnInit(){
+  ngOnInit() {
     console.log("verificacion is login");
-    if(localStorage.getItem("isLoggedin")){
-      this.isLogin=true;
+    if (localStorage.getItem("isLoggedin")) {
+      this.isLogin = true;
     }
   }
   logOut(): void {
-    if(confirm("desea cerrar sesion?")){
+    if (confirm("desea cerrar sesion?")) {
       console.log("cerrar sesion");
       this.tokenService.logOut();
       this.isLogin = false;
       this.authority = '';
       //this.router.navigate([""]);
-    }else{
-      
-    }
-    
-}
-getIslogin(){
-      return localStorage.getItem("isLoggedin");
-    }
+    } else {
 
-    
+    }
+  }
+  login() {
+    this.router.navigate(["login"]);
+
+  }
+  inicio() {
+    this.router.navigate(["inicio"]);
+
+  }
+  getIslogin() {
+    return localStorage.getItem("isLoggedin");
+  }
+
+
 }
