@@ -14618,8 +14618,8 @@ footer .pull-center {
 .pagination>.page-item.active>span,
 .pagination>.page-item.active>span:focus,
 .pagination>.page-item.active>span:hover {
-    background-color: #9c27b0;
-    border-color: #9c27b0;
+    background-color: #ef2b2d;
+    border-color: #ef2b2ee7;
     color: #fff;
     box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
 }
@@ -15420,8 +15420,8 @@ h2.title {
 .dropdown-menu a:hover,
 .dropdown-menu a:focus,
 .dropdown-menu a:active {
-    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
-    background-color: #9c27b0 !important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(250, 0, 0, 0.4);
+    background-color: #ef2b2d !important;
     color: #ffffff !important;
 }
 .dropdown-toggle.bmd-btn-icon::after,
@@ -18053,7 +18053,7 @@ thead.thead-inverse th,
 .card-collapse .card-header a:hover,
 .card-collapse .card-header a:active,
 .card-collapse .card-header a[aria-expanded="true"] {
-    color: #e91e63;
+    color: #ef2b2d;
 }
 .card-collapse .card-header a i {
     float: right;
@@ -19587,10 +19587,11 @@ select.selectpicker {
     color: inherit !important;
     box-shadow: none !important;
 }
+
 .bootstrap-select .select-with-transition,
 .bootstrap-select .btn:active,
 .bootstrap-select .btn.active {
-    background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px);
+    background-image: linear-gradient(to top, #922926 2px, rgba(250, 0, 0, 0) 2px), linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px);
 }
 .bootstrap-select.show .select-with-transition:focus {
     background-size: 100% 100%, 100% 100%;
@@ -20366,7 +20367,7 @@ select.selectpicker {
 }
 .ecommerce-page .card-refine.card-rose a:hover,
 .ecommerce-page .card-refine.card-rose a[aria-expanded="true"] {
-    color: #e91e63;
+    color: #ee2225;
 }
 .ecommerce-page .card-refine .card-body {
     padding-left: 15px;
