@@ -36,6 +36,7 @@ export class CarritoComponent implements OnInit {
   idservicio: number;
   totalServicio:number;
   loaderPedido=false;
+  isPrimeraVezLugar=false;
 
   constructor(private pedidoService: PedidoService,
     private tokenService: TokenService,
@@ -47,6 +48,7 @@ export class CarritoComponent implements OnInit {
     private serviceUsuario:UsuarioService) { }
 
   ngOnInit() {
+    console.log("get carrito en oinit");
     this.getCarrito();
     let idLugar=this.tokenService.getLugar();
     console.log("id de lugar de usuario es ");
@@ -59,14 +61,28 @@ export class CarritoComponent implements OnInit {
     }
   }
   getCarrito() {
+    console.log(JSON.parse(localStorage.getItem('myArray')));
     this.productos = JSON.parse(localStorage.getItem('myArray'));
-    console.log("carrito pendiente");
-    console.log('objetoObtenido: ', this.productos);
+    console.log(this.productos);
+   // console.log("carrito pendiente");
+   // console.log('objetoObtenido: ', this.productos);
   }
   modalDetallePedido(modal){
-    this.modalDetalle=modal;
-    console.log("detalle del pedido es:"+this.pedido);
-    this.serviceModal.open(modal);
+    console.log("detalle de modal activo");
+    console.log(this.getidLugar());
+    if (this.getidLugar()==0){
+      if (confirm('No tiene direccion guardada de domicilio, ¿desea guardar una?')) {
+        this.isPrimeraVezLugar=true;
+        this.asignarLugarNuevo();
+      }
+    }else{
+      console.log("detalle de modal despues de condicional");
+      this.modalDetalle=modal;
+      console.log("detalle del pedido es:");
+      console.log(this.pedido);
+      this.serviceModal.open(modal);
+    }
+    
   }
   confirmarPedido() {
     if (!confirm('¿Estás seguro desea confirmar el servicio?')) {
@@ -95,9 +111,12 @@ export class CarritoComponent implements OnInit {
   }
   getValorPedido():number{
     let valor=0;
-    this.productos.forEach(element => {
-      valor+=(element.cantidad*element.valorProducto);
-    });
+    if(this.productos!=null){
+      this.productos.forEach(element => {
+        valor+=(element.cantidad*element.valorProducto);
+      });
+    }
+    
     if(this.lugar.barrio.tipoCosto=="COSTO1"){
       valor+=4000;
       this.ganancia=4000;
@@ -232,16 +251,31 @@ export class CarritoComponent implements OnInit {
     console.log(this.lugar);
     this.totalServicio=this.getValorPedido()
     
-   
-      this.serviceLugar.createLugar(this.lugar).subscribe(data=>{
+      if(this.isPrimeraVezLugar){
+        this.serviceLugar.createLugar(this.lugar).subscribe(data=>{
+          if (confirm('valor total del pedido: $'+this.getValorPedido()+ ' ¿Estás seguro desea confirmar el pedido?')) {
+            this.confirmarTransaccion();
+  
+          } 
+         
+  
+        },(err: any) => {
+          
+          console.log(err.error.mensaje)
+        })
+        this.serviceModal.dismissAll()
+        this.serviceModal.open(this.modalDetalle);
+      }else{
+        this.serviceLugar.createLugar(this.lugar).subscribe(data=>{
+          alert(data.mensaje);
+        },(err: any) => {
+          
+          console.log(err.error.mensaje)
+        })
+        this.serviceModal.dismissAll()
+        this.serviceModal.open(this.modalDetalle);
+      }
       
-        //this.confirmarTransaccion();
-      },(err: any) => {
-        
-        console.log(err.error.mensaje)
-      })
-      this.serviceModal.dismissAll()
-      this.serviceModal.open(this.modalDetalle);
   
     
   }

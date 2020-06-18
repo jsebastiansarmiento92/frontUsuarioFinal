@@ -1,4 +1,4 @@
-<nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
+<nav class="navbar navbar-color-on-scroll     fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
             <a class="navbar-brand" (click)="inicio()">
@@ -16,7 +16,6 @@
                     <a [routerLink]="['carrito']" [routerLinkActive]="['active']" data-toggle="dropdown">
                         <i class="material-icons">shopping_cart</i> Carrito
                     </a>
-
                 </li>
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -119,7 +118,6 @@
                 </div>
                 <ng-template #elseBlock>
                     <li class="button-container nav-item iframe-extern">
-
                         <a (click)="logOut()" class="btn  btn-rose btn-round btn-danger">
                             Cerrar Sesion
                         </a>

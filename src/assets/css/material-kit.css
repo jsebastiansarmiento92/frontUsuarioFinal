@@ -11866,7 +11866,7 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
     opacity: 0.2;
 }
 .form-check .form-check-input:checked~.form-check-sign .check {
-    background: #9c27b0;
+    background: rgb(132, 0, 0);
 }
 .form-check .form-check-input:checked~.form-check-sign .check:before {
     color: #FFFFFF;
@@ -12072,7 +12072,7 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
 .form-check .form-check-label span {
     display: block;
     position: absolute;
-    left: -1px;
+    left: 1.5px;
     top: -1px;
     -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
@@ -21400,7 +21400,8 @@ select.selectpicker {
     }
     
     .card-profile .card-header-image {
-        max-height: 215px;
+        height: 215px;
+        
     }
 }
 @media screen and (max-width: 991px) {
