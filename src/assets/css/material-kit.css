@@ -9798,8 +9798,8 @@ button:focus {
 
 .btn.btn-danger {
     color: #fff;
-    background-color: #f44336;
-    border-color: #f44336;
+    background-color: #ef2b2d;
+    border-color: #7c211e;
     box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
 }
 
@@ -9888,8 +9888,8 @@ button:focus {
 
 .btn.btn-rose {
     color: #fff;
-    background-color: rgb(152, 0, 0);
-    border-color: rgba(152, 0, 0, 0.603);
+    background-color: #ef2b2d;
+    border-color: rgb(152, 0, 0);
     box-shadow: 0 2px 2px 0 rgba(233, 30, 99, 0.14), 0 3px 1px -2px rgba(233, 30, 99, 0.2), 0 1px 5px 0 rgba(233, 30, 99, 0.12);
 }
 
