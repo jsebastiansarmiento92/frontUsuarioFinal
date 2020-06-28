@@ -113,7 +113,7 @@
                 <div *ngIf="!getIslogin(); else elseBlock">
                     <li class="button-container nav-item iframe-extern">
 
-                        <a (click)="login()" class="btn  btn-rose   btn-round btn-block">
+                        <a (click)="login()" style="color: white;" class="btn  btn-rose   btn-round btn-block">
                             <i class="material-icons">login</i> Iniciar Sesion
                         </a>
                     </li>
@@ -121,7 +121,7 @@
                 </div>
                 <ng-template #elseBlock>
                     <li class="button-container nav-item iframe-extern">
-                        <a (click)="logOut()" class="btn  btn-rose btn-round btn-danger">
+                        <a (click)="logOut()" style="color: white;" class="btn  btn-rose btn-round btn-danger">
                             Cerrar Sesion
                         </a>
                     </li>
