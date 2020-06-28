@@ -906,6 +906,12 @@ mark,
     height: auto;
 }
 
+.input-transparent{
+    background-color: transparent;
+    color: white; 
+    border: none;
+}
+
 .figure {
     display: inline-block;
 }
@@ -11283,7 +11289,7 @@ label {
 }
 .offline-doc .page-header,
 .offline-free-doc .page-header {
-    height: 100vh !important;
+    height: 200vh !important;
 }
 .offline-doc .page-header:after,
 .offline-free-doc .page-header:after {
@@ -11606,7 +11612,7 @@ label {
 }
 @media all and (max-width: 375px) {
     .page-header {
-        height: calc(100vh + 270px);
+        height: calc(100vh + 400px);
     }
     
     .index-page {
@@ -11733,7 +11739,7 @@ label {
 }
 .offline-doc .page-header,
 .offline-free-doc .page-header {
-    height: 100vh !important;
+    height: 200vh !important;
 }
 .offline-doc .page-header:after,
 .offline-free-doc .page-header:after {
@@ -14021,7 +14027,7 @@ textarea {
     position: relative;
 }
 .page-header {
-    height: 100vh;
+    height: 200vh;
     background-position: center center;
     background-size: cover;
     margin: 0;
@@ -14063,8 +14069,8 @@ textarea {
     color: #fff;
 }
 .page-header.header-small {
-    height: 65vh;
-    min-height: 65vh;
+    height: 100vh;
+    min-height: 75vh;
 }
 .page-header .iframe-container iframe {
     width: 100%;
@@ -19765,7 +19771,7 @@ select.selectpicker {
 }
 .presentation-page .page-header,
 .index-page .page-header {
-    height: 90vh;
+    height: 100vh;
     overflow: hidden;
 }
 .presentation-page .brand,
@@ -20052,7 +20058,7 @@ select.selectpicker {
     margin-top: 12px;
 }
 .profile-page .page-header {
-    height: 380px;
+    height: 500px;
     background-position: top center;
 }
 .profile-page .profile {
@@ -20131,7 +20137,7 @@ select.selectpicker {
     background-color: #eee;
 }
 .product-page .page-header {
-    min-height: 60vh;
+    min-height: 100vh;
     height: auto;
     background-position: top center;
 }
