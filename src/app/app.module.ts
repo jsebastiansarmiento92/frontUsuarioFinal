@@ -22,7 +22,7 @@ import { interceptorProvider } from './interceptors/usuario-interceptor.service'
      HeadComponent,
    // FooterComponent,
     //LoginComponent,
-    SignupComponent,
+   // SignupComponent,
    //LandingComponent
    
   ],

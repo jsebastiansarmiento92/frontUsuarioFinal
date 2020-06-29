@@ -8,6 +8,7 @@ const routes: Routes = [
     { path: 'landing', loadChildren: () => import('./components/landing/landing.module').then(m => m.LandingModule) },
     { path: 'inicio', loadChildren: () => import('./components/inicio/inicio.module').then(m => m.InicioModule) },
     { path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)},
+    { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule)},
     { path: 'head', loadChildren: () => import('./components/head/head.module').then(m => m.HeadModule)},
     { path: 'carrito', loadChildren: () => import('./components/carrito/carrito.module').then(m => m.CarritoModule),
     canActivate:[guard]},
