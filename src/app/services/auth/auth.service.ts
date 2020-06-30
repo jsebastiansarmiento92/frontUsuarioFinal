@@ -7,9 +7,17 @@ import { NuevoUsuario } from '../../models/nuevo-usuario';
 
 const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
+
+
+const headers = new Headers({
+  'Content-Type': 'application/json',
+})
+
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class AuthService {
   private authURL = 'https://quick-domicilio-uno.herokuapp.com/auth/';
 
@@ -22,4 +30,20 @@ export class AuthService {
   public registro(usuario: NuevoUsuario): Observable<any> {
     return this.httpClient.post<any>(this.authURL + 'nuevo', usuario, cabecera);
   }
+  googleLogin(): Observable<any> {
+    
+    return this.httpClient.get<any>(window.location.href='http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
+    
+    /**(environment.baseUrl + '/oauth2/authorization/google')
+      .pipe(tap(response => {
+        localStorage.setItem('access_token', response.accessToken);
+      }));*/
+  }
+  getCurrentUser(): Observable<any>{
+    
+    return  this.httpClient.get<any>('http://localhost:8080/user/me');
+  }
+
+
+  
 }
