@@ -19,10 +19,12 @@ export class InicioComponent implements OnInit {
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
+  show: boolean = false;
 
   producto:Producto=new Producto();
   productosCarrito:Producto[]=[];
   categorias:Categoria[]=[];
+  tipoDirecciones:String[]=[];
 
   constructor(private productosService:ProductoServiceService,
   private imagenService:ImageService,
@@ -32,6 +34,7 @@ export class InicioComponent implements OnInit {
   private tokenService:TokenService) { }
 
   ngOnInit() {
+    this.llenarTipodirecciones();
     if(this.tokenService.getToken()==null){
       localStorage.clear();
       console.log("se limpia el locar storage en inicio");
@@ -42,7 +45,19 @@ export class InicioComponent implements OnInit {
     this.cargarProductos();
     this.cargarCategorias();
   }
-cargarProductos() {
+  llenarTipodirecciones(){
+    this.tipoDirecciones.push("Carrera");
+    this.tipoDirecciones.push("Avenida");
+    this.tipoDirecciones.push("Avenida Carrera");
+    this.tipoDirecciones.push("Avenida Calle");
+    this.tipoDirecciones.push("Circular");
+    this.tipoDirecciones.push("Circunvalar");
+    this.tipoDirecciones.push("Diagonal");
+    this.tipoDirecciones.push("Manzana");
+    this.tipoDirecciones.push("Transversal");
+
+  }
+  cargarProductos() {
     console.log("metodo de listar productos oinit");
     this.productosService.listarUsuarioFinal().subscribe(data => {
       this.productos = data;
@@ -83,5 +98,13 @@ cargarProductos() {
     this.categoriaService.getCategoriasUsuarioFinal().subscribe(data=>{
       this.categorias=data;
     })
+  }
+  showF(){
+    console.log("ingreso de show")
+    if (this.show) {
+      this.show=false;
+    } else {
+      this.show= true;
+    }
   }
 }
