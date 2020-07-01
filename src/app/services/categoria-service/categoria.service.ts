@@ -11,7 +11,7 @@ const cabecera = {headers: new HttpHeaders({'Content-TYpe': 'application/json'})
 })
 export class CategoriaService {
 
-  categoriaURL = 'https://quick-domicilio-uno.herokuapp.com/categorias';
+  categoriaURL = 'https://quickdomicilios-client.herokuapp.com/categorias';
 
   constructor(private http: HttpClient) { }
 

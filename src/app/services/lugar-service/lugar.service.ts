@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LugarService {
-  lugarURL = 'https://quick-domicilio-uno.herokuapp.com/lugar';
+  lugarURL = 'https://quickdomicilios-client.herokuapp.com/lugar';
   constructor(private http: HttpClient) { }
 
 

@@ -112,6 +112,6 @@ this.loader=false;
   }
   login(){
     console.log("ingresoa registrer con google")
-    window.location.href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+    window.location.href="https://quickdomicilios-client.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
   }
 }

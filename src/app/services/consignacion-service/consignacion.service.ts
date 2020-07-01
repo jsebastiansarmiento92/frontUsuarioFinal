@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ConsignacionService {
-  consignacionURL = 'https://quick-domicilio-uno.herokuapp.com/consignaciones';
+  consignacionURL = 'https://quickdomicilios-client.herokuapp.com/consignaciones';
 
   
   constructor(private http: HttpClient) { }

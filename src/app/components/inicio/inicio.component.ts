@@ -34,14 +34,14 @@ export class InicioComponent implements OnInit {
   private tokenService:TokenService) { }
 
   ngOnInit() {
-    this.llenarTipodirecciones();
+    
     if(this.tokenService.getToken()==null){
       localStorage.clear();
       console.log("se limpia el locar storage en inicio");
     }else{
       localStorage.setItem('isLoggedin', 'true');
     }
-    
+    this.llenarTipodirecciones();
     this.cargarProductos();
     this.cargarCategorias();
   }

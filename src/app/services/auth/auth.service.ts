@@ -19,7 +19,7 @@ const headers = new Headers({
 
 
 export class AuthService {
-  private authURL = 'https://quick-domicilio-uno.herokuapp.com/auth/';
+  private authURL = 'https://quickdomicilios-client.herokuapp.com/auth/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -32,7 +32,7 @@ export class AuthService {
   }
   googleLogin(): Observable<any> {
     
-    return this.httpClient.get<any>(window.location.href='http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
+    return this.httpClient.get<any>(window.location.href='https://quickdomicilios-client.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
     
     /**(environment.baseUrl + '/oauth2/authorization/google')
       .pipe(tap(response => {
@@ -41,7 +41,7 @@ export class AuthService {
   }
   getCurrentUser(): Observable<any>{
     
-    return  this.httpClient.get<any>('http://localhost:8080/user/me');
+    return  this.httpClient.get<any>('https://quickdomicilios-client.herokuapp.com/user/me');
   }
 
 

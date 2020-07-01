@@ -15,7 +15,7 @@ export class RolServiceService {
 
  
 
-  rolURL = 'https://quick-domicilio-uno.herokuapp.com/roles';
+  rolURL = 'https://quickdomicilios-client.herokuapp.com/roles';
 
 
 

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BarrioService {
-  barrioURL = 'https://quick-domicilio-uno.herokuapp.com/barrios';
+  barrioURL = 'https://quickdomicilios-client.herokuapp.com/barrios';
   constructor(private http: HttpClient) { }
 
   getBarrios() {
