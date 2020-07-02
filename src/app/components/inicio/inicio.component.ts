@@ -91,7 +91,7 @@ export class InicioComponent implements OnInit {
     this.productosCarrito.push(this.producto);
     console.log("agregando al local storage:");
     console.log(this.productosCarrito);
-    localStorage.setItem('myArray', JSON.stringify(this.productosCarrito));
+    localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
     this.serviceModal.dismissAll();
   }
   cargarCategorias(){

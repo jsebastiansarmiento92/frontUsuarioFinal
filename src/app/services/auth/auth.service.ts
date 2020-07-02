@@ -4,6 +4,7 @@ import { LoginUsuario } from '../../models/login-usuario';
 import { Observable } from 'rxjs';
 import { JwtModel } from '../../models/jwt-model';
 import { NuevoUsuario } from '../../models/nuevo-usuario';
+import { SignUpRequest } from 'src/app/models/sign-up-request';
 
 const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
@@ -19,12 +20,12 @@ const headers = new Headers({
 
 
 export class AuthService {
-  private authURL = 'https://quickdomicilios-client.herokuapp.com/auth/';
+  private authURL = 'http://localhost:8080/auth/';
 
   constructor(private httpClient: HttpClient) { }
 
-  public login(usuario: LoginUsuario): Observable<JwtModel> {
-    return this.httpClient.post<JwtModel>(this.authURL + 'login', usuario, cabecera);
+  public login(signupReq: SignUpRequest): Observable<any> {
+    return this.httpClient.post<any>(this.authURL + 'login', signupReq);
   }
 
   public registro(usuario: NuevoUsuario): Observable<any> {
@@ -32,18 +33,18 @@ export class AuthService {
   }
   googleLogin(): Observable<any> {
     
-    return this.httpClient.get<any>(window.location.href='https://quickdomicilios-client.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
-    
-    /**(environment.baseUrl + '/oauth2/authorization/google')
-      .pipe(tap(response => {
-        localStorage.setItem('access_token', response.accessToken);
-      }));*/
+    return this.httpClient.get<any>(window.location.href='http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
+  
   }
+
   getCurrentUser(): Observable<any>{
     
-    return  this.httpClient.get<any>('https://quickdomicilios-client.herokuapp.com/user/me');
+    return  this.httpClient.get<any>('http://localhost:8080/user/me');
   }
 
-
+  onRegister(signupReq:SignUpRequest): Observable<any>{
+    console.log("registro manual de usuario");
+    return  this.httpClient.post<any>(this.authURL+'signup',signupReq);
+  }
   
 }

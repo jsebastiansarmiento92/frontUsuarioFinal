@@ -211,7 +211,7 @@ export class CarritoComponent implements OnInit {
   }
   cancelarCarrito() {
     if (confirm('¿Estás seguro desea cancelar el carrito?')) {
-      localStorage.removeItem('myArray');
+      localStorage.removeItem('myCar');
     }
   }
 

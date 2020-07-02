@@ -3,6 +3,7 @@ import { LoginUsuario } from 'src/app/models/login-usuario';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { Router } from '@angular/router';
+import { SignUpRequest } from 'src/app/models/sign-up-request';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   error:string;
   setState=false;
   currentUser:any;
-
+  signupReq:SignUpRequest=new SignUpRequest();
 
 
 
@@ -51,23 +52,7 @@ if(window.sessionStorage.getItem('AuthToken')){
 
 console.log("hay tonken guardado porque ingresa al if");
 
-this.authService.getCurrentUser().subscribe(data=>{
-  console.log(data);
-//this.tokenService.setToken(data.token);
-this.tokenService.setUserName(data.name);
-this.tokenService.setAuthorities(data.rol);
-this.tokenService.setIdUser(data.id);
-this.tokenService.setLugar(data.idLugar);
-//alert("id del usuario lopueado es "+data.id);
-//window.sessionStorage.setItem("idSesion",data.);
-this.isLogged = true;
-this.isLoginFail = false;
-this.roles = this.tokenService.getAuthorities();
-localStorage.setItem('isLoggedin', 'true');
-//window.location.reload();
-this.router.navigate(['']);
-this.loader=false;
-});
+this.getUser();
 }
 
 
@@ -78,20 +63,15 @@ this.loader=false;
     // this.usuario = new LoginUsuario(this.usuario.nombreUsuario, this.usuario.password);
     this.logingIn=true;
     this.loader=true;
-    this.authService.login(this.usuario).subscribe(data => {
+    this.authService.login(this.signupReq).subscribe(data => {
+      console.log("ingreso a la promesa de login");
       console.log(data);    
-      this.tokenService.setToken(data.token);
-      this.tokenService.setUserName(data.nombreUsuario);
-      this.tokenService.setAuthorities(data.authorities);
-      this.tokenService.setIdUser(data.id);
-      this.tokenService.setLugar(data.idLugar);
-      //alert("id del usuario lopueado es "+data.id);
-      //window.sessionStorage.setItem("idSesion",data.);
+      this.tokenService.setToken(data.accessToken);
       this.isLogged = true;
       this.isLoginFail = false;
       this.roles = this.tokenService.getAuthorities();
       localStorage.setItem('isLoggedin', 'true');
-      
+      this.getUser();
       //window.location.reload();
       this.router.navigate(['']);
       this.loader=false;
@@ -107,11 +87,30 @@ this.loader=false;
       }
     );
   }
+  getUser(){
+    this.authService.getCurrentUser().subscribe(data=>{
+      console.log(data);
+    //this.tokenService.setToken(data.token);
+    this.tokenService.setUserName(data.name);
+    this.tokenService.setAuthorities(data.rol);
+    this.tokenService.setIdUser(data.id);
+    this.tokenService.setLugar(data.idLugar);
+    //alert("id del usuario lopueado es "+data.id);
+    //window.sessionStorage.setItem("idSesion",data.);
+    this.isLogged = true;
+    this.isLoginFail = false;
+    this.roles = this.tokenService.getAuthorities();
+    localStorage.setItem('isLoggedin', 'true');
+    //window.location.reload();
+    this.router.navigate(['']);
+    this.loader=false;
+    });
+  }
   onRegister(){
     this.router.navigate(['/signup']);
   }
   login(){
     console.log("ingresoa registrer con google")
-    window.location.href="https://quickdomicilios-client.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+    window.location.href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
   }
 }
