@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './shared';
 import { AuthService } from './services/auth/auth.service';
 import { interceptorProvider } from './interceptors/usuario-interceptor.service';
+import { PopupCarritoComponent } from './components/popup-carrito/popup-carrito.component';
 
 //import { CarritoComponent } from './components/carrito/carrito.component';
 //import { CarritoRoutingModule } from './components/carrito/carrito-routing.module';
@@ -20,6 +21,7 @@ import { interceptorProvider } from './interceptors/usuario-interceptor.service'
     AppComponent,
    // InicioComponent,
      HeadComponent,
+   PopupCarritoComponent,
    // FooterComponent,
     //LoginComponent,
    // SignupComponent,
