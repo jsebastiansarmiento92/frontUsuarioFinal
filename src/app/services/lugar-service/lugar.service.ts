@@ -25,4 +25,8 @@ export class LugarService {
     // console.log("el ide seleccionado es "+ id)
     return this.http.get<Lugar[]>(this.lugarURL + "/usuario/" + id);
   }
+  modificarLugar(lugar:Lugar): Observable<any>{
+    console.log(lugar);
+    return this.http.put<Lugar>(this.lugarURL+'/modificarLugar', lugar);
+  }
 }

@@ -23,4 +23,10 @@ export class DetalleServicioService {
    console.log("el id cliente es "+ idCliente);
    return this.http.get<any>(this.detalleservicioURL+`/getServicio/${idEmpresa}`+`&${idCliente}`); 
   }
+  createDetalleServicioList(detalleServicioList:DetalleServicio[]): Observable<any> {
+    //alert("nombre que se envia es "+ usuario.nombreUsuario)
+    console.log(detalleServicioList);
+    return this.http.post<DetalleServicio>(this.detalleservicioURL+'/insertarLista', detalleServicioList);
+  }
+
 }

@@ -1,5 +1,6 @@
 import { Categoria } from './categoria';
 import { Image } from './image';
+import { Empresa } from './empresa';
 
 
 export class Producto {
@@ -9,7 +10,7 @@ export class Producto {
     retrievedImage: any;
     idProducto: number;
     categoria: Categoria;
-    idEmpresa: number;
+    empresa: Empresa;
     nombreProducto: string;
     descripcion: string;
     estadoProducto: string;
