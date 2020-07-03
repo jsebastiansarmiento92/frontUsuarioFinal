@@ -19,7 +19,8 @@ export class InicioComponent implements OnInit {
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
-  
+  show: boolean = false;
+
 
   producto:Producto=new Producto();
   productosCarrito:Producto[]=[];
@@ -99,5 +100,14 @@ export class InicioComponent implements OnInit {
       this.categorias=data;
     })
   }
-  
+
+  showF(){
+    console.log("ingreso de show")
+    if (this.show) {
+      this.show=false;
+    } else {
+      this.show= true;
+    }
+  }
+
 }

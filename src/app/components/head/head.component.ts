@@ -12,7 +12,7 @@ export class HeadComponent implements OnInit {
   isLogin = false;
   roles: string[];
   authority: string;
-
+  
   constructor(private tokenService: TokenService,
     private router: Router) { }
 
@@ -45,5 +45,6 @@ export class HeadComponent implements OnInit {
     return localStorage.getItem("isLoggedin");
   }
 
+  
 
 }
