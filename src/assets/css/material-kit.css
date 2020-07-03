@@ -6712,6 +6712,9 @@ button.bg-dark:focus {
 .rounded-0 {
     border-radius: 0 !important;
 }
+.rounded-1 {
+    border-radius: 3px !important;
+}
 
 .clearfix::after {
     display: block;
@@ -19235,7 +19238,7 @@ select.selectpicker {
     width: auto !important;
 }
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-    width: 220px;
+    width: 100%;
 }
 .bootstrap-select>select.mobile-device:focus+.dropdown-toggle,
 .bootstrap-select .dropdown-toggle:focus {
@@ -19581,13 +19584,32 @@ select.selectpicker {
     color: inherit !important;
     box-shadow: none !important;
 }
+.bootstrap-select .select-with-transition-white {
+    background: no-repeat center bottom, center calc(100% - 1px);
+    -webkit-transition: background 0s ease-out !important;
+    transition: background 0s ease-out !important;
+    background-size: 0 100%, 100% 100%;
+    background-color: #FFF !important;
+    color: black !important;
+    box-shadow: none !important;
+    height: 53px;
+    width: 100%;
+    margin-top: 0em;
+    margin-bottom: 10px;
+}
 
 .bootstrap-select .select-with-transition,
+.bootstrap-select .select-with-transition-white,
 .bootstrap-select .btn:active,
 .bootstrap-select .btn.active {
     background-image: linear-gradient(to top, #922926 2px, rgba(250, 0, 0, 0) 2px), linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px);
 }
 .bootstrap-select.show .select-with-transition:focus {
+    background-size: 100% 100%, 100% 100%;
+    -webkit-transition-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+}
+.bootstrap-select.show .select-with-transition-white:focus {
     background-size: 100% 100%, 100% 100%;
     -webkit-transition-duration: 0.3s !important;
     transition-duration: 0.3s !important;
