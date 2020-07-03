@@ -1,94 +1,106 @@
-<div class="btn-flotante container " style="margin-right: 0px; padding: 2px;">
-  <div *ngIf="show" class="col-lg-3 col-md-3 float-right" style=" margin-bottom: 80px; padding: 1px; max-width: 237px; max-height: 267px;">
-      <div class="card card-pricing">
-          <div class="card-body " style="max-width: 237px; max-height: 217px; overflow-y: scroll;">
+  
+    
+    <div *ngIf="show" class="card card-pricing col-lg-3 btn-flotante col-md-3 float-right" style="margin-top: 0px; margin-bottom: 58px; padding: 0px; width: 237px;">
+        <div class="row card-category card-category-social" style="text-align: left; border-top-left-radius: 10px;border-top-right-radius: 10px; margin: 0px; background-color: rgba(230, 230, 230, 0.918);" >
+            
+            <h5 style="margin-left: 10px; width: 190px ;" >
+                <i class="material-icons">list</i> Tu Pedido
+              </h5>
+              <button (click)="showF()" style="margin-top: -9px;" type="button" class="close">
+                <i class="material-icons">clear</i>
+              </button>
+        </div>
+        
 
-              <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
-                  <div class="row" style="margin-bottom: 5px;">
-                      <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
-                          <img src="./assets/img/faces/avatar.jpg" height="80px" width="50px" alt="Circle Image" class=" img-fluid">
-                      </div>
-                      <div Style="text-align: left;">
-                          <div style="line-height: 0.0em; ">
-                              <h6 class="card-category text-success" style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">Acetaminofen
-                              </h6>
-                              <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
-                              <span> 1 </span>
+          <div class="card-body " style="width: 233px; height: 213px; overflow-y: scroll;">
 
-                              <div class="btn-group">
-                                  <button class="btn btn-round btn-info btn-sm"> <i
-                                          class="material-icons">remove</i>
-                                  </button>
-                                  <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
-                                  </button>
-                              </div>
-                              <br>
-                              <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
-                              </small>
-                              <small>&#x20AC;</small>549
-                          </div>
-                      </div>
-                  </div>
 
-              </div>
+            <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
+                        <img src="./assets/img/faces/avatar.jpg" height="80px" width="50px" alt="Circle Image" class=" img-fluid">
+                    </div>
+                    <div Style="text-align: left;">
+                        <div style="line-height: 0.0em; ">
+                            <h6 class="card-category text-success" style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">Acetaminofen
+                            </h6>
+                            <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
+                            <span> 1 </span>
 
-              <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
-                  <div class="row" style="margin-bottom: 5px;">
-                      <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
-                          <img src="./assets/img/faces/avatar.jpg" height="80px" width="50px" alt="Circle Image" class=" img-fluid">
-                      </div>
-                      <div Style="text-align: left;">
-                          <div style="line-height: 0.0em; ">
-                              <h6 class="card-category text-success" style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">Acetaminofen
-                              </h6>
-                              <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
-                              <span> 1 </span>
+                            <div class="btn-group">
+                                <button class="btn btn-round btn-info btn-sm"> <i
+                                        class="material-icons">remove</i>
+                                </button>
+                                <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
+                                </button>
+                            </div>
+                            <br>
+                            <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
+                            </small>
+                            <small>&#x20AC;</small>549
+                        </div>
+                    </div>
+                </div>
 
-                              <div class="btn-group">
-                                  <button class="btn btn-round btn-info btn-sm"> <i
-                                          class="material-icons">remove</i>
-                                  </button>
-                                  <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
-                                  </button>
-                              </div>
-                              <br>
-                              <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
-                              </small>
-                              <small>&#x20AC;</small>549
-                          </div>
-                      </div>
-                  </div>
+            </div>
 
-              </div>
+            <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
+                        <img src="./assets/img/faces/avatar.jpg" height="80px" width="50px" alt="Circle Image" class=" img-fluid">
+                    </div>
+                    <div Style="text-align: left;">
+                        <div style="line-height: 0.0em; ">
+                            <h6 class="card-category text-success" style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">Acetaminofen
+                            </h6>
+                            <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
+                            <span> 1 </span>
 
-              <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
-                  <div class="row" style="margin-bottom: 5px;">
-                      <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
-                          <img src="./assets/img/faces/avatar.jpg" height="80px" width="50px" alt="Circle Image" class=" img-fluid">
-                      </div>
-                      <div Style="text-align: left;">
-                          <div style="line-height: 0.0em; ">
-                              <h6 class="card-category text-success" style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">Acetaminofen
-                              </h6>
-                              <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
-                              <span> 1 </span>
+                            <div class="btn-group">
+                                <button class="btn btn-round btn-info btn-sm"> <i
+                                        class="material-icons">remove</i>
+                                </button>
+                                <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
+                                </button>
+                            </div>
+                            <br>
+                            <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
+                            </small>
+                            <small>&#x20AC;</small>549
+                        </div>
+                    </div>
+                </div>
 
-                              <div class="btn-group">
-                                  <button class="btn btn-round btn-info btn-sm"> <i
-                                          class="material-icons">remove</i>
-                                  </button>
-                                  <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
-                                  </button>
-                              </div>
-                              <br>
-                              <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
-                              </small>
-                              <small>&#x20AC;</small>549
-                          </div>
-                      </div>
-                  </div>
+            </div>
 
-              </div>
+            <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
+                        <img src="./assets/img/faces/avatar.jpg" height="80px" width="50px" alt="Circle Image" class=" img-fluid">
+                    </div>
+                    <div Style="text-align: left;">
+                        <div style="line-height: 0.0em; ">
+                            <h6 class="card-category text-success" style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">Acetaminofen
+                            </h6>
+                            <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
+                            <span> 1 </span>
+
+                            <div class="btn-group">
+                                <button class="btn btn-round btn-info btn-sm"> <i
+                                        class="material-icons">remove</i>
+                                </button>
+                                <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
+                                </button>
+                            </div>
+                            <br>
+                            <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
+                            </small>
+                            <small>&#x20AC;</small>549
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
               <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
                   <div class="row" style="margin-bottom: 5px;">
@@ -155,8 +167,5 @@
           </div>
 
       </div>
-  </div>
   <button (click)="showF()" class="btn btn-rose btn-flotante">Carrito</button>
 
-
-</div>
