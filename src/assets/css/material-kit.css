@@ -19592,10 +19592,9 @@ select.selectpicker {
     background-color: #FFF !important;
     color: black !important;
     box-shadow: none !important;
-    height: 53px;
-    width: 100%;
-    margin-top: 0em;
-    margin-bottom: 10px;
+    height: 52px;
+    min-width: 160px;
+    margin-bottom: 13px;
 }
 
 .bootstrap-select .select-with-transition,

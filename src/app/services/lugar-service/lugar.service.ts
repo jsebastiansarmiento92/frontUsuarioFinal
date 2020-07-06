@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LugarService {
-  lugarURL = 'https://quickdomicilios-client.herokuapp.com/lugar';
+  lugarURL = 'http://localhost:8080/lugar';
   constructor(private http: HttpClient) { }
 
 
@@ -24,5 +24,9 @@ export class LugarService {
   getLugaresIdUsuario1(id: number): Observable<any> {
     // console.log("el ide seleccionado es "+ id)
     return this.http.get<Lugar[]>(this.lugarURL + "/usuario/" + id);
+  }
+  modificarLugar(lugar:Lugar): Observable<any>{
+    console.log(lugar);
+    return this.http.put<Lugar>(this.lugarURL+'/modificarLugar', lugar);
   }
 }

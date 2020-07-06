@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/auth/token.service';
+import { SignUpRequest } from 'src/app/models/sign-up-request';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class SignupComponent implements OnInit {
   roles: string[] = [];
   errorMsg = '';
   loader=false;
+  signupRequest:SignUpRequest=new SignUpRequest();
   constructor(private authService:AuthService,
     private router:Router,
     private tokenService:TokenService) { 
@@ -79,6 +81,16 @@ export class SignupComponent implements OnInit {
   }
   register(){
     console.log("ingresoa registrer con google")
-    window.location.href="https://quickdomicilios-client.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+    window.location.href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
   }
+  registerManual(){
+    console.log("datos que se envian para el registro");
+    console.log(this.signupRequest);
+    this.authService.onRegister(this.signupRequest).subscribe(data=>{
+      console.log(data);
+      alert("Registro completo por favor inicie sesion con sus datos para continuar");
+      this.router.navigate(['/login']);
+    })
+  }
+
 }

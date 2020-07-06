@@ -61,8 +61,8 @@ export class CarritoComponent implements OnInit {
     }
   }
   getCarrito() {
-    console.log(JSON.parse(localStorage.getItem('myArray')));
-    this.productos = JSON.parse(localStorage.getItem('myArray'));
+    console.log(JSON.parse(localStorage.getItem('myCar')));
+    this.productos = JSON.parse(localStorage.getItem('myCar'));
     console.log(this.productos);
    // console.log("carrito pendiente");
    // console.log('objetoObtenido: ', this.productos);
@@ -82,7 +82,6 @@ export class CarritoComponent implements OnInit {
       console.log(this.pedido);
       this.serviceModal.open(modal);
     }
-    
   }
   confirmarPedido() {
     if (!confirm('¿Estás seguro desea confirmar el servicio?')) {
@@ -130,7 +129,7 @@ export class CarritoComponent implements OnInit {
     this.loaderPedido=true;
       this.pedido.idCliente = this.getidSesion();
       this.pedido.lugar=this.lugar;
-      this.pedido.idEmpresa = this.productos[0].idEmpresa;
+      this.pedido.idEmpresa = this.productos[0].empresa.idEmpresa;
       this.pedido.modoPagoPedido = "Efectivo";
       this.pedido.estadoPedido = "En proceso";
       this.pedido.valorComision = 0;
@@ -150,8 +149,6 @@ export class CarritoComponent implements OnInit {
           console.log("id de servicio " + this.idservicio);
           this.llenarDetalle(this.idservicio);
           this.solicitarPedido();
-          
-
         })
       }, (err: any) => {
         
@@ -192,7 +189,7 @@ export class CarritoComponent implements OnInit {
         console.log("detalle servicio agregado");
         //alert("Pedido guardado");
         //this.ngOnInit();
-        localStorage.removeItem('myArray');
+        localStorage.removeItem('myCar');
         
       }, (err: any) => {
         estadoServicio = "Error";
@@ -211,7 +208,7 @@ export class CarritoComponent implements OnInit {
   }
   cancelarCarrito() {
     if (confirm('¿Estás seguro desea cancelar el carrito?')) {
-      localStorage.removeItem('myArray');
+      localStorage.removeItem('myCar');
     }
   }
 
@@ -253,9 +250,8 @@ export class CarritoComponent implements OnInit {
     
       if(this.isPrimeraVezLugar){
         this.serviceLugar.createLugar(this.lugar).subscribe(data=>{
-          if (confirm('valor total del pedido: $'+this.getValorPedido()+ ' ¿Estás seguro desea confirmar el pedido?')) {
+          if (confirm('valor total del pedido: $'+this.getValorPedido()+ '¿Estás seguro desea confirmar el pedido?')) {
             this.confirmarTransaccion();
-  
           } 
          
   

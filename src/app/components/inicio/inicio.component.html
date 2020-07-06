@@ -1,7 +1,5 @@
-<div *ngIf="show" class="card card-pricing col-lg-3 btn-flotante col-md-3 float-right"
-    style="margin-top: 0px; margin-bottom: 58px; padding: 0px; width: 237px;">
-    <div class="row card-category card-category-social"
-        style="text-align: left; border-top-left-radius: 10px;border-top-right-radius: 10px; margin: 0px; background-color: rgba(230, 230, 230, 0.918);">
+<div *ngIf="show" class="card card-pricing col-lg-3 btn-flotante col-md-3 float-right" style="margin-top: 0px; margin-bottom: 58px; padding: 0px; width: 237px;">
+    <div class="row card-category card-category-social" style="text-align: left; border-top-left-radius: 10px;border-top-right-radius: 10px; margin: 0px; background-color: rgba(230, 230, 230, 0.918);">
 
         <h5 style="margin-left: 10px; width: 190px ;">
             <i class="material-icons">list</i> Tu Pedido
@@ -12,19 +10,21 @@
     </div>
 
     <div class="card-body " style="width: 233px; height: 213px; overflow-y: scroll;">
-        <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
+        <div style="border: 1px solid rgba(153, 153, 153, 0.3);" *ngFor="let productoCarrito of productosCarrito">
             <div class="row" style="margin-bottom: 5px;">
                 <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
-                    <img src="./assets/img/faces/avatar.jpg" height="80px" width="50px" alt="Circle Image"
-                        class=" img-fluid">
+
+                    <!-- <img [src]="producto.retrievedImage" height="80px" width="50px" alt="Circle Image" class=" img-fluid">-->
+
+
+
                 </div>
                 <div Style="text-align: left;">
                     <div style="line-height: 0.0em; ">
-                        <h6 class="card-category text-success"
-                            style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">Acetaminofen
+                        <h6 class="card-category text-success" style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">{{productoCarrito.nombreProducto}}
                         </h6>
                         <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
-                        <span> 1 </span>
+                        <span> {{productoCarrito.cantidad}} </span>
 
                         <div class="btn-group">
                             <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">remove</i>
@@ -35,150 +35,34 @@
                         <br>
                         <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
                         </small>
-                        <small>&#x20AC;</small>549
+                        <small>&#x20AC;</small>{{(productoCarrito.valorProducto*productoCarrito.cantidad)}}
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
-            <div class="row" style="margin-bottom: 5px;">
-                <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
-                    <img src="./assets/img/faces/avatar.jpg" height="80px" width="50px" alt="Circle Image"
-                        class=" img-fluid">
-                </div>
-                <div Style="text-align: left;">
-                    <div style="line-height: 0.0em; ">
-                        <h6 class="card-category text-success"
-                            style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">Acetaminofen
-                        </h6>
-                        <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
-                        <span> 1 </span>
 
-                        <div class="btn-group">
-                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">remove</i>
-                            </button>
-                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                        <br>
-                        <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
-                        </small>
-                        <small>&#x20AC;</small>549
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
-            <div class="row" style="margin-bottom: 5px;">
-                <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
-                    <img src="./assets/img/faces/avatar.jpg" height="80px" width="50px" alt="Circle Image"
-                        class=" img-fluid">
-                </div>
-                <div Style="text-align: left;">
-                    <div style="line-height: 0.0em; ">
-                        <h6 class="card-category text-success"
-                            style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">Acetaminofen
-                        </h6>
-                        <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
-                        <span> 1 </span>
-
-                        <div class="btn-group">
-                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">remove</i>
-                            </button>
-                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                        <br>
-                        <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
-                        </small>
-                        <small>&#x20AC;</small>549
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
-            <div class="row" style="margin-bottom: 5px;">
-                <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
-                    <img src="./assets/img/faces/avatar.jpg" height="80px" width="50px" alt="Circle Image"
-                        class=" img-fluid">
-                </div>
-                <div Style="text-align: left;">
-                    <div style="line-height: 0.0em; ">
-                        <h6 class="card-category text-success"
-                            style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">Acetaminofen
-                        </h6>
-                        <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
-                        <span> 1 </span>
-
-                        <div class="btn-group">
-                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">remove</i>
-                            </button>
-                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                        <br>
-                        <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
-                        </small>
-                        <small>&#x20AC;</small>549
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div style="border: 1px solid rgba(153, 153, 153, 0.3);">
-            <div class="row" style="margin-bottom: 5px;">
-                <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
-                    <img src="./assets/img/faces/avatar.jpg" height="80px" width="50px" alt="Circle Image"
-                        class=" img-fluid">
-                </div>
-                <div Style="text-align: left;">
-                    <div style="line-height: 0.0em; ">
-                        <h6 class="card-category text-success"
-                            style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">Acetaminofen
-                        </h6>
-                        <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
-                        <span> 1 </span>
-
-                        <div class="btn-group">
-                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">remove</i>
-                            </button>
-                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
-                            </button>
-                        </div>
-                        <br>
-                        <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
-                        </small>
-                        <small>&#x20AC;</small>549
-                    </div>
-                </div>
-            </div>
-
-        </div>
     </div>
-    <div class="container tetx-center ">
+    <div class="container tetx-center" style="border-top: 7px;">
         <form>
-            <label style="color: black;" for="total">
-                <h4><b>Total: </b></h4>
-            </label>
-            <span id="total"><small> &#x20AC;</small>2745</span>
+            <label for="total">Total: </label>
+            <span id="total"><small> &#x20AC;</small>{{totalPedido}}</span>
+            <br>
+            <label for="total">Servicio: </label>
+            <span id="total"><small> &#x20AC;</small>{{valorServicio}}</span>
         </form>
 
     </div>
     <div>
-        <a href="#pablo" class="btn btn-rose btn-round">
-            Comprar
-        </a>
+        <a class="btn btn-rose btn-round" (click)="confirmarPedido()">
+              Confirmar
+          </a>
     </div>
 
 </div>
-<button (click)="showF()" class="btn btn-rose btn-flotante">Carrito</button>
+
+<button (click)="showF()" class="btn btn-rose btn-flotante"><i class="material-icons">shopping_cart</i> Carrito</button>
 <div class="ecommerce-page sidebar-collapse">
     <div class="page-header header-filter header-small" data-parallax="true"
         style="background-image: url('../assets/img/examples/domicilio.jpg');">
@@ -200,7 +84,8 @@
                             <div class="form-group " style="margin: auto;">
                                 <div  class="select">
                                     <select class="selectpicker" data-style="select-with-transition-white " data-size="4">
-                                        <option value="" *ngFor="let tipoDireccion of tipoDirecciones">
+                                        <option disabled>Seleccione</option>
+                                        <option value=""  *ngFor="let tipoDireccion of tipoDirecciones">
                                             {{tipoDireccion}}</option>
                                     </select>
                                 </div>
@@ -208,17 +93,17 @@
                                 <div class="input-group rounded bg-white" style="height: 53px; border-left: 1px solid gray; margin-bottom: 10px; ">
 
                                     <input name="remitosucursal" id="remitosucursal" type="text" required
-                                        class="form-control" style="height: 53px;" placeholder="" >
-                                    <span class="input-group-addon" style="height: 53px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>#</h5> </span>
+                                        class="form-control" style="height: 50px;" placeholder="" >
+                                    <span class="input-group-addon" style="height: 50px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>#</h5> </span>
                                     <input name="remitonumero" id="remitonumero" type="text" required
-                                        class="form-control" placeholder="  " style="height: 53px;">
-                                    <span class="input-group-addon" style="height: 53px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>&#8212;</h5></span>
+                                        class="form-control" placeholder="  " style="height: 50px;">
+                                    <span class="input-group-addon" style="height: 50px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>&#8212;</h5></span>
                                     <input name="remitonumero" id="remitonumero" type="text" required
-                                        class="form-control" placeholder=""style="height: 53px;">
+                                        class="form-control" placeholder=""style="height: 50px;">
                                 </div>
-                                <div class="col-md-2 col-12 btn btn-danger btn-raised btn-lg" style="margin-left: -2px; margin-bottom: 13px;">
-                                    <a style=" color: white; width: 100%;" href="inicio">
-                                        <i class="material-icons">search</i> Buscar</a>
+                                <div class="col-md-2 col-12 btn btn-danger btn-raised btn-lg text-center" style="margin-left: 2px; margin-bottom: 13px;">
+                                    <a style=" color: white; " href="inicio">
+                                        <i style="margin-left: -10px;" class="material-icons">search</i> Buscar</a>
                                 </div>
                             </div>
                             
@@ -237,29 +122,30 @@
                 <div class="row col-md-8 ml-auto mr-0 text-center" style="border-radius: 10px; background-color: rgba(0, 0, 0, 0.308);">
 
                     <div class="select" style=" border-bottom: none;">
-                        <select class="selectpicker" style="color: black; z-index: -100;" data-style="select-with-transition" title="Ciudad" data-size="4">
-                            <option selected value="" *ngFor="let tipoDireccion of tipoDirecciones" >{{tipoDireccion}}</option>
+                        <select class="selectpicker" [(ngModel)]="tipoDireccionSeleccionada" name="tipoDireccionSeleccionada" (change)="capturarTipoDireccion()" style="color: black; z-index: -100;" data-style="select-with-transition" title="Tipo Direccion" data-size="4">
+                            
+                            <option   *ngFor="let tipoDireccion of tipoDirecciones"  >{{tipoDireccion}}</option>
                             
                         </select>
                     </div>
                     <div class="col-md-2 col-4 btn btn-link btn-just-icon">
-                        <input type="text" class="input-transparent">
+                        <input type="number" class="input-transparent" placeholder="0" [(ngModel)]="n1">
 
                     </div>
                     <div class="col-md-2 col-4 btn btn-link btn-just-icon">
                         <span>#
-                            <input type="text" class="input-transparent">
+                            <input type="number" class="input-transparent" placeholder="0" [(ngModel)]="n2" >
                         </span>
                     </div>
                     <div class="col-md-2 col-4 btn btn-link btn-just-icon">
                         <span>-
-                            <input type="text" class="input-transparent">
+                            <input type="number" class="input-transparent" placeholder="0" [(ngModel)]="n3">
                         </span>
                     </div>
                 </div>
-                <div class="col-md-2 col-4 btn btn-danger btn-raised btn-lg">
-                    <a style="color: white;" href="inicio">
-                        <i class="material-icons">search</i> Buscar</a>
+                <div class="col-md-2 col-4 btn btn-danger btn-raised btn-lg" (click)="agregarBarrio(agregarBarrioModal)">
+                    <a style="color: white;">
+                        <i class="material-icons">search</i> Confirmar</a>
                 </div>
 
             </div-->
@@ -317,7 +203,7 @@
                         <div class="card card-product card-body card-plain">
                             <div class="card-header card-header-image">
                                 <a>
-                                    <img src="../assets/imageLogo/IsotipoCromáticoVectorial120x120.png" alt="">
+                                    <img src="../assets/imageLogo/IsotipoCromaticoVectorial120x120.png" alt="">
                                 </a>
                             </div>
                             <div class="card-body text-center">
@@ -560,13 +446,13 @@
                             style="background-image: url(../assets/img/examples/tendencia2.jpg)">
                             <div class="card-body">
                                 <h6 class="card-category text-info">Tendencia 1</h6>
-                                <a href="#pablo">
+                                <a>
                                     <h3 class="card-title">Nombre del Producto</h3>
                                 </a>
                                 <p class="card-description">
                                     descripción del Producto, Las mejores tendencias comida 2020 segun los usuairos
                                 </p>
-                                <a href="#pablo" class="btn btn-white btn-round">
+                                <a class="btn btn-white btn-round">
                                     <i class="material-icons">subject</i> Ver
                                 </a>
                             </div>
@@ -578,13 +464,13 @@
                             style="background-image: url(../assets/img/examples/tendencia3.jpg)">
                             <div class="card-body">
                                 <h6 class="card-category text-info">Tendencia 1</h6>
-                                <a href="#pablo">
+                                <a>
                                     <h3 class="card-title">Nombre del Producto</h3>
                                 </a>
                                 <p class="card-description">
                                     descripción del Producto, Las mejores tendencias comida 2020 segun los usuairos
                                 </p>
-                                <a href="#pablo" class="btn btn-white btn-round">
+                                <a class="btn btn-white btn-round">
                                     <i class="material-icons">subject</i> Ver
                                 </a>
                             </div>
@@ -604,14 +490,14 @@
                 <div class="col-md-4">
                     <div class="card card-blog">
                         <div class="card-header card-header-image">
-                            <a href="#pablo">
+                            <a>
                                 <img src="../assets/img/examples/producto1.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-body">
                             <h6 class="card-category text-rose">producto 1</h6>
                             <h4 class="card-title">
-                                <a href="#pablo">nombre del producto</a>
+                                <a>nombre del producto</a>
                             </h4>
                             <p class="card-description">
                                 descripción del producto
@@ -622,14 +508,14 @@
                 <div class="col-md-4">
                     <div class="card card-blog">
                         <div class="card-header card-header-image">
-                            <a href="#pablo">
+                            <a>
                                 <img src="../assets/img/examples/producto2.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-body">
                             <h6 class="card-category text-rose">producto 2</h6>
                             <h4 class="card-title">
-                                <a href="#pablo">nombre del producto</a>
+                                <a>nombre del producto</a>
                             </h4>
                             <p class="card-description">
                                 descripción del producto
@@ -640,14 +526,14 @@
                 <div class="col-md-4">
                     <div class="card card-blog">
                         <div class="card-header card-header-image">
-                            <a href="#pablo">
+                            <a>
                                 <img src="../assets/img/examples/producto3.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-body">
                             <h6 class="card-category text-rose">producto 3</h6>
                             <h4 class="card-title">
-                                <a href="#pablo">nombre del producto</a>
+                                <a>nombre del producto</a>
                             </h4>
                             <p class="card-description">
                                 descripción del producto
@@ -723,5 +609,33 @@
             </div>
             <button (click)="confirmarAgregar()" class="btn btn-danger">Confirmar</button>
         </form>
+    </div>
+</ng-template>
+
+
+<ng-template #agregarBarrioModal>
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+                <h3>Selecciona barrio: </h3>
+                <div class="center-loader" *ngIf="loader">
+                    <strong>Cargando barrios
+                      <span class="loader__dot">.</span>
+                      <span class="loader__dot">.</span>
+                      <span class="loader__dot">.</span></strong>
+                </div>
+                <select *ngIf="!loader" class="form-control" [(ngModel)]="barrioSeleccionado" name="barrioSeleccionado" (change)="capturar()">
+                <option value="0">Selecciona un barrio</option>
+                <option *ngFor="let barrio of barrios" style="margin-block: 10px">
+                    {{barrio.nombreBarrio}}
+                </option>
+            </select>
+                <h4>Direccion </h4>
+                <input type="text" class="form-control" [(ngModel)]="direccionCompleta" name="direccion" placeholder="direccionCompleta" disabled>
+            </div>
+            <button (click)="confirmarDireccion()" class="btn btn-danger">Aceptar</button>
+        </form>
+
+
     </div>
 </ng-template>
