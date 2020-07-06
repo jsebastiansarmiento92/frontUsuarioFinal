@@ -13,7 +13,7 @@ const cabecera = { headers: new HttpHeaders({ 'Content-TYpe': 'application/json'
 
 
 export class UsuarioService {
-  usuarioURL = 'http://localhost:8080/usuarios';
+  usuarioURL = 'https://quickdomicilios-client.herokuapp.com/usuarios';
 
 
   constructor(private http: HttpClient) {

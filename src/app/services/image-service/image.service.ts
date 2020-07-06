@@ -13,7 +13,7 @@ const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json'
   providedIn: 'root'
 })
 export class ImageService {
-  private imageURL = 'http://localhost:8080/image/';
+  private imageURL = 'https://quickdomicilios-client.herokuapp.com/image/';
 
   constructor(private httpClient: HttpClient) { }
 

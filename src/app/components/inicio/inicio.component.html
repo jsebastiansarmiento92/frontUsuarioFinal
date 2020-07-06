@@ -6,7 +6,7 @@
         </h5>
         <button (click)="showF()" style="margin-bottom: 20px;" type="button" class="close">
             <i class="material-icons">minimize</i>
-          </button>
+        </button>
     </div>
 
     <div class="card-body " style="width: 233px; height: 213px; overflow-y: scroll;">
@@ -27,8 +27,7 @@
                         <span> {{productoCarrito.cantidad}} </span>
 
                         <div class="btn-group">
-                            <button class="btn btn-round btn-info btn-sm"> <i
-                                    class="material-icons">remove</i>
+                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">remove</i>
                             </button>
                             <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
                             </button>
@@ -71,11 +70,55 @@
                 <div class="col-md-8 ml-auto mr-auto text-center">
                     <div class="brand">
                         <h1 class="title">Busca lo que necesites</h1>
-
                     </div>
                 </div>
             </div>
-            <div class="row">
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="padding: 0px;">
+                        <form class="form">
+                            <div class="form-inline">
+                                <div class="form-group " style="margin: auto;">
+                                    <div>
+                                        <select class="selectpicker" [(ngModel)]="tipoDireccionSeleccionada" name="tipoDireccionSeleccionada" (change)="capturarTipoDireccion()" title="Tipo Direccion" data-style="select-with-transition-white ">
+                                        <option  *ngFor="let tipoDireccion of tipoDirecciones">
+                                            {{tipoDireccion}}</option>
+                                    </select>
+                                    </div>
+
+                                    <div class="input-group rounded bg-white" style="height: 53px; border-left: 1px solid gray; margin-bottom: 10px; ">
+
+                                        <input type="number" placeholder="0" [(ngModel)]="n1" name="n1" class="form-control" style="height: 53px;">
+
+                                        <span class="input-group-addon" style="height: 53px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>#</h5> </span>
+
+                                        <input type="number" placeholder="0" [(ngModel)]="n2" name="n2" class="form-control" style="height: 53px;">
+                                        <span class="input-group-addon" style="height: 53px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>&#8212;</h5></span>
+
+                                        <input type="number" placeholder="0" [(ngModel)]="n3" name="n3" required class="form-control" style="height: 53px;">
+
+
+                                    </div>
+                                    <div class="col-md-2 col-12 btn btn-danger btn-raised btn-lg" style="margin-left: -2px; margin-bottom: 13px;" (click)="agregarBarrio(agregarBarrioModal)">
+                                        <a style=" color: white; width: 100%;">
+                                            <i class="material-icons">search</i> Confirmar</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <!--div class="row">
                 <div class="row col-md-8 ml-auto mr-0 text-center" style="border-radius: 10px; background-color: rgba(0, 0, 0, 0.308);">
 
                     <div class="select" style=" border-bottom: none;">
@@ -105,7 +148,7 @@
                         <i class="material-icons">search</i> Confirmar</a>
                 </div>
 
-            </div>
+            </div-->
 
 
 

@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ServicioService {
-  servicioURL = 'http://localhost:8080/servicio';
+  servicioURL = 'https://quickdomicilios-client.herokuapp.com/servicio';
   constructor(private http: HttpClient) { }
 
   updateServicio(servicio:Servicio): Observable<any>{
