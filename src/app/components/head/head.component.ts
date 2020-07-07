@@ -18,6 +18,7 @@ export class HeadComponent implements OnInit {
 
   ngOnInit() {
     console.log("verificacion is login");
+    
     if (localStorage.getItem("isLoggedin")) {
       this.isLogin = true;
     }

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PedidoService {
-  pedidoURL = 'http://localhost:8080/pedido';
+  pedidoURL = 'https://quickdomicilios-client.herokuapp.com/pedido';
 
   constructor(private http: HttpClient) {
 

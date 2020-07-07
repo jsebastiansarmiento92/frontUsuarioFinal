@@ -64,8 +64,7 @@
 
 <button (click)="showF()" class="btn btn-rose btn-flotante"><i class="material-icons">shopping_cart</i> Carrito</button>
 <div class="ecommerce-page sidebar-collapse">
-    <div class="page-header header-filter header-small" data-parallax="true"
-        style="background-image: url('../assets/img/examples/domicilio.jpg');">
+    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/examples/domicilio.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
@@ -79,43 +78,48 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12" style="padding: 0px;">
-                        <form class="form" action="">
-                        <div class="form-inline">
-                            <div class="form-group " style="margin: auto;">
-                                <div  class="select">
-                                    <select class="selectpicker" data-style="select-with-transition-white " data-size="4">
-                                        <option disabled>Seleccione</option>
-                                        <option value=""  *ngFor="let tipoDireccion of tipoDirecciones">
+                        <form class="form">
+                            <div class="form-inline">
+                                <div class="form-group " style="margin: auto;">
+                                    <div>
+                                        <select class="selectpicker" [(ngModel)]="tipoDireccionSeleccionada" name="tipoDireccionSeleccionada" (change)="capturarTipoDireccion()" title="Tipo Direccion" data-size="4" data-style="select-with-transition-white ">
+                                        <option  *ngFor="let tipoDireccion of tipoDirecciones">
                                             {{tipoDireccion}}</option>
                                     </select>
-                                </div>
-                                    
-                                <div class="input-group rounded bg-white" style="height: 53px; border-left: 1px solid gray; margin-bottom: 10px; ">
+                                    </div>
 
-                                    <input name="remitosucursal" id="remitosucursal" type="text" required
-                                        class="form-control" style="height: 50px;" placeholder="" >
-                                    <span class="input-group-addon" style="height: 50px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>#</h5> </span>
-                                    <input name="remitonumero" id="remitonumero" type="text" required
-                                        class="form-control" placeholder="  " style="height: 50px;">
-                                    <span class="input-group-addon" style="height: 50px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>&#8212;</h5></span>
-                                    <input name="remitonumero" id="remitonumero" type="text" required
-                                        class="form-control" placeholder=""style="height: 50px;">
-                                </div>
-                                <div class="col-md-2 col-12 btn btn-danger btn-raised btn-lg text-center" style="margin-left: 2px; margin-bottom: 13px;">
-                                    <a style=" color: white; " href="inicio">
-                                        <i style="margin-left: -10px;" class="material-icons">search</i> Buscar</a>
+                                    <div class="input-group rounded bg-white"
+                                     style="height: 53px; border-left: 1px solid gray; margin-bottom: 10px;">
+
+                                        <input type="number" placeholder="0" [(ngModel)]="n1" name="n1" class="form-control"
+                                        style="height: 50px;">
+
+                                        <span class="input-group-addon" 
+                                        style="height: 50px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>#</h5> </span>
+
+                                        <input type="number" placeholder="0" [(ngModel)]="n2" name="n2" class="form-control" 
+                                        style="height: 50px;">
+                                        <span class="input-group-addon" style="height: 53px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>&#8212;</h5></span>
+
+                                        <input type="number" placeholder="0" [(ngModel)]="n3" name="n3" required class="form-control" 
+                                        style="height: 50px;">
+
+
+                                    </div>
+                                    <div class="col-md-2 col-12 btn btn-danger btn-raised btn-lg" style="margin-left: 2px; margin-bottom: 13px;" (click)="agregarBarrio(agregarBarrioModal)">
+                                        <a style=" color: white;">
+                                            <i style="margin-left: -18px;" class="material-icons">search</i> Confirmar</a>
+                                    </div>
                                 </div>
                             </div>
-                            
-                        </div>
-                    </form>
+                        </form>
                     </div>
                 </div>
             </div>
 
 
 
-            
+
 
 
             <!--div class="row">
@@ -218,9 +222,7 @@
                                     <span class="price price-new"> $743</span>
                                 </div>
                                 <div class="stats ml-auto">
-                                    <button type="button" rel="tooltip" title=""
-                                        class="btn btn-just-icon btn-link btn-rose"
-                                        data-original-title="Saved to Wishlist">
+                                    <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                                         <i class="material-icons">favorite</i>
                                     </button>
                                 </div>
@@ -244,9 +246,7 @@
                                     <span class="price price-new">$743</span>
                                 </div>
                                 <div class="stats ml-auto">
-                                    <button type="button" rel="tooltip" title=""
-                                        class="btn btn-just-icon btn-link btn-rose"
-                                        data-original-title="Saved to Wishlist">
+                                    <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                                         <i class="material-icons">favorite</i>
                                     </button>
                                 </div>
@@ -270,9 +270,7 @@
                                     <span class="price price-new">$743</span>
                                 </div>
                                 <div class="stats ml-auto">
-                                    <button type="button" rel="tooltip" title=""
-                                        class="btn btn-just-icon btn-link btn-rose"
-                                        data-original-title="Saved to Wishlist">
+                                    <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
                                         <i class="material-icons">favorite</i>
                                     </button>
                                 </div>
@@ -292,8 +290,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">
                                     Actulizar
-                                    <button class="btn btn-default btn-fab btn-fab-mini btn-link pull-right"
-                                        rel="tooltip" title="" data-original-title="Reset Filter">
+                                    <button class="btn btn-default btn-fab btn-fab-mini btn-link pull-right" rel="tooltip" title="" data-original-title="Reset Filter">
                                         <i class="material-icons">cached</i>
                                     </button>
                                 </h4>
@@ -301,23 +298,18 @@
                                     <div class="card card-collapse">
                                         <div class="card-header" role="tab" id="headingOne">
                                             <h5 class="mb-0">
-                                                <a data-toggle="collapse" href="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">
+                                                <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                                     Rango de precios
                                                     <i class="material-icons">keyboard_arrow_down</i>
                                                 </a>
                                             </h5>
                                         </div>
-                                        <div id="collapseOne" class="collapse show" role="tabpanel"
-                                            aria-labelledby="headingOne">
+                                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                                             <div class="card-body card-refine">
-                                                <span id="price-left" class="price-left pull-left"
-                                                    data-currency="$">$5000</span>
-                                                <span id="price-right" class="price-right pull-right"
-                                                    data-currency="$">$200000</span>
+                                                <span id="price-left" class="price-left pull-left" data-currency="$">$5000</span>
+                                                <span id="price-right" class="price-right pull-right" data-currency="$">$200000</span>
                                                 <div class="clearfix"></div>
-                                                <div id="sliderRefine"
-                                                    class="slider slider-rose noUi-target noUi-ltr noUi-horizontal">
+                                                <div id="sliderRefine" class="slider slider-rose noUi-target noUi-ltr noUi-horizontal">
                                                 </div>
                                             </div>
                                         </div>
@@ -351,15 +343,13 @@
                                     <div class="card card-collapse">
                                         <div class="card-header" role="tab" id="headingThree">
                                             <h5 class="mb-0">
-                                                <a class="collapsed" data-toggle="collapse" href="#collapseThree"
-                                                    aria-expanded="false" aria-controls="collapseThree">
+                                                <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                                     Categorias
                                                     <i class="material-icons">keyboard_arrow_down</i>
                                                 </a>
                                             </h5>
                                         </div>
-                                        <div id="collapseThree" class="collapse show" role="tabpanel"
-                                            aria-labelledby="headingThree">
+                                        <div id="collapseThree" class="collapse show" role="tabpanel" aria-labelledby="headingThree">
                                             <div class="card-body">
                                                 <div class="form-check" *ngFor="let categoria of categorias">
                                                     <label class="form-check-label">
@@ -408,9 +398,7 @@
                                                 <span class="price"> $ {{producto.valorProducto}} </span>
                                             </div>
                                             <h5>
-                                                <button type="button" (click)="ordenarProducto(producto,confirmarModal)"
-                                                    class="btn btn-outline-light float-right"
-                                                    style="margin-left: 10px;">Ordenar</button></h5>
+                                                <button type="button" (click)="ordenarProducto(producto,confirmarModal)" class="btn btn-outline-light float-right" style="margin-left: 10px;">Ordenar</button></h5>
 
                                         </div>
                                     </div>
@@ -424,8 +412,7 @@
                 <h2 class="section-title">Tendencias</h2>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card card-background"
-                            style="background-image: url(../assets/img/examples/tendencia1.jpg)">
+                        <div class="card card-background" style="background-image: url(../assets/img/examples/tendencia1.jpg)">
                             <div class="card-body">
                                 <h6 class="card-category text-info">Tendencia 1</h6>
                                 <a>
@@ -442,8 +429,7 @@
                         <!-- end card -->
                     </div>
                     <div class="col-md-4">
-                        <div class="card card-background"
-                            style="background-image: url(../assets/img/examples/tendencia2.jpg)">
+                        <div class="card card-background" style="background-image: url(../assets/img/examples/tendencia2.jpg)">
                             <div class="card-body">
                                 <h6 class="card-category text-info">Tendencia 1</h6>
                                 <a>
@@ -460,8 +446,7 @@
                         <!-- end card -->
                     </div>
                     <div class="col-md-4">
-                        <div class="card card-background"
-                            style="background-image: url(../assets/img/examples/tendencia3.jpg)">
+                        <div class="card card-background" style="background-image: url(../assets/img/examples/tendencia3.jpg)">
                             <div class="card-body">
                                 <h6 class="card-category text-info">Tendencia 1</h6>
                                 <a>
@@ -545,16 +530,14 @@
         </div>
     </div>
     <!-- section -->
-    <div class="subscribe-line subscribe-line-image" data-parallax="true"
-        style="background-image: url(&apos;../assets/img/examples/ecommerce-header.jpg&apos;);">
+    <div class="subscribe-line subscribe-line-image" data-parallax="true" style="background-image: url(&apos;../assets/img/examples/ecommerce-header.jpg&apos;);">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto">
                     <div class="text-center">
                         <h3 class="title">Suscríbete a nuestro boletín</h3>
                         <p class="description">
-                            ¡Únase a nuestro boletín y reciba noticias en su bandeja de entrada todas las semanas!
-                            También odiamos el spam, así que no te preocupes por esto.
+                            ¡Únase a nuestro boletín y reciba noticias en su bandeja de entrada todas las semanas! También odiamos el spam, así que no te preocupes por esto.
                         </p>
                     </div>
                     <div class="card card-raised card-form-horizontal">
@@ -568,8 +551,7 @@
                                                     <i class="material-icons">mail</i>
                                                 </span>
                                             </div>
-                                            <input type="text" class="form-control"
-                                                placeholder="tu correo electrónico...">
+                                            <input type="text" class="form-control" placeholder="tu correo electrónico...">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -583,8 +565,7 @@
                                         <div class="form-group">
                                             <h3>Confirmacion </h3>
                                             <h4>cantidad de {{producto.nombreProducto}} que deseas </h4>
-                                            <input type="number" class="form-control" [(ngModel)]="producto.cantidad"
-                                                name="cantidad" placeholder="ingresar cantidad" value="1">
+                                            <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad" placeholder="ingresar cantidad" value="1">
                                         </div>
                                         <button (click)="confirmarAgregar()" class="btn btn-danger">Confirmar</button>
                                     </form>
@@ -604,8 +585,7 @@
             <div class="form-group">
                 <h3>Confirmacion </h3>
                 <h4>cantidad de {{producto.nombreProducto}} que deseas </h4>
-                <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad"
-                    placeholder="ingresar cantidad" value="1">
+                <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad" placeholder="ingresar cantidad" value="1">
             </div>
             <button (click)="confirmarAgregar()" class="btn btn-danger">Confirmar</button>
         </form>

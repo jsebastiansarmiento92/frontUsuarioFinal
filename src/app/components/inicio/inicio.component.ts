@@ -29,6 +29,7 @@ export class InicioComponent implements OnInit {
   n1: number;
   n2: number;
   n3: number;
+
   idservicio: number;
   idEmpresa: number = 0;
   valorServicio;
@@ -75,6 +76,20 @@ export class InicioComponent implements OnInit {
     private servicioService: ServicioService) { }
 
   ngOnInit() {
+    this.llenarTipodirecciones();
+   // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
+    if(localStorage.getItem("refreshPage")==null){
+     
+        setTimeout(() => {
+          localStorage.setItem("refreshPage",'1');
+        location.reload();
+        }, 100);
+      
+    }else if(localStorage.getItem("refreshPage")=='1'){
+      
+      
+      console.log("refreshpage es "+localStorage.getItem("refreshPage"));
+    }
 
     if (this.tokenService.getToken() == null) {
       localStorage.clear();
@@ -92,10 +107,11 @@ export class InicioComponent implements OnInit {
         this.direccionCompleta=this.lugar.direccionLugar;
         this.totalPedido = this.calcular();
         this.asignarCosto();
+
       });
     }
      
-    this.llenarTipodirecciones();
+    
     this.cargarProductos();
     this.cargarCategorias();
     if (JSON.parse(localStorage.getItem('myCar')) != null) {
@@ -131,6 +147,7 @@ export class InicioComponent implements OnInit {
           //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           console.log(this.retrievedImage);
+          
         })
       });
       // this.loader = false;
@@ -152,14 +169,15 @@ export class InicioComponent implements OnInit {
       this.idEmpresa = this.producto.empresa.idEmpresa;
     } else if (this.idEmpresa != this.producto.empresa.idEmpresa) {
       alert("no puede solicitar productos de dos empresas en un mismo servicio");
+    }else{
+      this.productosCarrito.push(this.producto);
+      console.log("agregando al local storage:");
+      console.log(this.productosCarrito);
+      localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
+      this.serviceModal.dismissAll();
+      this.totalPedido = this.calcular();
     }
-    this.productosCarrito.push(this.producto);
-
-    console.log("agregando al local storage:");
-    console.log(this.productosCarrito);
-    localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
-    this.serviceModal.dismissAll();
-    this.totalPedido = this.calcular();
+    
   }
   cargarCategorias() {
     this.categoriaService.getCategoriasUsuarioFinal().subscribe(data => {
@@ -314,7 +332,7 @@ export class InicioComponent implements OnInit {
     this.loaderPedido = true;
     this.pedido.idCliente = this.getidSesion();
     this.pedido.lugar = this.lugar;
-    alert(this.idEmpresa);
+    //alert(this.idEmpresa);
     this.pedido.idEmpresa = this.idEmpresa;
     this.pedido.modoPagoPedido = "Efectivo";
     this.pedido.estadoPedido = "En proceso";
@@ -376,7 +394,7 @@ export class InicioComponent implements OnInit {
       detalleServicio.cantidad = element.cantidad;
       this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(data => {
         console.log("detalle servicio agregado");
-        alert("Pedido guardado");
+       
         //this.ngOnInit();
         localStorage.removeItem('myCar');
         this.asignarCosto();
@@ -398,7 +416,7 @@ export class InicioComponent implements OnInit {
       }, (err: any) => {
         console.log(err.error.mensaje);
       })
-    }, 3000);
+    }, 5000);
 
 
 
@@ -412,7 +430,7 @@ export class InicioComponent implements OnInit {
       console.log(data);
       this.tokenService.setLugar(data.lugar.idLugar + "");
       this.lugar.idLugar=data.lugar.idLugar;
-      alert("pedido solicitado");
+     // alert("pedido solicitado");
       this.clean();
     })
   }
