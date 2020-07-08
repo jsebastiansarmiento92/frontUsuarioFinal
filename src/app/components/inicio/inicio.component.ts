@@ -18,6 +18,8 @@ import { Servicio } from 'src/app/models/servicio';
 import { DetalleServicio } from 'src/app/models/detalle-servicio';
 import { ServicioService } from 'src/app/services/servicio/servicio.service';
 import { __await } from 'tslib';
+import { Empresa } from 'src/app/models/empresa';
+import { EmpresaService } from 'src/app/services/empresa-service/empresa.service';
 
 @Component({
   selector: 'app-inicio',
@@ -44,7 +46,7 @@ export class InicioComponent implements OnInit {
   pedido: Pedido = new Pedido();
   servicio: Servicio = new Servicio();
   producto: Producto = new Producto();
-
+  empresaSeleccionada:Empresa;
 
 
   retrieveResonse: any;
@@ -54,12 +56,14 @@ export class InicioComponent implements OnInit {
   show: boolean = false;
   loaderPedido = true;
   loader = false;
+  empresaSelected=false;
 
   barrios: Barrio[] = [];
   productosCarrito: Producto[] = [];
   categorias: Categoria[] = [];
   tipoDirecciones: String[] = [];
   productos: Producto[] = [];
+  empresas:Empresa[]=[];
   totalPedido = 0;
 
 
@@ -73,7 +77,8 @@ export class InicioComponent implements OnInit {
     private serviceLugar: LugarService,
     private pedidoService: PedidoService,
     private detalleServicioService: DetalleServicioService,
-    private servicioService: ServicioService) { }
+    private servicioService: ServicioService,
+    private empresaService:EmpresaService) { }
 
   ngOnInit() {
     this.llenarTipodirecciones();
@@ -112,13 +117,35 @@ export class InicioComponent implements OnInit {
     }
      
     
-    this.cargarProductos();
+    //this.cargarProductos();
+    this.cargarEmpresas();
     this.cargarCategorias();
     if (JSON.parse(localStorage.getItem('myCar')) != null) {
       this.getCarrito();
     }
 
   }
+  cargarEmpresas(){
+    this.empresaService.getEmpresas().subscribe(data=>{
+      this.empresas=data;
+      console.log("empresas cargadas");
+      console.log(this.empresas);
+      this.empresas.forEach(element => {
+        console.log("id de las imagenes de los productos" + element.imagen);
+
+        this.imagenService.getImageId(element.imagen).subscribe(data => {
+          this.retrieveResonse = data;
+          console.log(data);
+          this.base64Data = this.retrieveResonse.picByte;
+          //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          console.log(this.retrievedImage);
+          
+        })
+      });
+    })
+  }
+
   llenarTipodirecciones() {
     this.tipoDirecciones.push("Carrera");
     this.tipoDirecciones.push("Avenida");
@@ -253,6 +280,32 @@ export class InicioComponent implements OnInit {
       if (element.nombreBarrio == this.barrioSeleccionado) {
         this.barrio = element;
       }
+    });
+
+  }
+  seleccionEmpresa(empresa){
+    this.empresaSelected=true;
+    this.empresaSeleccionada=empresa;
+    console.log("empresa Seleccionada");
+    console.log(this.empresaSeleccionada);
+    this.categorias=this.empresaSeleccionada.categorias;
+    this.productosService.getProductosEmpresa(empresa).subscribe(data=>{
+      console.log("productos de esa empresa son:");
+      this.productos=data;
+      console.log(this.productos);
+      this.productos.forEach(element => {
+        console.log("id de las imagenes de los productos" + element.imagen);
+
+        this.imagenService.getImageId(element.imagen).subscribe(data => {
+          this.retrieveResonse = data;
+          console.log(data);
+          this.base64Data = this.retrieveResonse.picByte;
+          //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          console.log(this.retrievedImage);
+          
+        })
+      });
     });
 
   }
