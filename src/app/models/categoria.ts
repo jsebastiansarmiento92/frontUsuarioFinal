@@ -5,4 +5,5 @@ export class Categoria {
     nombreCategoria:string;
     empresa=new Empresa();
     descripcion:String;
+    dependencia:Categoria;
 }

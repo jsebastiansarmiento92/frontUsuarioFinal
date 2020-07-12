@@ -18,12 +18,16 @@ export class HeadComponent implements OnInit {
 
   ngOnInit() {
     console.log("verificacion is login");
-    
+    if (this.tokenService.getToken() == null) {
+      console.log("se limpia el locar storage en inicio");
+      localStorage.removeItem("isLoggedin");
+    }
     if (localStorage.getItem("isLoggedin")) {
       this.isLogin = true;
     }
   }
   logOut(): void {
+
     if (confirm("desea cerrar sesion?")) {
       console.log("cerrar sesion");
       this.tokenService.logOut();
