@@ -442,5 +442,8 @@ export class InicioComponent implements OnInit {
     this.showF();
   }
 
+  screen(){
+    alert("tamaño de pantalla pequeño");
+  }
 
 }
