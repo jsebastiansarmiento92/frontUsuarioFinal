@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './shared';
 import { AuthService } from './services/auth/auth.service';
 import { interceptorProvider } from './interceptors/usuario-interceptor.service';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 //import { CarritoComponent } from './components/carrito/carrito.component';
 //import { CarritoRoutingModule } from './components/carrito/carrito-routing.module';
@@ -33,7 +34,7 @@ import { interceptorProvider } from './interceptors/usuario-interceptor.service'
     HttpClientModule,
     
   ],
-  providers: [AuthGuard,interceptorProvider,AuthService],
+  providers: [AuthGuard,interceptorProvider,AuthService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

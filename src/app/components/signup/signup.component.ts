@@ -74,7 +74,7 @@ export class SignupComponent implements OnInit {
   }
   register(){
     console.log("ingresoa registrer con google")
-    window.location.href="https://quickdomicilios-client.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+    window.location.href="https://quickdomicilios-client.herokuapp.com/oauth2/authorize/google?redirect_uri=http://quickdomicilios.com/signup";
   }
   registerManual(){
     console.log("datos que se envian para el registro");

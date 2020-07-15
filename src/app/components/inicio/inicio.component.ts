@@ -20,6 +20,7 @@ import { ServicioService } from 'src/app/services/servicio/servicio.service';
 import { __await } from 'tslib';
 import { Empresa } from 'src/app/models/empresa';
 import { EmpresaService } from 'src/app/services/empresa-service/empresa.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-inicio',
@@ -64,6 +65,7 @@ export class InicioComponent implements OnInit {
   tipoDirecciones: String[] = [];
   productos: Producto[] = [];
   empresas:Empresa[]=[];
+  empresasTemporal:Empresa[]=[];
   totalPedido = 0;
 
 
@@ -99,6 +101,7 @@ export class InicioComponent implements OnInit {
     if (this.tokenService.getToken() == null) {
       localStorage.clear();
       console.log("se limpia el locar storage en inicio");
+      localStorage.setItem("isLoggedin","false");
     } else {
       localStorage.setItem('isLoggedin', 'true');
     } 
@@ -125,11 +128,105 @@ export class InicioComponent implements OnInit {
     }
 
   }
+  conductor(){
+    this.empresaSelected=false;
+    this.empresas=this.empresasTemporal;
+    console.log("ingreso a conductor padre");
+    let empresasSeleccion:Empresa[]=[];
+    this.empresas.forEach(element=>{
+      element.categorias.forEach(element2=>{
+        if(element2.dependencia.idCategoria==9){
+          empresasSeleccion.push(element);
+        }
+      });
+    });
+    this.empresas=empresasSeleccion;
+  }
+  domicilios(){
+    this.empresaSelected=false;
+    this.empresas=this.empresasTemporal;
+    console.log("ingreso a domicilios padre");
+    let empresasSeleccion:Empresa[]=[];
+    this.empresas.forEach(element=>{
+      element.categorias.forEach(element2=>{
+        if(element2.dependencia.idCategoria==8){
+          empresasSeleccion.push(element);
+        }
+      });
+    });
+    this.empresas=empresasSeleccion;
+  }
+  licores(){
+    this.empresaSelected=false;
+    this.empresas=this.empresasTemporal;
+    console.log("ingreso a licores padre");
+    let empresasSeleccion:Empresa[]=[];
+    this.empresas.forEach(element=>{
+      element.categorias.forEach(element2=>{
+        if(element2.dependencia.idCategoria==7){
+          empresasSeleccion.push(element);
+        }
+      });
+    });
+    this.empresas=empresasSeleccion;
+  }
+  viveres(){
+    this.empresaSelected=false;
+    this.empresas=this.empresasTemporal;
+    console.log("ingreso a viveres padre");
+    let empresasSeleccion:Empresa[]=[];
+    this.empresas.forEach(element=>{
+      element.categorias.forEach(element2=>{
+        if(element2.dependencia.idCategoria==6){
+          empresasSeleccion.push(element);
+        }
+      });
+    });
+    this.empresas=empresasSeleccion;
+  }
+  drogueria(){
+    this.empresaSelected=false;
+    console.log("ingreso a drogueria padre");
+    this.empresas=this.empresasTemporal;
+    let empresasSeleccion:Empresa[]=[];
+    this.empresas.forEach(element=>{
+      element.categorias.forEach(element2=>{
+        if(element2.dependencia.idCategoria==4){
+          empresasSeleccion.push(element);
+        }
+      });
+    });
+    this.empresas=empresasSeleccion;
+  }
+  restaurantes(){
+    this.empresaSelected=false;
+    console.log("ingreso a restaurantes padre");
+    this.empresas=this.empresasTemporal;
+    let empresasSeleccion:Empresa[]=[];
+    this.empresas.forEach(element=>{
+      console.log(element.razonSocial);
+      let introIf=false;
+      element.categorias.forEach(element2=>{
+        console.log("cosas que tiene elemento 2");
+        if(!introIf){
+          if(element2.dependencia.idCategoria==5){
+            introIf=true;
+            empresasSeleccion.push(element);         
+          }
+        }
+       
+      });
+      
+    });
+    this.empresas=empresasSeleccion;
+  }
   cargarEmpresas(){
+    this.empresaSelected=false;
     this.empresaService.getEmpresas().subscribe(data=>{
       this.empresas=data;
       console.log("empresas cargadas");
       console.log(this.empresas);
+      this.empresasTemporal=data;
       this.empresas.forEach(element => {
         console.log("id de las imagenes de los productos" + element.imagen);
 
@@ -495,5 +592,8 @@ export class InicioComponent implements OnInit {
     this.showF();
   }
 
+  screen(){
+    alert("tamaño de pantalla pequeño");
+  }
 
 }

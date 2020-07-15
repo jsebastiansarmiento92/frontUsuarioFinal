@@ -1,10 +1,12 @@
 <body class="landing-page sidebar-collapse">
-    <div class="page-header" data-parallax="true" style="background-color: #ffffff; height: 120vh;">
+    
+    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/examples/domicilio.jpg');  height: 120vh;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto" style="color: black;">
                     <form class="form" method="" action="">
-                        <div class="card card-login card-hidden text-center" style="background-color: rgba(236, 236, 236, 0.404)">
+                        <div class="card card-login card-hidden text-center"
+                            style="background-color: rgba(236, 236, 236, 0.404)">
 
                             <div class="card-product card-body card-plain ">
                                 <div style="align-content: center;">
@@ -12,12 +14,43 @@
                                 </div>
                                 <br>
                                 <div class="select">
-                                    <select class="selectpicker" data-style="select-with-transition" title="Ciudad" data-size="7">
-                                      <option disabled>Elige una ciudad</option>
-                                      <option value="2">Yopal</option>
+                                    <select class="selectpicker" data-style="select-with-transition" title="Ciudad"
+                                        data-size="7">
+                                        <option disabled>Elige una ciudad</option>
+                                        <option value="2">Yopal</option>
                                     </select>
                                 </div>
-                                <br>
+
+                                <div>
+                                    <select class="selectpicker"
+                                     title="Tipo Direccion"
+                                        data-size="4"
+                                        data-style="select-with-transition">
+                                        <option>CALLE
+                                            </option>
+                                    </select>
+                                </div>
+
+                                <div class="input-group">
+
+                                    <input type="number" placeholder="0" name="n1" required style="text-align: center;"
+                                        class="form-control" >
+
+                                    <span class="input-group-addon">
+                                        <h5>#</h5>
+                                    </span>
+
+                                    <input type="number" placeholder="0" name="n2" required style="text-align: center;"
+                                        class="form-control" >
+                                    <span class="input-group-addon">
+                                        <h5>&#8212;</h5>
+                                    </span>
+
+                                    <input type="number" placeholder="0" name="n3" required
+                                        class="form-control" style="text-align: center;">
+
+
+                                </div>
                                 <a (click)="inicio()" class="btn btn-danger btn-raised btn-lg">
                                     <i class="material-icons">search</i> Buscar Establecimientos
                                 </a>

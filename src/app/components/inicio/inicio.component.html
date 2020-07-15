@@ -21,7 +21,8 @@
                 </div>
                 <div Style="text-align: left;">
                     <div style="line-height: 0.0em; ">
-                        <h6 class="card-category text-success" style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">{{productoCarrito.nombreProducto}}
+                        <h6 class="card-category text-success" style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                            {{productoCarrito.nombreProducto}}
                         </h6>
                         <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
                         <span> {{productoCarrito.cantidad}} </span>
@@ -35,7 +36,7 @@
                         <br>
                         <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
                         </small>
-                        <small>&#x20AC;</small>{{(productoCarrito.valorProducto*productoCarrito.cantidad)}}
+                        <small>&#36;</small>{{(productoCarrito.valorProducto*productoCarrito.cantidad)}}
                     </div>
                 </div>
             </div>
@@ -44,74 +45,78 @@
 
 
     </div>
+    
     <div class="container tetx-center" style="border-top: 7px;">
         <form>
             <label for="total">Total: </label>
-            <span id="total"><small> &#x20AC;</small>{{totalPedido}}</span>
+            <span id="total"><small> &#36;</small>{{totalPedido}}</span>
             <br>
             <label for="total">Servicio: </label>
-            <span id="total"><small> &#x20AC;</small>{{valorServicio}}</span>
+            <span id="total"><small> &#36;</small>{{valorServicio}}</span>
         </form>
 
     </div>
     <div>
         <a class="btn btn-rose btn-round" (click)="confirmarPedido()">
-              Confirmar
-          </a>
+            Confirmar
+        </a>
     </div>
-
 </div>
-
 <button (click)="showF()" class="btn btn-rose btn-flotante"><i class="material-icons">shopping_cart</i> Carrito</button>
+<button  class="btn btn-secondary btn-back "><i class="material-icons" style="font-size: 24px;">keyboard_arrow_left</i></button>
+
 <div class="ecommerce-page sidebar-collapse">
     <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/examples/domicilio.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
-                    <div class="brand">
+                    <div class="brand ">
                         <h1 class="title">Busca lo que necesites</h1>
                     </div>
                 </div>
             </div>
+            <!--div class="container d-none d-sm-none d-md-block d-lg-block d-xl-block " >
 
-
-            <div class="container">
                 <div class="row">
                     <div class="col-md-12" style="padding: 0px;">
                         <form class="form">
                             <div class="form-inline">
                                 <div class="form-group " style="margin: auto;">
                                     <div>
-                                        <select class="selectpicker" [(ngModel)]="tipoDireccionSeleccionada" name="tipoDireccionSeleccionada" (change)="capturarTipoDireccion()" title="Tipo Direccion" data-style="select-with-transition-white ">
-                                        <option  *ngFor="let tipoDireccion of tipoDirecciones">
-                                            {{tipoDireccion}}</option>
-                                    </select>
+                                        <select class="selectpicker" [(ngModel)]="tipoDireccionSeleccionada" name="tipoDireccionSeleccionada" (change)="capturarTipoDireccion()" title="Tipo Direccion" data-size="4" data-style="select-with-transition-white ">
+                                            <option *ngFor="let tipoDireccion of tipoDirecciones">
+                                                {{tipoDireccion}}</option>
+                                        </select>
                                     </div>
 
-                                    <div class="input-group rounded bg-white" style="height: 53px; border-left: 1px solid gray; margin-bottom: 10px; ">
+                                    <div class="input-group rounded bg-white" style="height: 53px; border-left: 1px solid gray; margin-bottom: 10px;">
 
-                                        <input type="number" placeholder="0" [(ngModel)]="n1" name="n1" class="form-control" style="height: 53px;">
+                                        <input type="number" placeholder="0" [(ngModel)]="n1" name="n1" class="form-control" style="height: 50px;">
 
-                                        <span class="input-group-addon" style="height: 53px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>#</h5> </span>
+                                        <span class="input-group-addon" style="height: 50px; margin: 2px; border-left: 1px solid gray; color: gray;">
+                                            <h5>#</h5>
+                                        </span>
 
-                                        <input type="number" placeholder="0" [(ngModel)]="n2" name="n2" class="form-control" style="height: 53px;">
-                                        <span class="input-group-addon" style="height: 53px; margin: 2px; border-left: 1px solid gray; color: gray;"><h5>&#8212;</h5></span>
+                                        <input type="number" placeholder="0" [(ngModel)]="n2" name="n2" class="form-control" style="height: 50px;">
+                                        <span class="input-group-addon" style="height: 53px; margin: 2px; border-left: 1px solid gray; color: gray;">
+                                            <h5>&#8212;</h5>
+                                        </span>
 
-                                        <input type="number" placeholder="0" [(ngModel)]="n3" name="n3" required class="form-control" style="height: 53px;">
+                                        <input type="number" placeholder="0" [(ngModel)]="n3" name="n3" required class="form-control" style="height: 50px;">
 
 
                                     </div>
-                                    <div class="col-md-2 col-12 btn btn-danger btn-raised btn-lg" style="margin-left: -2px; margin-bottom: 13px;" (click)="agregarBarrio(agregarBarrioModal)">
-                                        <a style=" color: white; width: 100%;">
-                                            <i class="material-icons">search</i> Confirmar</a>
+                                    <div class="col-md-2 col-12 btn btn-danger btn-raised btn-lg" style="margin-left: 2px; margin-bottom: 13px;" (click)="agregarBarrio(agregarBarrioModal)">
+                                        <a style=" color: white;">
+                                            <i style="margin-left: -18px;" class="material-icons">search</i> Confirmar
+                                        </a>
                                     </div>
                                 </div>
-
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
+            </div-->
 
 
 
@@ -197,7 +202,7 @@
     <div class="main main-raised">
         <div class="section">
             <div class="container">
-                <h2 class="section-title">Últimas ofertas</h2>
+                <h2 class="text-center section-title">Últimas ofertas</h2>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card card-product card-body card-plain">
@@ -214,8 +219,8 @@
                             </div>
                             <div class="card-footer">
                                 <div class="price-container">
-                                    <span class="price price-old"> $1,430</span>
-                                    <span class="price price-new"> $743</span>
+                                    <span class="price price-old"> &#36;1,430</span>
+                                    <span class="price price-new"> &#36;743</span>
                                 </div>
                                 <div class="stats ml-auto">
                                     <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
@@ -238,8 +243,8 @@
                             </div>
                             <div class="card-footer">
                                 <div class="price-container">
-                                    <span class="price price-old"> $1,430</span>
-                                    <span class="price price-new">$743</span>
+                                    <span class="price price-old"> &#36;1,430</span>
+                                    <span class="price price-new">&#36;743</span>
                                 </div>
                                 <div class="stats ml-auto">
                                     <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
@@ -262,8 +267,8 @@
                             </div>
                             <div class="card-footer">
                                 <div class="price-container">
-                                    <span class="price price-old"> $1,430</span>
-                                    <span class="price price-new">$743</span>
+                                    <span class="price price-old"> &#36;1,430</span>
+                                    <span class="price price-new">&#36;743</span>
                                 </div>
                                 <div class="stats ml-auto">
                                     <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
@@ -275,6 +280,77 @@
                     </div>
                 </div>
             </div>
+
+            <div class="features-1" style="padding: 0px;">
+                <div class="container">
+                    <h2 class="section-title">Categorias</h2>
+                    <div class="row">
+                        <div class="col p-0">
+                            <a class="btn btn-white p-0" style="background-color: transparent;" (click)="conductor()">
+                                <img class="img-thumbnail" src="../assets/categoria/conductor_elegido_1.png" alt="" style="background-color: transparent; border: none;">
+                            </a>
+                            <small>
+                            <h6 class="card-title" >
+                                conductor
+                            </h6>
+                        </small>
+                        </div>
+                        <div class="col p-0">
+                            <a class="btn btn-white p-0" style="background-color: transparent;" (click)="domicilios()">
+                                <img class="img-thumbnail" src="../assets/categoria/conductor_Mesa de trabajo 1.png" alt="" style="background-color: transparent; border: none;">
+                            </a>
+                            <small>
+                            <h6 class="card-title" >
+                                domicilios
+                            </h6>
+                        </small>
+                        </div>
+                        <div class="col p-0">
+                            <a class="btn btn-white p-0" style="background-color: transparent;" (click)="licores()">
+                                <img class="img-thumbnail" src="../assets/categoria/licores_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="" style="background-color: transparent; border: none;">
+                            </a>
+                            <small>
+                            <h6 class="card-title" >
+                                Licores
+                            </h6>
+                        </small>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col p-0">
+                            <a class="btn btn-white p-0" style="background-color: transparent;" (click)="viveres()">
+                                <img class="img-thumbnail" src="../assets/categoria/mandados y encomiendas_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="" style="background-color: transparent; border: none;">
+                            </a>
+                            <small>
+                            <h6 class="card-title" >
+                                Viveres
+                            </h6>
+                        </small>
+                        </div>
+                        <div class="col p-0">
+                            <a class="btn btn-white p-0" style="background-color: transparent;" (click)="drogueria()">
+                                <img class="img-thumbnail" src="../assets/categoria/medicinas_Mesa de trabajo 1.png" alt="" style="background-color: transparent; border: none;">
+                            </a>
+                            <small>
+                            <h6 class="card-title" >
+                                Medicinas
+                            </h6>
+                        </small>
+                        </div>
+                        <div class="col p-0">
+                            <a class="btn btn-white p-0" style="background-color: transparent;" (click)="restaurantes()">
+                                <img class="img-thumbnail" src="../assets/categoria/restaurantes_Mesa de trabajo 1.png" alt="" style="background-color: transparent; border: none;">
+                            </a>
+                            <small>
+                            <h6 class="card-title" >
+                                Restaurantes
+                            </h6>
+                        </small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
         <!-- section -->
         <div class="section">
@@ -302,8 +378,8 @@
                                         </div>
                                         <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                                             <div class="card-body card-refine">
-                                                <span id="price-left" class="price-left pull-left" data-currency="$">$5000</span>
-                                                <span id="price-right" class="price-right pull-right" data-currency="$">$200000</span>
+                                                <span id="price-left" class="price-left pull-left" data-currency="$">&#36;5000</span>
+                                                <span id="price-right" class="price-right pull-right" data-currency="$">&#36;200000</span>
                                                 <div class="clearfix"></div>
                                                 <div id="sliderRefine" class="slider slider-rose noUi-target noUi-ltr noUi-horizontal">
                                                 </div>
@@ -610,16 +686,16 @@
                 <h3>Selecciona barrio: </h3>
                 <div class="center-loader" *ngIf="loader">
                     <strong>Cargando barrios
-                      <span class="loader__dot">.</span>
-                      <span class="loader__dot">.</span>
-                      <span class="loader__dot">.</span></strong>
+                        <span class="loader__dot">.</span>
+                        <span class="loader__dot">.</span>
+                        <span class="loader__dot">.</span></strong>
                 </div>
                 <select *ngIf="!loader" class="form-control" [(ngModel)]="barrioSeleccionado" name="barrioSeleccionado" (change)="capturar()">
-                <option value="0">Selecciona un barrio</option>
-                <option *ngFor="let barrio of barrios" style="margin-block: 10px">
-                    {{barrio.nombreBarrio}}
-                </option>
-            </select>
+                    <option value="0">Selecciona un barrio</option>
+                    <option *ngFor="let barrio of barrios" style="margin-block: 10px">
+                        {{barrio.nombreBarrio}}
+                    </option>
+                </select>
                 <h4>Direccion </h4>
                 <input type="text" class="form-control" [(ngModel)]="direccionCompleta" name="direccion" placeholder="direccionCompleta" disabled>
             </div>
