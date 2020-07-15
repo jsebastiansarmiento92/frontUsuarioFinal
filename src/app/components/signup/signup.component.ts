@@ -65,14 +65,7 @@ export class SignupComponent implements OnInit {
     }
     
   }
- /** getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(this.props.location.search);
-    console.log("resultado de results en el gerParemeter");
-    console.log(results);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-};*/
+
   getIslogin():boolean{
     return false
   }
