@@ -51,13 +51,14 @@
  *  (window as any).__Zone_enable_cross_context_check = true;
  *
  */
-
+import 'core-js/es6/reflect';
+import 'core-js/es7/reflect';
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
-
+(window as any)['global'] = window;
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */

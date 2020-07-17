@@ -21,6 +21,14 @@ import { __await } from 'tslib';
 import { Empresa } from 'src/app/models/empresa';
 import { EmpresaService } from 'src/app/services/empresa-service/empresa.service';
 import { element } from 'protractor';
+import { SocketService } from 'src/app/services/socket-service/socket.service';
+import { Message } from 'src/app/models/message';
+
+import * as SockJS from 'sockjs-client';
+import * as Stomp from 'stompjs';
+import { UsuarioService } from 'src/app/services/usuario-service/usuario.service';
+
+
 
 @Component({
   selector: 'app-inicio',
@@ -68,6 +76,14 @@ export class InicioComponent implements OnInit {
   empresasTemporal:Empresa[]=[];
   totalPedido = 0;
 
+  private serverUrl = 'http://localhost:8080/' + 'socket'
+  isLoaded: boolean = false;
+  isCustomSocketOpened = false;
+  private stompClient;
+  
+  messages: Message[] = [];
+
+
 
   constructor(private productosService: ProductoServiceService,
     private imagenService: ImageService,
@@ -80,10 +96,14 @@ export class InicioComponent implements OnInit {
     private pedidoService: PedidoService,
     private detalleServicioService: DetalleServicioService,
     private servicioService: ServicioService,
-    private empresaService:EmpresaService) { }
+    private empresaService:EmpresaService,
+    private socketService: SocketService,
+    private usuarioService:UsuarioService
+    ) { }
 
   ngOnInit() {
     this.llenarTipodirecciones();
+    this.initializeWebSocketConnection();
    // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
     if(localStorage.getItem("refreshPage")==null){
      
@@ -128,6 +148,69 @@ export class InicioComponent implements OnInit {
     }
 
   }
+  initializeWebSocketConnection() {
+    let ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
+    let that = this;
+    this.stompClient.connect({}, function (frame) {
+        that.isLoaded = true;
+        console.log("quiere decir qu ya hizo conexion con socket");
+        that.openGlobalSocket()
+        that.openSocket()
+    });
+}
+openGlobalSocket() {
+  this.stompClient.subscribe("/socket-publisher", (message) => {
+      this.handleResult(message);
+  });
+}
+
+openSocket() {
+  console.log(this.isLoaded);
+  console.log("ingresa a estos metodos de sockets");
+  if (this.isLoaded) {
+      this.isCustomSocketOpened = true;
+      console.log("id de usuario actual listo para recibir mensajes es " + this.tokenService.getIdUser());
+      this.stompClient.subscribe("/socket-publisher/" + this.tokenService.getIdUser(), (message) => {
+          this.handleResult(message);
+      });
+  }
+}
+
+handleResult(message) {
+  if (message.body) {
+      let messageResult: Message = JSON.parse(message.body);
+      console.log(messageResult);
+      this.messages.push(messageResult);
+      /**  this.toastr.success("new message recieved", null, {
+         'timeOut': 3000
+       });*/
+      //this.showNotification("Notificación", messageResult.message);
+      //this.showPushNotification("Notificación", "Mensaje recibido");
+      console.log("ingreso de vibracion");
+      //Haptics.vibrate();
+      console.log("ingreso de notificacion local");
+     /** const notifs =  LocalNotifications.schedule({
+          notifications: [
+            {
+              title: "Alerta de novedad",
+              body: messageResult.message,
+              id: 1,
+             // schedule: { at: new Date(Date.now() + 1000 * 5) },
+              sound: null,
+              attachments: null,
+              actionTypeId: "",
+              extra: null
+            }
+          ]
+        });
+        console.log('scheduled notifications', notifs); */
+
+// Method called when tapping on a notification
+
+  }
+}
+
   conductor(){
     this.empresaSelected=false;
     this.empresas=this.empresasTemporal;
@@ -288,7 +371,6 @@ export class InicioComponent implements OnInit {
 
   }
   confirmarAgregar() {
-
     if (this.idEmpresa == 0) {
       this.idEmpresa = this.producto.empresa.idEmpresa;
     } else if (this.idEmpresa != this.producto.empresa.idEmpresa) {
@@ -547,6 +629,7 @@ export class InicioComponent implements OnInit {
        
         //this.ngOnInit();
         localStorage.removeItem('myCar');
+        
         this.asignarCosto();
       }, (err: any) => {
         estadoServicio = "Error";
@@ -561,8 +644,9 @@ export class InicioComponent implements OnInit {
         console.log(data.mensaje);
         alert(data.mensaje);
         this.solicitarPedido();
+        this.notificacionesGeneral();
         this.ngOnInit();
-
+        
       }, (err: any) => {
         console.log(err.error.mensaje);
       })
@@ -570,6 +654,39 @@ export class InicioComponent implements OnInit {
 
 
 
+  }
+  notificacionesGeneral(){
+    console.log("enviando notificaciones a los usuarios empresa");
+        this.usuarioService.getUserEmpresaNotifications(this.idEmpresa).subscribe(data=>{
+          console.log("promesa de get usuarios empresa");
+         data.forEach(element => {
+          this.enviarNotificaciones(element.id,"Tiene un pedido de su negocio");
+         });
+        });
+        console.log("enviando notificaciones a los usuarios recepcionista");
+        this.usuarioService.getUserRepecionistaNotifications().subscribe(data=>{
+          console.log("promesa de get usuarios recepcionista");
+         data.forEach(element => {
+          this.enviarNotificaciones(element.id,"Tiene un pedido sin asignar");
+         });
+        });
+        console.log("enviando notificaciones a los usuarios admi");
+        this.usuarioService.getUserAdminNotifications().subscribe(data=>{
+          console.log("promesa de get usuarios admi");
+         data.forEach(element => {
+          this.enviarNotificaciones(element.id,"Tiene un pedido sin asignar");
+         });
+        });
+  }
+  enviarNotificaciones(id:number,mensaje:string){
+    let message: Message = {
+      message:mensaje,
+      fromId: this.tokenService.getIdUser(),
+      toId: id+""
+  };
+  this.socketService.postMessage(message).subscribe(res => {
+    console.log(res);
+})
   }
   solicitarPedido() {
     console.log("listo para extraer pedido ");

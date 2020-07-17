@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
       window.sessionStorage.setItem('AuthToken', this.token);
       console.log("token llegando es:");
       console.log(this.token);
-      console.log("erro llegando es ");
+      console.log("error llegando es ");
       console.log(this.error);
     if(window.sessionStorage.getItem('AuthToken')){
 
@@ -74,7 +74,7 @@ export class SignupComponent implements OnInit {
   }
   register(){
     console.log("ingresoa registrer con google")
-    window.location.href="https://quickdomicilios-client.herokuapp.com/oauth2/authorize/google?redirect_uri=http://quickdomicilios.com/signup";
+    window.location.href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
   }
   registerManual(){
     console.log("datos que se envian para el registro");

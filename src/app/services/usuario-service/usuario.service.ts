@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../../models/usuario';
 import { Observable } from 'rxjs';
 import { Lugar } from 'src/app/models/lugar';
+import { Empresa } from 'src/app/models/empresa';
 
 const cabecera = { headers: new HttpHeaders({ 'Content-TYpe': 'application/json' }) };
 
@@ -13,7 +14,7 @@ const cabecera = { headers: new HttpHeaders({ 'Content-TYpe': 'application/json'
 
 
 export class UsuarioService {
-  usuarioURL = 'https://quickdomicilios-client.herokuapp.com/usuarios';
+  usuarioURL = 'http://localhost:8080/usuarios';
 
 
   constructor(private http: HttpClient) {
@@ -55,4 +56,16 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.usuarioURL + "/domiciliario/" + estado);
   }
 
+  getUserEmpresaNotifications(idEmpresa:number) {
+    // console.log("el ide seleccionado es "+ id)
+    return this.http.get<Usuario[]>(this.usuarioURL + "/userEmpresaNotifications/"+idEmpresa);
+  }
+  getUserRepecionistaNotifications() {
+    // console.log("el ide seleccionado es "+ id)
+    return this.http.get<Usuario[]>(this.usuarioURL + "/userRepecionistaNotifications");
+  }
+  getUserAdminNotifications() {
+    // console.log("el ide seleccionado es "+ id)
+    return this.http.get<Usuario[]>(this.usuarioURL + "/userAdminNotifications");
+  }
 }
