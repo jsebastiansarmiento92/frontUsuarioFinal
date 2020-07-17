@@ -76,7 +76,7 @@ export class InicioComponent implements OnInit {
   empresasTemporal:Empresa[]=[];
   totalPedido = 0;
 
-  private serverUrl = 'http://localhost:8080/' + 'socket'
+  private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
   private stompClient;
