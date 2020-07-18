@@ -35,8 +35,8 @@ import { SocketService } from './services/socket-service/socket.service';
     HttpClientModule,
    // ToastrModule.forRoot()
   ],
-  //  providers: [AuthGuard,interceptorProvider,SocketService,AuthService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
-  providers: [AuthGuard,interceptorProvider,SocketService,AuthService],
+   providers: [AuthGuard,interceptorProvider,SocketService,AuthService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  //providers: [AuthGuard,interceptorProvider,SocketService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

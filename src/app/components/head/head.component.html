@@ -117,6 +117,15 @@
                     </li>
 
                 </div>
+                <div *ngIf="!getIslogin(); else elseBlock">
+                    <li class="button-container nav-item iframe-extern">
+
+                        <a (click)="onRegister()" style="color: white;" class="btn  btn-rose   btn-round btn-block">
+                            <i class="material-icons">login</i> Registrarse
+                        </a>
+                    </li>
+
+                </div>
                 <ng-template #elseBlock>
                     <li class="button-container nav-item iframe-extern">
                         <a (click)="logOut()" style="color: white;" class="btn  btn-rose btn-round btn-danger">
