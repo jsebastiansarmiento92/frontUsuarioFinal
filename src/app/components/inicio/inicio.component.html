@@ -1,5 +1,7 @@
-<div *ngIf="show" class="card card-pricing col-lg-3 btn-flotante col-md-3 float-right" style="margin-top: 0px; margin-bottom: 58px; padding: 0px; width: 237px;">
-    <div class="row card-category card-category-social" style="text-align: left; border-top-left-radius: 10px;border-top-right-radius: 10px; margin: 0px; background-color: rgba(230, 230, 230, 0.918);">
+<div *ngIf="show" class="card card-pricing col-lg-3 btn-flotante col-md-3 float-right"
+    style="margin-top: 0px; margin-bottom: 58px; padding: 0px; width: 237px;">
+    <div class="row card-category card-category-social"
+        style="text-align: left; border-top-left-radius: 10px;border-top-right-radius: 10px; margin: 0px; background-color: rgba(230, 230, 230, 0.918);">
 
         <h5 style="margin-left: 10px; width: 190px ;">
             <i class="material-icons">list</i> Tu Pedido
@@ -21,7 +23,8 @@
                 </div>
                 <div Style="text-align: left;">
                     <div style="line-height: 0.0em; ">
-                        <h6 class="card-category text-success" style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                        <h6 class="card-category text-success"
+                            style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
                             {{productoCarrito.nombreProducto}}
                         </h6>
                         <small style="font-size: small; margin-left: 4px;"> Cantidad: </small>
@@ -45,7 +48,7 @@
 
 
     </div>
-    
+
     <div class="container tetx-center" style="border-top: 7px;">
         <form>
             <label for="total">Total: </label>
@@ -63,10 +66,12 @@
     </div>
 </div>
 <button (click)="showF()" class="btn btn-rose btn-flotante"><i class="material-icons">shopping_cart</i> Carrito</button>
-<button  class="btn btn-secondary btn-back "><i class="material-icons" style="font-size: 24px;">keyboard_arrow_left</i></button>
+<button class="btn btn-secondary btn-back "><i class="material-icons"
+        style="font-size: 24px;">keyboard_arrow_left</i></button>
 
 <div class="ecommerce-page sidebar-collapse">
-    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/examples/domicilio.jpg');">
+    <div class="page-header header-filter header-small" data-parallax="true"
+        style="background-image: url('../assets/img/examples/domicilio.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
@@ -200,158 +205,87 @@
 
     </div>
     <div class="main main-raised">
-        <div class="section">
-            <div class="container">
-                <h2 class="text-center section-title">Últimas ofertas</h2>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card card-product card-body card-plain">
-                            <div class="card-header card-header-image">
-                                <a>
-                                    <img src="../assets/imageLogo/IsotipoCromaticoVectorial120x120.png" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body text-center">
-                                <h4 class="card-title">
-                                    <a>Promoción 1</a>
-                                </h4>
-                                <p class="card-description">Una pequeña descripción de la promoción.</p>
-                            </div>
-                            <div class="card-footer">
-                                <div class="price-container">
-                                    <span class="price price-old"> &#36;1,430</span>
-                                    <span class="price price-new"> &#36;743</span>
-                                </div>
-                                <div class="stats ml-auto">
-                                    <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
-                                        <i class="material-icons">favorite</i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card card-product card-body card-plain">
-                            <div class="card-header card-header-image">
-                                <a>
-                                    <img src="../assets/imageLogo/IsotipoCromaticoVectorial120x120.png" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Promoción 2</h4>
-                                <p class="card-description">Una pequeña descripción de la promoción.</p>
-                            </div>
-                            <div class="card-footer">
-                                <div class="price-container">
-                                    <span class="price price-old"> &#36;1,430</span>
-                                    <span class="price price-new">&#36;743</span>
-                                </div>
-                                <div class="stats ml-auto">
-                                    <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
-                                        <i class="material-icons">favorite</i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card card-body card-product card-plain">
-                            <div class="card-header  card-header-image">
-                                <a>
-                                    <img src="../assets/imageLogo/IsotipoCromaticoVectorial120x120.png" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Promoción 3</h4>
-                                <p class="card-description">Una pequeña descripción de la promoción.</p>
-                            </div>
-                            <div class="card-footer">
-                                <div class="price-container">
-                                    <span class="price price-old"> &#36;1,430</span>
-                                    <span class="price price-new">&#36;743</span>
-                                </div>
-                                <div class="stats ml-auto">
-                                    <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
-                                        <i class="material-icons">favorite</i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <!--div class="section">
             <div class="features-1" style="padding: 0px;">
                 <div class="container">
                     <h2 class="section-title">Categorias</h2>
                     <div class="row">
                         <div class="col p-0">
                             <a class="btn btn-white p-0" style="background-color: transparent;" (click)="conductor()">
-                                <img class="img-thumbnail" src="../assets/categoria/conductor_elegido_1.png" alt="" style="background-color: transparent; border: none;">
+                                <img class="img-thumbnail" src="../assets/categoria/conductor_elegido_1.png" alt=""
+                                    style="background-color: transparent; border: none;">
                             </a>
                             <small>
-                            <h6 class="card-title" >
-                                conductor
-                            </h6>
-                        </small>
+                                <h6 class="card-title">
+                                    conductor
+                                </h6>
+                            </small>
                         </div>
                         <div class="col p-0">
                             <a class="btn btn-white p-0" style="background-color: transparent;" (click)="domicilios()">
-                                <img class="img-thumbnail" src="../assets/categoria/conductor_Mesa de trabajo 1.png" alt="" style="background-color: transparent; border: none;">
+                                <img class="img-thumbnail" src="../assets/categoria/conductor_Mesa de trabajo 1.png"
+                                    alt="" style="background-color: transparent; border: none;">
                             </a>
                             <small>
-                            <h6 class="card-title" >
-                                domicilios
-                            </h6>
-                        </small>
+                                <h6 class="card-title">
+                                    domicilios
+                                </h6>
+                            </small>
                         </div>
                         <div class="col p-0">
                             <a class="btn btn-white p-0" style="background-color: transparent;" (click)="licores()">
-                                <img class="img-thumbnail" src="../assets/categoria/licores_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="" style="background-color: transparent; border: none;">
+                                <img class="img-thumbnail"
+                                    src="../assets/categoria/licores_Mesa de trabajo 1_Mesa de trabajo 1.png" alt=""
+                                    style="background-color: transparent; border: none;">
                             </a>
                             <small>
-                            <h6 class="card-title" >
-                                Licores
-                            </h6>
-                        </small>
+                                <h6 class="card-title">
+                                    Licores
+                                </h6>
+                            </small>
                         </div>
                         <div class="w-100"></div>
                         <div class="col p-0">
                             <a class="btn btn-white p-0" style="background-color: transparent;" (click)="viveres()">
-                                <img class="img-thumbnail" src="../assets/categoria/mandados y encomiendas_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="" style="background-color: transparent; border: none;">
+                                <img class="img-thumbnail"
+                                    src="../assets/categoria/mandados y encomiendas_Mesa de trabajo 1_Mesa de trabajo 1.png"
+                                    alt="" style="background-color: transparent; border: none;">
                             </a>
                             <small>
-                            <h6 class="card-title" >
-                                Viveres
-                            </h6>
-                        </small>
+                                <h6 class="card-title">
+                                    Viveres
+                                </h6>
+                            </small>
                         </div>
                         <div class="col p-0">
                             <a class="btn btn-white p-0" style="background-color: transparent;" (click)="drogueria()">
-                                <img class="img-thumbnail" src="../assets/categoria/medicinas_Mesa de trabajo 1.png" alt="" style="background-color: transparent; border: none;">
+                                <img class="img-thumbnail" src="../assets/categoria/medicinas_Mesa de trabajo 1.png"
+                                    alt="" style="background-color: transparent; border: none;">
                             </a>
                             <small>
-                            <h6 class="card-title" >
-                                Medicinas
-                            </h6>
-                        </small>
+                                <h6 class="card-title">
+                                    Medicinas
+                                </h6>
+                            </small>
                         </div>
                         <div class="col p-0">
-                            <a class="btn btn-white p-0" style="background-color: transparent;" (click)="restaurantes()">
-                                <img class="img-thumbnail" src="../assets/categoria/restaurantes_Mesa de trabajo 1.png" alt="" style="background-color: transparent; border: none;">
+                            <a class="btn btn-white p-0" style="background-color: transparent;"
+                                (click)="restaurantes()">
+                                <img class="img-thumbnail" src="../assets/categoria/restaurantes_Mesa de trabajo 1.png"
+                                    alt="" style="background-color: transparent; border: none;">
                             </a>
                             <small>
-                            <h6 class="card-title" >
-                                Restaurantes
-                            </h6>
-                        </small>
+                                <h6 class="card-title">
+                                    Restaurantes
+                                </h6>
+                            </small>
                         </div>
                     </div>
                 </div>
 
             </div>
 
-        </div>
+        </div-->
         <!-- section -->
         <div class="section">
             <div class="container">
@@ -362,65 +296,237 @@
                             <div class="card-body">
                                 <h4 class="card-title">
                                     Actulizar
-                                    <button class="btn btn-default btn-fab btn-fab-mini btn-link pull-right" rel="tooltip" title="" data-original-title="Reset Filter">
+                                    <button class="btn btn-default btn-fab btn-fab-mini btn-link pull-right"
+                                        rel="tooltip" title="" data-original-title="Reset Filter">
                                         <i class="material-icons">cached</i>
                                     </button>
                                 </h4>
                                 <div id="accordion" role="tablist">
                                     <div class="card card-collapse">
-                                        <div class="card-header" role="tab" id="headingOne">
+                                        <div class="card-header" role="tab">
                                             <h5 class="mb-0">
-                                                <a data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-                                                    Rango de precios
-                                                    <i class="material-icons">keyboard_arrow_down</i>
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-                                            <div class="card-body card-refine">
-                                                <span id="price-left" class="price-left pull-left" data-currency="$">&#36;5000</span>
-                                                <span id="price-right" class="price-right pull-right" data-currency="$">&#36;200000</span>
-                                                <div class="clearfix"></div>
-                                                <div id="sliderRefine" class="slider slider-rose noUi-target noUi-ltr noUi-horizontal">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card card-collapse">
-                                        <div class="card-header" role="tab" id="headingThree">
-                                            <h5 class="mb-0">
-                                                <a class="collapsed" data-toggle="collapse" aria-expanded="false" aria-controls="collapseThree">
+                                                <a>
                                                     Categorias
-                                                    <i class="material-icons">keyboard_arrow_down</i>
                                                 </a>
                                             </h5>
                                         </div>
-                                        <div id="collapseThree" class="collapse show" role="tabpanel" aria-labelledby="headingThree">
-                                            <div class="card-body">
-                                                <div class="form-check" *ngFor="let categoria of categorias">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        {{categoria.nombreCategoria}}
-                                                        <span class="form-check-sign">
-                                                            <span class="check"></span>
-                                                        </span>
-                                                        <br><br>
-                                                    </label>
-                                                </div>
+                                        <div class="card card-collapse">
+                                            <div class="features-1" style="padding: 0px;">
+                                                <div class="container">
+                                                    <div class="row">
 
+                                                        <div class="col p-0">
+                                                            <a class="btn btn-fab btn-round p-0"
+                                                                style="background-color: transparent;"
+                                                                (click)="conductor()">
+                                                                <img class="img-thumbnail rounded-circle img-fluid "
+                                                                    src="../assets/categoria/conductor_elegido_1.png"
+                                                                    alt=""
+                                                                    style="background-color: transparent; border: none;">
+                                                            </a>
+                                                            <small>
+                                                                <h6 class="card-title">
+                                                                    conductor
+                                                                </h6>
+                                                            </small>
+                                                        </div>
+                                                        <div class="col p-0">
+                                                            <a class="btn btn-fab btn-round p-0"
+                                                                style="background-color: transparent;"
+                                                                (click)="domicilios()">
+                                                                <img class="img-thumbnail"
+                                                                    src="../assets/categoria/conductor_Mesa de trabajo 1.png"
+                                                                    alt=""
+                                                                    style="background-color: transparent; border: none;">
+                                                            </a>
+                                                            <small>
+                                                                <h6 class="card-title">
+                                                                    domicilios
+                                                                </h6>
+                                                            </small>
+                                                        </div>
+                                                        <div class="col p-0">
+                                                            <a class="btn btn-fab btn-round p-0"
+                                                                style="background-color: transparent;"
+                                                                (click)="licores()">
+                                                                <img class="img-thumbnail"
+                                                                    src="../assets/categoria/licores_Mesa de trabajo 1_Mesa de trabajo 1.png"
+                                                                    alt=""
+                                                                    style="background-color: transparent; border: none;">
+                                                            </a>
+                                                            <small>
+                                                                <h6 class="card-title">
+                                                                    Licores
+                                                                </h6>
+                                                            </small>
+                                                        </div>
+                                                        <div class="w-100"></div>
+                                                        <div class="col p-0">
+                                                            <a class="btn btn-fab btn-round p-0"
+                                                                style="background-color: transparent;"
+                                                                (click)="viveres()">
+                                                                <img class="img-thumbnail"
+                                                                    src="../assets/categoria/mandados y encomiendas_Mesa de trabajo 1_Mesa de trabajo 1.png"
+                                                                    alt=""
+                                                                    style="background-color: transparent; border: none;">
+                                                            </a>
+                                                            <small>
+                                                                <h6 class="card-title">
+                                                                    Viveres
+                                                                </h6>
+                                                            </small>
+                                                        </div>
+                                                        <div class="col p-0">
+                                                            <a class="btn btn-fab btn-round p-0"
+                                                                style="background-color: transparent;"
+                                                                (click)="drogueria()">
+                                                                <img class="img-thumbnail"
+                                                                    src="../assets/categoria/medicinas_Mesa de trabajo 1.png"
+                                                                    alt=""
+                                                                    style="background-color: transparent; border: none;">
+                                                            </a>
+                                                            <small>
+                                                                <h6 class="card-title">
+                                                                    Medicinas
+                                                                </h6>
+                                                            </small>
+                                                        </div>
+                                                        <div class="col p-0">
+                                                            <a class="btn btn-fab btn-round p-0"
+                                                                style="background-color: transparent;"
+                                                                (click)="restaurantes()">
+                                                                <img class="img-thumbnail"
+                                                                    src="../assets/categoria/restaurantes_Mesa de trabajo 1.png"
+                                                                    alt=""
+                                                                    style="background-color: transparent; border: none;">
+                                                            </a>
+                                                            <small>
+                                                                <h6 class="card-title">
+                                                                    Restaurantes
+                                                                </h6>
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         </div>
-                                    </div>
 
+
+                                        <div class="card card-collapse d-none d-md-block d-none d-sm-block">
+                                            <div class="card-header" role="tab" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <a data-toggle="collapse" aria-expanded="true"
+                                                        aria-controls="collapseOne">
+                                                        Rango de precios
+                                                        <i class="material-icons">keyboard_arrow_down</i>
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseOne" class="collapse show" role="tabpanel"
+                                                aria-labelledby="headingOne">
+                                                <div class="card-body card-refine">
+                                                    <span id="price-left" class="price-left pull-left"
+                                                        data-currency="$">&#36;5000</span>
+                                                    <span id="price-right" class="price-right pull-right"
+                                                        data-currency="$">&#36;200000</span>
+                                                    <div class="clearfix"></div>
+                                                    <div id="sliderRefine"
+                                                        class="slider slider-rose noUi-target noUi-ltr noUi-horizontal">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card card-collapse  d-none d-md-block d-none d-sm-block">
+                                            <div class="card-header" role="tab" id="headingThree">
+                                                <h5 class="mb-0">
+                                                    <a class="collapsed" data-toggle="collapse" aria-expanded="false"
+                                                        aria-controls="collapseThree">
+                                                        Categorias
+                                                        <i class="material-icons">keyboard_arrow_down</i>
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseThree" class="collapse show" role="tabpanel"
+                                                aria-labelledby="headingThree">
+                                                <div class="card-body">
+                                                    <div class="form-check" *ngFor="let categoria of categorias">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" value="">
+                                                            {{categoria.nombreCategoria}}
+                                                            <span class="form-check-sign">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                            <br><br>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9" *ngIf="!empresaSelected;else elseBlockSelectedEmpresa">
+                    <div class="col-md-9"
+                        *ngIf="!empresaSelected;else elseBlockSelectedEmpresa">
+                        <h2 class="section-title">{{categoriaActual}}</h2>
                         <div class="row">
-                            <div class="col-md-4" *ngFor="let empresa of empresas">
+                            <div class="card-body col-12"
+                                style="width: 100%; "
+                                *ngFor="let empresa of empresas">
+                                <button class="btn btn-link " (click)="seleccionEmpresa(empresa)"
+                                    style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
+                                    <div class="row"
+                                        style="margin: auto; ">
+                                        <div class="profile-photo-small"
+                                            style="margin-top: 5px; margin-left: 15px; width: 20%;">
+
+                                            <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
+                                                <img class="img-raised rounded img-fluid"
+                                                    [src]="empresa.retrievedImage">
+                                            </div>
+                                            <ng-template #elseBlockEmpresa1>
+                                                <td>
+                                                    <img class="img-raised rounded img-fluid"
+                                                        src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
+                                                </td>
+                                            </ng-template>
+
+
+                                        </div>
+
+                                        <div Style=" width: 70%; text-align: left;">
+                                            <div
+                                                style="margin: 10px; line-height: 1em; ">
+
+                                                <h4 class="card-title"
+                                                    style="font-size: 1rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                                                    {{empresa.razonSocial}}</h4>
+
+                                                <h6 class="card-category text-success"
+                                                    style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                    {{empresa.estadoEmpresa}}
+                                                </h6>
+                                                <br>
+                                                <div class="ui-icon-mail-open">
+                                                    <span class="ui-icon-mail-closed"> {{empresa.email}} </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </button>
+
+
+                            </div>
+
+                            <!--div class="col-md-4" *ngFor="let empresa of empresas">
                                 <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                                     <div class="card-header card-header-image" style="min-height: 215px;">
                                         <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa">
@@ -445,17 +551,77 @@
                                         <div class="card-footer justify-content-between">
 
                                             <h5>
-                                                <button type="button" (click)="seleccionEmpresa(empresa)" class="btn btn-outline-light float-right" style="margin-left: 10px;">Seleccionar</button></h5>
+                                                <button type="button" (click)="seleccionEmpresa(empresa)"
+                                                    class="btn btn-outline-light float-right"
+                                                    style="margin-left: 10px;">Seleccionar</button></h5>
 
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end card -->
-                            </div>
+                            </div-->
                         </div>
                     </div>
                     <ng-template #elseBlockSelectedEmpresa>
+
                         <div class="col-md-9">
+                        <h2 class="section-title">{{ empresaSeleccionada.razonSocial}}</h2>
+                        <div class="row">
+                            <div class="card-body col-12"
+                                style="width: 100%; "
+                                *ngFor="let producto of productos">
+                                <button class="btn btn-link " (click)="ordenarProducto(producto,confirmarModal)"
+                                    style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
+                                    <div class="row"
+                                        style="margin: auto; ">
+                                        <div class="profile-photo-small"
+                                            style="margin-top: 5px; margin-left: 15px; width: 20%;">
+
+                                            <div *ngIf="producto.retrievedImage; else elseBlockProduct">
+                                                <img class="img-raised rounded img-fluid"
+                                                    [src]="producto.retrievedImage">
+                                            </div>
+                                            <ng-template #elseBlockProduct>
+                                                <td>
+                                                    <img class="img-raised rounded img-fluid"
+                                                        src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
+                                                </td>
+                                            </ng-template>
+
+
+                                        </div>
+
+                                        <div Style=" width: 70%; text-align: left;">
+                                            <div
+                                                style="margin: 10px; line-height: 1em; ">
+
+                                                <h4 class="card-title"
+                                                    style="font-size: 1rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                                                    {{producto.nombreProducto}}</h4>
+
+                                                <h6 class="card-category text-success"
+                                                    style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                    {{producto.descripcion}}
+                                                </h6>
+                                                <br>
+                                                <div class="price-container">
+                                                    <span class="price"> $ {{producto.valorProducto}} </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </button>
+
+
+                            </div>
+                         </div>
+                    </div>
+
+
+
+
+                    <!--   <div class="col-md-9">
                             <div class="row">
                                 <div class="col-md-4" *ngFor="let producto of productos">
                                     <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
@@ -482,23 +648,31 @@
                                                     <span class="price"> $ {{producto.valorProducto}} </span>
                                                 </div>
                                                 <h5>
-                                                    <button type="button" (click)="ordenarProducto(producto,confirmarModal)" class="btn btn-outline-light float-right" style="margin-left: 10px;">Ordenar</button></h5>
+                                                    <button type="button"
+                                                        (click)="ordenarProducto(producto,confirmarModal)"
+                                                        class="btn btn-outline-light float-right"
+                                                        style="margin-left: 10px;">Ordenar</button></h5>
 
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- end card -->
                                 </div>
                             </div>
                         </div>
-                    </ng-template>
+
+                    -->
+                
+                    
+                    
+                </ng-template>
 
                 </div>
                 <br>
                 <h2 class="section-title">Tendencias</h2>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card card-background" style="background-image: url(../assets/img/examples/tendencia1.jpg)">
+                        <div class="card card-background"
+                            style="background-image: url(../assets/img/examples/tendencia1.jpg)">
                             <div class="card-body">
                                 <h6 class="card-category text-info">Tendencia 1</h6>
                                 <a>
@@ -515,7 +689,8 @@
                         <!-- end card -->
                     </div>
                     <div class="col-md-4">
-                        <div class="card card-background" style="background-image: url(../assets/img/examples/tendencia2.jpg)">
+                        <div class="card card-background"
+                            style="background-image: url(../assets/img/examples/tendencia2.jpg)">
                             <div class="card-body">
                                 <h6 class="card-category text-info">Tendencia 1</h6>
                                 <a>
@@ -532,7 +707,8 @@
                         <!-- end card -->
                     </div>
                     <div class="col-md-4">
-                        <div class="card card-background" style="background-image: url(../assets/img/examples/tendencia3.jpg)">
+                        <div class="card card-background"
+                            style="background-image: url(../assets/img/examples/tendencia3.jpg)">
                             <div class="card-body">
                                 <h6 class="card-category text-info">Tendencia 1</h6>
                                 <a>
@@ -616,14 +792,16 @@
         </div>
     </div>
     <!-- section -->
-    <div class="subscribe-line subscribe-line-image" data-parallax="true" style="background-image: url(&apos;../assets/img/examples/ecommerce-header.jpg&apos;);">
+    <div class="subscribe-line subscribe-line-image" data-parallax="true"
+        style="background-image: url(&apos;../assets/img/examples/ecommerce-header.jpg&apos;);">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto">
                     <div class="text-center">
                         <h3 class="title">Suscríbete a nuestro boletín</h3>
                         <p class="description">
-                            ¡Únase a nuestro boletín y reciba noticias en su bandeja de entrada todas las semanas! También odiamos el spam, así que no te preocupes por esto.
+                            ¡Únase a nuestro boletín y reciba noticias en su bandeja de entrada todas las semanas!
+                            También odiamos el spam, así que no te preocupes por esto.
                         </p>
                     </div>
                     <div class="card card-raised card-form-horizontal">
@@ -637,7 +815,8 @@
                                                     <i class="material-icons">mail</i>
                                                 </span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="tu correo electrónico...">
+                                            <input type="text" class="form-control"
+                                                placeholder="tu correo electrónico...">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -651,7 +830,8 @@
                                         <div class="form-group">
                                             <h3>Confirmacion </h3>
                                             <h4>cantidad de {{producto.nombreProducto}} que deseas </h4>
-                                            <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad" placeholder="ingresar cantidad" value="1">
+                                            <input type="number" class="form-control" [(ngModel)]="producto.cantidad"
+                                                name="cantidad" placeholder="ingresar cantidad" value="1">
                                         </div>
                                         <button (click)="confirmarAgregar()" class="btn btn-danger">Confirmar</button>
                                     </form>
@@ -671,7 +851,8 @@
             <div class="form-group">
                 <h3>Confirmacion </h3>
                 <h4>cantidad de {{producto.nombreProducto}} que deseas </h4>
-                <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad" placeholder="ingresar cantidad" value="1">
+                <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad"
+                    placeholder="ingresar cantidad" value="1">
             </div>
             <button (click)="confirmarAgregar()" class="btn btn-danger">Confirmar</button>
         </form>
@@ -690,14 +871,16 @@
                         <span class="loader__dot">.</span>
                         <span class="loader__dot">.</span></strong>
                 </div>
-                <select *ngIf="!loader" class="form-control" [(ngModel)]="barrioSeleccionado" name="barrioSeleccionado" (change)="capturar()">
+                <select *ngIf="!loader" class="form-control" [(ngModel)]="barrioSeleccionado" name="barrioSeleccionado"
+                    (change)="capturar()">
                     <option value="0">Selecciona un barrio</option>
                     <option *ngFor="let barrio of barrios" style="margin-block: 10px">
                         {{barrio.nombreBarrio}}
                     </option>
                 </select>
                 <h4>Direccion </h4>
-                <input type="text" class="form-control" [(ngModel)]="direccionCompleta" name="direccion" placeholder="direccionCompleta" disabled>
+                <input type="text" class="form-control" [(ngModel)]="direccionCompleta" name="direccion"
+                    placeholder="direccionCompleta" disabled>
             </div>
             <button (click)="confirmarDireccion()" class="btn btn-danger">Aceptar</button>
         </form>

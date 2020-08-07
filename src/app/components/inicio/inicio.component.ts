@@ -21,6 +21,7 @@ import { __await } from 'tslib';
 import { Empresa } from 'src/app/models/empresa';
 import { EmpresaService } from 'src/app/services/empresa-service/empresa.service';
 import { element } from 'protractor';
+import { htmlAstToRender3Ast } from '@angular/compiler/src/render3/r3_template_transform';
 
 @Component({
   selector: 'app-inicio',
@@ -67,6 +68,7 @@ export class InicioComponent implements OnInit {
   empresas:Empresa[]=[];
   empresasTemporal:Empresa[]=[];
   totalPedido = 0;
+  categoriaActual = "Todas las Categorias";
 
 
   constructor(private productosService: ProductoServiceService,
@@ -141,6 +143,7 @@ export class InicioComponent implements OnInit {
       });
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Conductor";
   }
   domicilios(){
     this.empresaSelected=false;
@@ -155,6 +158,7 @@ export class InicioComponent implements OnInit {
       });
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Domicilio";
   }
   licores(){
     this.empresaSelected=false;
@@ -169,6 +173,7 @@ export class InicioComponent implements OnInit {
       });
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Licores";
   }
   viveres(){
     this.empresaSelected=false;
@@ -183,6 +188,7 @@ export class InicioComponent implements OnInit {
       });
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Viveres";
   }
   drogueria(){
     this.empresaSelected=false;
@@ -197,6 +203,7 @@ export class InicioComponent implements OnInit {
       });
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Drogerias";
   }
   restaurantes(){
     this.empresaSelected=false;
@@ -219,6 +226,7 @@ export class InicioComponent implements OnInit {
       
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Restaurantes";
   }
   cargarEmpresas(){
     this.empresaSelected=false;
