@@ -12473,10 +12473,10 @@ fieldset[disabled] .is-focused .switch label:focus {
 }
 .form-control,
 .is-focused .form-control {
-    background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+    background-image: linear-gradient(to top, red 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 .form-control:invalid {
-    background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+    background-image: linear-gradient(to top, red 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 .form-control:-moz-read-only {
     background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
@@ -14766,7 +14766,7 @@ footer .pull-center {
     overflow: hidden;
 }
 .icon.icon-primary {
-    color: #9c27b0;
+    color: red;
 }
 .icon.icon-info {
     color: #00bcd4;
@@ -21402,7 +21402,7 @@ select.selectpicker {
     }
     
     .login-page .page-header>.container {
-        padding-bottom: 200px;
+        padding-bottom: 90px;
     }
 }
 @media screen and (max-width: 400px) {

@@ -75,6 +75,7 @@ export class InicioComponent implements OnInit {
   empresas:Empresa[]=[];
   empresasTemporal:Empresa[]=[];
   totalPedido = 0;
+  categoriaActual = "Todas las Categorias";
 
   private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
   isLoaded: boolean = false;
@@ -225,6 +226,7 @@ handleResult(message) {
       });
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Conductor";
   }
   domicilios(){
     this.empresaSelected=false;
@@ -239,6 +241,7 @@ handleResult(message) {
       });
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Domicilio";
   }
   licores(){
     this.empresaSelected=false;
@@ -253,6 +256,7 @@ handleResult(message) {
       });
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Licores";
   }
   viveres(){
     this.empresaSelected=false;
@@ -267,6 +271,7 @@ handleResult(message) {
       });
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Viveres";
   }
   drogueria(){
     this.empresaSelected=false;
@@ -281,6 +286,7 @@ handleResult(message) {
       });
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Drogerias";
   }
   restaurantes(){
     this.empresaSelected=false;
@@ -303,6 +309,7 @@ handleResult(message) {
       
     });
     this.empresas=empresasSeleccion;
+    this.categoriaActual="Restaurantes";
   }
   cargarEmpresas(){
     this.empresaSelected=false;
