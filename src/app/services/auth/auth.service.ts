@@ -17,10 +17,10 @@ const headers = new Headers({
 @Injectable({
   providedIn: 'root'
 })
-//https://quickdomicilios-client.herokuapp.com/
+//https://quickdomicilios.herokuapp.com/
 
 export class AuthService {
-  private authURL = 'https://quickdomicilios-client.herokuapp.com/auth/';
+  private authURL = 'https://quickdomicilios.herokuapp.com/auth/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -33,13 +33,13 @@ export class AuthService {
   }
   googleLogin(): Observable<any> {
     
-    return this.httpClient.get<any>(window.location.href='https://quickdomicilios-client.herokuapp.com/oauth2/authorize/google?redirect_uri=http://quickdomicilios.com/signup');
+    return this.httpClient.get<any>(window.location.href='https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup');
   
   }
 
   getCurrentUser(): Observable<any>{
     
-    return  this.httpClient.get<any>('https://quickdomicilios-client.herokuapp.com/user/me');
+    return  this.httpClient.get<any>('https://quickdomicilios.herokuapp.com/usuarios/user/me');
   }
 
   onRegister(signupReq:SignUpRequest): Observable<any>{

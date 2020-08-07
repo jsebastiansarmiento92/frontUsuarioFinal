@@ -16,7 +16,7 @@ exports.config = {
         browserName: 'chrome'
     },
     directConnect: true,
-    baseUrl: 'http://quickdomicilios.com/',
+    baseUrl: 'https://quickdomicilios.com/',
     framework: 'jasmine',
     jasmineNodeOpts: {
         showColors: true,

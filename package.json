@@ -29,10 +29,13 @@
         "angular-gauge-chart": "^0.7.2",
         "chart.js": "2.7.3",
         "core-js": "2.5.7",
+        "net": "^1.0.2",
         "ng-circle-progress": "^1.5.1",
         "ng2-charts": "2.3.0",
         "ngx-pagination": "^5.0.0",
         "rxjs": "6.5.2",
+        "sockjs-client": "^1.4.0",
+        "stompjs": "^2.3.3",
         "tslib": "^1.9.0",
         "yarn": "1.16.0",
         "zone.js": "~0.9.1"

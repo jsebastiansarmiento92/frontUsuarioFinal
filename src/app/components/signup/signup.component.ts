@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
       window.sessionStorage.setItem('AuthToken', this.token);
       console.log("token llegando es:");
       console.log(this.token);
-      console.log("erro llegando es ");
+      console.log("error llegando es ");
       console.log(this.error);
     if(window.sessionStorage.getItem('AuthToken')){
 
@@ -65,14 +65,7 @@ export class SignupComponent implements OnInit {
     }
     
   }
- /** getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(this.props.location.search);
-    console.log("resultado de results en el gerParemeter");
-    console.log(results);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-};*/
+
   getIslogin():boolean{
     return false
   }
@@ -81,7 +74,7 @@ export class SignupComponent implements OnInit {
   }
   register(){
     console.log("ingresoa registrer con google")
-    window.location.href="https://quickdomicilios-client.herokuapp.com/oauth2/authorize/google?redirect_uri=http://quickdomicilios.com/signup";
+    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
   }
   registerManual(){
     console.log("datos que se envian para el registro");

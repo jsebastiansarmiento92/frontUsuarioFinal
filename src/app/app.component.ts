@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-export const API_BASE_URL = 'https://quickdomicilios-client.herokuapp.com';
+export const API_BASE_URL = 'https://quickdomicilios.herokuapp.com';
 export const ACCESS_TOKEN = 'accessToken';
 
 
