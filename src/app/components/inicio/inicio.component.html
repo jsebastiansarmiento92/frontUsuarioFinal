@@ -32,7 +32,10 @@
                             </button>
                             <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
                             </button>
+                            <button class="btn btn-danger btn-info btn-sm" (click)="quitarProducto(productoCarrito)"> <i class="material-icons">cancel_presentation</i>
+                            </button>
                         </div>
+
                         <br>
                         <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
                         </small>
@@ -45,7 +48,7 @@
 
 
     </div>
-    
+
     <div class="container tetx-center" style="border-top: 7px;">
         <form>
             <label for="total">Total: </label>
@@ -60,10 +63,13 @@
         <a class="btn btn-rose btn-round" (click)="confirmarPedido()">
             Confirmar
         </a>
+        <a class="btn btn-warning btn-round" (click)="cambiarDireccion()">
+            Cambiar Direccion
+        </a>
     </div>
 </div>
 <button (click)="showF()" class="btn btn-rose btn-flotante"><i class="material-icons">shopping_cart</i> Carrito</button>
-<button  class="btn btn-secondary btn-back "><i class="material-icons" style="font-size: 24px;">keyboard_arrow_left</i></button>
+<button class="btn btn-secondary btn-back "><i class="material-icons" style="font-size: 24px;">keyboard_arrow_left</i></button>
 
 <div class="ecommerce-page sidebar-collapse">
     <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/examples/domicilio.jpg');">
@@ -690,7 +696,7 @@
                         <span class="loader__dot">.</span>
                         <span class="loader__dot">.</span></strong>
                 </div>
-                <select *ngIf="!loader" class="form-control" [(ngModel)]="barrioSeleccionado" name="barrioSeleccionado" (change)="capturar()">
+                <select *ngIf="!loader" class="form-control" [(ngModel)]="barrioSeleccionado" name="barrioSeleccionado">
                     <option value="0">Selecciona un barrio</option>
                     <option *ngFor="let barrio of barrios" style="margin-block: 10px">
                         {{barrio.nombreBarrio}}
@@ -699,7 +705,7 @@
                 <h4>Direccion </h4>
                 <input type="text" class="form-control" [(ngModel)]="direccionCompleta" name="direccion" placeholder="direccionCompleta" disabled>
             </div>
-            <button (click)="confirmarDireccion()" class="btn btn-danger">Aceptar</button>
+            <button class="btn btn-danger">Aceptar</button>
         </form>
 
 

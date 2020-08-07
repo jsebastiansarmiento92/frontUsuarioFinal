@@ -102,41 +102,42 @@ export class InicioComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.llenarTipodirecciones();
+    //this.llenarTipodirecciones();
     this.initializeWebSocketConnection();
+    this.lugar=JSON.parse(localStorage.getItem('lugar'));
+    console.log("lugar que llega es:");
+    console.log(this.lugar);
    // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
-    if(localStorage.getItem("refreshPage")==null){
-     
-        setTimeout(() => {
-          localStorage.setItem("refreshPage",'1');
-        location.reload();
-        }, 100);
-      
-    }else if(localStorage.getItem("refreshPage")=='1'){
-      
-      
-      console.log("refreshpage es "+localStorage.getItem("refreshPage"));
-    }
-
     if (this.tokenService.getToken() == null) {
-      localStorage.clear();
+     // localStorage.clear();
       console.log("se limpia el locar storage en inicio");
       localStorage.setItem("isLoggedin","false");
     } else {
       localStorage.setItem('isLoggedin', 'true');
     } 
     if (parseInt(this.tokenService.getLugar())!=0){
-      this.serviceLugar.getLugarId(parseInt(this.tokenService.getLugar())).subscribe(data => {
-        console.log("barrio es");
-        console.log(data.barrio);
-        this.lugar = data;
-        this.barrio=this.lugar.barrio;
-        this.barrioSeleccionado=this.lugar.barrio.nombreBarrio;
-        this.direccionCompleta=this.lugar.direccionLugar;
+      console.log("hay lugar guardado del usuario");
+      if(this.lugar==null){
+        console.log("no hay lugar guardado anteriormente");
+        this.serviceLugar.getLugarId(parseInt(this.tokenService.getLugar())).subscribe(data => {
+          console.log("barrio es");
+          console.log(data.barrio);
+          this.lugar = data;
+          this.barrio=this.lugar.barrio;
+          this.barrioSeleccionado=this.lugar.barrio.nombreBarrio;
+          this.direccionCompleta=this.lugar.direccionLugar;
+          this.totalPedido = this.calcular();
+          this.asignarCosto();
+  
+        });
+      }else{
+        console.log("lugar guardado desde el landing");
+        console.log(this.lugar);
         this.totalPedido = this.calcular();
-        this.asignarCosto();
-
-      });
+        this.barrio=this.lugar.barrio;
+          this.asignarCosto();
+      }
+      
     }
      
     
@@ -376,7 +377,8 @@ handleResult(message) {
     } else if (this.idEmpresa != this.producto.empresa.idEmpresa) {
       alert("no puede solicitar productos de dos empresas en un mismo servicio");
     }else{
-      this.productosCarrito.push(this.producto);
+      this.verificarRepetidos(this.producto);
+      
       console.log("agregando al local storage:");
       console.log(this.productosCarrito);
       localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
@@ -384,6 +386,16 @@ handleResult(message) {
       this.totalPedido = this.calcular();
     }
     
+  }
+  verificarRepetidos(producto){
+    let isRepetido=false;
+    this.productosCarrito.forEach(element => {
+      if(element.nombreProducto==producto.nombreProducto){
+        console.log("producto ya solicitado anteriormente");
+        isRepetido=true;
+      }
+    });
+    if(!isRepetido)this.productosCarrito.push(producto);
   }
   cargarCategorias() {
     this.categoriaService.getCategoriasUsuarioFinal().subscribe(data => {
@@ -417,7 +429,13 @@ handleResult(message) {
     });
     return total;
   }
-
+  quitarProducto(producto){
+    var i=this.productosCarrito.indexOf(producto);
+    if ( i !== -1 ) {
+      this.productosCarrito.splice( i, 1 );
+      this.totalPedido = this.calcular();
+  }
+  }
   agregarBarrio(modal) {
     console.log("modal activo de barrio");
     //console.log(this.getidLugar());
@@ -442,12 +460,7 @@ handleResult(message) {
     }
 
   }
-  capturar() {
-    this.getBarrio();
-    console.log("barrio seleccionado ");
-    console.log(this.barrio);
-
-  }
+ 
   capturarTipoDireccion() {
     //this.getBarrio();
     console.log("direccion seleccionado ");
@@ -488,41 +501,53 @@ handleResult(message) {
     });
 
   }
-  confirmarDireccion() {
-    this.serviceModal.dismissAll();
-    console.log("tipo de costo cambio" + this.barrio.tipoCosto)
-
-    this.asignarCosto();
-  }
+ 
   asignarCosto(){
     console.log("barrio en sistema es");
     console.log(this.barrio);
     if (this.barrio.tipoCosto == "COSTO1") {
       this.valorServicio = 4000;
-    } else {
+    } if (this.barrio.tipoCosto == "COSTO2") {
+      this.valorServicio = 5000;
+    } if (this.barrio.tipoCosto == "COSTO3") {
+      this.valorServicio = 6000;
+    }if (this.barrio.tipoCosto == "COSTO4") {
       this.valorServicio = 7000;
+    }else {
+      this.valorServicio = 8000;
     }
   }
   confirmarPedido() {
     console.log("ingreso a confirmar pedido");
-    if (this.direccionCompleta === undefined) {
-      alert("no ha ingresado direccion de pedido");
-      window.scrollTo(0, 0 - 20);
-    } else {
-      this.guardarLugarLocal();
+    if(this.productosCarrito.length>0){
+      if (this.lugar ==null) {
+        alert("no ha ingresado direccion de pedido");
+        window.scrollTo(0, 0 - 20);
+        this.router.navigate(['landing']);
+      } else {
+        this.guardarLugarLocal();
+      }
+    }else{
+      alert("carrito vacio");
     }
+   
+  }
+  cambiarDireccion(){
+    window.scrollTo(0, 0 - 20);
+    localStorage.removeItem("barrios");
+    this.router.navigate(['landing']);
   }
   guardarLugarLocal() {
-    this.lugar.barrio = this.barrio;
-    this.lugar.direccionLugar = this.direccionCompleta;
-    this.lugar.idUsuario = this.getidSesion();
+    //this.lugar.barrio = this.barrio;
+   /// this.lugar.direccionLugar = this.direccionCompleta;
+  //  this.lugar.idUsuario = this.getidSesion();
     console.log("datos de lugar");
     console.log(this.lugar);
 
     if(parseInt(this.tokenService.getLugar())==0){
       this.promesaCrearLugar();
     }else{
-      console.log("tiene direccio guardada pero la va a modificar");
+      console.log("tiene direccion guardada pero la va a modificar");
       this.promesaModificarLugar();
     }
     
@@ -548,7 +573,10 @@ handleResult(message) {
         this.confirmarTransaccion();
       }
     }, (err: any) => {
-
+      if(err.error.mensaje===undefined){
+        alert("debe ingresar o registrarse");
+        this.router.navigate(["login"]);
+      }
       console.log(err.error.mensaje)
     })
   }
@@ -704,7 +732,7 @@ handleResult(message) {
   clean() {
     localStorage.removeItem("myCar");
     this.productosCarrito = [];
-    this.valorServicio = 0;
+    //this.valorServicio = 0;
     this.totalPedido = 0;
     this.showF();
   }

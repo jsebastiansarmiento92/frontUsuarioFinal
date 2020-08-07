@@ -47,7 +47,7 @@ export class HeadComponent implements OnInit {
 
   }
   onRegister(){
-    this.router.navigate(['/signup']);
+    this.router.navigate(['signup']);
   }
   getIslogin() {
     return localStorage.getItem("isLoggedin");

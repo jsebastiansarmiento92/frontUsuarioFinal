@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto" style="color: black;">
-                    <form class="form" method="" action="">
+                    <form class="form" method="" action="" #f="ngForm" novalidate>
                         <div class="card card-login card-hidden text-center"
                             style="background-color: rgba(236, 236, 236, 0.966)">
 
@@ -21,11 +21,32 @@
                                         <option value="2">Yopal</option>
                                     </select>
                                 </div>
+                                <div class="center-loader" *ngIf="cargaBarrios;else elseBarrios">
+                                    <strong>Cargando barrios
+                                        <span class="loader__dot">.</span>
+                                        <span class="loader__dot">.</span>
+                                        <span class="loader__dot">.</span></strong>
+                                </div>
+
+                                <ng-template #elseBarrios>
+                                    <div>
+                                        <select class="selectpicker" ng-options="elementos de barrios"
+                                            data-style="select-with-transition" title="Barrio" name="opcionSeleccionado"
+                                            [(ngModel)]="barrioSeleccionado" (change)="capturarBarrio()">
+                                            <option disabled>Elige un barrio</option>
+                                            <option *ngFor="let barrio of barrios" style="margin-block: 10px">
+                                                {{barrio.nombreBarrio}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </ng-template>
 
                                 <div>
                                     <select class="selectpicker" title="Tipo Direccion" data-size="4"
-                                        data-style="select-with-transition">
-                                        <option>CALLE
+                                        data-style="select-with-transition" (change)="capturarBarrio()"
+                                        name="tipoDireccionSeleccionado" [(ngModel)]="tipoDireccionSeleccionado">
+                                        <option *ngFor="let tipoDireccion of tipoDirecciones">
+                                            {{tipoDireccion}}
                                         </option>
                                     </select>
                                 </div>
@@ -33,26 +54,28 @@
                                 <div class="input-group">
 
                                     <input type="number" placeholder="0" name="n1" required style="text-align: center;"
-                                        class="form-control">
+                                        class="form-control" name="n1" [(ngModel)]="n1" required>
 
                                     <span class="input-group-addon">
                                         <h5>#</h5>
                                     </span>
 
                                     <input type="number" placeholder="0" name="n2" required style="text-align: center;"
-                                        class="form-control">
+                                        class="form-control" name="n2" [(ngModel)]="n2" required>
                                     <span class="input-group-addon">
                                         <h5>&#8212;</h5>
                                     </span>
 
                                     <input type="number" placeholder="0" name="n3" required class="form-control"
-                                        style="text-align: center;">
+                                        style="text-align: center;" name="n3" [(ngModel)]="n3" required>
 
 
                                 </div>
-                                <a (click)="inicio()" class="btn btn-rose btn-lg " style=" color: white; margin: auto;">
+                                <button [disabled]="!f.valid" (click)="inicio()" class="btn btn-rose btn-lg"
+                                    style=" color: white; margin: auto;">
                                     <i class="material-icons">search</i> Buscar Establecimientos
-                                </a>
+
+                                </button>
                                 <br>
                             </div>
                             <div class="card-footer">
@@ -65,235 +88,244 @@
             </div>
         </div>
     </div>
-    
+
 </body>
 
 <div class="cd-section" id="features">
     <div class="container">
-      <!--     *********     FEATURES 1      *********      -->
-      <div class="features-1">
-        <div class="row">
-          <div class="col-md-8 ml-auto mr-auto">
-            <h2 class="title">¿Por qué nuestro producto es el mejor?</h2>
-            <h5 class="description">Este es el párrafo donde puede escribir más detalles sobre su producto. Mantenga a su usuario comprometido al proporcionar información significativa. Recuerde que en este momento, el usuario tiene curiosidad, de lo contrario no se desplazaría para llegar hasta aquí. Agregue un botón si desea que el usuario vea más.</h5>
-          </div>
-          
-        <div class="row">
-            <div class="col-md-4">
-              <div class="info info-horizontal">
-                <div class="icon icon-info">
-                  <i class="material-icons">group_work</i>
+        <!--     *********     FEATURES 1      *********      -->
+        <div class="features-1">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h2 class="title">¿Por qué nuestro producto es el mejor?</h2>
+                    <h5 class="description">Este es el párrafo donde puede escribir más detalles sobre su producto.
+                        Mantenga a su usuario comprometido al proporcionar información significativa. Recuerde que en
+                        este momento, el usuario tiene curiosidad, de lo contrario no se
+                        desplazaría para llegar hasta aquí. Agregue un botón si desea que el usuario vea más.</h5>
                 </div>
-                <div class="description">
-                  <h4 class="info-title">Asistencia</h4>
-                  <p>En el momento en que usas Quick Domicilios, sabes que siempre cuentas con la asistencia personalizada para resolver tus dudas dobre tu domicilio. </p>
-                  
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="info info-horizontal">
+                            <div class="icon icon-info">
+                                <i class="material-icons">group_work</i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">Asistencia</h4>
+                                <p>En el momento en que usas Quick Domicilios, sabes que siempre cuentas con la
+                                    asistencia personalizada para resolver tus dudas dobre tu domicilio. </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info info-horizontal">
+                            <div class="icon icon-danger">
+                                <i class="material-icons">airplay</i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">Multiplataforma</h4>
+                                <p>Puestes tener todo lo que necesites al alcance de tu mano, Quick domicilios es
+                                    multiplatafoma</p>
+                                <a href="#pablo">Find more...</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info info-horizontal">
+                            <div class="icon icon-success">
+                                <i class="material-icons">location_on</i>
+                            </div>
+                            <div class="description">
+                                <h4 class="info-title">Ubicación</h4>
+                                <p>Quick Domicilios te llevara lo que necesites a tu ubicacion exacta, en un tiempo
+                                    recor y al merjor precio.</p>
+                                <a href="#pablo">Find more...</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="col-md-4">
-              <div class="info info-horizontal">
-                <div class="icon icon-danger">
-                  <i class="material-icons">airplay</i>
-                </div>
-                <div class="description">
-                  <h4 class="info-title">Multiplataforma</h4>
-                  <p>Puestes tener todo lo que necesites al alcance de tu mano, Quick domicilios es multiplatafoma</p>
-                  <a href="#pablo">Find more...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="info info-horizontal">
-                <div class="icon icon-success">
-                  <i class="material-icons">location_on</i>
-                </div>
-                <div class="description">
-                  <h4 class="info-title">Ubicación</h4>
-                  <p>Quick Domicilios te llevara lo que necesites a tu ubicacion exacta, en un tiempo recor y al merjor precio.</p>
-                  <a href="#pablo">Find more...</a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <!--     *********    END FEATURES 1      *********      -->
-      <!--     *********     FEATURES 3      *********      -->
-      <div class="features-3">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="phone-container">
-              <img src="./assets/img/sections/iphone2.png">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <!-- Some <br /> tags to push the text to align with the image, you can remove it if you have more text on the right side :-) -->
-            <h2 class="title">Tu vida será mucho más fácil Con Quick Domicilios</h2>
-            <div class="info info-horizontal">
-              <div class="icon icon-primary">
-                <i class="material-icons">extension</i>
-              </div>
-              <div class="description">
-                <h4 class="info-title">Multiplataforma</h4>
+        <!--     *********    END FEATURES 1      *********      -->
+        <!--     *********     FEATURES 3      *********      -->
+        <div class="features-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="phone-container">
+                        <img src="./assets/img/sections/iphone2.png">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- Some <br /> tags to push the text to align with the image, you can remove it if you have more text on the right side :-) -->
+                    <h2 class="title">Tu vida será mucho más fácil Con Quick Domicilios</h2>
+                    <div class="info info-horizontal">
+                        <div class="icon icon-primary">
+                            <i class="material-icons">extension</i>
+                        </div>
+                        <div class="description">
+                            <h4 class="info-title">Multiplataforma</h4>
+                        </div>
+                    </div>
+
+                    <div class="info info-horizontal">
+                        <div class="icon icon-primary">
+                            <i class="material-icons">watch_later</i>
+                        </div>
+                        <div class="description">
+                            <h4 class="info-title">Entrega Rapida</h4>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="info info-horizontal">
-              <div class="icon icon-primary">
-                <i class="material-icons">watch_later</i>
-              </div>
-              <div class="description">
-                <h4 class="info-title">Entrega Rapida</h4>
-                
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <!--     *********    END FEATURES 3      *********      -->
-      
+        <!--     *********    END FEATURES 3      *********      -->
+
     </div>
-    
-  </div>
-  <div class="team-1" id="team-1">
+
+</div>
+<div class="team-1" id="team-1">
     <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">Comunidad Quick Domicilios</h2>
-          <h5 class="description">Conoce las opiniones de nuestros usuarios</h5>
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h2 class="title">Comunidad Quick Domicilios</h2>
+                <h5 class="description">Conoce las opiniones de nuestros usuarios</h5>
+            </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-            <div class="card card-profile card-plain">
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="card-header card-header-image">
-                    <a href="#pablo">
-                      <img class="img" src="./assets/img/faces/card-profile1-square.jpg">
-                    </a>
-                  </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-profile card-plain">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="card-header card-header-image">
+                                <a href="#pablo">
+                                    <img class="img" src="./assets/img/faces/card-profile1-square.jpg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h4 class="card-title">Alec Thompson</h4>
+                                <h6 class="card-category text-muted">Usuario 1</h6>
+                                <p class="card-description">
+                                    Exelente aplicacion muy eficiente me gusta mucho
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-twitter"></i></a>
+                                <a href="#pablo" class="btn btn-just-icon btn-link "><i
+                                        class="fa fa-facebook-square"></i></a>
+                                <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-google"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-7">
-                  <div class="card-body">
-                    <h4 class="card-title">Alec Thompson</h4>
-                    <h6 class="card-category text-muted">Usuario 1</h6>
-                    <p class="card-description">
-                      Exelente aplicacion muy eficiente me gusta mucho
-                    </p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-twitter"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-facebook-square"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-google"></i></a>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-profile card-plain">
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="card-header card-header-image">
-                    <a href="#pablo">
-                      <img class="img" src="./assets/img/faces/card-profile6-square.jpg">
-                    </a>
-                  </div>
+            <div class="col-md-6">
+                <div class="card card-profile card-plain">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="card-header card-header-image">
+                                <a href="#pablo">
+                                    <img class="img" src="./assets/img/faces/card-profile6-square.jpg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h4 class="card-title">Kendall Andrew</h4>
+                                <h6 class="card-category text-muted">Usuario 2</h6>
+                                <p class="card-description">
+                                    Genial la aplicacion... buen servicio
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-linkedin"></i></a>
+                                <a href="#pablo" class="btn btn-just-icon btn-link "><i
+                                        class="fa fa-facebook-square"></i></a>
+                                <a href="#pablo" class="btn btn-just-icon btn-link"><i class="fa fa-dribbble"></i></a>
+                                <a href="#pablo" class="btn btn-just-icon btn-link"><i class="fa fa-google"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-7">
-                  <div class="card-body">
-                    <h4 class="card-title">Kendall Andrew</h4>
-                    <h6 class="card-category text-muted">Usuario 2</h6>
-                    <p class="card-description">
-                      Genial la aplicacion... buen servicio 
-                    </p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-linkedin"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-facebook-square"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link"><i class="fa fa-dribbble"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link"><i class="fa fa-google"></i></a>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-profile card-plain">
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="card-header card-header-image">
-                    <a href="#pablo">
-                      <img class="img" src="./assets/img/faces/card-profile4-square.jpg">
-                    </a>
-                  </div>
+            <div class="col-md-6">
+                <div class="card card-profile card-plain">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="card-header card-header-image">
+                                <a href="#pablo">
+                                    <img class="img" src="./assets/img/faces/card-profile4-square.jpg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h4 class="card-title">Gina Andrew</h4>
+                                <h6 class="card-category text-muted">Usuario 3</h6>
+                                <p class="card-description">
+                                    Amo esta aplicacion muy util.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#pablo" class="btn btn-just-icon btn-link "><i
+                                        class="fa fa-youtube-play"></i></a>
+                                <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-twitter"></i></a>
+                                <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-7">
-                  <div class="card-body">
-                    <h4 class="card-title">Gina Andrew</h4>
-                    <h6 class="card-category text-muted">Usuario 3</h6>
-                    <p class="card-description">
-                      Amo esta aplicacion muy util.
-                    </p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-youtube-play"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-twitter"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-instagram"></i></a>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div class="team-5 section-image" style="background-image: url('./assets/img/examples/sushi1.jpg')">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">QUICK DOMICILIOS</h2>
-          <h5 class="description">Encuentra lo que neceites en Quick Domicilios</h5>
         </div>
-      </div>
-      <div class="row">
-      </div>
     </div>
-  </div>
-  <footer class="footer">
+</div>
+<div class="team-5 section-image" style="background-image: url('./assets/img/examples/sushi1.jpg')">
     <div class="container">
-      <nav class="float-left">
-        <ul>
-          <li>
-            <a href="https://www.creative-tim.com">
-              Boyaca Web
-            </a>
-          </li>
-          <li>
-            <a href="https://creative-tim.com/presentation">
-              Sobre nosotros
-            </a>
-          </li>
-          <li>
-            <a href="http://blog.creative-tim.com">
-              Blog
-            </a>
-          </li>
-          <li>
-            <a href="https://www.creative-tim.com/license">
-              Licencias
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="copyright float-right">
-        &copy;
-        <script>
-          document.write(new Date().getFullYear())
-        </script>, hecho con <i class="material-icons">favorite</i> por 
-        <a href="https://www.creative-tim.com" target="_blank">BoyacaWeb</a> 
-      </div>
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h2 class="title">QUICK DOMICILIOS</h2>
+                <h5 class="description">Encuentra lo que neceites en Quick Domicilios</h5>
+            </div>
+        </div>
+        <div class="row">
+        </div>
     </div>
-  </footer>
+</div>
+<footer class="footer">
+    <div class="container">
+        <nav class="float-left">
+            <ul>
+                <li>
+                    <a href="https://www.creative-tim.com">
+                        Boyaca Web
+                    </a>
+                </li>
+                <li>
+                    <a href="https://creative-tim.com/presentation">
+                        Sobre nosotros
+                    </a>
+                </li>
+                <li>
+                    <a href="http://blog.creative-tim.com">
+                        Blog
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.creative-tim.com/license">
+                        Licencias
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright float-right">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script>, hecho con <i class="material-icons">favorite</i> por
+            <a href="https://www.creative-tim.com" target="_blank">BoyacaWeb</a>
+        </div>
+    </div>
+</footer>

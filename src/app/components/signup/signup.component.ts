@@ -59,7 +59,7 @@ export class SignupComponent implements OnInit {
       this.roles = this.tokenService.getAuthorities();
       localStorage.setItem('isLoggedin', 'true');
       //window.location.reload();
-      this.router.navigate(['']);
+      this.router.navigate(['inicio']);
       this.loader=false;
       });
     }
@@ -74,7 +74,7 @@ export class SignupComponent implements OnInit {
   }
   register(){
     console.log("ingresoa registrer con google")
-    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/#/signup";
   }
   registerManual(){
     console.log("datos que se envian para el registro");
@@ -82,7 +82,7 @@ export class SignupComponent implements OnInit {
     this.authService.onRegister(this.signupRequest).subscribe(data=>{
       console.log(data);
       alert("Registro completo por favor inicie sesion con sus datos para continuar");
-      this.router.navigate(['/login']);
+      this.router.navigate(['login']);
     })
   }
 
