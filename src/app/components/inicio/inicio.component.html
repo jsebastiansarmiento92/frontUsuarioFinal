@@ -35,7 +35,10 @@
                             </button>
                             <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
                             </button>
+                            <button class="btn btn-danger btn-info btn-sm" (click)="quitarProducto(productoCarrito)"> <i class="material-icons">cancel_presentation</i>
+                            </button>
                         </div>
+
                         <br>
                         <small style="border-bottom: none; padding: 4px; font-size: small;">Precio:
                         </small>
@@ -63,11 +66,15 @@
         <a class="btn btn-rose btn-round" (click)="confirmarPedido()">
             Confirmar
         </a>
+        <a class="btn btn-warning btn-round" (click)="cambiarDireccion()">
+            Cambiar Direccion
+        </a>
     </div>
 </div>
 <button (click)="showF()" class="btn btn-rose btn-flotante"><i class="material-icons">shopping_cart</i> Carrito</button>
-<button class="btn btn-secondary btn-back "><i class="material-icons"
-        style="font-size: 24px;">keyboard_arrow_left</i></button>
+
+<button class="btn btn-secondary btn-back "><i class="material-icons" style="font-size: 24px;">keyboard_arrow_left</i></button>
+
 
 <div class="ecommerce-page sidebar-collapse">
     <div class="page-header header-filter header-small" data-parallax="true"
@@ -93,7 +100,7 @@
                                                 {{tipoDireccion}}</option>
                                         </select>
                                     </div>
-
+ 
                                     <div class="input-group rounded bg-white" style="height: 53px; border-left: 1px solid gray; margin-bottom: 10px;">
 
                                         <input type="number" placeholder="0" [(ngModel)]="n1" name="n1" class="form-control" style="height: 50px;">
@@ -871,8 +878,10 @@
                         <span class="loader__dot">.</span>
                         <span class="loader__dot">.</span></strong>
                 </div>
+
                 <select *ngIf="!loader" class="form-control" [(ngModel)]="barrioSeleccionado" name="barrioSeleccionado"
                     (change)="capturar()">
+
                     <option value="0">Selecciona un barrio</option>
                     <option *ngFor="let barrio of barrios" style="margin-block: 10px">
                         {{barrio.nombreBarrio}}
@@ -882,7 +891,7 @@
                 <input type="text" class="form-control" [(ngModel)]="direccionCompleta" name="direccion"
                     placeholder="direccionCompleta" disabled>
             </div>
-            <button (click)="confirmarDireccion()" class="btn btn-danger">Aceptar</button>
+            <button class="btn btn-danger">Aceptar</button>
         </form>
 
 
