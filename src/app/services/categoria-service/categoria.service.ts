@@ -11,7 +11,7 @@ const cabecera = {headers: new HttpHeaders({'Content-TYpe': 'application/json'})
 })
 export class CategoriaService {
 
-  categoriaURL = 'https://quickdomicilios.herokuapp.com/categorias';
+  categoriaURL = 'http://localhost:8080/categorias';
 
   constructor(private http: HttpClient) { }
 
@@ -33,7 +33,10 @@ export class CategoriaService {
     return this.http.delete<Categoria>(this.categoriaURL+"/"+categoria.idCategoria);
   }
 
-  
+  getCategoriasDependencia(nombreDependencia: string): Observable<any> {
+    return this.http.get<Categoria[]>(this.categoriaURL + "/getCategoria/" +nombreDependencia);
+
+  }
 
   getCategoriasUsuarioFinal(){
     return this.http.get<Categoria[]>(this.categoriaURL+"/listarUsuarioFinal");

@@ -77,7 +77,7 @@ export class InicioComponent implements OnInit {
   totalPedido = 0;
   categoriaActual = "Todas las Categorias";
 
-  private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
+  private serverUrl = 'http://localhost:8080/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
   private stompClient;
@@ -144,7 +144,7 @@ export class InicioComponent implements OnInit {
     
     //this.cargarProductos();
     this.cargarEmpresas();
-    this.cargarCategorias();
+    //this.cargarCategorias();
     if (JSON.parse(localStorage.getItem('myCar')) != null) {
       this.getCarrito();
     }
@@ -227,6 +227,7 @@ handleResult(message) {
     });
     this.empresas=empresasSeleccion;
     this.categoriaActual="Conductor";
+    this.cargarCategorias();
   }
   domicilios(){
     this.empresaSelected=false;
@@ -242,6 +243,7 @@ handleResult(message) {
     });
     this.empresas=empresasSeleccion;
     this.categoriaActual="Domicilio";
+    this.cargarCategorias();
   }
   licores(){
     this.empresaSelected=false;
@@ -257,6 +259,7 @@ handleResult(message) {
     });
     this.empresas=empresasSeleccion;
     this.categoriaActual="Licores";
+    this.cargarCategorias();
   }
   viveres(){
     this.empresaSelected=false;
@@ -272,6 +275,7 @@ handleResult(message) {
     });
     this.empresas=empresasSeleccion;
     this.categoriaActual="Viveres";
+    this.cargarCategorias();
   }
   drogueria(){
     this.empresaSelected=false;
@@ -286,7 +290,8 @@ handleResult(message) {
       });
     });
     this.empresas=empresasSeleccion;
-    this.categoriaActual="Drogerias";
+    this.categoriaActual="MEDICAMENTOS";
+    this.cargarCategorias();
   }
   restaurantes(){
     this.empresaSelected=false;
@@ -310,6 +315,7 @@ handleResult(message) {
     });
     this.empresas=empresasSeleccion;
     this.categoriaActual="Restaurantes";
+    this.cargarCategorias();
   }
   cargarEmpresas(){
     this.empresaSelected=false;
@@ -405,9 +411,25 @@ handleResult(message) {
     if(!isRepetido)this.productosCarrito.push(producto);
   }
   cargarCategorias() {
-    this.categoriaService.getCategoriasUsuarioFinal().subscribe(data => {
-      this.categorias = data;
-    })
+    if(this.categoriaActual!="Todas las Categorias"){
+      this.categoriaService.getCategoriasDependencia(this.categoriaActual).subscribe(data=>{
+        console.log("ingreso de categoprias con dependencia");
+        console.log(data);
+        this.categorias=data;
+      });
+    }
+   
+
+    /**this.categoriaService.getCategoriasUsuarioFinal().subscribe(data => {
+
+     // this.categorias = data;
+      data.forEach(element => {
+        if(element.dependencia!=null){
+          this.categorias.push(element);
+        }
+      });
+    })*/
+
   }
 
   showF() {

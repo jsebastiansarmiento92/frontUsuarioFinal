@@ -39,6 +39,7 @@ export class LandingComponent implements OnInit {
     private tokenService:TokenService) { }
 
   ngOnInit() {
+
     this.autenticar();
     console.log("ingreso metodo ngOninit lanfing")
     if(!localStorage.getItem('barrios')){
@@ -49,6 +50,17 @@ export class LandingComponent implements OnInit {
 
     this.llenarTipodirecciones();
     
+  }
+  reanudarSesion(){
+
+    if(localStorage.getItem("idSesion")!=null){
+      let data=JSON.parse(localStorage.getItem('idSesion'));
+      this.tokenService.setUserName(data.name);
+    this.tokenService.setAuthorities(data.rol);
+    this.tokenService.setIdUser(data.id);
+    this.tokenService.setLugar(data.idLugar);
+    this.router.navigate(['inicio']);
+    }
   }
   autenticar(){
     console.log("no hay token guardado");
@@ -61,12 +73,12 @@ export class LandingComponent implements OnInit {
     console.log("error llegando es ");
     console.log(this.error);
   if(window.sessionStorage.getItem('AuthToken')){
-
+    
     console.log("hay tonken guardado porque ingresa al if");
-
     this.authService.getCurrentUser().subscribe(data=>{
       console.log(data);
     //this.tokenService.setToken(data.token);
+    window.localStorage.setItem("idSesion",JSON.stringify(data));
     this.tokenService.setUserName(data.name);
     this.tokenService.setAuthorities(data.rol);
     this.tokenService.setIdUser(data.id);
@@ -81,9 +93,10 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['inicio']);
     this.loader=false;
     });
+  } 
+    this.reanudarSesion();
+  
   }
-  }
-
   inicio(){
     
     let lugar:Lugar=new Lugar();

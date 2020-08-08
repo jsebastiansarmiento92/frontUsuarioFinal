@@ -48,6 +48,7 @@ export class SignupComponent implements OnInit {
       this.authService.getCurrentUser().subscribe(data=>{
         console.log(data);
       //this.tokenService.setToken(data.token);
+      window.localStorage.setItem("idSesion",JSON.stringify(data));
       this.tokenService.setUserName(data.name);
       this.tokenService.setAuthorities(data.rol);
       this.tokenService.setIdUser(data.id);
@@ -74,7 +75,7 @@ export class SignupComponent implements OnInit {
   }
   register(){
     console.log("ingresoa registrer con google")
-    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/#/signup";
+    window.location.href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
   }
   registerManual(){
     console.log("datos que se envian para el registro");
