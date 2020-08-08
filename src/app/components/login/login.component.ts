@@ -107,10 +107,10 @@ this.getUser();
     });
   }
   onRegister(){
-    this.router.navigate(['/signup']);
+    this.router.navigate(['signup']);
   }
   login(){
     console.log("ingresoa registrer con google")
-    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/#/signup";
   }
 }

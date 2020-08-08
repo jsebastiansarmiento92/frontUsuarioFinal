@@ -23,7 +23,7 @@ export class GuardService implements CanActivate {
   
     if (!this.tokenService.getToken() ) {
       console.log("error no se ha podido realizar login");
-      this.router.navigate(['/login']);
+      this.router.navigate(['login']);
       return false;
 
     }
