@@ -75,7 +75,7 @@ export class InicioComponent implements OnInit {
   empresas:Empresa[]=[];
   empresasTemporal:Empresa[]=[];
   totalPedido = 0;
-  categoriaActual = "Todas las Categorias";
+  categoriaActual = " ";
 
   private serverUrl = 'http://localhost:8080/' + 'socket'
   isLoaded: boolean = false;
