@@ -24,6 +24,11 @@ export class SignupComponent implements OnInit {
   errorMsg = '';
   loader=false;
   signupRequest:SignUpRequest=new SignUpRequest();
+  creado ;
+  failCreado;
+  msjErr= ''; ;
+  msjOK = '';
+
   constructor(private authService:AuthService,
     private router:Router,
     private tokenService:TokenService) { 
@@ -87,7 +92,12 @@ export class SignupComponent implements OnInit {
       console.log(data);
       alert("Registro completo por favor inicie sesion con sus datos para continuar");
       this.router.navigate(['login']);
-    })
+    },(err: any) => {
+      this.creado = false;
+      this.failCreado = true;
+      this.msjErr = err.error.mensaje;
+      console.log(err.error.mensaje)
+    });
   }
 
 }

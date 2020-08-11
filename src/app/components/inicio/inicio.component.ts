@@ -27,6 +27,7 @@ import { Message } from 'src/app/models/message';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { UsuarioService } from 'src/app/services/usuario-service/usuario.service';
+import { runInThisContext } from 'vm';
 
 
 
@@ -104,6 +105,10 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     //this.llenarTipodirecciones();
+
+    if (JSON.parse(localStorage.getItem('myCar')) != null) {
+      this.getCarrito();
+    }
     this.initializeWebSocketConnection();
     console.log("verificacion variable de cambio de direccion");
     console.log(localStorage.getItem('cambioDireccion') == 'true');
@@ -128,7 +133,7 @@ export class InicioComponent implements OnInit {
     }
     console.log("id de lugar entrante es:");
     console.log(parseInt(this.tokenService.getLugar()));
-    if(localStorage.getItem('cambioDireccion') == 'true'){
+    if (localStorage.getItem('cambioDireccion') == 'true') {
       this.lugar = JSON.parse(localStorage.getItem('lugar'));
       this.barrio = this.lugar.barrio;
       this.direccionCompleta = this.lugar.direccionLugar;
@@ -136,7 +141,7 @@ export class InicioComponent implements OnInit {
       console.log(this.lugar);
       this.asignarCosto();
       this.totalPedido = this.calcular();
-    }else    if (parseInt(this.tokenService.getLugar()) != 0) {
+    } else if (parseInt(this.tokenService.getLugar()) != 0) {
       console.log("hay lugar guardado del usuario");
       console.log("lugar guardado desde el landing");
       console.log(this.lugar);
@@ -158,9 +163,7 @@ export class InicioComponent implements OnInit {
     //this.cargarProductos();
     this.cargarEmpresas();
     //this.cargarCategorias();
-    if (JSON.parse(localStorage.getItem('myCar')) != null) {
-      this.getCarrito();
-    }
+   
 
   }
 
@@ -402,7 +405,7 @@ export class InicioComponent implements OnInit {
     if (this.idEmpresa == 0) {
       this.idEmpresa = this.producto.empresa.idEmpresa;
     } else if (this.idEmpresa != this.producto.empresa.idEmpresa) {
-      alert("no puede solicitar productos de dos empresas en un mismo servicio");
+      alert("no es posible solicitar productos de dos empresas en un mismo servicio");
     } else {
       this.verificarRepetidos(this.producto);
 
@@ -460,10 +463,12 @@ export class InicioComponent implements OnInit {
     this.productosCarrito = JSON.parse(localStorage.getItem('myCar'));
     console.log("carrito de local storage");
     console.log(this.productosCarrito);
-    this.idEmpresa = this.productosCarrito[0].empresa.idEmpresa;
+
+    if(this.productosCarrito.length<=0){
+      console.log("carrito vacio")
+    }else this.idEmpresa = this.productosCarrito[0].empresa.idEmpresa;
     this.totalPedido = this.calcular();
-    // console.log("carrito pendiente");
-    // console.log('objetoObtenido: ', this.productos);
+   
   }
   calcular(): number {
     let total: number = 0;
@@ -478,17 +483,37 @@ export class InicioComponent implements OnInit {
       this.productosCarrito.splice(i, 1);
       this.totalPedido = this.calcular();
     }
-
+    console.log("productos en mycar antes del if");
+    if (this.verificarCarrito) { 
+      this.idEmpresa=0;
+    }
+    localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
   }
+
   sumarCantidad(producto) {
-    
-    producto.cantidad+=1;
+
+    producto.cantidad += 1;
     this.totalPedido = this.calcular();
+    localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
   }
   restarCantidad(producto) {
-    
-    producto.cantidad-=1;
+
+    producto.cantidad -= 1;
     this.totalPedido = this.calcular();
+    if (this.verificarCarrito) { 
+      this.idEmpresa=0;
+    }
+    localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
+  }
+  verificarCarrito(): boolean {
+
+    
+    console.log("productos en mycar");
+    console.log(localStorage.getItem('myCar'));
+    if (this.productosCarrito.length <= 0) {
+      return false;
+    } else
+      return false;
   }
   agregarBarrio(modal) {
     console.log("modal activo de barrio");
