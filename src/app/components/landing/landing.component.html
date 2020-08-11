@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto" style="color: black;">
-                    <form class="form" method="" action="">
+                    <form class="form" method="" action="" #f="ngForm" novalidate>
                         <div class="card card-login card-hidden text-center" style="background-color: rgba(236, 236, 236, 0.966)">
 
                             <div class="card-product card-body card-plain ">
@@ -14,38 +14,57 @@
                                 <br>
                                 <div class="select">
                                     <select class="selectpicker" data-style="select-with-transition" title="Ciudad" data-size="7">
-                                        <option disabled>Elige una ciudad</option>
-                                        <option value="2">Yopal</option>
-                                    </select>
+                                  <option disabled>Elige una ciudad</option>
+                                  <option value="2">Yopal</option>
+                              </select>
+                                </div>
+                                <div class="center-loader" *ngIf="cargaBarrios;else elseBarrios">
+                                    <strong>Cargando barrios
+                                  <span class="loader__dot">.</span>
+                                  <span class="loader__dot">.</span>
+                                  <span class="loader__dot">.</span></strong>
                                 </div>
 
+                                <ng-template #elseBarrios>
+                                    <div>
+                                        <select class="selectpicker" ng-options="elementos de barrios" data-style="select-with-transition" title="Barrio" name="opcionSeleccionado" [(ngModel)]="barrioSeleccionado" (change)="capturarBarrio()">
+                                      <option disabled>Elige un barrio</option>
+                                      <option *ngFor="let barrio of barrios" style="margin-block: 10px">
+                                          {{barrio.nombreBarrio}}
+                                      </option>
+                                  </select>
+                                    </div>
+                                </ng-template>
+
                                 <div>
-                                    <select class="selectpicker" title="Tipo Direccion" data-size="4" data-style="select-with-transition">
-                                        <option>CALLE
-                                        </option>
-                                    </select>
+                                    <select class="selectpicker" title="Tipo Direccion" data-size="4" data-style="select-with-transition" (change)="capturarBarrio()" name="tipoDireccionSeleccionado" [(ngModel)]="tipoDireccionSeleccionado">
+                                  <option *ngFor="let tipoDireccion of tipoDirecciones">
+                                      {{tipoDireccion}}
+                                  </option>
+                              </select>
                                 </div>
 
                                 <div class="input-group">
 
-                                    <input type="number" placeholder="0" name="n1" required style="text-align: center;" class="form-control">
+                                    <input type="number" placeholder="0" name="n1" required style="text-align: center;" class="form-control" name="n1" [(ngModel)]="n1" required>
 
                                     <span class="input-group-addon">
-                                        <h5>#</h5>
-                                    </span>
+                                  <h5>#</h5>
+                              </span>
 
-                                    <input type="number" placeholder="0" name="n2" required style="text-align: center;" class="form-control">
+                                    <input type="number" placeholder="0" name="n2" required style="text-align: center;" class="form-control" name="n2" [(ngModel)]="n2" required>
                                     <span class="input-group-addon">
-                                        <h5>&#8212;</h5>
-                                    </span>
+                                  <h5>&#8212;</h5>
+                              </span>
 
-                                    <input type="number" placeholder="0" name="n3" required class="form-control" style="text-align: center;">
+                                    <input type="number" placeholder="0" name="n3" required class="form-control" style="text-align: center;" name="n3" [(ngModel)]="n3" required>
 
 
                                 </div>
-                                <a (click)="inicio()" class="btn btn-rose btn-lg " style=" color: white; margin: auto;">
-                                    <i class="material-icons">search</i> Buscar Establecimientos
-                                </a>
+                                <button [disabled]="!f.valid" (click)="inicio()" class="btn btn-rose btn-lg" style=" color: white; margin: auto;">
+                              <i class="material-icons">search</i> Buscar Establecimientos
+
+                          </button>
                                 <br>
                             </div>
                             <div class="card-footer">
@@ -200,22 +219,22 @@
         <nav class="float-left">
             <ul>
                 <li>
-                    <a href="https://www.creative-tim.com">
+                    <a>
               Boyaca Web
             </a>
                 </li>
                 <li>
-                    <a href="https://creative-tim.com/presentation">
+                    <a>
               Sobre nosotros
             </a>
                 </li>
                 <li>
-                    <a href="http://blog.creative-tim.com">
+                    <a>
               Blog
             </a>
                 </li>
                 <li>
-                    <a href="https://www.creative-tim.com/license">
+                    <a>
               Licencias
             </a>
                 </li>
@@ -226,7 +245,7 @@
             <script>
                 document.write(new Date().getFullYear())
             </script>, hecho con <i class="material-icons">favorite</i> por
-            <a href="https://www.creative-tim.com" target="_blank">BoyacaWeb</a>
+            <a target="_blank">BoyacaWeb</a>
         </div>
     </div>
 </footer>

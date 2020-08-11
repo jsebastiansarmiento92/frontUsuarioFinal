@@ -19,22 +19,23 @@
                     </a>
                 </li>
                 <li class="dropdown nav-item">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <i class="material-icons">location_on</i>Mis Direcciones
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" (click)="refresh()">
+                        <i class="material-icons">location_on</i>Mi Direccion
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
                         <a class="dropdown-item">
-                            <i class="material-icons">location_on</i>Direccion A
-                        </a>     
-
-
-                        
-                        <a class="dropdown-item">
-                            <i class="material-icons">location_on</i>Direccion B
+                            <i class="material-icons">location_on</i>Direccion: {{lugar.direccionLugar}}
+                            <i></i>
                         </a>
+
                         <a class="dropdown-item">
-                            <i class="material-icons">location_on</i>Direccion C
+                            <i class="material-icons">location_on</i>Barrio: {{lugar.barrio.nombreBarrio}}
                         </a>
+                        <li class="button-container nav-item iframe-extern">
+                            <a (click)="cambiar()" style="color: white;" class="btn  btn-rose btn-round btn-instagram">
+                                Cambiar
+                            </a>
+                        </li>
                     </div>
                 </li>
                 <li class="dropdown nav-item">

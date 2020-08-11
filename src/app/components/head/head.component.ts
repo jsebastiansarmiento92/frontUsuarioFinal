@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { Router } from '@angular/router';
+import { Lugar } from 'src/app/models/lugar';
 
 
 @Component({
@@ -12,19 +13,32 @@ export class HeadComponent implements OnInit {
   isLogin = false;
   roles: string[];
   authority: string;
-  
+  lugar:Lugar;
   constructor(private tokenService: TokenService,
     private router: Router) { }
 
   ngOnInit() {
+    this.lugar = JSON.parse(localStorage.getItem('lugar'));
+    console.log(this.lugar);
     console.log("verificacion is login");
     if (this.tokenService.getToken() == null) {
       console.log("se limpia el locar storage en inicio");
       localStorage.removeItem("isLoggedin");
     }
-    if (localStorage.getItem("isLoggedin")) {
-      this.isLogin = true;
+    if(localStorage.getItem("isLoggedin")){
+      if (localStorage.getItem("isLoggedin")=='true') {
+        this.isLogin = true;
+      }
     }
+    
+  }
+  refresh(){
+    this.ngOnInit();
+  }
+  cambiar(){
+    localStorage.removeItem("barrios");
+    localStorage.setItem('cambioDireccion', 'false');
+    this.router.navigate(['landing']);
   }
   logOut(): void {
 
@@ -50,7 +64,11 @@ export class HeadComponent implements OnInit {
     this.router.navigate(['signup']);
   }
   getIslogin() {
-    return localStorage.getItem("isLoggedin");
+    if(localStorage.getItem("isLoggedin")=="true"){
+      return true;
+    }else
+    return false;
+
   }
 
   
