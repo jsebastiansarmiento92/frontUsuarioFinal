@@ -59,6 +59,12 @@
                                 <div class="text-center">
                                     <a class="btn btn-primary btn-danger btn-round" (click)="registerManual()">Registrar</a>
                                 </div>
+                                <div *ngIf="failCreado" class="float-left">
+                                    <p class="p-3 bg-danger text-white rounded" style="margin: 10px">Error: {{msjErr}}</p>
+                                </div>
+                                <div *ngIf="creado" class="float-left">
+                                    <p class="p-3 bg-success text-white rounded" style="margin: 10px">OK: {{msjOK}}</p>
+                                </div>
                             </form>
                             <!--div class="row">
                                 <div class="col-md-5 ml-auto text-center">

@@ -24,6 +24,11 @@ export class SignupComponent implements OnInit {
   errorMsg = '';
   loader=false;
   signupRequest:SignUpRequest=new SignUpRequest();
+  creado ;
+  failCreado;
+  msjErr= ''; ;
+  msjOK = '';
+
   constructor(private authService:AuthService,
     private router:Router,
     private tokenService:TokenService) { 
@@ -36,7 +41,10 @@ export class SignupComponent implements OnInit {
       this.urlTree = this.router.parseUrl(this.router.url);
       this.token = this.urlTree.queryParams['token'];
       this.error = this.urlTree.queryParams['error'];
-      window.sessionStorage.setItem('AuthToken', this.token);
+      if(this.token.length>1){
+        window.sessionStorage.setItem('AuthToken', this.token);
+        window.localStorage.setItem('AuthToken', this.token);
+       }
       console.log("token llegando es:");
       console.log(this.token);
       console.log("error llegando es ");
@@ -75,7 +83,7 @@ export class SignupComponent implements OnInit {
   }
   register(){
     console.log("ingresoa registrer con google")
-    window.location.href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
   }
   registerManual(){
     console.log("datos que se envian para el registro");
@@ -84,7 +92,12 @@ export class SignupComponent implements OnInit {
       console.log(data);
       alert("Registro completo por favor inicie sesion con sus datos para continuar");
       this.router.navigate(['login']);
-    })
+    },(err: any) => {
+      this.creado = false;
+      this.failCreado = true;
+      this.msjErr = err.error.mensaje;
+      console.log(err.error.mensaje)
+    });
   }
 
 }

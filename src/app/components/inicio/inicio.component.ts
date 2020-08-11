@@ -27,6 +27,7 @@ import { Message } from 'src/app/models/message';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { UsuarioService } from 'src/app/services/usuario-service/usuario.service';
+import { runInThisContext } from 'vm';
 
 
 
@@ -43,7 +44,7 @@ export class InicioComponent implements OnInit {
 
   idservicio: number;
   idEmpresa: number = 0;
-  valorServicio;
+  valorServicio = 0;
   direccionCompleta;
   direccion: string;
 
@@ -51,11 +52,11 @@ export class InicioComponent implements OnInit {
   tipoDireccionSeleccionada: string = "";
   barrioSeleccionado: string = "";
   barrio: Barrio = new Barrio();
-  lugar: Lugar = new Lugar();
+  lugar: Lugar;
   pedido: Pedido = new Pedido();
   servicio: Servicio = new Servicio();
   producto: Producto = new Producto();
-  empresaSeleccionada:Empresa;
+  empresaSeleccionada: Empresa;
 
 
   retrieveResonse: any;
@@ -65,23 +66,23 @@ export class InicioComponent implements OnInit {
   show: boolean = false;
   loaderPedido = true;
   loader = false;
-  empresaSelected=false;
+  empresaSelected = false;
 
   barrios: Barrio[] = [];
   productosCarrito: Producto[] = [];
   categorias: Categoria[] = [];
   tipoDirecciones: String[] = [];
   productos: Producto[] = [];
-  empresas:Empresa[]=[];
-  empresasTemporal:Empresa[]=[];
+  empresas: Empresa[] = [];
+  empresasTemporal: Empresa[] = [];
   totalPedido = 0;
   categoriaActual = " ";
 
-  private serverUrl = 'http://localhost:8080/' + 'socket'
+  private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
   private stompClient;
-  
+
   messages: Message[] = [];
 
 
@@ -97,90 +98,106 @@ export class InicioComponent implements OnInit {
     private pedidoService: PedidoService,
     private detalleServicioService: DetalleServicioService,
     private servicioService: ServicioService,
-    private empresaService:EmpresaService,
+    private empresaService: EmpresaService,
     private socketService: SocketService,
-    private usuarioService:UsuarioService
-    ) { }
+    private usuarioService: UsuarioService
+  ) { }
 
   ngOnInit() {
     //this.llenarTipodirecciones();
-    this.initializeWebSocketConnection();
-    this.lugar=JSON.parse(localStorage.getItem('lugar'));
-    console.log("lugar que llega es:");
-    console.log(this.lugar);
-   // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
-    if (this.tokenService.getToken() == null) {
-     // localStorage.clear();
-      console.log("se limpia el locar storage en inicio");
-      localStorage.setItem("isLoggedin","false");
-    } else {
-      localStorage.setItem('isLoggedin', 'true');
-    } 
-    if (parseInt(this.tokenService.getLugar())!=0){
-      console.log("hay lugar guardado del usuario");
-      if(this.lugar==null){
-        console.log("no hay lugar guardado anteriormente");
-        this.serviceLugar.getLugarId(parseInt(this.tokenService.getLugar())).subscribe(data => {
-          console.log("barrio es");
-          console.log(data.barrio);
-          this.lugar = data;
-          this.barrio=this.lugar.barrio;
-          this.barrioSeleccionado=this.lugar.barrio.nombreBarrio;
-          this.direccionCompleta=this.lugar.direccionLugar;
-          this.totalPedido = this.calcular();
-          this.asignarCosto();
-  
-        });
-      }else{
-        console.log("lugar guardado desde el landing");
-        console.log(this.lugar);
-        this.totalPedido = this.calcular();
-        this.barrio=this.lugar.barrio;
-          this.asignarCosto();
-      }
-      
-    }
-     
-    
-    //this.cargarProductos();
-    this.cargarEmpresas();
-    //this.cargarCategorias();
+
     if (JSON.parse(localStorage.getItem('myCar')) != null) {
       this.getCarrito();
     }
+    this.initializeWebSocketConnection();
+    console.log("verificacion variable de cambio de direccion");
+    console.log(localStorage.getItem('cambioDireccion') == 'true');
+
+    if (localStorage.getItem('lugar')) {
+      this.lugar = JSON.parse(localStorage.getItem('lugar'));
+      this.barrio = this.lugar.barrio;
+      this.direccionCompleta = this.lugar.direccionLugar;
+      console.log("lugar que llega es:");
+      console.log(this.lugar);
+      this.asignarCosto();
+      this.totalPedido = this.calcular();
+    }
+
+    // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
+    if (this.tokenService.getToken() == null) {
+      // localStorage.clear();
+      console.log("se limpia el locar storage en inicio");
+      localStorage.setItem("isLoggedin", "false");
+    } else {
+      localStorage.setItem('isLoggedin', 'true');
+    }
+    console.log("id de lugar entrante es:");
+    console.log(parseInt(this.tokenService.getLugar()));
+    if (localStorage.getItem('cambioDireccion') == 'true') {
+      this.lugar = JSON.parse(localStorage.getItem('lugar'));
+      this.barrio = this.lugar.barrio;
+      this.direccionCompleta = this.lugar.direccionLugar;
+      console.log("lugar que llega es:");
+      console.log(this.lugar);
+      this.asignarCosto();
+      this.totalPedido = this.calcular();
+    } else if (parseInt(this.tokenService.getLugar()) != 0) {
+      console.log("hay lugar guardado del usuario");
+      console.log("lugar guardado desde el landing");
+      console.log(this.lugar);
+      this.serviceLugar.getLugarId(parseInt(this.tokenService.getLugar())).subscribe(data => {
+
+        this.totalPedido = this.calcular();
+        this.barrio = data.barrio;
+        this.direccionCompleta = data.direccionLugar;
+        this.lugar = data;
+        this.asignarCosto();
+      })
+
+    } else {
+
+
+    }
+
+
+    //this.cargarProductos();
+    this.cargarEmpresas();
+    //this.cargarCategorias();
+   
 
   }
+
   initializeWebSocketConnection() {
     let ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     let that = this;
     this.stompClient.connect({}, function (frame) {
-        that.isLoaded = true;
-        console.log("quiere decir qu ya hizo conexion con socket");
-        that.openGlobalSocket()
-        that.openSocket()
+      that.isLoaded = true;
+      console.log("quiere decir qu ya hizo conexion con socket");
+      that.openGlobalSocket()
+      that.openSocket()
     });
-}
-openGlobalSocket() {
-  this.stompClient.subscribe("/socket-publisher", (message) => {
+  }
+  openGlobalSocket() {
+    this.stompClient.subscribe("/socket-publisher", (message) => {
       this.handleResult(message);
-  });
-}
+    });
+  }
 
-openSocket() {
-  console.log(this.isLoaded);
-  console.log("ingresa a estos metodos de sockets");
-  if (this.isLoaded) {
+  openSocket() {
+    console.log(this.isLoaded);
+    console.log("ingresa a estos metodos de sockets");
+    if (this.isLoaded) {
       this.isCustomSocketOpened = true;
       console.log("id de usuario actual listo para recibir mensajes es " + this.tokenService.getIdUser());
       this.stompClient.subscribe("/socket-publisher/" + this.tokenService.getIdUser(), (message) => {
-          this.handleResult(message);
+        this.handleResult(message);
       });
+    }
   }
-}
 
-handleResult(message) {
-  if (message.body) {
+  handleResult(message) {
+    if (message.body) {
       let messageResult: Message = JSON.parse(message.body);
       console.log(messageResult);
       this.messages.push(messageResult);
@@ -192,138 +209,138 @@ handleResult(message) {
       console.log("ingreso de vibracion");
       //Haptics.vibrate();
       console.log("ingreso de notificacion local");
-     /** const notifs =  LocalNotifications.schedule({
-          notifications: [
-            {
-              title: "Alerta de novedad",
-              body: messageResult.message,
-              id: 1,
-             // schedule: { at: new Date(Date.now() + 1000 * 5) },
-              sound: null,
-              attachments: null,
-              actionTypeId: "",
-              extra: null
-            }
-          ]
-        });
-        console.log('scheduled notifications', notifs); */
+      /** const notifs =  LocalNotifications.schedule({
+           notifications: [
+             {
+               title: "Alerta de novedad",
+               body: messageResult.message,
+               id: 1,
+              // schedule: { at: new Date(Date.now() + 1000 * 5) },
+               sound: null,
+               attachments: null,
+               actionTypeId: "",
+               extra: null
+             }
+           ]
+         });
+         console.log('scheduled notifications', notifs); */
 
-// Method called when tapping on a notification
+      // Method called when tapping on a notification
 
+    }
   }
-}
 
-  conductor(){
-    this.empresaSelected=false;
-    this.empresas=this.empresasTemporal;
+  conductor() {
+    this.empresaSelected = false;
+    this.empresas = this.empresasTemporal;
     console.log("ingreso a conductor padre");
-    let empresasSeleccion:Empresa[]=[];
-    this.empresas.forEach(element=>{
-      element.categorias.forEach(element2=>{
-        if(element2.dependencia.idCategoria==9){
+    let empresasSeleccion: Empresa[] = [];
+    this.empresas.forEach(element => {
+      element.categorias.forEach(element2 => {
+        if (element2.dependencia.idCategoria == 9) {
           empresasSeleccion.push(element);
         }
       });
     });
-    this.empresas=empresasSeleccion;
-    this.categoriaActual="Conductor";
+    this.empresas = empresasSeleccion;
+    this.categoriaActual = "Conductor";
     this.cargarCategorias();
   }
-  domicilios(){
-    this.empresaSelected=false;
-    this.empresas=this.empresasTemporal;
+  domicilios() {
+    this.empresaSelected = false;
+    this.empresas = this.empresasTemporal;
     console.log("ingreso a domicilios padre");
-    let empresasSeleccion:Empresa[]=[];
-    this.empresas.forEach(element=>{
-      element.categorias.forEach(element2=>{
-        if(element2.dependencia.idCategoria==8){
+    let empresasSeleccion: Empresa[] = [];
+    this.empresas.forEach(element => {
+      element.categorias.forEach(element2 => {
+        if (element2.dependencia.idCategoria == 8) {
           empresasSeleccion.push(element);
         }
       });
     });
-    this.empresas=empresasSeleccion;
-    this.categoriaActual="Domicilio";
+    this.empresas = empresasSeleccion;
+    this.categoriaActual = "Domicilio";
     this.cargarCategorias();
   }
-  licores(){
-    this.empresaSelected=false;
-    this.empresas=this.empresasTemporal;
+  licores() {
+    this.empresaSelected = false;
+    this.empresas = this.empresasTemporal;
     console.log("ingreso a licores padre");
-    let empresasSeleccion:Empresa[]=[];
-    this.empresas.forEach(element=>{
-      element.categorias.forEach(element2=>{
-        if(element2.dependencia.idCategoria==7){
+    let empresasSeleccion: Empresa[] = [];
+    this.empresas.forEach(element => {
+      element.categorias.forEach(element2 => {
+        if (element2.dependencia.idCategoria == 7) {
           empresasSeleccion.push(element);
         }
       });
     });
-    this.empresas=empresasSeleccion;
-    this.categoriaActual="Licores";
+    this.empresas = empresasSeleccion;
+    this.categoriaActual = "Licores";
     this.cargarCategorias();
   }
-  viveres(){
-    this.empresaSelected=false;
-    this.empresas=this.empresasTemporal;
+  viveres() {
+    this.empresaSelected = false;
+    this.empresas = this.empresasTemporal;
     console.log("ingreso a viveres padre");
-    let empresasSeleccion:Empresa[]=[];
-    this.empresas.forEach(element=>{
-      element.categorias.forEach(element2=>{
-        if(element2.dependencia.idCategoria==6){
+    let empresasSeleccion: Empresa[] = [];
+    this.empresas.forEach(element => {
+      element.categorias.forEach(element2 => {
+        if (element2.dependencia.idCategoria == 6) {
           empresasSeleccion.push(element);
         }
       });
     });
-    this.empresas=empresasSeleccion;
-    this.categoriaActual="Viveres";
+    this.empresas = empresasSeleccion;
+    this.categoriaActual = "Viveres";
     this.cargarCategorias();
   }
-  drogueria(){
-    this.empresaSelected=false;
+  drogueria() {
+    this.empresaSelected = false;
     console.log("ingreso a drogueria padre");
-    this.empresas=this.empresasTemporal;
-    let empresasSeleccion:Empresa[]=[];
-    this.empresas.forEach(element=>{
-      element.categorias.forEach(element2=>{
-        if(element2.dependencia.idCategoria==4){
+    this.empresas = this.empresasTemporal;
+    let empresasSeleccion: Empresa[] = [];
+    this.empresas.forEach(element => {
+      element.categorias.forEach(element2 => {
+        if (element2.dependencia.idCategoria == 4) {
           empresasSeleccion.push(element);
         }
       });
     });
-    this.empresas=empresasSeleccion;
-    this.categoriaActual="MEDICAMENTOS";
+    this.empresas = empresasSeleccion;
+    this.categoriaActual = "MEDICAMENTOS";
     this.cargarCategorias();
   }
-  restaurantes(){
-    this.empresaSelected=false;
+  restaurantes() {
+    this.empresaSelected = false;
     console.log("ingreso a restaurantes padre");
-    this.empresas=this.empresasTemporal;
-    let empresasSeleccion:Empresa[]=[];
-    this.empresas.forEach(element=>{
+    this.empresas = this.empresasTemporal;
+    let empresasSeleccion: Empresa[] = [];
+    this.empresas.forEach(element => {
       console.log(element.razonSocial);
-      let introIf=false;
-      element.categorias.forEach(element2=>{
+      let introIf = false;
+      element.categorias.forEach(element2 => {
         console.log("cosas que tiene elemento 2");
-        if(!introIf){
-          if(element2.dependencia.idCategoria==5){
-            introIf=true;
-            empresasSeleccion.push(element);         
+        if (!introIf) {
+          if (element2.dependencia.idCategoria == 5) {
+            introIf = true;
+            empresasSeleccion.push(element);
           }
         }
-       
+
       });
-      
+
     });
-    this.empresas=empresasSeleccion;
-    this.categoriaActual="Restaurantes";
+    this.empresas = empresasSeleccion;
+    this.categoriaActual = "Restaurantes";
     this.cargarCategorias();
   }
-  cargarEmpresas(){
-    this.empresaSelected=false;
-    this.empresaService.getEmpresas().subscribe(data=>{
-      this.empresas=data;
+  cargarEmpresas() {
+    this.empresaSelected = false;
+    this.empresaService.getEmpresas().subscribe(data => {
+      this.empresas = data;
       console.log("empresas cargadas");
       console.log(this.empresas);
-      this.empresasTemporal=data;
+      this.empresasTemporal = data;
       this.empresas.forEach(element => {
         console.log("id de las imagenes de los productos" + element.imagen);
 
@@ -334,7 +351,7 @@ handleResult(message) {
           //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           console.log(this.retrievedImage);
-          
+
         })
       });
     })
@@ -368,7 +385,7 @@ handleResult(message) {
           //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           console.log(this.retrievedImage);
-          
+
         })
       });
       // this.loader = false;
@@ -388,37 +405,37 @@ handleResult(message) {
     if (this.idEmpresa == 0) {
       this.idEmpresa = this.producto.empresa.idEmpresa;
     } else if (this.idEmpresa != this.producto.empresa.idEmpresa) {
-      alert("no puede solicitar productos de dos empresas en un mismo servicio");
-    }else{
+      alert("no es posible solicitar productos de dos empresas en un mismo servicio");
+    } else {
       this.verificarRepetidos(this.producto);
-      
+
       console.log("agregando al local storage:");
       console.log(this.productosCarrito);
       localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
       this.serviceModal.dismissAll();
       this.totalPedido = this.calcular();
     }
-    
+
   }
-  verificarRepetidos(producto){
-    let isRepetido=false;
+  verificarRepetidos(producto) {
+    let isRepetido = false;
     this.productosCarrito.forEach(element => {
-      if(element.nombreProducto==producto.nombreProducto){
+      if (element.nombreProducto == producto.nombreProducto) {
         console.log("producto ya solicitado anteriormente");
-        isRepetido=true;
+        isRepetido = true;
       }
     });
-    if(!isRepetido)this.productosCarrito.push(producto);
+    if (!isRepetido) this.productosCarrito.push(producto);
   }
   cargarCategorias() {
-    if(this.categoriaActual!="Todas las Categorias"){
-      this.categoriaService.getCategoriasDependencia(this.categoriaActual).subscribe(data=>{
+    if (this.categoriaActual != "Todas las Categorias") {
+      this.categoriaService.getCategoriasDependencia(this.categoriaActual).subscribe(data => {
         console.log("ingreso de categoprias con dependencia");
         console.log(data);
-        this.categorias=data;
+        this.categorias = data;
       });
     }
-   
+
 
     /**this.categoriaService.getCategoriasUsuarioFinal().subscribe(data => {
 
@@ -446,10 +463,12 @@ handleResult(message) {
     this.productosCarrito = JSON.parse(localStorage.getItem('myCar'));
     console.log("carrito de local storage");
     console.log(this.productosCarrito);
-    this.idEmpresa = this.productosCarrito[0].empresa.idEmpresa;
+
+    if(this.productosCarrito.length<=0){
+      console.log("carrito vacio")
+    }else this.idEmpresa = this.productosCarrito[0].empresa.idEmpresa;
     this.totalPedido = this.calcular();
-    // console.log("carrito pendiente");
-    // console.log('objetoObtenido: ', this.productos);
+   
   }
   calcular(): number {
     let total: number = 0;
@@ -458,12 +477,43 @@ handleResult(message) {
     });
     return total;
   }
-  quitarProducto(producto){
-    var i=this.productosCarrito.indexOf(producto);
-    if ( i !== -1 ) {
-      this.productosCarrito.splice( i, 1 );
+  quitarProducto(producto) {
+    var i = this.productosCarrito.indexOf(producto);
+    if (i !== -1) {
+      this.productosCarrito.splice(i, 1);
       this.totalPedido = this.calcular();
+    }
+    console.log("productos en mycar antes del if");
+    if (this.verificarCarrito) { 
+      this.idEmpresa=0;
+    }
+    localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
   }
+
+  sumarCantidad(producto) {
+
+    producto.cantidad += 1;
+    this.totalPedido = this.calcular();
+    localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
+  }
+  restarCantidad(producto) {
+
+    producto.cantidad -= 1;
+    this.totalPedido = this.calcular();
+    if (this.verificarCarrito) { 
+      this.idEmpresa=0;
+    }
+    localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
+  }
+  verificarCarrito(): boolean {
+
+    
+    console.log("productos en mycar");
+    console.log(localStorage.getItem('myCar'));
+    if (this.productosCarrito.length <= 0) {
+      return false;
+    } else
+      return false;
   }
   agregarBarrio(modal) {
     console.log("modal activo de barrio");
@@ -489,7 +539,7 @@ handleResult(message) {
     }
 
   }
- 
+
   capturarTipoDireccion() {
     //this.getBarrio();
     console.log("direccion seleccionado ");
@@ -504,15 +554,15 @@ handleResult(message) {
     });
 
   }
-  seleccionEmpresa(empresa){
-    this.empresaSelected=true;
-    this.empresaSeleccionada=empresa;
+  seleccionEmpresa(empresa) {
+    this.empresaSelected = true;
+    this.empresaSeleccionada = empresa;
     console.log("empresa Seleccionada");
     console.log(this.empresaSeleccionada);
-    this.categorias=this.empresaSeleccionada.categorias;
-    this.productosService.getProductosEmpresa(empresa).subscribe(data=>{
+    this.categorias = this.empresaSeleccionada.categorias;
+    this.productosService.getProductosEmpresa(empresa).subscribe(data => {
       console.log("productos de esa empresa son:");
-      this.productos=data;
+      this.productos = data;
       console.log(this.productos);
       this.productos.forEach(element => {
         console.log("id de las imagenes de los productos" + element.imagen);
@@ -524,14 +574,14 @@ handleResult(message) {
           //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           console.log(this.retrievedImage);
-          
+
         })
       });
     });
 
   }
- 
-  asignarCosto(){
+
+  asignarCosto() {
     console.log("barrio en sistema es");
     console.log(this.barrio);
     if (this.barrio.tipoCosto == "COSTO1") {
@@ -540,54 +590,69 @@ handleResult(message) {
       this.valorServicio = 5000;
     } if (this.barrio.tipoCosto == "COSTO3") {
       this.valorServicio = 6000;
-    }if (this.barrio.tipoCosto == "COSTO4") {
+    } if (this.barrio.tipoCosto == "COSTO4") {
       this.valorServicio = 7000;
-    }else {
+    } else if (this.barrio.tipoCosto == "COSTO5") {
       this.valorServicio = 8000;
+    } else if (this.barrio.tipoCosto == "COSTO6") {
+      this.valorServicio = 10000;
     }
   }
   confirmarPedido() {
     console.log("ingreso a confirmar pedido");
-    if(this.productosCarrito.length>0){
-      if (this.lugar ==null) {
+    console.log("datos del lugar");
+    console.log(this.lugar);
+    if (this.productosCarrito.length > 0) {
+      if (this.lugar == null) {
         alert("no ha ingresado direccion de pedido");
-        window.scrollTo(0, 0 - 20);
+        //window.scrollTo(0, 0 - 20);
+        localStorage.removeItem("barrios");
+        localStorage.setItem('cambioDireccion', 'false');
         this.router.navigate(['landing']);
       } else {
         this.guardarLugarLocal();
       }
-    }else{
+    } else {
       alert("carrito vacio");
     }
-   
+
   }
-  cambiarDireccion(){
-    window.scrollTo(0, 0 - 20);
+  cambiarDireccion() {
+    // window.scrollTo(0, 0 - 20);
     localStorage.removeItem("barrios");
+    localStorage.setItem('cambioDireccion', 'false');
     this.router.navigate(['landing']);
   }
   guardarLugarLocal() {
     //this.lugar.barrio = this.barrio;
-   /// this.lugar.direccionLugar = this.direccionCompleta;
-  //  this.lugar.idUsuario = this.getidSesion();
+    /// this.lugar.direccionLugar = this.direccionCompleta;
+    //  this.lugar.idUsuario = this.getidSesion();
     console.log("datos de lugar");
     console.log(this.lugar);
 
-    if(parseInt(this.tokenService.getLugar())==0){
-      this.promesaCrearLugar();
-    }else{
+    if (parseInt(this.tokenService.getLugar()) == 0) {
+      if (this.lugar != null) {
+        this.promesaCrearLugar();
+      } else {
+        this.router.navigate(['landing']);
+      }
+
+    } else {
       console.log("tiene direccion guardada pero la va a modificar");
       this.promesaModificarLugar();
     }
-    
+
   }
   promesaCrearLugar() {
+    //console.log("id del lugar guadados son: ");
+    // console.log(sessionStorage.getItem('IdLugar'));
+    //this.lugar.idLugar=parseInt(sessionStorage.getItem('IdLugar'));
+    this.lugar.idUsuario = parseInt(this.tokenService.getIdUser());
     this.serviceLugar.createLugar(this.lugar).subscribe(data => {
-      if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) +' a la direccion '+this.direccionCompleta
-      +'\n barrio:'+this.barrioSeleccionado + '¿Estás seguro desea confirmar el pedido?')) {
+      if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
+        + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
 
         this.confirmarTransaccion();
-        
       }
     }, (err: any) => {
 
@@ -595,14 +660,16 @@ handleResult(message) {
     })
   }
   promesaModificarLugar() {
-
+    console.log("id del lugar guadados son: ");
+    console.log(sessionStorage.getItem('IdLugar'));
+    this.lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
     this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
-      if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) +' a la direccion '+this.direccionCompleta
-      +'\n barrio:'+this.barrioSeleccionado + '¿Estás seguro desea confirmar el pedido?')) {
+      if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
+        + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
         this.confirmarTransaccion();
       }
     }, (err: any) => {
-      if(err.error.mensaje===undefined){
+      if (err.error.mensaje === undefined) {
         alert("debe ingresar o registrarse");
         this.router.navigate(["login"]);
       }
@@ -683,11 +750,12 @@ handleResult(message) {
       detalleServicio.cantidad = element.cantidad;
       this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(data => {
         console.log("detalle servicio agregado");
-       
+
         //this.ngOnInit();
         localStorage.removeItem('myCar');
-        
+
         this.asignarCosto();
+
       }, (err: any) => {
         estadoServicio = "Error";
       });
@@ -703,7 +771,7 @@ handleResult(message) {
         this.solicitarPedido();
         this.notificacionesGeneral();
         this.ngOnInit();
-        
+
       }, (err: any) => {
         console.log(err.error.mensaje);
       })
@@ -712,38 +780,38 @@ handleResult(message) {
 
 
   }
-  notificacionesGeneral(){
+  notificacionesGeneral() {
     console.log("enviando notificaciones a los usuarios empresa");
-        this.usuarioService.getUserEmpresaNotifications(this.idEmpresa).subscribe(data=>{
-          console.log("promesa de get usuarios empresa");
-         data.forEach(element => {
-          this.enviarNotificaciones(element.id,"Tiene un pedido de su negocio");
-         });
-        });
-        console.log("enviando notificaciones a los usuarios recepcionista");
-        this.usuarioService.getUserRepecionistaNotifications().subscribe(data=>{
-          console.log("promesa de get usuarios recepcionista");
-         data.forEach(element => {
-          this.enviarNotificaciones(element.id,"Tiene un pedido sin asignar");
-         });
-        });
-        console.log("enviando notificaciones a los usuarios admi");
-        this.usuarioService.getUserAdminNotifications().subscribe(data=>{
-          console.log("promesa de get usuarios admi");
-         data.forEach(element => {
-          this.enviarNotificaciones(element.id,"Tiene un pedido sin asignar");
-         });
-        });
+    this.usuarioService.getUserEmpresaNotifications(this.idEmpresa).subscribe(data => {
+      console.log("promesa de get usuarios empresa");
+      data.forEach(element => {
+        this.enviarNotificaciones(element.id, "Tiene un pedido de su negocio");
+      });
+    });
+    console.log("enviando notificaciones a los usuarios recepcionista");
+    this.usuarioService.getUserRepecionistaNotifications().subscribe(data => {
+      console.log("promesa de get usuarios recepcionista");
+      data.forEach(element => {
+        this.enviarNotificaciones(element.id, "Tiene un pedido sin asignar");
+      });
+    });
+    console.log("enviando notificaciones a los usuarios admi");
+    this.usuarioService.getUserAdminNotifications().subscribe(data => {
+      console.log("promesa de get usuarios admi");
+      data.forEach(element => {
+        this.enviarNotificaciones(element.id, "Tiene un pedido sin asignar");
+      });
+    });
   }
-  enviarNotificaciones(id:number,mensaje:string){
+  enviarNotificaciones(id: number, mensaje: string) {
     let message: Message = {
-      message:mensaje,
+      message: mensaje,
       fromId: this.tokenService.getIdUser(),
-      toId: id+""
-  };
-  this.socketService.postMessage(message).subscribe(res => {
-    console.log(res);
-})
+      toId: id + ""
+    };
+    this.socketService.postMessage(message).subscribe(res => {
+      console.log(res);
+    })
   }
   solicitarPedido() {
     console.log("listo para extraer pedido ");
@@ -753,8 +821,8 @@ handleResult(message) {
       console.log("pedido obtenido  es ");
       console.log(data);
       this.tokenService.setLugar(data.lugar.idLugar + "");
-      this.lugar.idLugar=data.lugar.idLugar;
-     // alert("pedido solicitado");
+      this.lugar.idLugar = data.lugar.idLugar;
+      // alert("pedido solicitado");
       this.clean();
     })
   }
@@ -766,7 +834,7 @@ handleResult(message) {
     this.showF();
   }
 
-  screen(){
+  screen() {
     alert("tamaño de pantalla pequeño");
   }
 
