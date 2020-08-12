@@ -13,7 +13,9 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
+                <br><br>
                 <li class="dropdown nav-item">
+                    
                     <a [routerLink]="['carrito']" [routerLinkActive]="['active']" data-toggle="dropdown">
                         <i class="material-icons">shopping_cart</i> Carrito
                     </a>
@@ -131,7 +133,7 @@
                 <div *ngIf="!getIslogin(); else elseBlock">
                     <li class="button-container nav-item iframe-extern">
 
-                        <a (click)="login()" style="color: white;" class="btn  btn-rose   btn-round btn-block">
+                        <a (click)="login()" style="margin-top: 2vh;  color: white;" class="btn  btn-rose   btn-round btn-block">
                             <i class="material-icons">login</i> Iniciar Sesion
                         </a>
                     </li>
@@ -140,7 +142,7 @@
                 <div *ngIf="!getIslogin()">
                     <li class="button-container nav-item iframe-extern">
 
-                        <a (click)="onRegister()" style="color: white;" class="btn  btn-rose   btn-round btn-block">
+                        <a (click)="onRegister()" style="background-color: #df0000ef; margin-top: 2vh; color: white;" class="btn  btn-rose   btn-round btn-block">
                             <i class="material-icons">login</i> Registrarse
                         </a>
                     </li>
@@ -148,7 +150,7 @@
                 </div>
                 <ng-template #elseBlock>
                     <li class="button-container nav-item iframe-extern">
-                        <a (click)="logOut()" style="color: white;" class="btn  btn-rose btn-round btn-danger">
+                        <a (click)="logOut()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">
                             Cerrar Sesion
                         </a>
                     </li>
