@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { Router } from '@angular/router';
 import { Lugar } from 'src/app/models/lugar';
+import { LugarService } from 'src/app/services/lugar-service/lugar.service';
 
 
 @Component({
@@ -14,23 +15,33 @@ export class HeadComponent implements OnInit {
   roles: string[];
   authority: string;
   lugar:Lugar;
+
   constructor(private tokenService: TokenService,
-    private router: Router) { }
+    private router: Router,
+    private lugarService:LugarService) { }
 
   ngOnInit() {
     this.lugar = JSON.parse(localStorage.getItem('lugar'));
     console.log(this.lugar);
     console.log("verificacion is login");
+    this.lugar=new Lugar();
     if (this.tokenService.getToken() == null) {
       console.log("se limpia el locar storage en inicio");
       localStorage.removeItem("isLoggedin");
+      
     }
     if(localStorage.getItem("isLoggedin")){
       if (localStorage.getItem("isLoggedin")=='true') {
+        this.guardarMidireccion();
         this.isLogin = true;
       }
     }
     
+  }
+  guardarMidireccion(){
+    this.lugarService.getLugarId(parseInt(sessionStorage.getItem("IdLugar"))).subscribe(data=>{
+      this.lugar=data;
+    })
   }
   refresh(){
     this.ngOnInit();
