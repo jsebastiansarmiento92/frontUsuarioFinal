@@ -12,12 +12,17 @@
                                     <img src="../assets/imageLogo/IsologotipoCromaticoVectorial200px.png" alt="">
                                 </div>
                                 <br>
+
                                 <div class="select">
                                     <select class="selectpicker" data-style="select-with-transition" title="Ciudad" data-size="7">
-                                  <option disabled>Elige una ciudad</option>
-                                  <option value="2">Yopal</option>
-                              </select>
+                                    <option disabled>Elige una ciudad</option>
+                                   <option value="2">Yopal</option>
+                                   </select>
                                 </div>
+
+
+
+
                                 <div class="center-loader" *ngIf="cargaBarrios;else elseBarrios">
                                     <strong>Cargando barrios
                                   <span class="loader__dot">.</span>
@@ -27,47 +32,53 @@
 
                                 <ng-template #elseBarrios>
                                     <div>
-                                        <select class="selectpicker" ng-options="elementos de barrios" data-style="select-with-transition" title="Barrio" name="opcionSeleccionado" [(ngModel)]="barrioSeleccionado" (change)="capturarBarrio()">
-                                      <option disabled>Elige un barrio</option>
-                                      <option *ngFor="let barrio of barrios" style="margin-block: 10px">
-                                          {{barrio.nombreBarrio}}
-                                      </option>
-                                  </select>
+                                        <input [(ngModel)]="searchText" style="text-align: center; " placeholder="buscar barrios" (keyup)="showSearchResults($event)" class="search-input" name="searchText" />
+                                    </div>
+                                    <div>
+
+                                        <ul *ngIf=" searching===true " class="search-results ">
+                                            <select ng-options="elementos de barrios" data-style="select-with-transition" title="Barrio" name="opcionSeleccionado" [(ngModel)]="barrioSeleccionado" (change)="capturarBarrio()">
+                                             <option disabled>Elige un barrio</option>
+                                              <option *ngFor="let barrio of barrios|search:searchText" style="margin-block: 10px">
+                                                      {{barrio.nombreBarrio}}
+                                              </option>
+                                             </select>
+                                        </ul>
                                     </div>
                                 </ng-template>
 
                                 <div>
-                                    <select class="selectpicker" title="Tipo Direccion" data-size="4" data-style="select-with-transition" (change)="capturarBarrio()" name="tipoDireccionSeleccionado" [(ngModel)]="tipoDireccionSeleccionado">
-                                  <option *ngFor="let tipoDireccion of tipoDirecciones">
+                                    <select class="selectpicker " title="Tipo Direccion " data-size="4 " data-style="select-with-transition " (change)="capturarBarrio() " name="tipoDireccionSeleccionado " [(ngModel)]="tipoDireccionSeleccionado ">
+                                  <option *ngFor="let tipoDireccion of tipoDirecciones ">
                                       {{tipoDireccion}}
                                   </option>
                               </select>
                                 </div>
 
-                                <div class="input-group">
+                                <div class="input-group ">
 
-                                    <input type="number" placeholder="0" name="n1" required style="text-align: center;" class="form-control" name="n1" [(ngModel)]="n1" required>
+                                    <input type="number " placeholder="0 " name="n1 " required style="text-align: center; " class="form-control " name="n1 " [(ngModel)]="n1 " required>
 
-                                    <span class="input-group-addon">
+                                    <span class="input-group-addon ">
                                   <h5>#</h5>
                               </span>
 
-                                    <input type="number" placeholder="0" name="n2" required style="text-align: center;" class="form-control" name="n2" [(ngModel)]="n2" required>
-                                    <span class="input-group-addon">
+                                    <input type="number " placeholder="0 " name="n2 " required style="text-align: center; " class="form-control " name="n2 " [(ngModel)]="n2 " required>
+                                    <span class="input-group-addon ">
                                   <h5>&#8212;</h5>
                               </span>
 
-                                    <input type="number" placeholder="0" name="n3" required class="form-control" style="text-align: center;" name="n3" [(ngModel)]="n3" required>
+                                    <input type="number " placeholder="0 " name="n3 " required class="form-control " style="text-align: center; " name="n3 " [(ngModel)]="n3 " required>
 
 
                                 </div>
-                                <button [disabled]="!f.valid" (click)="inicio()" class="btn btn-rose btn-lg" style=" color: white; margin: auto;">
-                              <i class="material-icons">search</i> Buscar Establecimientos
+                                <button [disabled]="!f.valid " (click)="inicio() " class="btn btn-rose btn-lg " style=" color: white; margin: auto; ">
+                              <i class="material-icons ">search</i> Buscar Establecimientos
 
                           </button>
                                 <br>
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer ">
                                 <br>
                             </div>
 
@@ -80,23 +91,23 @@
 
 </body>
 
-<!--div class="cd-section" id="features">
-      <div class="features-3">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="phone-container">
-              <img src="./assets/img/sections/iphone2.png">
+<!--div class="cd-section " id="features ">
+      <div class="features-3 ">
+        <div class="row ">
+          <div class="col-md-6 ">
+            <div class="phone-container ">
+              <img src="./assets/img/sections/iphone2.png ">
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 ">
             Some <br /> tags to push the text to align with the image, you can remove it if you have more text on the right side :-) 
-            <h2 class="title">Tu vida será mucho más fácil Con Quick Domicilios</h2>
-            <div class="info info-horizontal">
-              <div class="icon icon-primary">
-                <i class="material-icons">extension</i>
+            <h2 class="title ">Tu vida será mucho más fácil Con Quick Domicilios</h2>
+            <div class="info info-horizontal ">
+              <div class="icon icon-primary ">
+                <i class="material-icons ">extension</i>
               </div>
-              <div class="description">
-                <h4 class="info-title">Multiplataforma</h4>
+              <div class="description ">
+                <h4 class="info-title ">Multiplataforma</h4>
 
 
                 </div>
@@ -107,92 +118,92 @@
     </div>
     
   </div>
-  <div class="team-1" id="team-1">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">Comunidad Quick Domicilios</h2>
-          <h5 class="description">Conoce las opiniones de nuestros usuarios</h5>
+  <div class="team-1 " id="team-1 ">
+    <div class="container ">
+      <div class="row ">
+        <div class="col-md-8 ml-auto mr-auto text-center ">
+          <h2 class="title ">Comunidad Quick Domicilios</h2>
+          <h5 class="description ">Conoce las opiniones de nuestros usuarios</h5>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-            <div class="card card-profile card-plain">
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="card-header card-header-image">
-                    <a href="#pablo">
-                      <img class="img" src="./assets/img/faces/card-profile1-square.jpg">
+      <div class="row ">
+        <div class="col-md-6 ">
+            <div class="card card-profile card-plain ">
+              <div class="row ">
+                <div class="col-md-5 ">
+                  <div class="card-header card-header-image ">
+                    <a href="#pablo ">
+                      <img class="img " src="./assets/img/faces/card-profile1-square.jpg ">
                     </a>
                   </div>
                 </div>
-                <div class="col-md-7">
-                  <div class="card-body">
-                    <h4 class="card-title">Alec Thompson</h4>
-                    <h6 class="card-category text-muted">Usuario 1</h6>
-                    <p class="card-description">
+                <div class="col-md-7 ">
+                  <div class="card-body ">
+                    <h4 class="card-title ">Alec Thompson</h4>
+                    <h6 class="card-category text-muted ">Usuario 1</h6>
+                    <p class="card-description ">
                       Exelente aplicacion muy eficiente me gusta mucho
                     </p>
                   </div>
-                  <div class="card-footer">
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-twitter"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-facebook-square"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-google"></i></a>
+                  <div class="card-footer ">
+                    <a href="#pablo " class="btn btn-just-icon btn-link "><i class="fa fa-twitter "></i></a>
+                    <a href="#pablo " class="btn btn-just-icon btn-link "><i class="fa fa-facebook-square "></i></a>
+                    <a href="#pablo " class="btn btn-just-icon btn-link "><i class="fa fa-google "></i></a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="card card-profile card-plain">
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="card-header card-header-image">
-                    <a href="#pablo">
-                      <img class="img" src="./assets/img/faces/card-profile6-square.jpg">
+          <div class="col-md-6 ">
+            <div class="card card-profile card-plain ">
+              <div class="row ">
+                <div class="col-md-5 ">
+                  <div class="card-header card-header-image ">
+                    <a href="#pablo ">
+                      <img class="img " src="./assets/img/faces/card-profile6-square.jpg ">
                     </a>
                   </div>
                 </div>
-                <div class="col-md-7">
-                  <div class="card-body">
-                    <h4 class="card-title">Kendall Andrew</h4>
-                    <h6 class="card-category text-muted">Usuario 2</h6>
-                    <p class="card-description">
+                <div class="col-md-7 ">
+                  <div class="card-body ">
+                    <h4 class="card-title ">Kendall Andrew</h4>
+                    <h6 class="card-category text-muted ">Usuario 2</h6>
+                    <p class="card-description ">
                       Genial la aplicacion... buen servicio 
                     </p>
                   </div>
-                  <div class="card-footer">
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-linkedin"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-facebook-square"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link"><i class="fa fa-dribbble"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link"><i class="fa fa-google"></i></a>
+                  <div class="card-footer ">
+                    <a href="#pablo " class="btn btn-just-icon btn-link "><i class="fa fa-linkedin "></i></a>
+                    <a href="#pablo " class="btn btn-just-icon btn-link "><i class="fa fa-facebook-square "></i></a>
+                    <a href="#pablo " class="btn btn-just-icon btn-link "><i class="fa fa-dribbble "></i></a>
+                    <a href="#pablo " class="btn btn-just-icon btn-link "><i class="fa fa-google "></i></a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="card card-profile card-plain">
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="card-header card-header-image">
-                    <a href="#pablo">
-                      <img class="img" src="./assets/img/faces/card-profile4-square.jpg">
+          <div class="col-md-6 ">
+            <div class="card card-profile card-plain ">
+              <div class="row ">
+                <div class="col-md-5 ">
+                  <div class="card-header card-header-image ">
+                    <a href="#pablo ">
+                      <img class="img " src="./assets/img/faces/card-profile4-square.jpg ">
                     </a>
                   </div>
                 </div>
-                <div class="col-md-7">
-                  <div class="card-body">
-                    <h4 class="card-title">Gina Andrew</h4>
-                    <h6 class="card-category text-muted">Usuario 3</h6>
-                    <p class="card-description">
+                <div class="col-md-7 ">
+                  <div class="card-body ">
+                    <h4 class="card-title ">Gina Andrew</h4>
+                    <h6 class="card-category text-muted ">Usuario 3</h6>
+                    <p class="card-description ">
                       Amo esta aplicacion muy util.
                     </p>
                   </div>
-                  <div class="card-footer">
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-youtube-play"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-twitter"></i></a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link "><i class="fa fa-instagram"></i></a>
+                  <div class="card-footer ">
+                    <a href="#pablo " class="btn btn-just-icon btn-link "><i class="fa fa-youtube-play "></i></a>
+                    <a href="#pablo " class="btn btn-just-icon btn-link "><i class="fa fa-twitter "></i></a>
+                    <a href="#pablo " class="btn btn-just-icon btn-link "><i class="fa fa-instagram "></i></a>
                   </div>
                 </div>
               </div>
@@ -201,22 +212,22 @@
       </div>
     </div>
   </div>
-  <div class="team-5 section-image" style="background-image: url('./assets/img/examples/sushi1.jpg')">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto text-center">
-          <h2 class="title">QUICK DOMICILIOS</h2>
-          <h5 class="description">Encuentra lo que neceites en Quick Domicilios</h5>
+  <div class="team-5 section-image " style="background-image: url( './assets/img/examples/sushi1.jpg') ">
+    <div class="container ">
+      <div class="row ">
+        <div class="col-md-8 ml-auto mr-auto text-center ">
+          <h2 class="title ">QUICK DOMICILIOS</h2>
+          <h5 class="description ">Encuentra lo que neceites en Quick Domicilios</h5>
         </div>
       </div>
-      <div class="row">
+      <div class="row ">
       </div>
     </div>
   </div>-->
-<footer class="footer">
+<footer class="footer ">
 
-    <div class="container">
-        <nav class="float-left">
+    <div class="container ">
+        <nav class="float-left ">
             <ul>
                 <li>
                     <a>
@@ -240,12 +251,12 @@
                 </li>
             </ul>
         </nav>
-        <div class="copyright float-right">
+        <div class="copyright float-right ">
             &copy;
             <script>
                 document.write(new Date().getFullYear())
-            </script>, hecho con <i class="material-icons">favorite</i> por
-            <a target="_blank">BoyacaWeb</a>
+            </script>, hecho con <i class="material-icons ">favorite</i> por
+            <a target="_blank ">BoyacaWeb</a>
         </div>
     </div>
 </footer>

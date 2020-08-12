@@ -35,6 +35,15 @@ export class LandingComponent implements OnInit {
   barrioSeleccionado: string = '0';
   tipoDireccionSeleccionado: string = '0';
 
+  //busquedaBarrio="";
+  searchText="";
+ /**
+  * Shows or hide the search elements
+  * @var {boolean} searching
+  */
+ public searching: boolean = false;
+
+
   constructor(private router:Router,private barrioService:BarrioService,
     private authService:AuthService,
     private tokenService:TokenService,
@@ -43,7 +52,7 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
 
     this.autenticar();
-    console.log("ingreso metodo ngOninit lanfing")
+    console.log("ingreso metodo ngOninit landing")
     if(!localStorage.getItem('barrios')){
       this.cargarBarrios();
     }else
@@ -53,6 +62,8 @@ export class LandingComponent implements OnInit {
     this.llenarTipodirecciones();
     
   }
+  
+
   reanudarSesion(){
 
     if(localStorage.getItem("idSesion")!=null){
@@ -110,6 +121,9 @@ export class LandingComponent implements OnInit {
   cargarBarrios(){
     this.cargaBarrios=true;
     this.barrioService.getBarrios().subscribe(data=>{
+      for (var i = 0; i < data.length; i++) {
+        this.barrios.push(data[i]);
+      }
       this.barrios=data;
       console.log("barrios cargados");
       console.log(data);
@@ -163,4 +177,18 @@ export class LandingComponent implements OnInit {
     });
 
   }
+/**
+  * Show the search results based in the faqs
+  * @function showSearchResults
+  * @param {any} event
+  * @return {void}
+  */
+  public showSearchResults(event: any): void {
+    if (event.target.value.length >= 2) {
+      this.searching = true;
+    } else {
+      this.searching = false;
+    }
+  }
+
 }

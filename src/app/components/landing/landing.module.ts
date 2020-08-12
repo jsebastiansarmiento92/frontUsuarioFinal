@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
 import { FormsModule } from '@angular/forms';
+import { SearchPipe } from './pipe/search.pipe';
+
+
 
 
 
@@ -11,8 +14,8 @@ import { FormsModule } from '@angular/forms';
       CommonModule,
       //TranslateModule,
       LandingRoutingModule,
-     FormsModule
+      FormsModule
   ],
-  declarations: [LandingComponent]
+  declarations: [LandingComponent, SearchPipe]
 })
 export class LandingModule { }
