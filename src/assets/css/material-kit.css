@@ -14074,8 +14074,8 @@ textarea {
     color: #fff;
 }
 .page-header.header-small {
-    height: 100vh;
-    min-height: 75vh;
+    height: 60vh;
+    min-height: 50vh;
 }
 .page-header .iframe-container iframe {
     width: 100%;
