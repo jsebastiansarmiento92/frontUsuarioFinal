@@ -10,7 +10,7 @@
     </div>
 
     <div class="card-body " style="width: 233px; height: 213px; overflow-y: scroll;">
-        <div style="border: 1px solid rgba(153, 153, 153, 0.3);" *ngFor="let productoCarrito of productosCarrito" [(ngModel)]="productosCarrito">
+        <div style="border: 1px solid rgba(153, 153, 153, 0.3);" *ngFor="let productoCarrito of productosCarrito">
             <div class="row" style="margin-bottom: 5px;">
                 <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
 
@@ -28,9 +28,9 @@
                         <span> {{productoCarrito.cantidad}} </span>
 
                         <div class="btn-group">
-                            <button class="btn btn-round btn-info btn-sm" (click)="restarCantidad(productoCarrito)"> <i class="material-icons">remove</i>
+                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">remove</i>
                             </button>
-                            <button class="btn btn-round btn-info btn-sm" (click)="sumarCantidad(productoCarrito)"> <i class="material-icons">add</i>
+                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
                             </button>
                             <button class="btn btn-danger btn-info btn-sm" (click)="quitarProducto(productoCarrito)"> <i class="material-icons">cancel_presentation</i>
                             </button>
@@ -162,7 +162,9 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div-->
         <!-- section -->
         <div class="section" style="padding: 0px;">
@@ -496,10 +498,12 @@
                                             <span class="ui-icon-mail-closed"> {{empresa.email}} </span>
                                         </div>
                                         <div class="card-footer justify-content-between">
+
                                             <h5>
                                                 <button type="button" (click)="seleccionEmpresa(empresa)"
                                                     class="btn btn-outline-light float-right"
                                                     style="margin-left: 10px;">Seleccionar</button></h5>
+
                                         </div>
                                     </div>
                                 </div>
@@ -624,6 +628,7 @@
                                             <p class="description">
                                                 {{producto.descripcion}}
                                             </p>
+
                                             <div class="card-footer justify-content-between">
                                                 <div class="price-container">
                                                     <span class="price"> $ {{producto.valorProducto}} </span>
@@ -633,12 +638,14 @@
                                                         (click)="ordenarProducto(producto,confirmarModal)"
                                                         class="btn btn-outline-light float-right"
                                                         style="margin-left: 10px;">Ordenar</button></h5>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     -->
 
 
