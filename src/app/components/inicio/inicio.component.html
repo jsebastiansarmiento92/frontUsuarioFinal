@@ -829,33 +829,11 @@
 </ng-template>
 
 
-<ng-template #agregarBarrioModal>
-    <div class="card-body">
-        <form>
-            <div class="form-group">
-                <h3>Selecciona barrio: </h3>
-                <div class="center-loader" *ngIf="loader">
-                    <strong>Cargando barrios
-                        <span class="loader__dot">.</span>
-                        <span class="loader__dot">.</span>
-                        <span class="loader__dot">.</span></strong>
-                </div>
-
-                <select *ngIf="!loader" class="form-control" [(ngModel)]="barrioSeleccionado" name="barrioSeleccionado">
-
-                    <option value="0">Selecciona un barrio</option>
-                    <option *ngFor="let barrio of barrios" style="margin-block: 10px">
-                        {{barrio.nombreBarrio}}
-                    </option>
-                </select>
-
-                <h4>Direccion </h4>
-                <input type="text" class="form-control" [(ngModel)]="direccionCompleta" name="direccion" placeholder="direccionCompleta" disabled>
-
-            </div>
-            <button class="btn btn-danger">Aceptar</button>
-        </form>
-
-
+<ng-template #tramitandoModal>
+    <div class="center-loader" *ngIf="tramitando">
+        <strong>Tramitando.
+      <span class="loader__dot">.</span>
+      <span class="loader__dot">.</span>
+      <span class="loader__dot">.</span></strong>
     </div>
 </ng-template>

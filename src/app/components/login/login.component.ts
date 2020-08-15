@@ -112,6 +112,6 @@ export class LoginComponent implements OnInit {
   }
   login() {
     console.log("ingresoa registrer con google")
-    window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+    window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
   }
 }

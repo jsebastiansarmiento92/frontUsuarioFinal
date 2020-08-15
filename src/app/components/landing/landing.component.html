@@ -29,7 +29,6 @@
 
                                 <ng-template #elseBarrios>
                                     <div>
-<<<<<<< HEAD
                                         <input [(ngModel)]="searchText" style="text-align: center; " placeholder="buscar barrios" (keyup)="showSearchResults($event)" class="search-input" name="searchText" />
                                     </div>
                                     <div>
@@ -42,26 +41,13 @@
                                               </option>
                                              </select>
                                         </ul>
-=======
-                                        <select class="selectpicker" data-size="5" ng-options="elementos de barrios" data-style="select-with-transition" title="Barrio" name="opcionSeleccionado" [(ngModel)]="barrioSeleccionado" (change)="capturarBarrio()">
-                                      <option disabled>Elige un barrio</option>
-                                      <option *ngFor="let barrio of barrios" style="margin-block: 10px">
-                                          {{barrio.nombreBarrio}}
-                                      </option>
-                                  </select>
->>>>>>> 9ccdd857934f154fa237534ac459d34c0565aea7
                                     </div>
                                 </ng-template>
 
                                 <div>
-<<<<<<< HEAD
-                                    <select class="selectpicker " title="Tipo Direccion " data-size="4 " data-style="select-with-transition " (change)="capturarBarrio() " name="tipoDireccionSeleccionado " [(ngModel)]="tipoDireccionSeleccionado ">
-                                  <option *ngFor="let tipoDireccion of tipoDirecciones ">
-=======
                                     <select class="selectpicker" title="Tipo Direccion" data-size="5" data-style="select-with-transition" (change)="capturarBarrio()" name="tipoDireccionSeleccionado" [(ngModel)]="tipoDireccionSeleccionado">
                                       <option disabled>Elige un Direccion</option>
                                       <option *ngFor="let tipoDireccion of tipoDirecciones">
->>>>>>> 9ccdd857934f154fa237534ac459d34c0565aea7
                                       {{tipoDireccion}}
                                   </option>
                               </select>

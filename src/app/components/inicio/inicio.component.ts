@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductoServiceService } from 'src/app/services/producto-service/producto-service.service';
 import { ImageService } from 'src/app/services/image-service/image.service';
 import { Producto } from 'src/app/models/producto';
@@ -48,6 +48,7 @@ export class InicioComponent implements OnInit {
   direccionCompleta;
   direccion: string;
 
+  tramitando=false;
 
   tipoDireccionSeleccionada: string = "";
   barrioSeleccionado: string = "";
@@ -58,7 +59,7 @@ export class InicioComponent implements OnInit {
   producto: Producto = new Producto();
   empresaSeleccionada: Empresa;
 
-
+  @ViewChild('tramitandoModal', {static: false}) tramitandoModal;
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
@@ -100,7 +101,8 @@ export class InicioComponent implements OnInit {
     private servicioService: ServicioService,
     private empresaService: EmpresaService,
     private socketService: SocketService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+
   ) { }
 
   ngOnInit() {
@@ -599,6 +601,8 @@ export class InicioComponent implements OnInit {
     }
   }
   confirmarPedido() {
+   // this.tramitando=true;
+   // this.serviceModal.open(modal);
     console.log("ingreso a confirmar pedido");
     console.log("datos del lugar");
     console.log(this.lugar);
@@ -648,6 +652,8 @@ export class InicioComponent implements OnInit {
     // console.log(sessionStorage.getItem('IdLugar'));
     //this.lugar.idLugar=parseInt(sessionStorage.getItem('IdLugar'));
     this.lugar.idUsuario = parseInt(this.tokenService.getIdUser());
+    this.serviceModal.open(this.tramitandoModal);
+    this.tramitando=true;
     this.serviceLugar.createLugar(this.lugar).subscribe(data => {
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
@@ -663,6 +669,8 @@ export class InicioComponent implements OnInit {
     console.log("id del lugar guadados son: ");
     console.log(sessionStorage.getItem('IdLugar'));
     this.lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
+    this.serviceModal.open(this.tramitandoModal);
+    this.tramitando=true;
     this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
