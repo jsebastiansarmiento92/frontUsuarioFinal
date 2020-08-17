@@ -4,6 +4,7 @@ import { InicioRoutingModule } from './inicio-routing.module';
 import {FormsModule}from '@angular/forms';
 import { InicioComponent } from './inicio.component';
 import { NgbDropdownModule, NgbTabsetModule, NgbDatepickerModule, NgbModalModule  } from '@ng-bootstrap/ng-bootstrap';
+import { PipeSearchPipe } from './pipe/pipe-search.pipe';
 
 
 @NgModule({
@@ -14,6 +15,6 @@ import { NgbDropdownModule, NgbTabsetModule, NgbDatepickerModule, NgbModalModule
      FormsModule,
      NgbModalModule
   ],
-  declarations: [InicioComponent]
+  declarations: [InicioComponent, PipeSearchPipe]
 })
 export class InicioModule { }

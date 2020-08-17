@@ -48,10 +48,11 @@ export class InicioComponent implements OnInit {
   direccionCompleta;
   direccion: string;
 
-  tramitando=false;
+  tramitando = false;
 
   tipoDireccionSeleccionada: string = "";
   barrioSeleccionado: string = "";
+  busquedaSeleccionada = "";
   barrio: Barrio = new Barrio();
   lugar: Lugar;
   pedido: Pedido = new Pedido();
@@ -59,7 +60,9 @@ export class InicioComponent implements OnInit {
   producto: Producto = new Producto();
   empresaSeleccionada: Empresa;
 
-  @ViewChild('tramitandoModal', {static: false}) tramitandoModal;
+  productoSeleccionado = "";
+
+  @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
@@ -79,6 +82,15 @@ export class InicioComponent implements OnInit {
   totalPedido = 0;
   categoriaActual = " ";
 
+  /**
+  * Shows or hide the search elements
+  * @var {boolean} searching
+  */
+  public searching: boolean = false;
+
+
+
+
   private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
@@ -86,7 +98,7 @@ export class InicioComponent implements OnInit {
 
   messages: Message[] = [];
 
-
+  searchText = "";
 
   constructor(private productosService: ProductoServiceService,
     private imagenService: ImageService,
@@ -107,7 +119,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     //this.llenarTipodirecciones();
-
+    this.cargarProductos();
     if (JSON.parse(localStorage.getItem('myCar')) != null) {
       this.getCarrito();
     }
@@ -165,7 +177,7 @@ export class InicioComponent implements OnInit {
     //this.cargarProductos();
     this.cargarEmpresas();
     //this.cargarCategorias();
-   
+
 
   }
 
@@ -466,11 +478,11 @@ export class InicioComponent implements OnInit {
     console.log("carrito de local storage");
     console.log(this.productosCarrito);
 
-    if(this.productosCarrito.length<=0){
+    if (this.productosCarrito.length <= 0) {
       console.log("carrito vacio")
-    }else this.idEmpresa = this.productosCarrito[0].empresa.idEmpresa;
+    } else this.idEmpresa = this.productosCarrito[0].empresa.idEmpresa;
     this.totalPedido = this.calcular();
-   
+
   }
   calcular(): number {
     let total: number = 0;
@@ -486,8 +498,8 @@ export class InicioComponent implements OnInit {
       this.totalPedido = this.calcular();
     }
     console.log("productos en mycar antes del if");
-    if (this.verificarCarrito) { 
-      this.idEmpresa=0;
+    if (this.verificarCarrito) {
+      this.idEmpresa = 0;
     }
     localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
   }
@@ -502,14 +514,14 @@ export class InicioComponent implements OnInit {
 
     producto.cantidad -= 1;
     this.totalPedido = this.calcular();
-    if (this.verificarCarrito) { 
-      this.idEmpresa=0;
+    if (this.verificarCarrito) {
+      this.idEmpresa = 0;
     }
     localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
   }
   verificarCarrito(): boolean {
 
-    
+
     console.log("productos en mycar");
     console.log(localStorage.getItem('myCar'));
     if (this.productosCarrito.length <= 0) {
@@ -601,8 +613,8 @@ export class InicioComponent implements OnInit {
     }
   }
   confirmarPedido() {
-   // this.tramitando=true;
-   // this.serviceModal.open(modal);
+    // this.tramitando=true;
+    // this.serviceModal.open(modal);
     console.log("ingreso a confirmar pedido");
     console.log("datos del lugar");
     console.log(this.lugar);
@@ -653,7 +665,7 @@ export class InicioComponent implements OnInit {
     //this.lugar.idLugar=parseInt(sessionStorage.getItem('IdLugar'));
     this.lugar.idUsuario = parseInt(this.tokenService.getIdUser());
     this.serviceModal.open(this.tramitandoModal);
-    this.tramitando=true;
+    this.tramitando = true;
     this.serviceLugar.createLugar(this.lugar).subscribe(data => {
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
@@ -670,7 +682,7 @@ export class InicioComponent implements OnInit {
     console.log(sessionStorage.getItem('IdLugar'));
     this.lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
     this.serviceModal.open(this.tramitandoModal);
-    this.tramitando=true;
+    this.tramitando = true;
     this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
@@ -845,5 +857,17 @@ export class InicioComponent implements OnInit {
   screen() {
     alert("tamaño de pantalla pequeño");
   }
-
+  /**
+    * Show the search results based in the faqs
+    * @function showSearchResults
+    * @param {any} event
+    * @return {void}
+    */
+  public showSearchResults(event: any): void {
+    if (event.target.value.length >= 2) {
+      this.searching = true;
+    } else {
+      this.searching = false;
+    }
+  }
 }

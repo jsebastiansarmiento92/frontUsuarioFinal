@@ -77,7 +77,7 @@
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
                     <div class="brand ">
-                        <h1 class="title">Busca lo que necesites</h1>
+                        <h2 class="title">Busca lo que necesites</h2>
                     </div>
                 </div>
             </div>
@@ -380,7 +380,7 @@
                                         </div>
 
                                     </div>
-                                </div>
+                                    https://quickdomicilios.com </div>
                             </div>
                         </div>
                     </div>
@@ -417,11 +417,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                        <a class="carousel-control-prev" role="button" data-slide="prev">
                                             <i class="material-icons">keyboard_arrow_left</i>
                                             <span class="sr-only">Previous</span>
                                         </a>
-                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                        <a class="carousel-control-next" role="button" data-slide="next">
                                             <i class="material-icons">keyboard_arrow_right</i>
                                             <span class="sr-only">Next</span>
                                         </a>
@@ -430,7 +430,11 @@
                                 <!-- End Carousel Card -->
                             </div>
                             <h2 class="section-title">{{categoriaActual}}</h2>
-                            <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of empresas">
+
+                            <i class="material-icons">search</i> <input class="form-control" id="myInput" type="text" [(ngModel)]="searchText" placeholder="Buscar establecimiento" (keyup)="showSearchResults($event)" style="width: 90%; margin: auto;">
+
+
+                            <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of empresas|pipeSearch:searchText">
                                 <button class="btn btn-link " (click)="seleccionEmpresa(empresa)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                     <div class="row" style="margin: auto; ">
                                         <div class="profile-photo-small"
