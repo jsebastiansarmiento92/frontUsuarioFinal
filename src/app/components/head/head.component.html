@@ -21,17 +21,22 @@
                     </a>
                 </li>
                 <li class="dropdown nav-item">
-                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" (click)="refresh()">
+                    <a style="margin-left: 0px;" class="dropdown-toggle nav-link" data-toggle="dropdown" (click)="refresh()">
                         <i class="material-icons">location_on</i>Mi Direccion
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
-                        <a class="dropdown-item">
-                            <i class="material-icons">location_on</i>Direccion: {{lugar.direccionLugar}}
+                        <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item">
+                            <i style="margin-right: 2px;" class="material-icons">location_on</i>Direccion: 
+                            <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite"> {{lugar.direccionLugar}}</marquee>
+                            
                             <i></i>
                         </a>
 
-                        <a class="dropdown-item">
-                            <i class="material-icons">location_on</i>Barrio: {{lugar.barrio.nombreBarrio}}
+                        <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item">
+                            
+                                <i style="margin-right: 2px;" class="material-icons">location_on</i>Barrio: 
+                            <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite"> {{lugar.barrio.nombreBarrio}}</marquee>
+                            
                         </a>
                         <li class="button-container nav-item iframe-extern">
                             <a (click)="cambiar()" style="color: white;" class="btn  btn-rose btn-round btn-instagram">
