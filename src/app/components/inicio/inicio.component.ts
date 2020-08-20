@@ -23,7 +23,6 @@ import { EmpresaService } from 'src/app/services/empresa-service/empresa.service
 import { element } from 'protractor';
 import { SocketService } from 'src/app/services/socket-service/socket.service';
 import { Message } from 'src/app/models/message';
-
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { UsuarioService } from 'src/app/services/usuario-service/usuario.service';
@@ -128,6 +127,7 @@ export class InicioComponent implements OnInit {
     console.log(localStorage.getItem('cambioDireccion') == 'true');
 
     if (localStorage.getItem('lugar')) {
+      console.log("hay lugar guardado en el localstorage");
       this.lugar = JSON.parse(localStorage.getItem('lugar'));
       this.barrio = this.lugar.barrio;
       this.direccionCompleta = this.lugar.direccionLugar;
@@ -135,6 +135,7 @@ export class InicioComponent implements OnInit {
       console.log(this.lugar);
       this.asignarCosto();
       this.totalPedido = this.calcular();
+      this.promesaModificarLugarHead();
     }
 
     // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
@@ -160,25 +161,17 @@ export class InicioComponent implements OnInit {
       console.log("lugar guardado desde el landing");
       console.log(this.lugar);
       this.serviceLugar.getLugarId(parseInt(this.tokenService.getLugar())).subscribe(data => {
-
         this.totalPedido = this.calcular();
         this.barrio = data.barrio;
         this.direccionCompleta = data.direccionLugar;
         this.lugar = data;
         this.asignarCosto();
       })
-
     } else {
-
-
     }
-
-
     //this.cargarProductos();
     this.cargarEmpresas();
     //this.cargarCategorias();
-
-
   }
 
   initializeWebSocketConnection() {
@@ -197,7 +190,21 @@ export class InicioComponent implements OnInit {
       this.handleResult(message);
     });
   }
-
+ promesaModificarLugarHead() {
+    console.log("id del lugar guadados son: ");
+    console.log(sessionStorage.getItem('IdLugar'));
+  
+    this.lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
+    this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
+      
+    }, (err: any) => {
+      if (err.error.mensaje === undefined) {
+        alert("debe ingresar o registrarse");
+        this.router.navigate(["login"]);
+      }
+      console.log(err.error.mensaje)
+    })
+  }
   openSocket() {
     console.log(this.isLoaded);
     console.log("ingresa a estos metodos de sockets");
@@ -691,7 +698,7 @@ export class InicioComponent implements OnInit {
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
         alert("debe ingresar o registrarse");
-        this.router.navigate(["login"]);
+       // this.router.navigate(["login"]);
       }
       console.log(err.error.mensaje)
     })

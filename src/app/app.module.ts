@@ -15,6 +15,7 @@ import { interceptorProvider } from './interceptors/usuario-interceptor.service'
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SocketService } from './services/socket-service/socket.service';
 
+
 //import { CarritoComponent } from './components/carrito/carrito.component';
 //import { CarritoRoutingModule } from './components/carrito/carrito-routing.module';
 @NgModule({

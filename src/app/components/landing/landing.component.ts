@@ -134,10 +134,10 @@ export class LandingComponent implements OnInit {
   }
 
   promesaModificarLugar(lugar:Lugar) {
-    
-
     console.log("id del lugar guadados son: ");
     console.log(sessionStorage.getItem('IdLugar'));
+   
+    localStorage.setItem("lugar", JSON.stringify(lugar));
     lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
     this.serviceLugar.modificarLugar(lugar).subscribe(data => {
       
