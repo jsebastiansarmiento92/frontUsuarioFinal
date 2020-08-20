@@ -21077,7 +21077,7 @@ select.selectpicker {
         width: auto;
         margin-bottom: 15px;
         padding-top: 0;
-        height: 300px;
+        height: auto;
         -webkit-animation: none;
         animation: none;
         opacity: 1;
