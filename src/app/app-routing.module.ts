@@ -10,6 +10,7 @@ const routes: Routes = [
     { path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)},
     { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule)},
     { path: 'head', loadChildren: () => import('./components/head/head.module').then(m => m.HeadModule)},
+    { path: 'privacy-policy', loadChildren: () => import('./components/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule)},
     { path: 'carrito', loadChildren: () => import('./components/carrito/carrito.module').then(m => m.CarritoModule),
     canActivate:[guard]},
    // { path: 'access-denied', loadChildren: () => import('./access-denied/access-denied.module').then(m => m.AccessDeniedModule) },
