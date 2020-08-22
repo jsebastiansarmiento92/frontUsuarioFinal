@@ -35,6 +35,8 @@ export class LandingComponent implements OnInit {
   barrioSeleccionado: string = '0';
   tipoDireccionSeleccionado: string = '0';
 
+
+  telefono="";
   //busquedaBarrio="";
   searchText="";
  /**
@@ -111,11 +113,26 @@ export class LandingComponent implements OnInit {
     let lugar:Lugar=new Lugar();
     lugar.barrio=this.barrio;
     lugar.direccionLugar=this.tipoDireccionSeleccionado+" "+this.n1+"#"+this.n2+"-"+this.n3;
-    this.promesaModificarLugar(lugar);
-    localStorage.setItem("lugar", JSON.stringify(lugar));
-    console.log("oprimidio inicio")
+    lugar.idUsuario=parseInt(sessionStorage.getItem("IdSesion"));
+    if(parseInt(sessionStorage.getItem("IdLugar"))!=0){
+      this.promesaModificarLugar(lugar);
+      localStorage.setItem("lugar", JSON.stringify(lugar));
+      console.log("oprimidio inicio")
+      this.router.navigate(["inicio"]);
+    }else{
+
+      this.serviceLugar.createLugar(lugar).subscribe(data=>{
+        console.log(data);
+        this.serviceLugar.getLugaresIdUsuario1(parseInt(sessionStorage.getItem("IdSesion"))).subscribe(data=>{
+          sessionStorage.setItem("IdLugar",data[0].idLugar);
+        })
+      });
+     
+      localStorage.setItem("lugar", JSON.stringify(lugar));
+      console.log("oprimidio inicio")
+      this.router.navigate(["inicio"]);
+    }
     
-    this.router.navigate(["inicio"]);
   }
 
   cargarBarrios(){

@@ -86,7 +86,7 @@ export class SignupComponent implements OnInit {
     window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
   }
   registerFacebook(){
-    console.log("ingresoa registrer con google")
+    console.log("ingresoa registrer con facebook")
     window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
   registerManual(){
