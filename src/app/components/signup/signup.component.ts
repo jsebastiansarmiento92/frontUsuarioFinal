@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { SignUpRequest } from 'src/app/models/sign-up-request';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -31,12 +32,13 @@ export class SignupComponent implements OnInit {
 
   constructor(private authService:AuthService,
     private router:Router,
-    private tokenService:TokenService) { 
+    private tokenService:TokenService,
+    private serviceModal:NgbModal) { 
 
     }
 
   ngOnInit(): void {
-    
+      this.serviceModal.dismissAll();
      // console.log("no hay token guardado");
       this.urlTree = this.router.parseUrl(this.router.url);
       this.token = this.urlTree.queryParams['token'];
@@ -81,9 +83,13 @@ export class SignupComponent implements OnInit {
   logOut(){
     
   }
-  register(){
+  registerGoogle(){
     console.log("ingresoa registrer con google")
     window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+  }
+  registerFacebook(){
+    console.log("ingresoa registrer con facebook")
+    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
   registerManual(){
     console.log("datos que se envian para el registro");

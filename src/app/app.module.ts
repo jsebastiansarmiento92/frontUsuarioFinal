@@ -14,6 +14,8 @@ import { AuthService } from './services/auth/auth.service';
 import { interceptorProvider } from './interceptors/usuario-interceptor.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SocketService } from './services/socket-service/socket.service';
+import { TerminosCondicionesComponent } from './components/terminos-condiciones/terminos-condiciones.component';
+
 
 //import { CarritoComponent } from './components/carrito/carrito.component';
 //import { CarritoRoutingModule } from './components/carrito/carrito-routing.module';
@@ -22,6 +24,7 @@ import { SocketService } from './services/socket-service/socket.service';
     AppComponent,
    // InicioComponent,
      HeadComponent,
+   TerminosCondicionesComponent,
    // FooterComponent,
     //LoginComponent,
    // SignupComponent,

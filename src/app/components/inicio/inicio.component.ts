@@ -23,7 +23,6 @@ import { EmpresaService } from 'src/app/services/empresa-service/empresa.service
 import { element } from 'protractor';
 import { SocketService } from 'src/app/services/socket-service/socket.service';
 import { Message } from 'src/app/models/message';
-
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { UsuarioService } from 'src/app/services/usuario-service/usuario.service';
@@ -63,6 +62,7 @@ export class InicioComponent implements OnInit {
   productoSeleccionado = "";
 
   @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
+  @ViewChild('loginModal', { static: false }) loginModal;
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
@@ -119,6 +119,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     //this.llenarTipodirecciones();
+    
     this.cargarProductos();
     if (JSON.parse(localStorage.getItem('myCar')) != null) {
       this.getCarrito();
@@ -128,6 +129,7 @@ export class InicioComponent implements OnInit {
     console.log(localStorage.getItem('cambioDireccion') == 'true');
 
     if (localStorage.getItem('lugar')) {
+      console.log("hay lugar guardado en el localstorage");
       this.lugar = JSON.parse(localStorage.getItem('lugar'));
       this.barrio = this.lugar.barrio;
       this.direccionCompleta = this.lugar.direccionLugar;
@@ -135,6 +137,7 @@ export class InicioComponent implements OnInit {
       console.log(this.lugar);
       this.asignarCosto();
       this.totalPedido = this.calcular();
+      this.promesaModificarLugarHead();
     }
 
     // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
@@ -160,25 +163,17 @@ export class InicioComponent implements OnInit {
       console.log("lugar guardado desde el landing");
       console.log(this.lugar);
       this.serviceLugar.getLugarId(parseInt(this.tokenService.getLugar())).subscribe(data => {
-
         this.totalPedido = this.calcular();
         this.barrio = data.barrio;
         this.direccionCompleta = data.direccionLugar;
         this.lugar = data;
         this.asignarCosto();
       })
-
     } else {
-
-
     }
-
-
     //this.cargarProductos();
     this.cargarEmpresas();
     //this.cargarCategorias();
-
-
   }
 
   initializeWebSocketConnection() {
@@ -197,7 +192,22 @@ export class InicioComponent implements OnInit {
       this.handleResult(message);
     });
   }
-
+ promesaModificarLugarHead() {
+    console.log("id del lugar guadados son: ");
+    console.log(sessionStorage.getItem('IdLugar'));
+  
+    this.lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
+    this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
+      
+    }, (err: any) => {
+      if (err.error.mensaje === undefined) {
+        alert("debe ingresar o registrarse");
+        this.serviceModal.open(this.loginModal);
+        //this.router.navigate(["login"]);
+      }
+      console.log(err.error.mensaje)
+    })
+  }
   openSocket() {
     console.log(this.isLoaded);
     console.log("ingresa a estos metodos de sockets");
@@ -280,6 +290,7 @@ export class InicioComponent implements OnInit {
     this.empresaSelected = false;
     this.empresas = this.empresasTemporal;
     console.log("ingreso a licores padre");
+    console.log(this.empresas);
     let empresasSeleccion: Empresa[] = [];
     this.empresas.forEach(element => {
       element.categorias.forEach(element2 => {
@@ -313,6 +324,7 @@ export class InicioComponent implements OnInit {
     console.log("ingreso a drogueria padre");
     this.empresas = this.empresasTemporal;
     let empresasSeleccion: Empresa[] = [];
+    console.log(this.empresas);
     this.empresas.forEach(element => {
       element.categorias.forEach(element2 => {
         if (element2.dependencia.idCategoria == 4) {
@@ -611,6 +623,7 @@ export class InicioComponent implements OnInit {
     } else if (this.barrio.tipoCosto == "COSTO6") {
       this.valorServicio = 10000;
     }
+
   }
   confirmarPedido() {
     // this.tramitando=true;
@@ -618,6 +631,7 @@ export class InicioComponent implements OnInit {
     console.log("ingreso a confirmar pedido");
     console.log("datos del lugar");
     console.log(this.lugar);
+
     if (this.productosCarrito.length > 0) {
       if (this.lugar == null) {
         alert("no ha ingresado direccion de pedido");
@@ -643,9 +657,7 @@ export class InicioComponent implements OnInit {
     //this.lugar.barrio = this.barrio;
     /// this.lugar.direccionLugar = this.direccionCompleta;
     //  this.lugar.idUsuario = this.getidSesion();
-    console.log("datos de lugar");
-    console.log(this.lugar);
-
+    
     if (parseInt(this.tokenService.getLugar()) == 0) {
       if (this.lugar != null) {
         this.promesaCrearLugar();
@@ -691,7 +703,8 @@ export class InicioComponent implements OnInit {
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
         alert("debe ingresar o registrarse");
-        this.router.navigate(["login"]);
+        this.serviceModal.open(this.loginModal);
+       // this.router.navigate(["login"]);
       }
       console.log(err.error.mensaje)
     })
@@ -705,6 +718,8 @@ export class InicioComponent implements OnInit {
 
   }
   confirmarTransaccion() {
+    this.serviceModal.open(this.tramitandoModal);
+    this.tramitando = true;
     this.loaderPedido = true;
     this.pedido.idCliente = this.getidSesion();
     this.pedido.lugar = this.lugar;
@@ -775,7 +790,7 @@ export class InicioComponent implements OnInit {
         localStorage.removeItem('myCar');
 
         this.asignarCosto();
-
+      this.tramitando = false;
       }, (err: any) => {
         estadoServicio = "Error";
       });
@@ -787,9 +802,11 @@ export class InicioComponent implements OnInit {
       this.servicio.estadoServicio = estadoServicio;
       this.servicioService.updateServicio(this.servicio).subscribe(data => {
         console.log(data.mensaje);
-        alert(data.mensaje);
         this.solicitarPedido();
         this.notificacionesGeneral();
+
+        alert(data.mensaje);
+        this.idEmpresa = 0;
         this.ngOnInit();
 
       }, (err: any) => {

@@ -14,29 +14,41 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <br><br>
-                <li class="dropdown nav-item">
-                    
-                    <a [routerLink]="['carrito']" [routerLinkActive]="['active']" data-toggle="dropdown">
-                        <i class="material-icons">shopping_cart</i> Carrito
+
+
+                <li class="dropdown nav-item" *ngIf="getIslogin()">
+                    <a (click)="refresh()" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="material-icons" style="font-size:30px;color:green">account_circle</i> Cuenta
                     </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+
+                        <a class="dropdown-item">
+                            <i class="material-icons">people</i> {{nombreUsuario}}
+                        </a>
+
+                        <a class="dropdown-item">
+                            <i class="material-icons">call</i> {{telefono}}
+                        </a>
+                    </div>
                 </li>
-                <li class="dropdown nav-item">
+                <li class="dropdown nav-item" *ngIf="getIslogin()">
+
                     <a style="margin-left: 0px;" class="dropdown-toggle nav-link" data-toggle="dropdown" (click)="refresh()">
                         <i class="material-icons">location_on</i>Mi Direccion
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
-                        <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item">  
-                            <i style="margin-right: 2px;" class="material-icons">location_on</i>Direccion: 
+                        <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item">
+                            <i style="margin-right: 2px;" class="material-icons">location_on</i>Direccion:
                             <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite"> {{lugar.direccionLugar}}</marquee>
-                            
+
                             <i></i>
                         </a>
 
                         <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item">
-                            
-                                <i style="margin-right: 2px;" class="material-icons">location_on</i>Barrio: 
+
+                            <i style="margin-right: 2px;" class="material-icons">location_on</i>Barrio:
                             <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite"> {{lugar.barrio.nombreBarrio}}</marquee>
-                            
+
                         </a>
                         <li class="button-container nav-item iframe-extern">
                             <a (click)="cambiar()" style="color: white;" class="btn  btn-rose btn-round btn-instagram">
@@ -51,7 +63,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
                         <a class="dropdown-item">
-                            <i class="material-icons">line_style</i> Presentacion
+                            <i class="material-icons" (click)="privacyPolicy()">line_style</i> Politica de privacidad
                         </a>
                         <a class="dropdown-item">
                             <i class="material-icons">layers</i>Nuestra app

@@ -35,6 +35,8 @@ export class LandingComponent implements OnInit {
   barrioSeleccionado: string = '0';
   tipoDireccionSeleccionado: string = '0';
 
+
+  telefono="";
   //busquedaBarrio="";
   searchText="";
  /**
@@ -50,7 +52,7 @@ export class LandingComponent implements OnInit {
     private serviceLugar:LugarService) { }
 
   ngOnInit() {
-
+    this.autenticarToken();
     this.autenticar();
     console.log("ingreso metodo ngOninit landing")
     if(!localStorage.getItem('barrios')){
@@ -75,6 +77,46 @@ export class LandingComponent implements OnInit {
     //this.router.navigate(['inicio']);
     }
   }
+  autenticarToken(){
+    this.urlTree = this.router.parseUrl(this.router.url);
+    this.token = this.urlTree.queryParams['token'];
+    this.error = this.urlTree.queryParams['error'];
+    if(this.token==null){
+      console.log("no hay token guardado");
+    }else
+    if(this.token.length>1){
+      window.sessionStorage.setItem('AuthToken', this.token);
+      window.localStorage.setItem('AuthToken', this.token);
+     }
+    console.log("token llegando es:");
+    console.log(this.token);
+    console.log("error llegando es ");
+    console.log(this.error);
+  if(window.sessionStorage.getItem('AuthToken')){
+
+    console.log("hay tonken guardado porque ingresa al if");
+
+    this.authService.getCurrentUser().subscribe(data=>{
+      console.log(data);
+    //this.tokenService.setToken(data.token);
+    window.localStorage.setItem("idSesion",JSON.stringify(data));
+    this.tokenService.setUserName(data.name);
+    this.tokenService.setAuthorities(data.rol);
+    this.tokenService.setIdUser(data.id);
+    this.tokenService.setLugar(data.idLugar);
+    //alert("id del usuario lopueado es "+data.id);
+    //window.sessionStorage.setItem("idSesion",data.);
+    this.isLogged = true;
+    this.isLoginFail = false;
+    this.roles = this.tokenService.getAuthorities();
+    localStorage.setItem('isLoggedin', 'true');
+    //window.location.reload();
+    this.router.navigate(['inicio']);
+    this.loader=false;
+    });
+  }
+  }
+  
   autenticar(){
  
   if(window.localStorage.getItem('AuthToken')){
@@ -111,11 +153,25 @@ export class LandingComponent implements OnInit {
     let lugar:Lugar=new Lugar();
     lugar.barrio=this.barrio;
     lugar.direccionLugar=this.tipoDireccionSeleccionado+" "+this.n1+"#"+this.n2+"-"+this.n3;
-    this.promesaModificarLugar(lugar);
-    localStorage.setItem("lugar", JSON.stringify(lugar));
-    console.log("oprimidio inicio")
+    lugar.idUsuario=parseInt(sessionStorage.getItem("IdSesion"));
+    if(parseInt(sessionStorage.getItem("IdLugar"))!=0){
+      this.promesaModificarLugar(lugar);
+      localStorage.setItem("lugar", JSON.stringify(lugar));
+      console.log("oprimidio inicio")
+      this.router.navigate(["inicio"]);
+    }else{
+      this.serviceLugar.createLugar(lugar).subscribe(data=>{
+        console.log(data);
+        this.serviceLugar.getLugaresIdUsuario1(parseInt(sessionStorage.getItem("IdSesion"))).subscribe(data=>{
+          sessionStorage.setItem("IdLugar",data[0].idLugar);
+        })
+      });
+     
+      localStorage.setItem("lugar", JSON.stringify(lugar));
+      console.log("oprimidio inicio")
+      this.router.navigate(["inicio"]);
+    }
     
-    this.router.navigate(["inicio"]);
   }
 
   cargarBarrios(){
@@ -134,20 +190,20 @@ export class LandingComponent implements OnInit {
   }
 
   promesaModificarLugar(lugar:Lugar) {
-    
-
     console.log("id del lugar guadados son: ");
     console.log(sessionStorage.getItem('IdLugar'));
+   
+    localStorage.setItem("lugar", JSON.stringify(lugar));
     lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
     this.serviceLugar.modificarLugar(lugar).subscribe(data => {
       
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
         alert("debe ingresar o registrarse");
-        this.router.navigate(["login"]);
+        this.router.navigate(["inicio"]);
       }
       console.log(err.error.mensaje)
-    })
+    });
   }
   llenarTipodirecciones() {
     this.tipoDirecciones.push("Carrera");
