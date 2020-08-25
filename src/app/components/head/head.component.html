@@ -11,16 +11,30 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
+
+
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <br><br>
-                <li class="dropdown nav-item">
 
-                    <a [routerLink]="['carrito']" [routerLinkActive]="['active']" data-toggle="dropdown">
-                        <i class="material-icons">shopping_cart</i> Carrito
+
+                <li class="dropdown nav-item" *ngIf="getIslogin()">
+                    <a (click)="refresh()" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="material-icons" style="font-size:30px;color:green">account_circle</i> Cuenta
                     </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+
+                        <a class="dropdown-item">
+                            <i class="material-icons">people</i> {{nombreUsuario}}
+                        </a>
+
+                        <a class="dropdown-item">
+                            <i class="material-icons">call</i> {{telefono}}
+                        </a>
+                    </div>
                 </li>
-                <li class="dropdown nav-item">
+                <li class="dropdown nav-item" *ngIf="getIslogin()">
+
                     <a style="margin-left: 0px;" class="dropdown-toggle nav-link" data-toggle="dropdown" (click)="refresh()">
                         <i class="material-icons">location_on</i>Mi Direccion
                     </a>

@@ -62,6 +62,7 @@ export class InicioComponent implements OnInit {
   productoSeleccionado = "";
 
   @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
+  @ViewChild('loginModal', { static: false }) loginModal;
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
@@ -118,6 +119,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     //this.llenarTipodirecciones();
+    
     this.cargarProductos();
     if (JSON.parse(localStorage.getItem('myCar')) != null) {
       this.getCarrito();
@@ -200,7 +202,8 @@ export class InicioComponent implements OnInit {
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
         alert("debe ingresar o registrarse");
-        this.router.navigate(["login"]);
+        this.serviceModal.open(this.loginModal);
+        //this.router.navigate(["login"]);
       }
       console.log(err.error.mensaje)
     })
@@ -700,6 +703,7 @@ export class InicioComponent implements OnInit {
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
         alert("debe ingresar o registrarse");
+        this.serviceModal.open(this.loginModal);
        // this.router.navigate(["login"]);
       }
       console.log(err.error.mensaje)

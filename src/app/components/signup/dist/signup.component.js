@@ -1,19 +1,24 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else
+        for (var i = decorators.length - 1; i >= 0; i--)
+            if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
 exports.SignupComponent = void 0;
 var core_1 = require("@angular/core");
 var sign_up_request_1 = require("src/app/models/sign-up-request");
-var SignupComponent = /** @class */ (function () {
-    function SignupComponent(authService, router, tokenService) {
+var SignupComponent = /** @class */ (function() {
+    function SignupComponent(authService, router, tokenService, serviceModal) {
         this.authService = authService;
         this.router = router;
         this.tokenService = tokenService;
+        this.serviceModal = serviceModal;
         this.setState = false;
         this.isLogged = false;
         this.isLoginFail = false;
@@ -23,10 +28,10 @@ var SignupComponent = /** @class */ (function () {
         this.signupRequest = new sign_up_request_1.SignUpRequest();
         this.msjErr = '';
         this.msjOK = '';
-    }
-    ;
-    SignupComponent.prototype.ngOnInit = function () {
+    };
+    SignupComponent.prototype.ngOnInit = function() {
         var _this = this;
+        this.serviceModal.dismissAll();
         // console.log("no hay token guardado");
         this.urlTree = this.router.parseUrl(this.router.url);
         this.token = this.urlTree.queryParams['token'];
@@ -41,7 +46,7 @@ var SignupComponent = /** @class */ (function () {
         console.log(this.error);
         if (window.sessionStorage.getItem('AuthToken')) {
             console.log("hay tonken guardado porque ingresa al if");
-            this.authService.getCurrentUser().subscribe(function (data) {
+            this.authService.getCurrentUser().subscribe(function(data) {
                 console.log(data);
                 //this.tokenService.setToken(data.token);
                 window.localStorage.setItem("idSesion", JSON.stringify(data));
@@ -61,28 +66,27 @@ var SignupComponent = /** @class */ (function () {
             });
         }
     };
-    SignupComponent.prototype.getIslogin = function () {
+    SignupComponent.prototype.getIslogin = function() {
         return false;
     };
-    SignupComponent.prototype.logOut = function () {
-    };
-    SignupComponent.prototype.registerGoogle = function () {
+    SignupComponent.prototype.logOut = function() {};
+    SignupComponent.prototype.registerGoogle = function() {
         console.log("ingresoa registrer con google");
         window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
     };
-    SignupComponent.prototype.registerFacebook = function () {
+    SignupComponent.prototype.registerFacebook = function() {
         console.log("ingresoa registrer con facebook");
         window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
     };
-    SignupComponent.prototype.registerManual = function () {
+    SignupComponent.prototype.registerManual = function() {
         var _this = this;
         console.log("datos que se envian para el registro");
         console.log(this.signupRequest);
-        this.authService.onRegister(this.signupRequest).subscribe(function (data) {
+        this.authService.onRegister(this.signupRequest).subscribe(function(data) {
             console.log(data);
             alert("Registro completo por favor inicie sesion con sus datos para continuar");
             _this.router.navigate(['login']);
-        }, function (err) {
+        }, function(err) {
             _this.creado = false;
             _this.failCreado = true;
             _this.msjErr = err.error.mensaje;

@@ -67,8 +67,8 @@ var InicioComponent = /** @class */ (function () {
         this.searchText = "";
     }
     InicioComponent.prototype.ngOnInit = function () {
-        var _this = this;
         //this.llenarTipodirecciones();
+        var _this = this;
         this.cargarProductos();
         if (JSON.parse(localStorage.getItem('myCar')) != null) {
             this.getCarrito();
@@ -151,7 +151,8 @@ var InicioComponent = /** @class */ (function () {
         }, function (err) {
             if (err.error.mensaje === undefined) {
                 alert("debe ingresar o registrarse");
-                _this.router.navigate(["login"]);
+                _this.serviceModal.open(_this.loginModal);
+                //this.router.navigate(["login"]);
             }
             console.log(err.error.mensaje);
         });
@@ -631,6 +632,7 @@ var InicioComponent = /** @class */ (function () {
         }, function (err) {
             if (err.error.mensaje === undefined) {
                 alert("debe ingresar o registrarse");
+                _this.serviceModal.open(_this.loginModal);
                 // this.router.navigate(["login"]);
             }
             console.log(err.error.mensaje);
@@ -801,6 +803,9 @@ var InicioComponent = /** @class */ (function () {
     __decorate([
         core_1.ViewChild('tramitandoModal', { static: false })
     ], InicioComponent.prototype, "tramitandoModal");
+    __decorate([
+        core_1.ViewChild('loginModal', { static: false })
+    ], InicioComponent.prototype, "loginModal");
     InicioComponent = __decorate([
         core_1.Component({
             selector: 'app-inicio',

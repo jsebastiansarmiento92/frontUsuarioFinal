@@ -36,6 +36,7 @@ var LandingComponent = /** @class */ (function () {
         this.searching = false;
     }
     LandingComponent.prototype.ngOnInit = function () {
+        this.autenticarToken();
         this.autenticar();
         console.log("ingreso metodo ngOninit landing");
         if (!localStorage.getItem('barrios')) {
@@ -53,6 +54,44 @@ var LandingComponent = /** @class */ (function () {
             this.tokenService.setIdUser(data.id);
             this.tokenService.setLugar(data.idLugar);
             //this.router.navigate(['inicio']);
+        }
+    };
+    LandingComponent.prototype.autenticarToken = function () {
+        var _this = this;
+        this.urlTree = this.router.parseUrl(this.router.url);
+        this.token = this.urlTree.queryParams['token'];
+        this.error = this.urlTree.queryParams['error'];
+        if (this.token == null) {
+            console.log("no hay token guardado");
+        }
+        else if (this.token.length > 1) {
+            window.sessionStorage.setItem('AuthToken', this.token);
+            window.localStorage.setItem('AuthToken', this.token);
+        }
+        console.log("token llegando es:");
+        console.log(this.token);
+        console.log("error llegando es ");
+        console.log(this.error);
+        if (window.sessionStorage.getItem('AuthToken')) {
+            console.log("hay tonken guardado porque ingresa al if");
+            this.authService.getCurrentUser().subscribe(function (data) {
+                console.log(data);
+                //this.tokenService.setToken(data.token);
+                window.localStorage.setItem("idSesion", JSON.stringify(data));
+                _this.tokenService.setUserName(data.name);
+                _this.tokenService.setAuthorities(data.rol);
+                _this.tokenService.setIdUser(data.id);
+                _this.tokenService.setLugar(data.idLugar);
+                //alert("id del usuario lopueado es "+data.id);
+                //window.sessionStorage.setItem("idSesion",data.);
+                _this.isLogged = true;
+                _this.isLoginFail = false;
+                _this.roles = _this.tokenService.getAuthorities();
+                localStorage.setItem('isLoggedin', 'true');
+                //window.location.reload();
+                _this.router.navigate(['inicio']);
+                _this.loader = false;
+            });
         }
     };
     LandingComponent.prototype.autenticar = function () {
@@ -135,7 +174,7 @@ var LandingComponent = /** @class */ (function () {
         }, function (err) {
             if (err.error.mensaje === undefined) {
                 alert("debe ingresar o registrarse");
-                _this.router.navigate(["login"]);
+                _this.router.navigate(["inicio"]);
             }
             console.log(err.error.mensaje);
         });

@@ -10,15 +10,16 @@ var __decorate = (this && this.__decorate) || function(decorators, target, key, 
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.LoginComponent = void 0;
+exports.LoginModalComponent = void 0;
 var core_1 = require("@angular/core");
 var login_usuario_1 = require("src/app/models/login-usuario");
 var sign_up_request_1 = require("src/app/models/sign-up-request");
-var LoginComponent = /** @class */ (function() {
-    function LoginComponent(authService, tokenService, router) {
+var LoginModalComponent = /** @class */ (function() {
+    function LoginModalComponent(authService, tokenService, router, serviceModal) {
         this.authService = authService;
         this.tokenService = tokenService;
         this.router = router;
+        this.serviceModal = serviceModal;
         this.loader = false;
         this.logingIn = false;
         this.usuario = new login_usuario_1.LoginUsuario();
@@ -29,7 +30,7 @@ var LoginComponent = /** @class */ (function() {
         this.setState = false;
         this.signupReq = new sign_up_request_1.SignUpRequest();
     }
-    LoginComponent.prototype.ngOnInit = function() {
+    LoginModalComponent.prototype.ngOnInit = function() {
         /**  if (this.tokenService.getToken()) {
            console.log("usuario "+this.tokenService.getUserName());
            this.isLogged = true;
@@ -53,7 +54,7 @@ var LoginComponent = /** @class */ (function() {
             this.getUser();
         }
     };
-    LoginComponent.prototype.onLoggedin = function() {
+    LoginModalComponent.prototype.onLoggedin = function() {
         var _this = this;
         // this.usuario = new LoginUsuario(this.usuario.nombreUsuario, this.usuario.password);
         this.logingIn = true;
@@ -80,7 +81,7 @@ var LoginComponent = /** @class */ (function() {
             //console.log("error "+ err.error.message);
         });
     };
-    LoginComponent.prototype.getUser = function() {
+    LoginModalComponent.prototype.getUser = function() {
         var _this = this;
         this.authService.getCurrentUser().subscribe(function(data) {
             console.log(data);
@@ -102,24 +103,28 @@ var LoginComponent = /** @class */ (function() {
             _this.loader = false;
         });
     };
-    LoginComponent.prototype.onRegister = function() {
-        this.router.navigate(['signup']);
+    LoginModalComponent.prototype.onRegister = function() {
+        // this.serviceModal.dismissAll();
+        this.router.navigate(["signup"]);
     };
-    LoginComponent.prototype.loginGoogle = function() {
+    LoginModalComponent.prototype.loginGoogle = function() {
         console.log("ingresoa registrer con google");
-        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/landing";
     };
-    LoginComponent.prototype.loginFacebook = function() {
+    LoginModalComponent.prototype.loginFacebook = function() {
         console.log("ingresoa registrer con facebook");
-        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/landing";
     };
-    LoginComponent = __decorate([
+    __decorate([
+        core_1.ViewChild('registroModal', { static: false })
+    ], LoginModalComponent.prototype, "registroModal");
+    LoginModalComponent = __decorate([
         core_1.Component({
-            selector: 'app-login',
-            templateUrl: './login.component.html',
-            styleUrls: ['./login.component.css']
+            selector: 'app-login-modal',
+            templateUrl: './login-modal.component.html',
+            styleUrls: ['./login-modal.component.css']
         })
-    ], LoginComponent);
-    return LoginComponent;
+    ], LoginModalComponent);
+    return LoginModalComponent;
 }());
-exports.LoginComponent = LoginComponent;
+exports.LoginModalComponent = LoginModalComponent;

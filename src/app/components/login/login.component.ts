@@ -89,6 +89,7 @@ export class LoginComponent implements OnInit {
   }
   
   getUser() {
+
     this.authService.getCurrentUser().subscribe(data => {
       console.log(data);
       window.localStorage.setItem("idSesion", JSON.stringify(data));
@@ -99,6 +100,7 @@ export class LoginComponent implements OnInit {
       this.tokenService.setLugar(data.idLugar);
       //alert("id del usuario lopueado es "+data.id);
       //window.sessionStorage.setItem("idSesion",data.);
+      //window.sessionStorage.setItem("AuthToken",this.tokenService.getToken());
       this.isLogged = true;
       this.isLoginFail = false;
       this.roles = this.tokenService.getAuthorities();

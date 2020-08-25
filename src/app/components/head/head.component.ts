@@ -16,6 +16,8 @@ export class HeadComponent implements OnInit {
   authority: string;
   lugar:Lugar;
   refreshHead=false;
+  nombreUsuario="";
+  telefono="sin guardar";
   constructor(private tokenService: TokenService,
     private router: Router,
     private lugarService:LugarService) { }
@@ -28,6 +30,7 @@ export class HeadComponent implements OnInit {
     console.log("verificacion is login");
 
     this.lugar=new Lugar();
+    this.mostrarNombreSesion();
     if (this.tokenService.getToken() == null) {
       console.log("se limpia el locar storage en inicio");
       localStorage.removeItem("isLoggedin");
@@ -43,6 +46,10 @@ export class HeadComponent implements OnInit {
       }
     }
     this.refreshHead=false;
+  }
+  mostrarNombreSesion(){
+    this.nombreUsuario=window.sessionStorage.getItem("AuthUserName");
+
   }
   guardarMidireccion(){
     this.lugarService.getLugarId(parseInt(sessionStorage.getItem("IdLugar"))).subscribe(data=>{
@@ -65,6 +72,8 @@ export class HeadComponent implements OnInit {
       this.tokenService.logOut();
       this.isLogin = false;
       this.authority = '';
+      this.nombreUsuario="";
+      
       //this.router.navigate([""]);
     } else {
 

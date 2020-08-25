@@ -74,9 +74,9 @@ function () {
     this.totalPedido = 0;
     this.categoriaActual = " ";
     /**
-    * Shows or hide the search elements
-    * @var {boolean} searching
-    */
+     * Shows or hide the search elements
+     * @var {boolean} searching
+     */
 
     this.searching = false;
     this.serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket';
@@ -87,8 +87,8 @@ function () {
   }
 
   InicioComponent.prototype.ngOnInit = function () {
-    var _this = this; //this.llenarTipodirecciones();
-
+    //this.llenarTipodirecciones();
+    var _this = this;
 
     this.cargarProductos();
 
@@ -180,7 +180,8 @@ function () {
       if (err.error.mensaje === undefined) {
         alert("debe ingresar o registrarse");
 
-        _this.router.navigate(["login"]);
+        _this.serviceModal.open(_this.loginModal); //this.router.navigate(["login"]);
+
       }
 
       console.log(err.error.mensaje);
@@ -453,7 +454,7 @@ function () {
       });
     }
     /**this.categoriaService.getCategoriasUsuarioFinal().subscribe(data => {
-           // this.categorias = data;
+          // this.categorias = data;
       data.forEach(element => {
         if(element.dependencia!=null){
           this.categorias.push(element);
@@ -706,7 +707,10 @@ function () {
       }
     }, function (err) {
       if (err.error.mensaje === undefined) {
-        alert("debe ingresar o registrarse"); // this.router.navigate(["login"]);
+        alert("debe ingresar o registrarse");
+
+        _this.serviceModal.open(_this.loginModal); // this.router.navigate(["login"]);
+
       }
 
       console.log(err.error.mensaje);
@@ -724,6 +728,8 @@ function () {
   InicioComponent.prototype.confirmarTransaccion = function () {
     var _this = this;
 
+    this.serviceModal.open(this.tramitandoModal);
+    this.tramitando = true;
     this.loaderPedido = true;
     this.pedido.idCliente = this.getidSesion();
     this.pedido.lugar = this.lugar; //alert(this.idEmpresa);
@@ -790,6 +796,8 @@ function () {
         localStorage.removeItem('myCar');
 
         _this.asignarCosto();
+
+        _this.tramitando = false;
       }, function (err) {
         estadoServicio = "Error";
       });
@@ -800,11 +808,13 @@ function () {
 
       _this.servicioService.updateServicio(_this.servicio).subscribe(function (data) {
         console.log(data.mensaje);
-        alert(data.mensaje);
 
         _this.solicitarPedido();
 
         _this.notificacionesGeneral();
+
+        alert(data.mensaje);
+        _this.idEmpresa = 0;
 
         _this.ngOnInit();
       }, function (err) {
@@ -880,11 +890,11 @@ function () {
     alert("tamaño de pantalla pequeño");
   };
   /**
-    * Show the search results based in the faqs
-    * @function showSearchResults
-    * @param {any} event
-    * @return {void}
-    */
+   * Show the search results based in the faqs
+   * @function showSearchResults
+   * @param {any} event
+   * @return {void}
+   */
 
 
   InicioComponent.prototype.showSearchResults = function (event) {
@@ -898,6 +908,10 @@ function () {
   __decorate([core_1.ViewChild('tramitandoModal', {
     "static": false
   })], InicioComponent.prototype, "tramitandoModal");
+
+  __decorate([core_1.ViewChild('loginModal', {
+    "static": false
+  })], InicioComponent.prototype, "loginModal");
 
   InicioComponent = __decorate([core_1.Component({
     selector: 'app-inicio',
