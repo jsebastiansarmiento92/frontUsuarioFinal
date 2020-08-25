@@ -79,6 +79,7 @@ export class SignupComponent implements OnInit {
       this.serviceModal.dismissAll();
       this.router.navigate(['inicio']);
       this.loader=false;
+      
       });
     }
     

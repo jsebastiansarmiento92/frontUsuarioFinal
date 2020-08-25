@@ -252,9 +252,7 @@ export class CarritoComponent implements OnInit {
         this.serviceLugar.createLugar(this.lugar).subscribe(data=>{
           if (confirm('valor total del pedido: $'+this.getValorPedido()+ '¿Estás seguro desea confirmar el pedido?')) {
             this.confirmarTransaccion();
-          } 
-         
-  
+          }
         },(err: any) => {
           
           console.log(err.error.mensaje)
@@ -263,9 +261,8 @@ export class CarritoComponent implements OnInit {
         this.serviceModal.open(this.modalDetalle);
       }else{
         this.serviceLugar.createLugar(this.lugar).subscribe(data=>{
-          alert(data.mensaje);
+          alert(data);
         },(err: any) => {
-          
           console.log(err.error.mensaje)
         })
         this.serviceModal.dismissAll()

@@ -616,12 +616,12 @@ var InicioComponent = /** @class */ (function () {
         this.serviceModal.open(this.tramitandoModal);
         this.tramitando = true;
         this.serviceLugar.createLugar(this.lugar).subscribe(function (data) {
+            console.log("alerta antes de extraer el id del lugar por primera vez");
+            alert("pendiente id que llega del lugar es: " + data.idLugar);
+            window.sessionStorage.setItem("IdLugar", (data.idLugar + ""));
+            _this.lugar.idLugar = data.idLugar;
             if (confirm('valor total del pedido: $' + (_this.valorServicio + _this.totalPedido) + ' a la direccion ' + _this.direccionCompleta
                 + '\n barrio:' + _this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
-                _this.serviceLugar.getLugarId(parseInt(sessionStorage.getItem("IdSesion"))).subscribe(function (data) {
-                    window.sessionStorage.setItem("IdLugar", (data.idLugar + ""));
-                    _this.lugar.idLugar = data.idLugar;
-                });
                 _this.confirmarTransaccion();
             }
         }, function (err) {

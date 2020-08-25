@@ -686,12 +686,16 @@ export class InicioComponent implements OnInit {
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
     this.serviceLugar.createLugar(this.lugar).subscribe(data => {
-      if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
-        + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
-        this.serviceLugar.getLugarId(parseInt(sessionStorage.getItem("IdSesion"))).subscribe(data=>{
+      console.log("alerta antes de extraer el id del lugar por primera vez");
+        alert("pendiente id que llega del lugar es: "+data.idLugar);
         window.sessionStorage.setItem("IdLugar",(data.idLugar+""));
         this.lugar.idLugar=data.idLugar;
-        });
+     
+
+
+      if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
+        + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
+        
         this.confirmarTransaccion();
       }
     }, (err: any) => {
@@ -706,6 +710,7 @@ export class InicioComponent implements OnInit {
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
     this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
+      
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
         this.confirmarTransaccion();

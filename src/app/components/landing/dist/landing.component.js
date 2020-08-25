@@ -174,6 +174,7 @@ var LandingComponent = /** @class */ (function () {
         localStorage.setItem("lugar", JSON.stringify(lugar));
         lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
         this.serviceLugar.modificarLugar(lugar).subscribe(function (data) {
+            console.log("se ha modificado un lugar");
         }, function (err) {
             if (err.error.mensaje === undefined) {
                 //alert("debe ingresar o registrarse");

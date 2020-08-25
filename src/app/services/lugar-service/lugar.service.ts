@@ -11,7 +11,7 @@ export class LugarService {
   constructor(private http: HttpClient) { }
 
 
-  createLugar(lugar:Lugar): Observable<any> {
+  createLugar(lugar:Lugar): Observable<Lugar> {
     //alert("nombre que se envia es "+ usuario.nombreUsuario)
     console.log(lugar);
     return this.http.post<Lugar>(this.lugarURL, lugar);

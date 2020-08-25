@@ -200,7 +200,7 @@ export class LandingComponent implements OnInit {
     localStorage.setItem("lugar", JSON.stringify(lugar));
     lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
     this.serviceLugar.modificarLugar(lugar).subscribe(data => {
-      
+      console.log("se ha modificado un lugar");
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
         //alert("debe ingresar o registrarse");
