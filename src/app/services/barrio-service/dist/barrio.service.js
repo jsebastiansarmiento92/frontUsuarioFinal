@@ -11,7 +11,7 @@ var core_1 = require("@angular/core");
 var BarrioService = /** @class */ (function () {
     function BarrioService(http) {
         this.http = http;
-        this.barrioURL = 'https://quickdomicilios.herokuapp.com/barrios';
+        this.barrioURL = 'http://localhost:8080/barrios';
     }
     BarrioService.prototype.getBarrios = function () {
         return this.http.get(this.barrioURL);

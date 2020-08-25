@@ -30,7 +30,7 @@ var ImageService =
 function () {
   function ImageService(httpClient) {
     this.httpClient = httpClient;
-    this.imageURL = 'https://quickdomicilios.herokuapp.com/image/';
+    this.imageURL = 'http://localhost:8080/image/';
   }
 
   ImageService.prototype.onUpload = function (image, id) {

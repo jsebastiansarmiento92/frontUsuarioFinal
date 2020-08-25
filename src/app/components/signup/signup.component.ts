@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input } from '@angular/core';
+import { Component, OnInit ,Input, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -29,6 +29,8 @@ export class SignupComponent implements OnInit {
   failCreado;
   msjErr= ''; ;
   msjOK = '';
+  autenticando=false;
+  @ViewChild('autenticandoModal',{static:false})autenticandoModal;
 
   constructor(private authService:AuthService,
     private router:Router,
@@ -52,10 +54,13 @@ export class SignupComponent implements OnInit {
       console.log("error llegando es ");
       console.log(this.error);
     if(window.sessionStorage.getItem('AuthToken')){
-
+      this.serviceModal.open(this.autenticandoModal);
       console.log("hay tonken guardado porque ingresa al if");
+      this.autenticando=true;
+     
 
       this.authService.getCurrentUser().subscribe(data=>{
+       
         console.log(data);
       //this.tokenService.setToken(data.token);
       window.localStorage.setItem("idSesion",JSON.stringify(data));
@@ -70,6 +75,8 @@ export class SignupComponent implements OnInit {
       this.roles = this.tokenService.getAuthorities();
       localStorage.setItem('isLoggedin', 'true');
       //window.location.reload();
+      this.autenticando=false;
+      this.serviceModal.dismissAll();
       this.router.navigate(['inicio']);
       this.loader=false;
       });
@@ -85,11 +92,11 @@ export class SignupComponent implements OnInit {
   }
   registerGoogle(){
     console.log("ingresoa registrer con google")
-    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+    window.location.href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
   }
   registerFacebook(){
     console.log("ingresoa registrer con facebook")
-    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+    window.location.href="http://localhost:8080/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
   }
   registerManual(){
     console.log("datos que se envian para el registro");

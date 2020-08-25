@@ -61,6 +61,7 @@ export class InicioComponent implements OnInit {
 
   productoSeleccionado = "";
 
+  telefono="";
   @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
   @ViewChild('loginModal', { static: false }) loginModal;
   retrieveResonse: any;
@@ -91,7 +92,7 @@ export class InicioComponent implements OnInit {
 
 
 
-  private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
+  private serverUrl = 'http://localhost:8080/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
   private stompClient;
@@ -119,7 +120,10 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     //this.llenarTipodirecciones();
-    
+    if(localStorage.getItem("reabrirCarrito")){
+      if(localStorage.getItem("reabrirCarrito")=='true') 
+      this.showF();
+    }
     this.cargarProductos();
     if (JSON.parse(localStorage.getItem('myCar')) != null) {
       this.getCarrito();
@@ -128,9 +132,9 @@ export class InicioComponent implements OnInit {
     console.log("verificacion variable de cambio de direccion");
     console.log(localStorage.getItem('cambioDireccion') == 'true');
 
-    if (localStorage.getItem('lugar')) {
+    if (window.localStorage.getItem('lugar')) {
       console.log("hay lugar guardado en el localstorage");
-      this.lugar = JSON.parse(localStorage.getItem('lugar'));
+      this.lugar = JSON.parse(window.localStorage.getItem('lugar'));
       this.barrio = this.lugar.barrio;
       this.direccionCompleta = this.lugar.direccionLugar;
       console.log("lugar que llega es:");
@@ -139,7 +143,9 @@ export class InicioComponent implements OnInit {
       this.totalPedido = this.calcular();
       this.promesaModificarLugarHead();
     }
-
+    if(window.sessionStorage.getItem("telefono")){
+     this.telefono=window.sessionStorage.getItem("telefono");
+    }
     // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
     if (this.tokenService.getToken() == null) {
       // localStorage.clear();
@@ -150,8 +156,9 @@ export class InicioComponent implements OnInit {
     }
     console.log("id de lugar entrante es:");
     console.log(parseInt(this.tokenService.getLugar()));
+
     if (localStorage.getItem('cambioDireccion') == 'true') {
-      this.lugar = JSON.parse(localStorage.getItem('lugar'));
+      this.lugar = JSON.parse(window.localStorage.getItem('lugar'));
       this.barrio = this.lugar.barrio;
       this.direccionCompleta = this.lugar.direccionLugar;
       console.log("lugar que llega es:");
@@ -201,8 +208,8 @@ export class InicioComponent implements OnInit {
       
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
-        alert("debe ingresar o registrarse");
-        this.serviceModal.open(this.loginModal);
+       // alert("debe ingresar o registrarse");
+        //this.serviceModal.open(this.loginModal);
         //this.router.navigate(["login"]);
       }
       console.log(err.error.mensaje)
@@ -681,7 +688,10 @@ export class InicioComponent implements OnInit {
     this.serviceLugar.createLugar(this.lugar).subscribe(data => {
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
-
+        this.serviceLugar.getLugarId(parseInt(sessionStorage.getItem("IdSesion"))).subscribe(data=>{
+        window.sessionStorage.setItem("IdLugar",(data.idLugar+""));
+        this.lugar.idLugar=data.idLugar;
+        });
         this.confirmarTransaccion();
       }
     }, (err: any) => {
@@ -702,7 +712,8 @@ export class InicioComponent implements OnInit {
       }
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
-        alert("debe ingresar o registrarse");
+        alert("debes ingresar o registrarse para poder confirmar pedido");
+        localStorage.setItem("reabrirCarrito","true");
         this.serviceModal.open(this.loginModal);
        // this.router.navigate(["login"]);
       }

@@ -30,7 +30,7 @@ var RolServiceService =
 function () {
   function RolServiceService(http) {
     this.http = http;
-    this.rolURL = 'https://quickdomicilios.herokuapp.com/roles';
+    this.rolURL = 'http://localhost:8080/roles';
   }
 
   RolServiceService.prototype.getRoles = function () {

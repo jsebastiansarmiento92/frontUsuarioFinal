@@ -22,7 +22,7 @@ var PedidoService =
 function () {
   function PedidoService(http) {
     this.http = http;
-    this.pedidoURL = 'https://quickdomicilios.herokuapp.com/pedido';
+    this.pedidoURL = 'http://localhost:8080/pedido';
   }
 
   PedidoService.prototype.createPedido = function (pedido) {

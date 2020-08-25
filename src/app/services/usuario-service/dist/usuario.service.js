@@ -13,7 +13,7 @@ var cabecera = { headers: new http_1.HttpHeaders({ 'Content-TYpe': 'application/
 var UsuarioService = /** @class */ (function () {
     function UsuarioService(http) {
         this.http = http;
-        this.usuarioURL = 'https://quickdomicilios.herokuapp.com/usuarios';
+        this.usuarioURL = 'http://localhost:8080/usuarios';
     }
     UsuarioService.prototype.getUsuarios = function () {
         return this.http.get(this.usuarioURL);
