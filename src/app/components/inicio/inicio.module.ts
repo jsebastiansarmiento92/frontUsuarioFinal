@@ -5,16 +5,19 @@ import {FormsModule}from '@angular/forms';
 import { InicioComponent } from './inicio.component';
 import { NgbDropdownModule, NgbTabsetModule, NgbDatepickerModule, NgbModalModule  } from '@ng-bootstrap/ng-bootstrap';
 import { PipeSearchPipe } from './pipe/pipe-search.pipe';
+import { LoginModalComponent } from './loginModal/login-modal/login-modal.component';
+
 
 
 @NgModule({
   imports: [
       CommonModule,
       //TranslateModule,
-      InicioRoutingModule,
+    InicioRoutingModule,
+    
      FormsModule,
      NgbModalModule
   ],
-  declarations: [InicioComponent, PipeSearchPipe]
+  declarations: [InicioComponent, PipeSearchPipe, LoginModalComponent]
 })
 export class InicioModule { }

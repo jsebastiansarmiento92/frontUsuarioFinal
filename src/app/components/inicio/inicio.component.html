@@ -31,9 +31,9 @@
                         <span> {{productoCarrito.cantidad}} </span>
 
                         <div class="btn-group">
-                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">remove</i>
+                            <button class="btn btn-round btn-info btn-sm" (click)="restarCantidad(productoCarrito)"> <i class="material-icons">remove</i>
                             </button>
-                            <button class="btn btn-round btn-info btn-sm"> <i class="material-icons">add</i>
+                            <button class="btn btn-round btn-info btn-sm" (click)="sumarCantidad(productoCarrito)"> <i class="material-icons">add</i>
                             </button>
                             <button class="btn btn-danger btn-info btn-sm" (click)="quitarProducto(productoCarrito)"> <i
                                     class="material-icons">cancel_presentation</i>
@@ -378,8 +378,8 @@
                                             </div>
                                         </div>
 
-                                        <!--div class="card card-collapse d-none d-sm-none d-md-block">
-                                            <div class="card-header" role="tab" id="headingOne">
+                                        <!-- <div class="card card-collapse d-none d-sm-none d-md-block">
+                                             <div class="card-header" role="tab" id="headingOne">
                                                 <h5 class="mb-0">
                                                     <a data-toggle="collapse" aria-expanded="true"
                                                         aria-controls="collapseOne">
@@ -401,7 +401,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div-->
+                                        </div>-->
 
                                         <div class="card card-collapse  d-none d-sm-none d-md-block">
                                             <div class="card-header" role="tab" id="headingThree">
@@ -433,7 +433,6 @@
                                         </div>
 
                                     </div>
-                                    https://quickdomicilios.com
                                 </div>
                             </div>
                         </div>
@@ -493,14 +492,10 @@
                             <h2 class="section-title">{{categoriaActual}}</h2>
                             <div class="row" style="margin: auto; width: 90%;">
                                 <i style="padding-top: 9px;" class="material-icons">search</i>
-                                <input class="form-control" id="myInput" type="text" [(ngModel)]="searchText"
-                                    placeholder="Buscar establecimiento" (keyup)="showSearchResults($event)"
-                                    style="width: 90%; margin: auto; margin-left: 0px;">
+                                <input class="form-control" id="myInput" type="text" [(ngModel)]="searchText" placeholder="Buscar establecimiento" (keyup)="showSearchResults($event)" style="width: 90%; margin: auto; margin-left: 0px;">
                             </div>
-                            <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; "
-                                *ngFor="let empresa of empresas|pipeSearch:searchText">
-                                <button class="btn btn-link " (click)="seleccionEmpresa(empresa)"
-                                    style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
+                            <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of empresas|pipeSearch:searchText">
+                                <button class="btn btn-link " (click)="seleccionEmpresa(empresa)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                     <div class="row" style="margin: auto; ">
                                         <div class="profile-photo-small"
                                             style="margin-top: 5px; margin-left: 15px; width: 20%;">
@@ -930,4 +925,9 @@
             <span class="loader__dot">.</span>
             <span class="loader__dot">.</span></strong>
     </div>
+</ng-template>
+
+<ng-template #loginModal>
+    <!-- <app-footer></app-footer>-->
+    <app-login-modal></app-login-modal>
 </ng-template>
