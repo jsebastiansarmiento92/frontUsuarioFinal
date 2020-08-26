@@ -92,7 +92,7 @@ export class InicioComponent implements OnInit {
 
 
 
-  private serverUrl = 'http://localhost:8080/' + 'socket'
+  private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
   private stompClient;
@@ -687,7 +687,7 @@ export class InicioComponent implements OnInit {
     this.tramitando = true;
     this.serviceLugar.createLugar(this.lugar).subscribe(data => {
       console.log("alerta antes de extraer el id del lugar por primera vez");
-        alert("pendiente id que llega del lugar es: "+data.idLugar);
+        //alert("pendiente id que llega del lugar es: "+data.idLugar);
         window.sessionStorage.setItem("IdLugar",(data.idLugar+""));
         this.lugar.idLugar=data.idLugar;
      
@@ -751,6 +751,8 @@ export class InicioComponent implements OnInit {
     this.pedido.valorGanancia = this.valorServicio;
     console.log("ingreso a crear el pedido");
     console.log(this.pedido);
+    this.serviceModal.open(this.tramitandoModal);
+    this.tramitando = true;
     this.pedidoService.createPedido(this.pedido).subscribe(data => {
       this.detalleServicioService.getServicio(this.pedido.idEmpresa, this.pedido.idCliente).subscribe(data => {
         console.log("servicio extraido es");
@@ -759,7 +761,7 @@ export class InicioComponent implements OnInit {
         this.idservicio = data.id;
         console.log("id de servicio " + this.idservicio);
         this.llenarDetalle(this.idservicio);
-
+        
 
       })
     }, (err: any) => {
@@ -817,10 +819,12 @@ export class InicioComponent implements OnInit {
       console.log("delay ingresando");
       this.servicio.estadoServicio = estadoServicio;
       this.servicioService.updateServicio(this.servicio).subscribe(data => {
+        this.serviceModal.dismissAll();
+    this.tramitando = false;
         console.log(data.mensaje);
         this.solicitarPedido();
         this.notificacionesGeneral();
-
+        
         alert(data.mensaje);
         this.idEmpresa = 0;
         this.ngOnInit();

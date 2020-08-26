@@ -13,7 +13,7 @@ var cabecera = { headers: new http_1.HttpHeaders({ 'Content-TYpe': 'application/
 var EmpresaService = /** @class */ (function () {
     function EmpresaService(http) {
         this.http = http;
-        this.empresaURL = 'http://localhost:8080/empresas';
+        this.empresaURL = 'https://quickdomicilios.herokuapp.com/empresas';
     }
     EmpresaService.prototype.createEmpresa = function (empresa) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)

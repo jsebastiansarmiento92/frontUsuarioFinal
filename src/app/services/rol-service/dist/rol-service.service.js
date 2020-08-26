@@ -13,7 +13,7 @@ var cabecera = { headers: new http_1.HttpHeaders({ 'Content-TYpe': 'application/
 var RolServiceService = /** @class */ (function () {
     function RolServiceService(http) {
         this.http = http;
-        this.rolURL = 'http://localhost:8080/roles';
+        this.rolURL = 'https://quickdomicilios.herokuapp.com/roles';
     }
     RolServiceService.prototype.getRoles = function () {
         return this.http.get(this.rolURL);

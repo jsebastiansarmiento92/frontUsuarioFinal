@@ -93,11 +93,11 @@ export class SignupComponent implements OnInit {
   }
   registerGoogle(){
     console.log("ingresoa registrer con google")
-    window.location.href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
   }
   registerFacebook(){
     console.log("ingresoa registrer con facebook")
-    window.location.href="http://localhost:8080/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
+    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
   }
   registerManual(){
     console.log("datos que se envian para el registro");

@@ -61,7 +61,7 @@ var InicioComponent = /** @class */ (function () {
         * @var {boolean} searching
         */
         this.searching = false;
-        this.serverUrl = 'http://localhost:8080/' + 'socket';
+        this.serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket';
         this.isLoaded = false;
         this.isCustomSocketOpened = false;
         this.messages = [];
@@ -617,7 +617,7 @@ var InicioComponent = /** @class */ (function () {
         this.tramitando = true;
         this.serviceLugar.createLugar(this.lugar).subscribe(function (data) {
             console.log("alerta antes de extraer el id del lugar por primera vez");
-            alert("pendiente id que llega del lugar es: " + data.idLugar);
+            //alert("pendiente id que llega del lugar es: "+data.idLugar);
             window.sessionStorage.setItem("IdLugar", (data.idLugar + ""));
             _this.lugar.idLugar = data.idLugar;
             if (confirm('valor total del pedido: $' + (_this.valorServicio + _this.totalPedido) + ' a la direccion ' + _this.direccionCompleta
@@ -675,6 +675,8 @@ var InicioComponent = /** @class */ (function () {
         this.pedido.valorGanancia = this.valorServicio;
         console.log("ingreso a crear el pedido");
         console.log(this.pedido);
+        this.serviceModal.open(this.tramitandoModal);
+        this.tramitando = true;
         this.pedidoService.createPedido(this.pedido).subscribe(function (data) {
             _this.detalleServicioService.getServicio(_this.pedido.idEmpresa, _this.pedido.idCliente).subscribe(function (data) {
                 console.log("servicio extraido es");
@@ -729,6 +731,8 @@ var InicioComponent = /** @class */ (function () {
             console.log("delay ingresando");
             _this.servicio.estadoServicio = estadoServicio;
             _this.servicioService.updateServicio(_this.servicio).subscribe(function (data) {
+                _this.serviceModal.dismissAll();
+                _this.tramitando = false;
                 console.log(data.mensaje);
                 _this.solicitarPedido();
                 _this.notificacionesGeneral();

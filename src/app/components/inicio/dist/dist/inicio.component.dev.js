@@ -75,12 +75,12 @@ function () {
     this.totalPedido = 0;
     this.categoriaActual = " ";
     /**
-     * Shows or hide the search elements
-     * @var {boolean} searching
-     */
+    * Shows or hide the search elements
+    * @var {boolean} searching
+    */
 
     this.searching = false;
-    this.serverUrl = 'http://localhost:8080/' + 'socket';
+    this.serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket';
     this.isLoaded = false;
     this.isCustomSocketOpened = false;
     this.messages = [];
@@ -459,7 +459,7 @@ function () {
       });
     }
     /**this.categoriaService.getCategoriasUsuarioFinal().subscribe(data => {
-          // this.categorias = data;
+           // this.categorias = data;
       data.forEach(element => {
         if(element.dependencia!=null){
           this.categorias.push(element);
@@ -690,12 +690,12 @@ function () {
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
     this.serviceLugar.createLugar(this.lugar).subscribe(function (data) {
-      if (confirm('valor total del pedido: $' + (_this.valorServicio + _this.totalPedido) + ' a la direccion ' + _this.direccionCompleta + '\n barrio:' + _this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
-        _this.serviceLugar.getLugarId(parseInt(sessionStorage.getItem("IdSesion"))).subscribe(function (data) {
-          window.sessionStorage.setItem("IdLugar", data.idLugar + "");
-          _this.lugar.idLugar = data.idLugar;
-        });
+      console.log("alerta antes de extraer el id del lugar por primera vez"); //alert("pendiente id que llega del lugar es: "+data.idLugar);
 
+      window.sessionStorage.setItem("IdLugar", data.idLugar + "");
+      _this.lugar.idLugar = data.idLugar;
+
+      if (confirm('valor total del pedido: $' + (_this.valorServicio + _this.totalPedido) + ' a la direccion ' + _this.direccionCompleta + '\n barrio:' + _this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
         _this.confirmarTransaccion();
       }
     }, function (err) {
@@ -901,11 +901,11 @@ function () {
     alert("tamaño de pantalla pequeño");
   };
   /**
-   * Show the search results based in the faqs
-   * @function showSearchResults
-   * @param {any} event
-   * @return {void}
-   */
+    * Show the search results based in the faqs
+    * @function showSearchResults
+    * @param {any} event
+    * @return {void}
+    */
 
 
   InicioComponent.prototype.showSearchResults = function (event) {

@@ -22,7 +22,7 @@ var LugarService =
 function () {
   function LugarService(http) {
     this.http = http;
-    this.lugarURL = 'http://localhost:8080/lugar';
+    this.lugarURL = 'https://quickdomicilios.herokuapp.com/lugar';
   }
 
   LugarService.prototype.createLugar = function (lugar) {
