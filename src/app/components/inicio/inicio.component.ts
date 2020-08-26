@@ -61,6 +61,7 @@ export class InicioComponent implements OnInit {
 
   productoSeleccionado = "";
 
+  telefono="";
   @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
   @ViewChild('loginModal', { static: false }) loginModal;
   retrieveResonse: any;
@@ -119,7 +120,10 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     //this.llenarTipodirecciones();
-    
+    if(localStorage.getItem("reabrirCarrito")){
+      if(localStorage.getItem("reabrirCarrito")=='true') 
+      this.showF();
+    }
     this.cargarProductos();
     if (JSON.parse(localStorage.getItem('myCar')) != null) {
       this.getCarrito();
@@ -128,9 +132,9 @@ export class InicioComponent implements OnInit {
     console.log("verificacion variable de cambio de direccion");
     console.log(localStorage.getItem('cambioDireccion') == 'true');
 
-    if (localStorage.getItem('lugar')) {
+    if (window.localStorage.getItem('lugar')) {
       console.log("hay lugar guardado en el localstorage");
-      this.lugar = JSON.parse(localStorage.getItem('lugar'));
+      this.lugar = JSON.parse(window.localStorage.getItem('lugar'));
       this.barrio = this.lugar.barrio;
       this.direccionCompleta = this.lugar.direccionLugar;
       console.log("lugar que llega es:");
@@ -139,7 +143,9 @@ export class InicioComponent implements OnInit {
       this.totalPedido = this.calcular();
       this.promesaModificarLugarHead();
     }
-
+    if(window.sessionStorage.getItem("telefono")){
+     this.telefono=window.sessionStorage.getItem("telefono");
+    }
     // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
     if (this.tokenService.getToken() == null) {
       // localStorage.clear();
@@ -150,8 +156,9 @@ export class InicioComponent implements OnInit {
     }
     console.log("id de lugar entrante es:");
     console.log(parseInt(this.tokenService.getLugar()));
+
     if (localStorage.getItem('cambioDireccion') == 'true') {
-      this.lugar = JSON.parse(localStorage.getItem('lugar'));
+      this.lugar = JSON.parse(window.localStorage.getItem('lugar'));
       this.barrio = this.lugar.barrio;
       this.direccionCompleta = this.lugar.direccionLugar;
       console.log("lugar que llega es:");
@@ -201,8 +208,8 @@ export class InicioComponent implements OnInit {
       
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
-        alert("debe ingresar o registrarse");
-        this.serviceModal.open(this.loginModal);
+       // alert("debe ingresar o registrarse");
+        //this.serviceModal.open(this.loginModal);
         //this.router.navigate(["login"]);
       }
       console.log(err.error.mensaje)
@@ -679,9 +686,16 @@ export class InicioComponent implements OnInit {
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
     this.serviceLugar.createLugar(this.lugar).subscribe(data => {
+      console.log("alerta antes de extraer el id del lugar por primera vez");
+        //alert("pendiente id que llega del lugar es: "+data.idLugar);
+        window.sessionStorage.setItem("IdLugar",(data.idLugar+""));
+        this.lugar.idLugar=data.idLugar;
+     
+
+
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
-
+        
         this.confirmarTransaccion();
       }
     }, (err: any) => {
@@ -696,13 +710,15 @@ export class InicioComponent implements OnInit {
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
     this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
+      
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
         this.confirmarTransaccion();
       }
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
-        alert("debe ingresar o registrarse");
+        alert("debes ingresar o registrarse para poder confirmar pedido");
+        localStorage.setItem("reabrirCarrito","true");
         this.serviceModal.open(this.loginModal);
        // this.router.navigate(["login"]);
       }
@@ -735,6 +751,8 @@ export class InicioComponent implements OnInit {
     this.pedido.valorGanancia = this.valorServicio;
     console.log("ingreso a crear el pedido");
     console.log(this.pedido);
+    this.serviceModal.open(this.tramitandoModal);
+    this.tramitando = true;
     this.pedidoService.createPedido(this.pedido).subscribe(data => {
       this.detalleServicioService.getServicio(this.pedido.idEmpresa, this.pedido.idCliente).subscribe(data => {
         console.log("servicio extraido es");
@@ -743,7 +761,7 @@ export class InicioComponent implements OnInit {
         this.idservicio = data.id;
         console.log("id de servicio " + this.idservicio);
         this.llenarDetalle(this.idservicio);
-
+        
 
       })
     }, (err: any) => {
@@ -801,10 +819,12 @@ export class InicioComponent implements OnInit {
       console.log("delay ingresando");
       this.servicio.estadoServicio = estadoServicio;
       this.servicioService.updateServicio(this.servicio).subscribe(data => {
+        this.serviceModal.dismissAll();
+    this.tramitando = false;
         console.log(data.mensaje);
         this.solicitarPedido();
         this.notificacionesGeneral();
-
+        
         alert(data.mensaje);
         this.idEmpresa = 0;
         this.ngOnInit();

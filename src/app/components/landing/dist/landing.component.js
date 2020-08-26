@@ -36,7 +36,7 @@ var LandingComponent = /** @class */ (function () {
         this.searching = false;
     }
     LandingComponent.prototype.ngOnInit = function () {
-        this.autenticarToken();
+        // this.autenticarToken();
         this.autenticar();
         console.log("ingreso metodo ngOninit landing");
         if (!localStorage.getItem('barrios')) {
@@ -133,7 +133,8 @@ var LandingComponent = /** @class */ (function () {
         lugar.idUsuario = parseInt(sessionStorage.getItem("IdSesion"));
         if (parseInt(sessionStorage.getItem("IdLugar")) != 0) {
             this.promesaModificarLugar(lugar);
-            localStorage.setItem("lugar", JSON.stringify(lugar));
+            window.localStorage.setItem("lugar", JSON.stringify(lugar));
+            window.sessionStorage.setItem("telefono", this.telefono);
             console.log("oprimidio inicio");
             this.router.navigate(["inicio"]);
         }
@@ -144,10 +145,12 @@ var LandingComponent = /** @class */ (function () {
                     sessionStorage.setItem("IdLugar", data[0].idLugar);
                 });
             });
-            localStorage.setItem("lugar", JSON.stringify(lugar));
+            window.localStorage.setItem("lugar", JSON.stringify(lugar));
             console.log("oprimidio inicio");
             this.router.navigate(["inicio"]);
         }
+    };
+    LandingComponent.prototype.promesaModificarTelefono = function () {
     };
     LandingComponent.prototype.cargarBarrios = function () {
         var _this = this;
@@ -171,9 +174,10 @@ var LandingComponent = /** @class */ (function () {
         localStorage.setItem("lugar", JSON.stringify(lugar));
         lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
         this.serviceLugar.modificarLugar(lugar).subscribe(function (data) {
+            console.log("se ha modificado un lugar");
         }, function (err) {
             if (err.error.mensaje === undefined) {
-                alert("debe ingresar o registrarse");
+                //alert("debe ingresar o registrarse");
                 _this.router.navigate(["inicio"]);
             }
             console.log(err.error.mensaje);

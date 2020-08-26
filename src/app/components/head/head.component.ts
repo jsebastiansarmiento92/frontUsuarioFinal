@@ -103,7 +103,4 @@ export class HeadComponent implements OnInit {
     return false;
 
   }
-
-  
-
 }

@@ -52,7 +52,7 @@ export class LandingComponent implements OnInit {
     private serviceLugar:LugarService) { }
 
   ngOnInit() {
-    this.autenticarToken();
+   // this.autenticarToken();
     this.autenticar();
     console.log("ingreso metodo ngOninit landing")
     if(!localStorage.getItem('barrios')){
@@ -156,7 +156,9 @@ export class LandingComponent implements OnInit {
     lugar.idUsuario=parseInt(sessionStorage.getItem("IdSesion"));
     if(parseInt(sessionStorage.getItem("IdLugar"))!=0){
       this.promesaModificarLugar(lugar);
-      localStorage.setItem("lugar", JSON.stringify(lugar));
+      
+      window.localStorage.setItem("lugar", JSON.stringify(lugar));
+      window.sessionStorage.setItem("telefono",this.telefono);
       console.log("oprimidio inicio")
       this.router.navigate(["inicio"]);
     }else{
@@ -167,13 +169,15 @@ export class LandingComponent implements OnInit {
         })
       });
      
-      localStorage.setItem("lugar", JSON.stringify(lugar));
+      window.localStorage.setItem("lugar", JSON.stringify(lugar));
       console.log("oprimidio inicio")
       this.router.navigate(["inicio"]);
     }
     
   }
+  promesaModificarTelefono(){
 
+  }
   cargarBarrios(){
     this.cargaBarrios=true;
     this.barrioService.getBarrios().subscribe(data=>{
@@ -196,10 +200,10 @@ export class LandingComponent implements OnInit {
     localStorage.setItem("lugar", JSON.stringify(lugar));
     lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
     this.serviceLugar.modificarLugar(lugar).subscribe(data => {
-      
+      console.log("se ha modificado un lugar");
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
-        alert("debe ingresar o registrarse");
+        //alert("debe ingresar o registrarse");
         this.router.navigate(["inicio"]);
       }
       console.log(err.error.mensaje)
