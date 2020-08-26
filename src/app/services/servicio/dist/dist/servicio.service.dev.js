@@ -22,7 +22,7 @@ var ServicioService =
 function () {
   function ServicioService(http) {
     this.http = http;
-    this.servicioURL = 'https://quickdomicilios.herokuapp.com/servicio';
+    this.servicioURL = 'http://localhost:8080/servicio';
   }
 
   ServicioService.prototype.updateServicio = function (servicio) {

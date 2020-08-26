@@ -16,5 +16,5 @@ export class Usuario{
     roles: string[]=[];
     estado: string;
     empresa:Empresa;
-   
+    telefono:string="sin guardar";
 }

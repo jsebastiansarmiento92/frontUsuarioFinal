@@ -9,22 +9,33 @@ exports.__esModule = true;
 exports.HeadComponent = void 0;
 var core_1 = require("@angular/core");
 var lugar_1 = require("src/app/models/lugar");
+var usuario_1 = require("src/app/models/usuario");
 var HeadComponent = /** @class */ (function () {
-    function HeadComponent(tokenService, router, lugarService) {
+    function HeadComponent(tokenService, router, lugarService, serviceModal, usuarioService) {
         this.tokenService = tokenService;
         this.router = router;
         this.lugarService = lugarService;
+        this.serviceModal = serviceModal;
+        this.usuarioService = usuarioService;
         this.isLogin = false;
+        this.lugar = new lugar_1.Lugar();
         this.refreshHead = false;
         this.nombreUsuario = "";
         this.telefono = "sin guardar";
     }
     HeadComponent.prototype.ngOnInit = function () {
-        console.log("hay lugar guardado en el localstorage");
-        this.lugar = JSON.parse(localStorage.getItem('lugar'));
+        if (JSON.parse(localStorage.getItem('lugar'))) {
+            console.log("hay lugar guardado en el localstorage");
+            this.lugar = JSON.parse(localStorage.getItem('lugar'));
+        }
+        if (window.sessionStorage.getItem("Telefono")) {
+            if (window.sessionStorage.getItem("Telefono") != "0") {
+                this.telefono = window.sessionStorage.getItem("Telefono");
+            }
+        }
         console.log(this.lugar);
         console.log("verificacion is login");
-        this.lugar = new lugar_1.Lugar();
+        //this.lugar=new Lugar();
         this.mostrarNombreSesion();
         if (this.tokenService.getToken() == null) {
             console.log("se limpia el locar storage en inicio");
@@ -32,6 +43,7 @@ var HeadComponent = /** @class */ (function () {
         }
         if (localStorage.getItem("isLoggedin") && this.refreshHead) {
             if (localStorage.getItem("isLoggedin") == 'true') {
+                console.log("ingreso a guardar mi direccions");
                 this.guardarMidireccion();
                 this.isLogin = true;
             }
@@ -43,9 +55,37 @@ var HeadComponent = /** @class */ (function () {
     };
     HeadComponent.prototype.guardarMidireccion = function () {
         var _this = this;
-        this.lugarService.getLugarId(parseInt(sessionStorage.getItem("IdLugar"))).subscribe(function (data) {
-            _this.lugar = data;
-        });
+        if (sessionStorage.getItem("IdLugar") == "0") {
+            console.log("no se extrae lugar de ningun lado");
+        }
+        else {
+            this.lugarService.getLugarId(parseInt(sessionStorage.getItem("IdLugar"))).subscribe(function (data) {
+                _this.lugar = data;
+            });
+        }
+    };
+    HeadComponent.prototype.guardarTelefonoModalOpen = function () {
+        this.telefono = "";
+        alert("se recomienda ingresar numero de contacto ");
+        this.serviceModal.open(this.guardarTelefonoModal);
+    };
+    HeadComponent.prototype.guardarTelefono = function () {
+        var _this = this;
+        var usuario = new usuario_1.Usuario();
+        usuario.id = parseInt(window.sessionStorage.getItem("IdSesion"));
+        usuario.telefono = this.telefono;
+        if ((this.telefono + "").length > 6) {
+            this.usuarioService.updateUsuario(usuario, parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(function (data) {
+                alert(data.mensaje);
+                window.sessionStorage.setItem("Telefono", _this.telefono + "");
+                _this.serviceModal.dismissAll();
+            }, function (err) {
+                console.log(err.error.mensaje);
+                _this.telefono = window.sessionStorage.getItem("Telefono");
+            });
+        }
+        else
+            alert("numero de contacto no valido");
     };
     HeadComponent.prototype.refresh = function () {
         this.refreshHead = true;
@@ -88,6 +128,9 @@ var HeadComponent = /** @class */ (function () {
         else
             return false;
     };
+    __decorate([
+        core_1.ViewChild('guardarTelefonoModal', { static: false })
+    ], HeadComponent.prototype, "guardarTelefonoModal");
     HeadComponent = __decorate([
         core_1.Component({
             selector: 'app-head',

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { Router } from '@angular/router';
 import { Lugar } from 'src/app/models/lugar';
 import { LugarService } from 'src/app/services/lugar-service/lugar.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Usuario } from 'src/app/models/usuario';
+import { UsuarioService } from 'src/app/services/usuario-service/usuario.service';
 
 
 @Component({
@@ -14,22 +17,37 @@ export class HeadComponent implements OnInit {
   isLogin = false;
   roles: string[];
   authority: string;
-  lugar:Lugar;
+  lugar:Lugar=new Lugar();
   refreshHead=false;
   nombreUsuario="";
   telefono="sin guardar";
+  
+  @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
+
+
+
+  
   constructor(private tokenService: TokenService,
     private router: Router,
-    private lugarService:LugarService) { }
+    private lugarService:LugarService,
+    private serviceModal:NgbModal,
+    private usuarioService:UsuarioService) { }
 
   ngOnInit() {
-    console.log("hay lugar guardado en el localstorage");
     
-    this.lugar = JSON.parse(localStorage.getItem('lugar'));
+    if(JSON.parse(localStorage.getItem('lugar'))){
+      console.log("hay lugar guardado en el localstorage");
+      this.lugar = JSON.parse(localStorage.getItem('lugar'));
+    }
+    if(window.sessionStorage.getItem("Telefono")){
+      if(window.sessionStorage.getItem("Telefono")!="0"){
+        this.telefono=window.sessionStorage.getItem("Telefono");
+      }
+    }
     console.log(this.lugar);
     console.log("verificacion is login");
 
-    this.lugar=new Lugar();
+    //this.lugar=new Lugar();
     this.mostrarNombreSesion();
     if (this.tokenService.getToken() == null) {
       console.log("se limpia el locar storage en inicio");
@@ -38,23 +56,48 @@ export class HeadComponent implements OnInit {
     }
     if(localStorage.getItem("isLoggedin")&&this.refreshHead){
       if (localStorage.getItem("isLoggedin")=='true') {
-       
+        console.log("ingreso a guardar mi direccions");
         this.guardarMidireccion();
         this.isLogin = true;
-      
-       
       }
     }
     this.refreshHead=false;
   }
+
+
   mostrarNombreSesion(){
     this.nombreUsuario=window.sessionStorage.getItem("AuthUserName");
-
   }
   guardarMidireccion(){
-    this.lugarService.getLugarId(parseInt(sessionStorage.getItem("IdLugar"))).subscribe(data=>{
-      this.lugar=data;
-    })
+    if(sessionStorage.getItem("IdLugar")=="0"){
+      console.log("no se extrae lugar de ningun lado");
+    }else{
+      this.lugarService.getLugarId(parseInt(sessionStorage.getItem("IdLugar"))).subscribe(data=>{
+        this.lugar=data;
+      });
+    }
+   
+  }
+  guardarTelefonoModalOpen(){
+    this.telefono="";
+    alert("se recomienda ingresar numero de contacto ")
+    this.serviceModal.open(this.guardarTelefonoModal);
+  }
+
+  guardarTelefono(){
+    let usuario:Usuario= new Usuario();
+        usuario.id=parseInt(window.sessionStorage.getItem("IdSesion"));
+      usuario.telefono=this.telefono;
+            if((this.telefono+"").length>6){
+        this.usuarioService.updateUsuario(usuario,parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(data=>{
+          alert(data.mensaje);
+          window.sessionStorage.setItem("Telefono",this.telefono+"");
+          this.serviceModal.dismissAll();
+        }, (err: any) => {
+          console.log(err.error.mensaje)
+          this.telefono=window.sessionStorage.getItem("Telefono");
+        });
+      }else alert("numero de contacto no valido");
   }
   refresh(){
     this.refreshHead=true;
