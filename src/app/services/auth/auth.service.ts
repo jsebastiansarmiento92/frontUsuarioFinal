@@ -33,7 +33,7 @@ export class AuthService {
   }
   googleLogin(): Observable<any> {
     
-    return this.httpClient.get<any>(window.location.href='https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup');
+    return this.httpClient.get<any>(window.location.href='https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
   
   }
 
