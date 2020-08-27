@@ -7,6 +7,8 @@ const USERNAME_KEY = 'AuthUserName';
 const AUTHORITIES_KEY = 'rol';
 const ID_SESION = 'IdSesion';
 const ID_LUGAR = 'IdLugar';
+const TELEFONO = 'Telefono';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,6 +45,16 @@ export class TokenService {
   public getUserName(): string {
     return sessionStorage.getItem(USERNAME_KEY);
   }
+  public setTelefono(telefono: string): void {
+    window.sessionStorage.removeItem(TELEFONO);
+    window.sessionStorage.setItem(TELEFONO, telefono);
+  }
+  public getTelefono(): string {
+    return sessionStorage.getItem(TELEFONO);
+  }
+
+
+
   public  getIdUser(): string {
 
     return  window.sessionStorage.getItem(ID_SESION);

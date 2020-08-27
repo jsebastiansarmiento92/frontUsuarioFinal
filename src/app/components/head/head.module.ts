@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeadRoutingModule } from './head-routing.module';
-import { FormsModule } from '@angular/forms';
+
 import { HeadComponent } from './head.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-      CommonModule,
+      CommonModule
       //TranslateModule,
-     // HeadRoutingModule,
-     FormsModule
+      // HeadRoutingModule,
+      
+    //  FormsModule
+      
   ],
   declarations: []
 })

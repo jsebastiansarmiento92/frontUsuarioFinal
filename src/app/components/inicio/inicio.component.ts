@@ -27,6 +27,7 @@ import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { UsuarioService } from 'src/app/services/usuario-service/usuario.service';
 import { runInThisContext } from 'vm';
+import { Usuario } from 'src/app/models/usuario';
 
 
 
@@ -55,15 +56,17 @@ export class InicioComponent implements OnInit {
   barrio: Barrio = new Barrio();
   lugar: Lugar;
   pedido: Pedido = new Pedido();
-  servicio: Servicio = new Servicio();
+  servicio: Servicio = new Servicio();  
   producto: Producto = new Producto();
   empresaSeleccionada: Empresa;
 
   productoSeleccionado = "";
 
   telefono="";
+
   @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
   @ViewChild('loginModal', { static: false }) loginModal;
+  @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
@@ -92,7 +95,7 @@ export class InicioComponent implements OnInit {
 
 
 
-  private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
+  private serverUrl = 'http://localhost:8080/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
   private stompClient;
@@ -143,8 +146,10 @@ export class InicioComponent implements OnInit {
       this.totalPedido = this.calcular();
       this.promesaModificarLugarHead();
     }
-    if(window.sessionStorage.getItem("telefono")){
-     this.telefono=window.sessionStorage.getItem("telefono");
+    console.log("datos del telefono en el localstorage en ngoinit: ");
+    console.log(window.sessionStorage.getItem("Telefono"));
+    if(window.sessionStorage.getItem("Telefono")){
+     this.telefono=window.sessionStorage.getItem("Telefono");
     }
     // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
     if (this.tokenService.getToken() == null) {
@@ -441,14 +446,12 @@ export class InicioComponent implements OnInit {
       alert("no es posible solicitar productos de dos empresas en un mismo servicio");
     } else {
       this.verificarRepetidos(this.producto);
-
       console.log("agregando al local storage:");
       console.log(this.productosCarrito);
       localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
       this.serviceModal.dismissAll();
       this.totalPedido = this.calcular();
     }
-
   }
   verificarRepetidos(producto) {
     let isRepetido = false;
@@ -632,6 +635,27 @@ export class InicioComponent implements OnInit {
     }
 
   }
+
+  guardarTelefonoModalOpen(){
+   // this.telefono="";
+   // alert("se recomienda ingresar numero de contacto ")
+   // this.serviceModal.open(this.guardarTelefonoModal);
+  }
+  guardarTelefono(){
+    let usuario:Usuario= new Usuario();
+        usuario.id=parseInt(window.sessionStorage.getItem("IdSesion"));
+      usuario.telefono=this.telefono;
+            if((this.telefono+"").length>6){
+        this.usuarioService.updateUsuario(usuario,parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(data=>{
+          alert(data.mensaje);
+          window.sessionStorage.setItem("Telefono",this.telefono+"");
+          this.serviceModal.dismissAll();
+        }, (err: any) => {
+          console.log(err.error.mensaje)
+          this.telefono=window.sessionStorage.getItem("Telefono");
+        });
+      }else alert("numero de contacto no valido");
+  }
   confirmarPedido() {
     // this.tramitando=true;
     // this.serviceModal.open(modal);
@@ -666,7 +690,13 @@ export class InicioComponent implements OnInit {
     //  this.lugar.idUsuario = this.getidSesion();
     
     if (parseInt(this.tokenService.getLugar()) == 0) {
-      if (this.lugar != null) {
+      console.log("ingreso antes de las validaciones de guardar lugar local");
+      if (this.lugar != null&&this.telefono!=null) {
+        console.log("ingreso a condicional donde lugar es diferente de nulo y telefono tambien")
+        if(this.telefono=="0") {
+          alert("no tiene telefono guardado le recomendamos")
+          this.guardarTelefonoModalOpen();
+        }
         this.promesaCrearLugar();
       } else {
         this.router.navigate(['landing']);
@@ -674,10 +704,18 @@ export class InicioComponent implements OnInit {
 
     } else {
       console.log("tiene direccion guardada pero la va a modificar");
-      this.promesaModificarLugar();
+      console.log("datos del telefono son:");
+      console.log(this.telefono);
+      if(this.telefono=="0"){
+        this.guardarTelefonoModalOpen();
+      }else{
+        this.promesaModificarLugar();
+      }
+      
     }
 
   }
+
   promesaCrearLugar() {
     //console.log("id del lugar guadados son: ");
     // console.log(sessionStorage.getItem('IdLugar'));
@@ -685,13 +723,12 @@ export class InicioComponent implements OnInit {
     this.lugar.idUsuario = parseInt(this.tokenService.getIdUser());
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
+
     this.serviceLugar.createLugar(this.lugar).subscribe(data => {
       console.log("alerta antes de extraer el id del lugar por primera vez");
         //alert("pendiente id que llega del lugar es: "+data.idLugar);
         window.sessionStorage.setItem("IdLugar",(data.idLugar+""));
         this.lugar.idLugar=data.idLugar;
-     
-
 
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
@@ -760,7 +797,8 @@ export class InicioComponent implements OnInit {
         this.servicio = data;
         this.idservicio = data.id;
         console.log("id de servicio " + this.idservicio);
-        this.llenarDetalle(this.idservicio);
+        this.llenarDetalleList(this.idservicio);
+        //this.llenarDetalle(this.idservicio);
         
 
       })
@@ -779,7 +817,7 @@ export class InicioComponent implements OnInit {
     this.productosCarrito.forEach(element => {
       let detalleServicio = new DetalleServicio();
       detalleServicio.idServicio = idServicio;
-      detalleServicio.idProducto = element.idProducto;
+      detalleServicio.producto = element;
       detalleServicio.valorUnitario = element.valorProducto;
       detalleServicio.cantidad = element.cantidad;
       listDetalleServicio.push(detalleServicio);
@@ -787,18 +825,32 @@ export class InicioComponent implements OnInit {
     this.detalleServicioService.createDetalleServicioList(listDetalleServicio).subscribe(data => {
       console.log("mensaje de confirmacion de la lista de detalle");
       console.log(data);
+      this.servicio.estadoServicio = estadoServicio;
+      this.servicioService.updateServicio(this.servicio).subscribe(data => {
+        this.serviceModal.dismissAll();
+        this.tramitando = false;
+        console.log(data.mensaje);
+        this.solicitarPedido();
+        this.notificacionesGeneral();
+        
+        alert(data.mensaje);
+        this.idEmpresa = 0;
+        //this.ngOnInit();
 
+      }, (err: any) => {
+        console.log(err.error.mensaje);
+      });
     })
   }
   llenarDetalle(idServicio: number) {
     let estadoServicio = "Activo";
-
+    console.log("productos del carriot son:");
     console.log(this.productosCarrito);
 
     this.productosCarrito.forEach(element => {
       let detalleServicio: DetalleServicio = new DetalleServicio();
       detalleServicio.idServicio = idServicio;
-      detalleServicio.idProducto = element.idProducto;
+      detalleServicio.producto = element;
       detalleServicio.valorUnitario = element.valorProducto;
       detalleServicio.cantidad = element.cantidad;
       this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(data => {
@@ -808,7 +860,7 @@ export class InicioComponent implements OnInit {
         localStorage.removeItem('myCar');
 
         this.asignarCosto();
-      this.tramitando = false;
+        this.tramitando = false;
       }, (err: any) => {
         estadoServicio = "Error";
       });
@@ -820,7 +872,7 @@ export class InicioComponent implements OnInit {
       this.servicio.estadoServicio = estadoServicio;
       this.servicioService.updateServicio(this.servicio).subscribe(data => {
         this.serviceModal.dismissAll();
-    this.tramitando = false;
+        this.tramitando = false;
         console.log(data.mensaje);
         this.solicitarPedido();
         this.notificacionesGeneral();

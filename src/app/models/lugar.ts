@@ -5,5 +5,5 @@ export class Lugar {
     idEmpresa:number;
     idUsuario:number;
     barrio:Barrio=new Barrio();
-    direccionLugar:string="";
+    direccionLugar:string="sin guardar";
 }

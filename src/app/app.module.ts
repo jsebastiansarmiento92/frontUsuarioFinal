@@ -15,6 +15,8 @@ import { interceptorProvider } from './interceptors/usuario-interceptor.service'
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SocketService } from './services/socket-service/socket.service';
 import { TerminosCondicionesComponent } from './components/terminos-condiciones/terminos-condiciones.component';
+import { FormsModule } from '@angular/forms';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 //import { CarritoComponent } from './components/carrito/carrito.component';
@@ -36,6 +38,8 @@ import { TerminosCondicionesComponent } from './components/terminos-condiciones/
     AppRoutingModule,
     HeadRoutingModule,
     HttpClientModule,
+    FormsModule,
+    NgbModalModule
    // ToastrModule.forRoot()
   ],
   //providers: [AuthGuard,interceptorProvider,SocketService,AuthService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
