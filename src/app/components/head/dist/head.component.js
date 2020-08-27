@@ -11,17 +11,19 @@ var core_1 = require("@angular/core");
 var lugar_1 = require("src/app/models/lugar");
 var usuario_1 = require("src/app/models/usuario");
 var HeadComponent = /** @class */ (function () {
-    function HeadComponent(tokenService, router, lugarService, serviceModal, usuarioService) {
+    function HeadComponent(tokenService, router, lugarService, serviceModal, usuarioService, pedidoService) {
         this.tokenService = tokenService;
         this.router = router;
         this.lugarService = lugarService;
         this.serviceModal = serviceModal;
         this.usuarioService = usuarioService;
+        this.pedidoService = pedidoService;
         this.isLogin = false;
         this.lugar = new lugar_1.Lugar();
         this.refreshHead = false;
         this.nombreUsuario = "";
         this.telefono = "sin guardar";
+        this.mensajeTramitando = "";
     }
     HeadComponent.prototype.ngOnInit = function () {
         if (JSON.parse(localStorage.getItem('lugar'))) {
@@ -64,17 +66,21 @@ var HeadComponent = /** @class */ (function () {
             });
         }
     };
-    HeadComponent.prototype.guardarTelefonoModalOpen = function () {
-        this.telefono = "";
-        alert("se recomienda ingresar numero de contacto ");
-        this.serviceModal.open(this.guardarTelefonoModal);
+    HeadComponent.prototype.guardarTelefonoModalOpen = function (modal) {
+        //this.telefono="";
+        //alert("se recomienda ingresar numero de contacto ")
+        this.serviceModal.open(modal);
     };
-    HeadComponent.prototype.guardarTelefono = function () {
+    HeadComponent.prototype.guardarUsuario = function () {
         var _this = this;
         var usuario = new usuario_1.Usuario();
+        console.log("nombre de usuario: " + this.nombreUsuario);
+        usuario.name = this.nombreUsuario;
         usuario.id = parseInt(window.sessionStorage.getItem("IdSesion"));
         usuario.telefono = this.telefono;
         if ((this.telefono + "").length > 6) {
+            this.mensajeTramitando = "Guardando informacion";
+            this.serviceModal.open(this.tramitandoModal);
             this.usuarioService.updateUsuario(usuario, parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(function (data) {
                 alert(data.mensaje);
                 window.sessionStorage.setItem("Telefono", _this.telefono + "");
@@ -128,9 +134,26 @@ var HeadComponent = /** @class */ (function () {
         else
             return false;
     };
+    HeadComponent.prototype.cargarPedidosCliente = function () {
+        var _this = this;
+        this.mensajeTramitando = "cargando pedidos de usuario";
+        this.serviceModal.open(this.tramitandoModal);
+        this.pedidoService.getPedidosCliente(parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(function (data) {
+            console.log("pedidos extraidos");
+            console.log(data);
+            _this.pedidos = data;
+            _this.serviceModal.dismissAll();
+        });
+    };
+    HeadComponent.prototype.detallePedido = function (pedido, modal) {
+        this.serviceModal.open(modal);
+    };
     __decorate([
         core_1.ViewChild('guardarTelefonoModal', { static: false })
     ], HeadComponent.prototype, "guardarTelefonoModal");
+    __decorate([
+        core_1.ViewChild('tramitandoModal', { static: false })
+    ], HeadComponent.prototype, "tramitandoModal");
     HeadComponent = __decorate([
         core_1.Component({
             selector: 'app-head',

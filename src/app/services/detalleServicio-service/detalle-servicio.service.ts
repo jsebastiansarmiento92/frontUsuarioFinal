@@ -25,8 +25,10 @@ export class DetalleServicioService {
   }
   createDetalleServicioList(detalleServicioList:DetalleServicio[]): Observable<any> {
     //alert("nombre que se envia es "+ usuario.nombreUsuario)
+    console.log("la lista que se envia en detalle es:");
     console.log(detalleServicioList);
-    return this.http.post<DetalleServicio>(this.detalleservicioURL+'/insertarLista', detalleServicioList);
+
+    return this.http.post<DetalleServicio[]>(this.detalleservicioURL+'/insertarLista', detalleServicioList);
   }
 
 }

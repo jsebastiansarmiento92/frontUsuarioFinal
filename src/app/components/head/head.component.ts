@@ -6,6 +6,8 @@ import { LugarService } from 'src/app/services/lugar-service/lugar.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario-service/usuario.service';
+import { Pedido } from 'src/app/models/pedido';
+import { PedidoService } from 'src/app/services/pedido-service/pedido.service';
 
 
 @Component({
@@ -21,9 +23,11 @@ export class HeadComponent implements OnInit {
   refreshHead=false;
   nombreUsuario="";
   telefono="sin guardar";
-  
+  pedidos:Pedido[];
+  mensajeTramitando="";
   @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
-
+  @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
+  
 
 
   
@@ -31,7 +35,8 @@ export class HeadComponent implements OnInit {
     private router: Router,
     private lugarService:LugarService,
     private serviceModal:NgbModal,
-    private usuarioService:UsuarioService) { }
+    private usuarioService:UsuarioService,
+    private pedidoService:PedidoService) { }
 
   ngOnInit() {
     
@@ -78,17 +83,23 @@ export class HeadComponent implements OnInit {
     }
    
   }
-  guardarTelefonoModalOpen(){
-    this.telefono="";
-    alert("se recomienda ingresar numero de contacto ")
-    this.serviceModal.open(this.guardarTelefonoModal);
+  guardarTelefonoModalOpen(modal){
+    //this.telefono="";
+    //alert("se recomienda ingresar numero de contacto ")
+    this.serviceModal.open(modal);
+
   }
 
-  guardarTelefono(){
+  guardarUsuario(){
     let usuario:Usuario= new Usuario();
+    console.log("nombre de usuario: "+ this.nombreUsuario);
+        usuario.name=this.nombreUsuario;
         usuario.id=parseInt(window.sessionStorage.getItem("IdSesion"));
       usuario.telefono=this.telefono;
             if((this.telefono+"").length>6){
+              this.mensajeTramitando="Guardando informacion";
+              this.serviceModal.open(this.tramitandoModal);
+              
         this.usuarioService.updateUsuario(usuario,parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(data=>{
           alert(data.mensaje);
           window.sessionStorage.setItem("Telefono",this.telefono+"");
@@ -145,5 +156,20 @@ export class HeadComponent implements OnInit {
     }else
     return false;
 
+  }
+
+  cargarPedidosCliente(){ 
+    this.mensajeTramitando="cargando pedidos de usuario";
+    this.serviceModal.open(this.tramitandoModal);
+    this.pedidoService.getPedidosCliente(parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(data=>{
+      console.log("pedidos extraidos");
+      console.log(data);
+      this.pedidos=data;
+      this.serviceModal.dismissAll();
+    })
+  }
+
+  detallePedido(pedido,modal){
+    this.serviceModal.open(modal);
   }
 }

@@ -6,23 +6,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.HeadModule = void 0;
+exports.LandingModule = void 0;
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
-var HeadModule = /** @class */ (function () {
-    function HeadModule() {
+var landing_routing_module_1 = require("./landing-routing.module");
+var landing_component_1 = require("./landing.component");
+var forms_1 = require("@angular/forms");
+var search_pipe_1 = require("./pipe/search.pipe");
+var LandingModule = /** @class */ (function () {
+    function LandingModule() {
     }
-    HeadModule = __decorate([
+    LandingModule = __decorate([
         core_1.NgModule({
             imports: [
-                common_1.CommonModule
+                common_1.CommonModule,
                 //TranslateModule,
-                // HeadRoutingModule,
-                //  FormsModule
+                landing_routing_module_1.LandingRoutingModule,
+                forms_1.FormsModule
             ],
-            declarations: []
+            declarations: [landing_component_1.LandingComponent, search_pipe_1.SearchPipe]
         })
-    ], HeadModule);
-    return HeadModule;
+    ], LandingModule);
+    return LandingModule;
 }());
-exports.HeadModule = HeadModule;
+exports.LandingModule = LandingModule;

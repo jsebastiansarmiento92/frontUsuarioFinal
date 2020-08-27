@@ -797,7 +797,8 @@ export class InicioComponent implements OnInit {
         this.servicio = data;
         this.idservicio = data.id;
         console.log("id de servicio " + this.idservicio);
-        this.llenarDetalle(this.idservicio);
+        this.llenarDetalleList(this.idservicio);
+        //this.llenarDetalle(this.idservicio);
         
 
       })
@@ -816,7 +817,7 @@ export class InicioComponent implements OnInit {
     this.productosCarrito.forEach(element => {
       let detalleServicio = new DetalleServicio();
       detalleServicio.idServicio = idServicio;
-      detalleServicio.idProducto = element.idProducto;
+      detalleServicio.producto = element;
       detalleServicio.valorUnitario = element.valorProducto;
       detalleServicio.cantidad = element.cantidad;
       listDetalleServicio.push(detalleServicio);
@@ -824,18 +825,32 @@ export class InicioComponent implements OnInit {
     this.detalleServicioService.createDetalleServicioList(listDetalleServicio).subscribe(data => {
       console.log("mensaje de confirmacion de la lista de detalle");
       console.log(data);
+      this.servicio.estadoServicio = estadoServicio;
+      this.servicioService.updateServicio(this.servicio).subscribe(data => {
+        this.serviceModal.dismissAll();
+        this.tramitando = false;
+        console.log(data.mensaje);
+        this.solicitarPedido();
+        this.notificacionesGeneral();
+        
+        alert(data.mensaje);
+        this.idEmpresa = 0;
+        //this.ngOnInit();
 
+      }, (err: any) => {
+        console.log(err.error.mensaje);
+      });
     })
   }
   llenarDetalle(idServicio: number) {
     let estadoServicio = "Activo";
-
+    console.log("productos del carriot son:");
     console.log(this.productosCarrito);
 
     this.productosCarrito.forEach(element => {
       let detalleServicio: DetalleServicio = new DetalleServicio();
       detalleServicio.idServicio = idServicio;
-      detalleServicio.idProducto = element.idProducto;
+      detalleServicio.producto = element;
       detalleServicio.valorUnitario = element.valorProducto;
       detalleServicio.cantidad = element.cantidad;
       this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(data => {
@@ -845,7 +860,7 @@ export class InicioComponent implements OnInit {
         localStorage.removeItem('myCar');
 
         this.asignarCosto();
-      this.tramitando = false;
+        this.tramitando = false;
       }, (err: any) => {
         estadoServicio = "Error";
       });

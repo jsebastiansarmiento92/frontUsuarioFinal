@@ -4,7 +4,7 @@ import { Empresa } from './empresa';
 export class Usuario{
     id: number;
     cc_usuario: number;
-    nombreUsuario:string;
+    name:string;
     email: string;
     confirmacionCuenta:Date;
     password:String;

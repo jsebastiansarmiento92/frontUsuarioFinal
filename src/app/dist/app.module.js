@@ -21,6 +21,7 @@ var usuario_interceptor_service_1 = require("./interceptors/usuario-interceptor.
 var socket_service_1 = require("./services/socket-service/socket.service");
 var terminos_condiciones_component_1 = require("./components/terminos-condiciones/terminos-condiciones.component");
 var forms_1 = require("@angular/forms");
+var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 //import { CarritoComponent } from './components/carrito/carrito.component';
 //import { CarritoRoutingModule } from './components/carrito/carrito-routing.module';
 var AppModule = /** @class */ (function () {
@@ -39,9 +40,10 @@ var AppModule = /** @class */ (function () {
                 app_routing_module_1.AppRoutingModule,
                 head_routing_module_1.HeadRoutingModule,
                 http_1.HttpClientModule,
-                forms_1.FormsModule
+                forms_1.FormsModule,
+                ng_bootstrap_1.NgbModalModule
                 // ToastrModule.forRoot()
-            ], entryComponents: [head_component_1.HeadComponent],
+            ],
             //providers: [AuthGuard,interceptorProvider,SocketService,AuthService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
             providers: [shared_1.AuthGuard, usuario_interceptor_service_1.interceptorProvider, socket_service_1.SocketService, auth_service_1.AuthService],
             bootstrap: [app_component_1.AppComponent]

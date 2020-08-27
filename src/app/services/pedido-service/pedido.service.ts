@@ -35,4 +35,11 @@ export class PedidoService {
     
     return this.http.get<Pedido>(this.pedidoURL+`/${idPedido}`);
   }
+
+  getPedidosCliente(idCliente:number): Observable<any> {
+    
+    return this.http.get<Pedido[]>(this.pedidoURL+`/getPedidoUsuarioFinal/${idCliente}`);
+  }
+
+
 }

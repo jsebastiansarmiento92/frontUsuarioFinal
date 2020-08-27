@@ -723,20 +723,22 @@ var InicioComponent = /** @class */ (function () {
                 _this.servicio = data;
                 _this.idservicio = data.id;
                 console.log("id de servicio " + _this.idservicio);
-                _this.llenarDetalle(_this.idservicio);
+                _this.llenarDetalleList(_this.idservicio);
+                //this.llenarDetalle(this.idservicio);
             });
         }, function (err) {
             console.log(err.error.mensaje);
         });
     };
     InicioComponent.prototype.llenarDetalleList = function (idServicio) {
+        var _this = this;
         var estadoServicio = "Activo";
         console.log(this.productosCarrito);
         var listDetalleServicio = [];
         this.productosCarrito.forEach(function (element) {
             var detalleServicio = new detalle_servicio_1.DetalleServicio();
             detalleServicio.idServicio = idServicio;
-            detalleServicio.idProducto = element.idProducto;
+            detalleServicio.producto = element;
             detalleServicio.valorUnitario = element.valorProducto;
             detalleServicio.cantidad = element.cantidad;
             listDetalleServicio.push(detalleServicio);
@@ -744,16 +746,30 @@ var InicioComponent = /** @class */ (function () {
         this.detalleServicioService.createDetalleServicioList(listDetalleServicio).subscribe(function (data) {
             console.log("mensaje de confirmacion de la lista de detalle");
             console.log(data);
+            _this.servicio.estadoServicio = estadoServicio;
+            _this.servicioService.updateServicio(_this.servicio).subscribe(function (data) {
+                _this.serviceModal.dismissAll();
+                _this.tramitando = false;
+                console.log(data.mensaje);
+                _this.solicitarPedido();
+                _this.notificacionesGeneral();
+                alert(data.mensaje);
+                _this.idEmpresa = 0;
+                //this.ngOnInit();
+            }, function (err) {
+                console.log(err.error.mensaje);
+            });
         });
     };
     InicioComponent.prototype.llenarDetalle = function (idServicio) {
         var _this = this;
         var estadoServicio = "Activo";
+        console.log("productos del carriot son:");
         console.log(this.productosCarrito);
         this.productosCarrito.forEach(function (element) {
             var detalleServicio = new detalle_servicio_1.DetalleServicio();
             detalleServicio.idServicio = idServicio;
-            detalleServicio.idProducto = element.idProducto;
+            detalleServicio.producto = element;
             detalleServicio.valorUnitario = element.valorProducto;
             detalleServicio.cantidad = element.cantidad;
             _this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(function (data) {

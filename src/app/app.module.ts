@@ -16,6 +16,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SocketService } from './services/socket-service/socket.service';
 import { TerminosCondicionesComponent } from './components/terminos-condiciones/terminos-condiciones.component';
 import { FormsModule } from '@angular/forms';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 //import { CarritoComponent } from './components/carrito/carrito.component';
@@ -37,9 +38,10 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HeadRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModalModule
    // ToastrModule.forRoot()
-  ],entryComponents: [HeadComponent],
+  ],
   //providers: [AuthGuard,interceptorProvider,SocketService,AuthService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   providers: [AuthGuard,interceptorProvider,SocketService,AuthService],
   bootstrap: [AppComponent]
