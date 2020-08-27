@@ -5,9 +5,11 @@ import { Lugar } from 'src/app/models/lugar';
 import { LugarService } from 'src/app/services/lugar-service/lugar.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Usuario } from 'src/app/models/usuario';
+import { DetalleServicio } from 'src/app/models/detalle-servicio';
 import { UsuarioService } from 'src/app/services/usuario-service/usuario.service';
 import { Pedido } from 'src/app/models/pedido';
 import { PedidoService } from 'src/app/services/pedido-service/pedido.service';
+import { DetalleServicioService } from 'src/app/services/detalleServicio-service/detalle-servicio.service';
 
 
 @Component({
@@ -27,8 +29,8 @@ export class HeadComponent implements OnInit {
   mensajeTramitando="";
   @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
   @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
-  
-
+  detalleServicios:DetalleServicio[];
+  pedido:Pedido;
 
   
   constructor(private tokenService: TokenService,
@@ -36,7 +38,8 @@ export class HeadComponent implements OnInit {
     private lugarService:LugarService,
     private serviceModal:NgbModal,
     private usuarioService:UsuarioService,
-    private pedidoService:PedidoService) { }
+    private pedidoService:PedidoService,
+    private detalleServicioService:DetalleServicioService) { }
 
   ngOnInit() {
     
@@ -170,6 +173,13 @@ export class HeadComponent implements OnInit {
   }
 
   detallePedido(pedido,modal){
+    this.pedido=pedido;
     this.serviceModal.open(modal);
+    
+    this.detalleServicioService.getDetalles(pedido.id).subscribe(data=>{
+      console.log("detalles encontrados son: ")
+      console.log(data);
+      this.detalleServicios=data;
+    });
   }
 }
