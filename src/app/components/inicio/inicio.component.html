@@ -31,9 +31,11 @@
                         <span> {{productoCarrito.cantidad}} </span>
 
                         <div class="btn-group">
-                            <button class="btn btn-round btn-info btn-sm" (click)="restarCantidad(productoCarrito)"> <i class="material-icons">remove</i>
+                            <button class="btn btn-round btn-info btn-sm" (click)="restarCantidad(productoCarrito)"> <i
+                                    class="material-icons">remove</i>
                             </button>
-                            <button class="btn btn-round btn-info btn-sm" (click)="sumarCantidad(productoCarrito)"> <i class="material-icons">add</i>
+                            <button class="btn btn-round btn-info btn-sm" (click)="sumarCantidad(productoCarrito)"> <i
+                                    class="material-icons">add</i>
                             </button>
                             <button class="btn btn-danger btn-info btn-sm" (click)="quitarProducto(productoCarrito)"> <i
                                     class="material-icons">cancel_presentation</i>
@@ -492,10 +494,14 @@
                             <h2 class="section-title">{{categoriaActual}}</h2>
                             <div class="row" style="margin: auto; width: 90%;">
                                 <i style="padding-top: 9px;" class="material-icons">search</i>
-                                <input class="form-control" id="myInput" type="text" [(ngModel)]="searchText" placeholder="Buscar establecimiento" (keyup)="showSearchResults($event)" style="width: 90%; margin: auto; margin-left: 0px;">
+                                <input class="form-control" id="myInput" type="text" [(ngModel)]="searchText"
+                                    placeholder="Buscar establecimiento" (keyup)="showSearchResults($event)"
+                                    style="width: 90%; margin: auto; margin-left: 0px;">
                             </div>
-                            <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of empresas|pipeSearch:searchText">
-                                <button class="btn btn-link " (click)="seleccionEmpresa(empresa)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
+                            <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; "
+                                *ngFor="let empresa of empresas|pipeSearch:searchText">
+                                <button class="btn btn-link " (click)="seleccionEmpresa(empresa)"
+                                    style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                     <div class="row" style="margin: auto; ">
                                         <div class="profile-photo-small"
                                             style="margin-top: 5px; margin-left: 15px; width: 20%;">
@@ -681,9 +687,6 @@
                             </div>
                         </div>
 
-
-
-
                         <!--   <div class="col-md-9">
                             <div class="row">
                                 <div class="col-md-4" *ngFor="let producto of productos">
@@ -724,7 +727,6 @@
                         </div>
 
                     -->
-
 
 
                     </ng-template>
@@ -917,14 +919,24 @@
     </div>
 </ng-template>
 
-
 <ng-template #tramitandoModal>
-    <div class="center-loader" *ngIf="tramitando">
-        <strong>Tramitando.
-            <span class="loader__dot">.</span>
-            <span class="loader__dot">.</span>
-            <span class="loader__dot">.</span></strong>
-    </div>
+    <div class="modal-content" >
+        <div class="modal-header">
+          <br>
+        </div>
+        <div class="modal-body text-center">
+            <div class=" center-loader" *ngIf="tramitando">
+                <strong>Tramitando
+                    <span class="loader__dot">.</span>
+                    <span class="loader__dot">.</span>
+                    <span class="loader__dot">.</span></strong>
+            </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+            <br>
+        </div>
+      </div>
+    
 </ng-template>
 
 <ng-template #loginModal>

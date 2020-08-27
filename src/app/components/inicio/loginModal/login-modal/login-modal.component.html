@@ -18,7 +18,7 @@
                     <div class="card-body ">
                         <p class="card-description text-center">Datos de usuario</p>
                         <span class="bmd-form-group">
-                                  <!--  <div class="input-group">
+                            <!--  <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
                         <i class="material-icons">face</i>
@@ -26,45 +26,48 @@
                     </div>
                     <input type="text" class="form-control" placeholder="First Name...">
                 </div>-->
-                </span>
-                <span class="bmd-form-group">
-                                  <div class="input-group">
-                                      <div class="input-group-prepend">
-                                          <span class="input-group-text">
-                                              <i class="material-icons">email</i>
-                                          </span>
+                        </span>
+                        <span class="bmd-form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">email</i>
+                                    </span>
+                                </div>
+                                <input type="email" class="form-control" placeholder="Email..." autofocus="" required=""
+                                    name="email" [(ngModel)]="signupReq.email">
+                            </div>
+                        </span>
+                        <span class="bmd-form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="Password..." required=""
+                                    name="password" [(ngModel)]="signupReq.password">
+                            </div>
+                        </span>
+                    </div>
+                    <div class="center-loader" *ngIf="loader; else elseBlock">
+                        <strong>Verificando
+                            <span class="loader__dot">.</span>
+                            <span class="loader__dot">.</span>
+                            <span class="loader__dot">.</span></strong>
+                    </div>
+                    <ng-template #elseBlock>
+                        <div class="card-footer justify-content-center">
+
+                            <a class="btn btn-rose btn-link btn-lg" (click)="onLoggedin()">Confirmar</a>
+
+                            <a class="btn btn-rose btn-link btn-lg" (click)="onRegister()">Registrar</a>
+                        </div>
+                        <div *ngIf="logingIn && isLoginFail" class="alert alert-danger mt-3">Error al loguearse:
+                            {{ errorMsg }}</div>
+                    </ng-template>
+                </div>
+            </form>
         </div>
-        <input type="email" class="form-control" placeholder="Email..." autofocus="" required="" name="email" [(ngModel)]="signupReq.email">
     </div>
-    </span>
-    <span class="bmd-form-group">
-                                  <div class="input-group">
-                                      <div class="input-group-prepend">
-                                          <span class="input-group-text">
-                                              <i class="material-icons">lock_outline</i>
-                                          </span>
-</div>
-<input type="password" class="form-control" placeholder="Password..." required="" name="password" [(ngModel)]="signupReq.password">
-</div>
-</span>
-</div>
-<div class="center-loader" *ngIf="loader; else elseBlock">
-    <strong>Verificando
-                                  <span class="loader__dot">.</span>
-                                  <span class="loader__dot">.</span>
-                                  <span class="loader__dot">.</span></strong>
-</div>
-<ng-template #elseBlock>
-    <div class="card-footer justify-content-center">
-
-        <a class="btn btn-rose btn-link btn-lg" (click)="onLoggedin()">Confirmar</a>
-
-        <a class="btn btn-rose btn-link btn-lg" (click)="onRegister()">Registrar</a>
-    </div>
-    <div *ngIf="logingIn && isLoginFail" class="alert alert-danger mt-3">Error al loguearse: {{ errorMsg }}</div>
-</ng-template>
-</div>
-</form>
-</div>
-</div>
 </div>
