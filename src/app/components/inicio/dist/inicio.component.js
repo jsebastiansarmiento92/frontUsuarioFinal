@@ -15,6 +15,7 @@ var servicio_1 = require("src/app/models/servicio");
 var detalle_servicio_1 = require("src/app/models/detalle-servicio");
 var SockJS = require("sockjs-client");
 var Stomp = require("stompjs");
+var usuario_1 = require("src/app/models/usuario");
 var InicioComponent = /** @class */ (function () {
     function InicioComponent(productosService, imagenService, serviceModal, router, categoriaService, tokenService, serviceBarrio, serviceLugar, pedidoService, detalleServicioService, servicioService, empresaService, socketService, usuarioService) {
         this.productosService = productosService;
@@ -61,7 +62,7 @@ var InicioComponent = /** @class */ (function () {
         * @var {boolean} searching
         */
         this.searching = false;
-        this.serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket';
+        this.serverUrl = 'http://localhost:8080/' + 'socket';
         this.isLoaded = false;
         this.isCustomSocketOpened = false;
         this.messages = [];
@@ -92,8 +93,10 @@ var InicioComponent = /** @class */ (function () {
             this.totalPedido = this.calcular();
             this.promesaModificarLugarHead();
         }
-        if (window.sessionStorage.getItem("telefono")) {
-            this.telefono = window.sessionStorage.getItem("telefono");
+        console.log("datos del telefono en el localstorage en ngoinit: ");
+        console.log(window.sessionStorage.getItem("Telefono"));
+        if (window.sessionStorage.getItem("Telefono")) {
+            this.telefono = window.sessionStorage.getItem("Telefono");
         }
         // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
         if (this.tokenService.getToken() == null) {
@@ -562,6 +565,29 @@ var InicioComponent = /** @class */ (function () {
             this.valorServicio = 10000;
         }
     };
+    InicioComponent.prototype.guardarTelefonoModalOpen = function () {
+        // this.telefono="";
+        // alert("se recomienda ingresar numero de contacto ")
+        // this.serviceModal.open(this.guardarTelefonoModal);
+    };
+    InicioComponent.prototype.guardarTelefono = function () {
+        var _this = this;
+        var usuario = new usuario_1.Usuario();
+        usuario.id = parseInt(window.sessionStorage.getItem("IdSesion"));
+        usuario.telefono = this.telefono;
+        if ((this.telefono + "").length > 6) {
+            this.usuarioService.updateUsuario(usuario, parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(function (data) {
+                alert(data.mensaje);
+                window.sessionStorage.setItem("Telefono", _this.telefono + "");
+                _this.serviceModal.dismissAll();
+            }, function (err) {
+                console.log(err.error.mensaje);
+                _this.telefono = window.sessionStorage.getItem("Telefono");
+            });
+        }
+        else
+            alert("numero de contacto no valido");
+    };
     InicioComponent.prototype.confirmarPedido = function () {
         // this.tramitando=true;
         // this.serviceModal.open(modal);
@@ -595,7 +621,13 @@ var InicioComponent = /** @class */ (function () {
         /// this.lugar.direccionLugar = this.direccionCompleta;
         //  this.lugar.idUsuario = this.getidSesion();
         if (parseInt(this.tokenService.getLugar()) == 0) {
-            if (this.lugar != null) {
+            console.log("ingreso antes de las validaciones de guardar lugar local");
+            if (this.lugar != null && this.telefono != null) {
+                console.log("ingreso a condicional donde lugar es diferente de nulo y telefono tambien");
+                if (this.telefono == "0") {
+                    alert("no tiene telefono guardado le recomendamos");
+                    this.guardarTelefonoModalOpen();
+                }
                 this.promesaCrearLugar();
             }
             else {
@@ -604,7 +636,14 @@ var InicioComponent = /** @class */ (function () {
         }
         else {
             console.log("tiene direccion guardada pero la va a modificar");
-            this.promesaModificarLugar();
+            console.log("datos del telefono son:");
+            console.log(this.telefono);
+            if (this.telefono == "0") {
+                this.guardarTelefonoModalOpen();
+            }
+            else {
+                this.promesaModificarLugar();
+            }
         }
     };
     InicioComponent.prototype.promesaCrearLugar = function () {
@@ -684,20 +723,22 @@ var InicioComponent = /** @class */ (function () {
                 _this.servicio = data;
                 _this.idservicio = data.id;
                 console.log("id de servicio " + _this.idservicio);
-                _this.llenarDetalle(_this.idservicio);
+                _this.llenarDetalleList(_this.idservicio);
+                //this.llenarDetalle(this.idservicio);
             });
         }, function (err) {
             console.log(err.error.mensaje);
         });
     };
     InicioComponent.prototype.llenarDetalleList = function (idServicio) {
+        var _this = this;
         var estadoServicio = "Activo";
         console.log(this.productosCarrito);
         var listDetalleServicio = [];
         this.productosCarrito.forEach(function (element) {
             var detalleServicio = new detalle_servicio_1.DetalleServicio();
             detalleServicio.idServicio = idServicio;
-            detalleServicio.idProducto = element.idProducto;
+            detalleServicio.producto = element;
             detalleServicio.valorUnitario = element.valorProducto;
             detalleServicio.cantidad = element.cantidad;
             listDetalleServicio.push(detalleServicio);
@@ -705,16 +746,30 @@ var InicioComponent = /** @class */ (function () {
         this.detalleServicioService.createDetalleServicioList(listDetalleServicio).subscribe(function (data) {
             console.log("mensaje de confirmacion de la lista de detalle");
             console.log(data);
+            _this.servicio.estadoServicio = estadoServicio;
+            _this.servicioService.updateServicio(_this.servicio).subscribe(function (data) {
+                _this.serviceModal.dismissAll();
+                _this.tramitando = false;
+                console.log(data.mensaje);
+                _this.solicitarPedido();
+                _this.notificacionesGeneral();
+                alert(data.mensaje);
+                _this.idEmpresa = 0;
+                //this.ngOnInit();
+            }, function (err) {
+                console.log(err.error.mensaje);
+            });
         });
     };
     InicioComponent.prototype.llenarDetalle = function (idServicio) {
         var _this = this;
         var estadoServicio = "Activo";
+        console.log("productos del carriot son:");
         console.log(this.productosCarrito);
         this.productosCarrito.forEach(function (element) {
             var detalleServicio = new detalle_servicio_1.DetalleServicio();
             detalleServicio.idServicio = idServicio;
-            detalleServicio.idProducto = element.idProducto;
+            detalleServicio.producto = element;
             detalleServicio.valorUnitario = element.valorProducto;
             detalleServicio.cantidad = element.cantidad;
             _this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(function (data) {
@@ -822,6 +877,9 @@ var InicioComponent = /** @class */ (function () {
     __decorate([
         core_1.ViewChild('loginModal', { static: false })
     ], InicioComponent.prototype, "loginModal");
+    __decorate([
+        core_1.ViewChild('guardarTelefonoModal', { static: false })
+    ], InicioComponent.prototype, "guardarTelefonoModal");
     InicioComponent = __decorate([
         core_1.Component({
             selector: 'app-inicio',

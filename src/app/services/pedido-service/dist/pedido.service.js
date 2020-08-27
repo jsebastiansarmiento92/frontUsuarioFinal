@@ -11,7 +11,7 @@ var core_1 = require("@angular/core");
 var PedidoService = /** @class */ (function () {
     function PedidoService(http) {
         this.http = http;
-        this.pedidoURL = 'https://quickdomicilios.herokuapp.com/pedido';
+        this.pedidoURL = 'http://localhost:8080/pedido';
     }
     PedidoService.prototype.createPedido = function (pedido) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)
@@ -30,6 +30,9 @@ var PedidoService = /** @class */ (function () {
     };
     PedidoService.prototype.getPedido = function (idPedido) {
         return this.http.get(this.pedidoURL + ("/" + idPedido));
+    };
+    PedidoService.prototype.getPedidosCliente = function (idCliente) {
+        return this.http.get(this.pedidoURL + ("/getPedidoUsuarioFinal/" + idCliente));
     };
     PedidoService = __decorate([
         core_1.Injectable({

@@ -1,7 +1,7 @@
 <nav class="navbar fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="card-header card-header-image" (click)="inicio()" style="border-bottom: none;">
+            <a class="card-header card-header-image" (click)="inicio()" style="border-bottom: none;height: 73px;padding-top: 0px;">
                 <img src="../assets/imageLogo/IsologotipoCromaticoVectorial.png" height="80px" alt="QuickDomicilos">
             </a>
             <button class="navbar-toggler" style="color: black;" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +29,13 @@
                         <a class="dropdown-item">
                             <i class="material-icons">call</i> {{telefono}}
                         </a>
+                        <li class="button-container nav-item iframe-extern">
+                            <a (click)="guardarTelefonoModalOpen(guardarTelefonoModal)" style="color: white;" class="btn  btn-rose btn-round btn-instagram">
+                                Editar informacion
+                            </a>
+                        </li>
                     </div>
+
                 </li>
                 <li class="dropdown nav-item" *ngIf="getIslogin()">
 
@@ -44,7 +50,7 @@
                             <i></i>
                         </a>
 
-                        <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item">
+                        <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
 
                             <i style="margin-right: 2px;" class="material-icons">location_on</i>Barrio:
                             <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite"> {{lugar.barrio.nombreBarrio}}</marquee>
@@ -57,19 +63,46 @@
                         </li>
                     </div>
                 </li>
+                <li class="dropdown nav-item" *ngIf="getIslogin()">
+
+                    <a style="margin-left: 0px;" class="dropdown-toggle nav-link" data-toggle="dropdown" (click)="cargarPedidosCliente()">
+                        <i class="material-icons">shopping_basket</i>Mis Pedidos
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                        <a *ngFor="let pedido of pedidos">
+
+                            <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item">
+                                <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
+                                <i></i>
+                            </a>
+
+                            <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+
+                                <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}
+
+                            </a>
+                            <li class="button-container nav-item iframe-extern" style="text-align: center; margin: auto;">
+                                <a style="color: white; " class="btn btn-rose btn-round btn-instagram" (click)="detallePedido(pedido,detallePedidoModal)">
+                                    Detalle
+                                </a>
+                            </li>
+                        </a>
+
+                    </div>
+                </li>
                 <li class="dropdown nav-item">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown">
                         <i class="material-icons">apps</i> Nuestro servicios y ayuda
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
-                        <a class="dropdown-item">
-                            <i class="material-icons" (click)="privacyPolicy()">line_style</i> Politica de privacidad
+                        <a class="dropdown-item cursormanito" (click)="privacyPolicy()">
+                            <i class="material-icons">line_style</i> Politica de privacidad
                         </a>
-                        <a class="dropdown-item">
-                            <i class="material-icons">layers</i>Nuestra app
+                        <a class="dropdown-item cursormanito">
+                            <i class="material-icons ">layers</i>Nuestra app
                         </a>
-                        <a class="dropdown-item">
-                            <i class="material-icons">content_paste</i> Terminos y condiciones
+                        <a class="dropdown-item cursormanito">
+                            <i class="material-icons ">content_paste</i> Terminos y condiciones
                         </a>
                     </div>
                 </li>
@@ -179,3 +212,93 @@
         </div>
     </div>
 </nav>
+<ng-template #guardarTelefonoModal>
+    <div>
+        <label>Editar nombre de usuario</label>
+        <br>
+        <input type="text" [(ngModel)]="nombreUsuario" name="nombreUsuario" placeholder="Nombre usuario" />
+        <br>
+        <label>Ingresar numero de contacto</label>
+        <br>
+        <input type="number" [(ngModel)]="telefono" placeholder="telefono" />
+        <br>
+        <button type="button" (click)="guardarUsuario()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">Guardar</button>
+    </div>
+</ng-template>
+
+<ng-template #tramitandoModal>
+    <div>
+        <label>{{mensajeTramitando}}</label>
+
+    </div>
+</ng-template>
+<ng-template #detallePedidoModal>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center">#</th>
+                <th>Name</th>
+                <th>Job Position</th>
+                <th>Since</th>
+                <th class="text-right">Salary</th>
+                <th class="text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1</td>
+                <td>Andrew Mike</td>
+                <td>Develop</td>
+                <td>2013</td>
+                <td class="text-right">&euro; 99,225</td>
+                <td class="td-actions text-right">
+                    <button type="button" rel="tooltip" class="btn btn-info">
+                        <i class="material-icons">person</i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-success">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-danger">
+                        <i class="material-icons">close</i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">2</td>
+                <td>John Doe</td>
+                <td>Design</td>
+                <td>2012</td>
+                <td class="text-right">&euro; 89,241</td>
+                <td class="td-actions text-right">
+                    <button type="button" rel="tooltip" class="btn btn-info btn-round">
+                        <i class="material-icons">person</i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-success btn-round">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-danger btn-round">
+                        <i class="material-icons">close</i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">3</td>
+                <td>Alex Mike</td>
+                <td>Design</td>
+                <td>2010</td>
+                <td class="text-right">&euro; 92,144</td>
+                <td class="td-actions text-right">
+                    <button type="button" rel="tooltip" class="btn btn-info btn-simple">
+                        <i class="material-icons">person</i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-success btn-simple">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
+                        <i class="material-icons">close</i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>

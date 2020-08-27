@@ -182,7 +182,7 @@ export class CarritoComponent implements OnInit {
     this.productos.forEach(element => {
       let detalleServicio: DetalleServicio = new DetalleServicio();
       detalleServicio.idServicio = idServicio;
-      detalleServicio.idProducto = element.idProducto;
+      detalleServicio.producto = element;
       detalleServicio.valorUnitario = element.valorProducto;
       detalleServicio.cantidad = element.cantidad;
       this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(data => {

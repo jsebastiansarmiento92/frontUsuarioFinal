@@ -168,7 +168,7 @@ var CarritoComponent = /** @class */ (function () {
         this.productos.forEach(function (element) {
             var detalleServicio = new detalle_servicio_1.DetalleServicio();
             detalleServicio.idServicio = idServicio;
-            detalleServicio.idProducto = element.idProducto;
+            detalleServicio.producto = element;
             detalleServicio.valorUnitario = element.valorProducto;
             detalleServicio.cantidad = element.cantidad;
             _this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(function (data) {

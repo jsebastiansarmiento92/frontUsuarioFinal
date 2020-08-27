@@ -54,6 +54,8 @@ var SignupComponent = /** @class */ (function () {
                 _this.tokenService.setAuthorities(data.rol);
                 _this.tokenService.setIdUser(data.id);
                 _this.tokenService.setLugar(data.idLugar);
+                _this.tokenService.setTelefono(data.telefono);
+                //alert("telefono es:"+data.telefono);
                 //alert("id del usuario lopueado es "+data.id);
                 //window.sessionStorage.setItem("idSesion",data.);
                 _this.isLogged = true;
@@ -68,6 +70,16 @@ var SignupComponent = /** @class */ (function () {
             });
         }
     };
+    SignupComponent.prototype.guardarTelefono = function () {
+        if (window.sessionStorage.getItem("telefono")) {
+            if (window.sessionStorage.getItem("telefono").length >= 7) {
+                console.log("telefono valido");
+                //  this.
+            }
+            else
+                alert("telefono invalido se recomienda modifica en menu cuenta");
+        }
+    };
     SignupComponent.prototype.getIslogin = function () {
         return false;
     };
@@ -75,11 +87,11 @@ var SignupComponent = /** @class */ (function () {
     };
     SignupComponent.prototype.registerGoogle = function () {
         console.log("ingresoa registrer con google");
-        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+        window.location.href = "http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
     };
     SignupComponent.prototype.registerFacebook = function () {
         console.log("ingresoa registrer con facebook");
-        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
+        window.location.href = "http://localhost:8080/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
     };
     SignupComponent.prototype.registerManual = function () {
         var _this = this;

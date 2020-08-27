@@ -68,6 +68,8 @@ export class SignupComponent implements OnInit {
       this.tokenService.setAuthorities(data.rol);
       this.tokenService.setIdUser(data.id);
       this.tokenService.setLugar(data.idLugar);
+      this.tokenService.setTelefono(data.telefono);
+      //alert("telefono es:"+data.telefono);
       //alert("id del usuario lopueado es "+data.id);
       //window.sessionStorage.setItem("idSesion",data.);
       this.isLogged = true;
@@ -84,7 +86,14 @@ export class SignupComponent implements OnInit {
     }
     
   }
-
+  guardarTelefono(){
+  if(window.sessionStorage.getItem("telefono")){
+    if(window.sessionStorage.getItem("telefono").length>=7){
+      console.log("telefono valido");
+    //  this.
+    } else alert("telefono invalido se recomienda modifica en menu cuenta");
+  }
+  }
   getIslogin():boolean{
     return false
   }
@@ -93,11 +102,11 @@ export class SignupComponent implements OnInit {
   }
   registerGoogle(){
     console.log("ingresoa registrer con google")
-    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+    window.location.href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
   }
   registerFacebook(){
     console.log("ingresoa registrer con facebook")
-    window.location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
+    window.location.href="http://localhost:8080/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
   }
   registerManual(){
     console.log("datos que se envian para el registro");

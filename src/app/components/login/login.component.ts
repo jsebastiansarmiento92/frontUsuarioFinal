@@ -39,23 +39,26 @@ export class LoginComponent implements OnInit {
     this.urlTree = this.router.parseUrl(this.router.url);
     this.token = this.urlTree.queryParams['token'];
     this.error = this.urlTree.queryParams['error'];
-     if(this.token.length>1){
-      window.sessionStorage.setItem('AuthToken', this.token);
-      window.localStorage.setItem('AuthToken', this.token);
-     }
-    
-    console.log("token llegando es:");
-    console.log(this.token);
-    console.log("erro llegando es ");
-    console.log(this.error);
-    if (window.sessionStorage.getItem('AuthToken')) {
-
-      console.log("hay tonken guardado porque ingresa al if");
-
-      this.getUser();
+    if(this.token!=null){
+      if(this.token.length>1){
+        window.sessionStorage.setItem('AuthToken', this.token);
+        window.localStorage.setItem('AuthToken', this.token);
+       }
+      
+      console.log("token llegando es:");
+      console.log(this.token);
+      console.log("erro llegando es ");
+      console.log(this.error);
+      if (window.sessionStorage.getItem('AuthToken')) {
+  
+        console.log("hay tonken guardado porque ingresa al if");
+  
+        this.getUser();
+      }
+  
+  
     }
-
-
+   
 
   }
 
@@ -117,12 +120,12 @@ export class LoginComponent implements OnInit {
 
   loginGoogle() {
     console.log("ingresoa registrer con google");
-    window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+    window.location.href = "http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
   }
 
   loginFacebook(){
     console.log("ingresoa registrer con facebook")
-    window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
+    window.location.href = "http://localhost:8080/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
   }
 
 }
