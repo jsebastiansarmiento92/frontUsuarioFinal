@@ -755,7 +755,6 @@ var InicioComponent = /** @class */ (function () {
                 _this.notificacionesGeneral();
                 alert(data.mensaje);
                 _this.idEmpresa = 0;
-                //this.ngOnInit();
             }, function (err) {
                 console.log(err.error.mensaje);
             });

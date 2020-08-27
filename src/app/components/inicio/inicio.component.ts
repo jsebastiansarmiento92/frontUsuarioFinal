@@ -835,7 +835,7 @@ export class InicioComponent implements OnInit {
         
         alert(data.mensaje);
         this.idEmpresa = 0;
-        //this.ngOnInit();
+        
 
       }, (err: any) => {
         console.log(err.error.mensaje);
