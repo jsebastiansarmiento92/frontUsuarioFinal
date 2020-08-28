@@ -95,7 +95,7 @@ export class InicioComponent implements OnInit {
 
 
 
-  private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
+  private serverUrl = 'http://localhost:8080/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
   private stompClient;
@@ -909,6 +909,13 @@ export class InicioComponent implements OnInit {
     });
     console.log("enviando notificaciones a los usuarios admi");
     this.usuarioService.getUserAdminNotifications().subscribe(data => {
+      console.log("promesa de get usuarios admi");
+      data.forEach(element => {
+        this.enviarNotificaciones(element.id, "Tiene un pedido sin asignar");
+      });
+    });
+    console.log("enviando notificaciones a los usuarios domiciliario");
+    this.usuarioService.getUserDomiciliarioNotifications().subscribe(data => {
       console.log("promesa de get usuarios admi");
       data.forEach(element => {
         this.enviarNotificaciones(element.id, "Tiene un pedido sin asignar");

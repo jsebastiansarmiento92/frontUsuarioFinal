@@ -14,7 +14,7 @@ const cabecera = { headers: new HttpHeaders({ 'Content-TYpe': 'application/json'
 
 
 export class UsuarioService {
-  usuarioURL = 'https://quickdomicilios.herokuapp.com/usuarios';
+  usuarioURL = 'http://localhost:8080/usuarios';
 
 
   constructor(private http: HttpClient) {
@@ -67,5 +67,9 @@ export class UsuarioService {
   getUserAdminNotifications() {
     // console.log("el ide seleccionado es "+ id)
     return this.http.get<Usuario[]>(this.usuarioURL + "/userAdminNotifications");
+  }
+  getUserDomiciliarioNotifications() {
+    // console.log("el ide seleccionado es "+ id)
+    return this.http.get<Usuario[]>(this.usuarioURL + "/userDomiciliarioNotifications");
   }
 }

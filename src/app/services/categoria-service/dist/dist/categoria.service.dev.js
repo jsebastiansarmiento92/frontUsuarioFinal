@@ -30,7 +30,7 @@ var CategoriaService =
 function () {
   function CategoriaService(http) {
     this.http = http;
-    this.categoriaURL = 'https://quickdomicilios.herokuapp.com/categorias';
+    this.categoriaURL = 'http://localhost:8080/categorias';
   }
 
   CategoriaService.prototype.createCategoria = function (categoria) {
