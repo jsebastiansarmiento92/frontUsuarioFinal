@@ -13,11 +13,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <br><br>
-                <li class="dropdown nav-item" *ngIf="getIslogin()">
-                    
+        <div class="collapse navbar-collapse ">
+            <ul class="navbar-nav ml-auto  " style="overflow-y: auto; height: 100%;" >
+                <li class="dropdown nav-item" *ngIf="getIslogin()"> 
                     <a (click)="refresh()" style="padding-bottom: 0%; margin-bottom: 0%;" class="cursormanito nav-link" data-toggle="dropdown">
                         <!--i class="material-icons" style="font-size:30px;color:green">account_circle</i> Cuenta-->
                         <div style="margin: inherit;" class="fileinput fileinput-new text-center" data-provides="fileinput">
@@ -226,8 +224,8 @@
 
 
 
-    </ul>
-    </div>
+            </ul>
+        </div>
     </div>
 </nav>
 
