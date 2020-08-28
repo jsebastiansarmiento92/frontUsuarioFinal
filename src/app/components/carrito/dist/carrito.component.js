@@ -114,11 +114,10 @@ var CarritoComponent = /** @class */ (function () {
         return valor;
     };
     CarritoComponent.prototype.confirmarTransaccion = function () {
-        var _this = this;
         this.loaderPedido = true;
         this.pedido.idCliente = this.getidSesion();
         this.pedido.lugar = this.lugar;
-        this.pedido.idEmpresa = this.productos[0].empresa.idEmpresa;
+        // this.pedido.idEmpresa = this.productos[0].empresa.idEmpresa;
         this.pedido.modoPagoPedido = "Efectivo";
         this.pedido.estadoPedido = "En proceso";
         this.pedido.valorComision = 0;
@@ -129,19 +128,20 @@ var CarritoComponent = /** @class */ (function () {
         this.pedido.valorGanancia = this.ganancia;
         console.log("ingreso a crear el pedido");
         console.log(this.pedido);
-        this.pedidoService.createPedido(this.pedido).subscribe(function (data) {
-            _this.detalleServicioService.getServicio(_this.pedido.idEmpresa, _this.pedido.idCliente).subscribe(function (data) {
-                console.log("servicio extraido es");
-                console.log(data);
-                _this.servicio = data;
-                _this.idservicio = data.id;
-                console.log("id de servicio " + _this.idservicio);
-                _this.llenarDetalle(_this.idservicio);
-                _this.solicitarPedido();
-            });
-        }, function (err) {
-            console.log(err.error.mensaje);
-        });
+        /** this.pedidoService.createPedido(this.pedido).subscribe(data => {
+           this.detalleServicioService.getServicio(this.pedido.idEmpresa, this.pedido.idCliente).subscribe(data => {
+             console.log("servicio extraido es");
+             console.log(data);
+             this.servicio = data;
+             this.idservicio = data.id;
+             console.log("id de servicio " + this.idservicio);
+             this.llenarDetalle(this.idservicio);
+             this.solicitarPedido();
+           })
+         }, (err: any) => {
+           
+           console.log(err.error.mensaje)
+         }); */
     };
     CarritoComponent.prototype.solicitarPedido = function () {
         var _this = this;

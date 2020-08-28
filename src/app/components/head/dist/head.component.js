@@ -11,13 +11,14 @@ var core_1 = require("@angular/core");
 var lugar_1 = require("src/app/models/lugar");
 var usuario_1 = require("src/app/models/usuario");
 var HeadComponent = /** @class */ (function () {
-    function HeadComponent(tokenService, router, lugarService, serviceModal, usuarioService, pedidoService) {
+    function HeadComponent(tokenService, router, lugarService, serviceModal, usuarioService, pedidoService, detalleServicioService) {
         this.tokenService = tokenService;
         this.router = router;
         this.lugarService = lugarService;
         this.serviceModal = serviceModal;
         this.usuarioService = usuarioService;
         this.pedidoService = pedidoService;
+        this.detalleServicioService = detalleServicioService;
         this.isLogin = false;
         this.lugar = new lugar_1.Lugar();
         this.refreshHead = false;
@@ -146,7 +147,14 @@ var HeadComponent = /** @class */ (function () {
         });
     };
     HeadComponent.prototype.detallePedido = function (pedido, modal) {
+        var _this = this;
+        this.pedido = pedido;
         this.serviceModal.open(modal);
+        this.detalleServicioService.getDetalles(pedido.id).subscribe(function (data) {
+            console.log("detalles encontrados son: ");
+            console.log(data);
+            _this.detalleServicios = data;
+        });
     };
     __decorate([
         core_1.ViewChild('guardarTelefonoModal', { static: false })

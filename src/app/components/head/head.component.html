@@ -1,10 +1,12 @@
 <nav class="navbar fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="card-header card-header-image" (click)="inicio()" style="border-bottom: none;height: 73px;padding-top: 0px;">
+            <a class="card-header card-header-image" (click)="inicio()"
+                style="border-bottom: none;height: 73px;padding-top: 0px;">
                 <img src="../assets/imageLogo/IsologotipoCromaticoVectorial.png" height="80px" alt="QuickDomicilos">
             </a>
-            <button class="navbar-toggler" style="color: black;" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" style="color: black;" type="button" data-toggle="collapse"
+                aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only"></span>
                 <span class="navbar-toggler-icon"></span>
                 <span class="navbar-toggler-icon"></span>
@@ -14,99 +16,104 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <br><br>
-
-
                 <li class="dropdown nav-item" *ngIf="getIslogin()">
-                    <a (click)="refresh()" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <a (click)="refresh()" class="cursormanito dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="material-icons" style="font-size:30px;color:green">account_circle</i> Cuenta
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
 
-                        <a class="dropdown-item">
+                        <a class="dropdown-item cursormanito">
                             <i class="material-icons">people</i> {{nombreUsuario}}
                         </a>
 
-                        <a class="dropdown-item">
+                        <a class="dropdown-item cursormanito">
                             <i class="material-icons">call</i> {{telefono}}
                         </a>
-                        <li class="button-container nav-item iframe-extern">
-                            <a (click)="guardarTelefonoModalOpen(guardarTelefonoModal)" style="color: white;" class="btn  btn-rose btn-round btn-instagram">
-                                Editar informacion
-                            </a>
-                        </li>
-                    </div>
-
-                </li>
-                <li class="dropdown nav-item" *ngIf="getIslogin()">
-
-                    <a style="margin-left: 0px;" class="dropdown-toggle nav-link" data-toggle="dropdown" (click)="refresh()">
-                        <i class="material-icons">location_on</i>Mi Direccion
+                <li class="button-container nav-item iframe-extern">
+                    <a data-toggle="modal" data-target="#smallTelefonoModal" style="color: white;"
+                        class="btn  btn-rose btn-round btn-instagram">
+                        Editar informacion
                     </a>
-                    <div class="dropdown-menu dropdown-with-icons">
-                        <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item">
-                            <i style="margin-right: 2px;" class="material-icons">location_on</i>Direccion:
-                            <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite"> {{lugar.direccionLugar}}</marquee>
-
-                            <i></i>
-                        </a>
-
-                        <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
-
-                            <i style="margin-right: 2px;" class="material-icons">location_on</i>Barrio:
-                            <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite"> {{lugar.barrio.nombreBarrio}}</marquee>
-
-                        </a>
-                        <li class="button-container nav-item iframe-extern">
-                            <a (click)="cambiar()" style="color: white;" class="btn  btn-rose btn-round btn-instagram">
-                                Cambiar
-                            </a>
-                        </li>
-                    </div>
                 </li>
-                <li class="dropdown nav-item" *ngIf="getIslogin()">
+        </div>
 
-                    <a style="margin-left: 0px;" class="dropdown-toggle nav-link" data-toggle="dropdown" (click)="cargarPedidosCliente()">
-                        <i class="material-icons">shopping_basket</i>Mis Pedidos
-                    </a>
-                    <div class="dropdown-menu dropdown-with-icons">
-                        <a *ngFor="let pedido of pedidos">
+        </li>
+        <li class="dropdown nav-item" *ngIf="getIslogin()">
 
-                            <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item">
-                                <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
-                                <i></i>
-                            </a>
+            <a style="margin-left: 0px;" class="cursormanito dropdown-toggle nav-link" data-toggle="dropdown" (click)="refresh()">
+                <i class="material-icons">location_on</i>Mi Direccion
+            </a>
+            <div class="dropdown-menu dropdown-with-icons">
+                <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+                    <i style="margin-right: 2px;" class="material-icons">location_on</i>Direccion:
+                    <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite">
+                        {{lugar.direccionLugar}}</marquee>
+                </a>
 
-                            <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+                <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
 
-                                <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}
+                    <i style="margin-right: 2px;" class="material-icons">location_on</i>Barrio:
+                    <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite">
+                        {{lugar.barrio.nombreBarrio}}</marquee>
 
-                            </a>
-                            <li class="button-container nav-item iframe-extern" style="text-align: center; margin: auto;">
-                                <a style="color: white; " class="btn btn-rose btn-round btn-instagram" (click)="detallePedido(pedido,detallePedidoModal)">
-                                    Detalle
-                                </a>
-                            </li>
-                        </a>
+                </a>
+        <li class="button-container nav-item iframe-extern">
+            <a (click)="cambiar()" style="color: white;" class="btn  btn-rose btn-round btn-instagram">
+                Cambiar
+            </a>
+        </li>
+    </div>
+    </li>
 
-                    </div>
-                </li>
-                <li class="dropdown nav-item">
-                    <a href="#" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown">
-                        <i class="material-icons">apps</i> Nuestro servicios y ayuda
-                    </a>
-                    <div class="dropdown-menu dropdown-with-icons">
-                        <a class="dropdown-item cursormanito" (click)="privacyPolicy()">
-                            <i class="material-icons">line_style</i> Politica de privacidad
-                        </a>
-                        <a class="dropdown-item cursormanito">
-                            <i class="material-icons ">layers</i>Nuestra app
-                        </a>
-                        <a class="dropdown-item cursormanito">
-                            <i class="material-icons ">content_paste</i> Terminos y condiciones
-                        </a>
-                    </div>
-                </li>
-                <!--<li class="dropdown nav-item">
+    
+    <li class="dropdown nav-item" *ngIf="getIslogin()">
+
+        <a style="margin-left: 0px;" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown"
+            (click)="cargarPedidosCliente()">
+            <i class="material-icons">shopping_basket</i>Mis Pedidos
+        </a>
+        <div class="dropdown-menu dropdown-with-icons">
+            <div *ngFor="let pedido of pedidos">
+
+                <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item cursormanito">
+                    <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
+                    
+                </a>
+
+                <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+                    <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}
+
+                </a>
+            <li class="button-container nav-item iframe-extern" style="text-align: center; margin: auto;">
+        <a style="color: white; " class="btn btn-rose btn-round btn-instagram"
+            (click)="detallePedido(pedido,detallePedidoModal)">
+            Detalle
+        </a>
+            </li>
+        </div>
+
+    </div>
+    </li>
+
+
+
+    <li class="dropdown nav-item">
+        <a href="#" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown">
+            <i class="material-icons">apps</i> Nuestro servicios y ayuda
+        </a>
+        <div class="dropdown-menu dropdown-with-icons">
+            <a class="dropdown-item cursormanito" (click)="privacyPolicy()">
+                <i class="material-icons">line_style</i> Politica de privacidad
+            </a>
+            <a class="dropdown-item cursormanito">
+                <i class="material-icons ">layers</i>Nuestra app
+            </a>
+            <a class="dropdown-item cursormanito">
+                <i class="material-icons ">content_paste</i> Terminos y condiciones
+            </a>
+        </div>
+    </li>
+    <!--<li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="material-icons">view_day</i> Secciones
                     </a>
@@ -137,7 +144,7 @@
                         </a>
                     </div>
                 </li>-->
-                <!--  <li class="dropdown nav-item">
+    <!--  <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="material-icons">view_carousel</i> Examples
                     </a>
@@ -180,125 +187,185 @@
                         </a>
                     </div>
                 </li>-->
-                <div *ngIf="!getIslogin(); else elseBlock">
-                    <li class="button-container nav-item iframe-extern">
+    <div *ngIf="!getIslogin(); else elseBlock">
+        <li class="button-container nav-item iframe-extern">
 
-                        <a (click)="login()" style="margin-top: 2vh;  color: white;" class="btn  btn-rose   btn-round btn-block">
-                            <i class="material-icons">login</i> Iniciar Sesion
-                        </a>
-                    </li>
+            <a (click)="login()" style="margin-top: 2vh;  color: white;" class="btn  btn-rose   btn-round btn-block">
+                <i class="material-icons">login</i> Iniciar Sesion
+            </a>
+        </li>
 
-                </div>
-                <div *ngIf="!getIslogin()">
-                    <li class="button-container nav-item iframe-extern">
+    </div>
+    <div *ngIf="!getIslogin()">
+        <li class="button-container nav-item iframe-extern">
 
-                        <a (click)="onRegister()" style="background-color: #df0000ef; margin-top: 2vh; color: white;" class="btn  btn-rose   btn-round btn-block">
-                            <i class="material-icons">login</i> Registrarse
-                        </a>
-                    </li>
+            <a (click)="onRegister()" style="background-color: #df0000ef; margin-top: 2vh; color: white;"
+                class="btn  btn-rose   btn-round btn-block">
+                <i class="material-icons">login</i> Registrarse
+            </a>
+        </li>
 
-                </div>
-                <ng-template #elseBlock>
-                    <li class="button-container nav-item iframe-extern">
-                        <a (click)="logOut()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">
-                            Cerrar Sesion
-                        </a>
-                    </li>
-                </ng-template>
+    </div>
+    <ng-template #elseBlock>
+        <li class="button-container nav-item iframe-extern">
+            <a (click)="logOut()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">
+                Cerrar Sesion
+            </a>
+        </li>
+    </ng-template>
 
 
 
-            </ul>
-        </div>
+    </ul>
+    </div>
     </div>
 </nav>
-<ng-template #guardarTelefonoModal>
-    <div>
-        <label>Editar nombre de usuario</label>
-        <br>
-        <input type="text" [(ngModel)]="nombreUsuario" name="nombreUsuario" placeholder="Nombre usuario" />
-        <br>
-        <label>Ingresar numero de contacto</label>
-        <br>
-        <input type="number" [(ngModel)]="telefono" placeholder="telefono" />
-        <br>
-        <button type="button" (click)="guardarUsuario()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">Guardar</button>
+
+<!-- small modal -->
+<div class="modal fade" id="smallTelefonoModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-small" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Datos de usuario</h3>
+                <button type="button" class="close" data-dismiss="modal" (click)="closeModal()" aria-hidden="true"><i
+                        class="material-icons">clear</i></button>
+            </div>
+            <div class="modal-body">
+                <label class="modal-title ">Editar nombre de usuario</label>
+                <input class="form-control" type="text" [(ngModel)]="nombreUsuario" name="nombreUsuario"
+                    placeholder="Nombre usuario" />
+                <label class="modal-title">Ingresar numero de contacto</label>
+                <input class="form-control" type="number" [(ngModel)]="telefono" placeholder="telefono" />
+
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" data-dismiss="modal" (click)="guardarUsuario()"
+                    style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">Guardar</button>
+
+            </div>
+
+        </div>
     </div>
+</div>
+<!--    end small modal -->
+
+<ng-template #guardarTelefonoModal>
+
+    <div class="modal-header">
+        <h3 class="modal-title">Datos de usuario</h3>
+        <button type="button" class="close" (click)="closeModal()" aria-hidden="true"><i
+                class="material-icons">clear</i></button>
+    </div>
+    <div class="modal-body">
+        <label class="modal-title ">Editar nombre de usuario</label>
+        <input class="form-control" type="text" [(ngModel)]="nombreUsuario" name="nombreUsuario"
+            placeholder="Nombre usuario" />
+        <label class="modal-title">Ingresar numero de contacto</label>
+        <input class="form-control" type="number" [(ngModel)]="telefono" placeholder="telefono" />
+
+    </div>
+    <div class="modal-footer justify-content-center">
+        <button type="button" (click)="guardarUsuario()" style="margin-top: 2vh; color: white;"
+            class="btn  btn-rose btn-round btn-danger">Guardar</button>
+
+    </div>
+
+
+
 </ng-template>
 
 <ng-template #tramitandoModal>
-    <div>
-        <label>{{mensajeTramitando}}</label>
-
+    <div class="modal-header">
+        <br>
+    </div>
+    <div class="modal-body text-center">
+        <div class=" center-loader">
+            <strong>{{mensajeTramitando}}
+                <span class="loader__dot">.</span>
+                <span class="loader__dot">.</span>
+                <span class="loader__dot">.</span></strong>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+        <br>
     </div>
 </ng-template>
 <ng-template #detallePedidoModal>
+
+    <div class="modal-header">
+        <h3 class="modal-title">Pedido</h3>
+        <button type="button" class="close" (click)="closeModal()" aria-hidden="true"><i
+                class="material-icons">clear</i></button>
+    </div>
+    <div class="modal-body">
+        <label class="modal-title ">Empresa pedido: {{pedido.empresa.razonSocial}}</label><br>
+        <label class="modal-title">Estado Pedido: {{pedido.estadoPedido}}</label><br>
+        <label class="modal-title">Valor Productos: {{pedido.valorTotalPedido}}</label><br>
+        <label class="modal-title">Valor valor Domicilio: {{pedido.valorGanancia}}</label><br>
+        <label class="modal-title">Valor valor total: {{pedido.valorGanancia+pedido.valorTotalPedido}}</label><br>
+        <h5 class="modal-title">Detalle de pedido:</h5>
+    </div>
+
+    <div class="modal-footer justify-content-center">
+
+        <table class="table table-reponsive">
+            <thead>
+                <tr>
+
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Valor unitario</th>
+                    <th class="text-right">Total</th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor="let detalleServicio of detalleServicios">
+                <tr>
+
+                    <td>{{detalleServicio.producto.nombreProducto}}</td>
+                    <td>{{detalleServicio.cantidad}}</td>
+                    <td>{{detalleServicio.valorUnitario}}</td>
+                    <td class="text-right">{{detalleServicio.valorTotal}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--label>Empresa pedido: {{pedido.empresa.razonSocial}}</label>
+    <br>
+    <label>Estado Pedido: {{pedido.estadoPedido}}</label>
+    <br>
+    <label>Valor Productos: {{pedido.valorTotalPedido}}</label>
+    <br>
+    <label>Valor valor Domicilio: {{pedido.valorGanancia}}</label>
+    <br>
+    <label>Valor valor total: {{pedido.valorGanancia+pedido.valorTotalPedido}}</label>
+    <br>
+    <br>
+    <label>Detalle de pedido</label>
+
+    <br>
     <table class="table">
         <thead>
             <tr>
-                <th class="text-center">#</th>
-                <th>Name</th>
-                <th>Job Position</th>
-                <th>Since</th>
-                <th class="text-right">Salary</th>
-                <th class="text-right">Actions</th>
+
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Valor unitario</th>
+                <th class="text-right">Total</th>
+
             </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let detalleServicio of detalleServicios">
             <tr>
-                <td class="text-center">1</td>
-                <td>Andrew Mike</td>
-                <td>Develop</td>
-                <td>2013</td>
-                <td class="text-right">&euro; 99,225</td>
-                <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" class="btn btn-info">
-                        <i class="material-icons">person</i>
-                    </button>
-                    <button type="button" rel="tooltip" class="btn btn-success">
-                        <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" rel="tooltip" class="btn btn-danger">
-                        <i class="material-icons">close</i>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td class="text-center">2</td>
-                <td>John Doe</td>
-                <td>Design</td>
-                <td>2012</td>
-                <td class="text-right">&euro; 89,241</td>
-                <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" class="btn btn-info btn-round">
-                        <i class="material-icons">person</i>
-                    </button>
-                    <button type="button" rel="tooltip" class="btn btn-success btn-round">
-                        <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" rel="tooltip" class="btn btn-danger btn-round">
-                        <i class="material-icons">close</i>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td class="text-center">3</td>
-                <td>Alex Mike</td>
-                <td>Design</td>
-                <td>2010</td>
-                <td class="text-right">&euro; 92,144</td>
-                <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" class="btn btn-info btn-simple">
-                        <i class="material-icons">person</i>
-                    </button>
-                    <button type="button" rel="tooltip" class="btn btn-success btn-simple">
-                        <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
-                        <i class="material-icons">close</i>
-                    </button>
-                </td>
+
+                <td>{{detalleServicio.producto.nombreProducto}}</td>
+                <td>{{detalleServicio.cantidad}}</td>
+                <td>{{detalleServicio.valorUnitario}}</td>
+                <td class="text-right">{{detalleServicio.valorTotal}}</td>
+
             </tr>
         </tbody>
-    </table>
+    </table-->
 </ng-template>

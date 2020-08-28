@@ -20,7 +20,7 @@ var headers = new Headers({
 var AuthService = /** @class */ (function() {
     function AuthService(httpClient) {
         this.httpClient = httpClient;
-        this.authURL = 'http://localhost:8080/auth/';
+        this.authURL = 'https://quickdomicilios.herokuapp.com/auth/';
     }
     AuthService.prototype.login = function(signupReq) {
         return this.httpClient.post(this.authURL + 'login', signupReq);
@@ -29,10 +29,10 @@ var AuthService = /** @class */ (function() {
         return this.httpClient.post(this.authURL + 'nuevo', usuario, cabecera);
     };
     AuthService.prototype.googleLogin = function() {
-        return this.httpClient.get(window.location.href = 'http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
+        return this.httpClient.get(window.location.href = 'https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
     };
     AuthService.prototype.getCurrentUser = function() {
-        return this.httpClient.get('http://localhost:8080/usuarios/user/me');
+        return this.httpClient.get('https://quickdomicilios.herokuapp.com/usuarios/user/me');
     };
     AuthService.prototype.onRegister = function(signupReq) {
         console.log("registro manual de usuario");
@@ -42,7 +42,7 @@ var AuthService = /** @class */ (function() {
         core_1.Injectable({
             providedIn: 'root'
         })
-        //http://localhost:8080/
+        //https://quickdomicilios.herokuapp.com/
     ], AuthService);
     return AuthService;
 }());

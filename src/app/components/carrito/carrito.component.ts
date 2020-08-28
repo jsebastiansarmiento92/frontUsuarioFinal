@@ -129,7 +129,7 @@ export class CarritoComponent implements OnInit {
     this.loaderPedido=true;
       this.pedido.idCliente = this.getidSesion();
       this.pedido.lugar=this.lugar;
-      this.pedido.idEmpresa = this.productos[0].empresa.idEmpresa;
+     // this.pedido.idEmpresa = this.productos[0].empresa.idEmpresa;
       this.pedido.modoPagoPedido = "Efectivo";
       this.pedido.estadoPedido = "En proceso";
       this.pedido.valorComision = 0;
@@ -140,7 +140,7 @@ export class CarritoComponent implements OnInit {
       this.pedido.valorGanancia=this.ganancia;
       console.log("ingreso a crear el pedido");
       console.log(this.pedido);
-      this.pedidoService.createPedido(this.pedido).subscribe(data => {
+     /** this.pedidoService.createPedido(this.pedido).subscribe(data => {
         this.detalleServicioService.getServicio(this.pedido.idEmpresa, this.pedido.idCliente).subscribe(data => {
           console.log("servicio extraido es");
           console.log(data);
@@ -153,7 +153,7 @@ export class CarritoComponent implements OnInit {
       }, (err: any) => {
         
         console.log(err.error.mensaje)
-      });
+      }); */
      
       
   }

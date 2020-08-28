@@ -95,7 +95,7 @@ export class InicioComponent implements OnInit {
 
 
 
-  private serverUrl = 'http://localhost:8080/' + 'socket'
+  private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
   private stompClient;
@@ -777,7 +777,9 @@ export class InicioComponent implements OnInit {
     this.pedido.idCliente = this.getidSesion();
     this.pedido.lugar = this.lugar;
     //alert(this.idEmpresa);
-    this.pedido.idEmpresa = this.idEmpresa;
+    let empresa:Empresa=new Empresa();
+    empresa.idEmpresa=this.idEmpresa
+    this.pedido.empresa = empresa;
     this.pedido.modoPagoPedido = "Efectivo";
     this.pedido.estadoPedido = "En proceso";
     this.pedido.valorComision = 0;
@@ -791,7 +793,7 @@ export class InicioComponent implements OnInit {
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
     this.pedidoService.createPedido(this.pedido).subscribe(data => {
-      this.detalleServicioService.getServicio(this.pedido.idEmpresa, this.pedido.idCliente).subscribe(data => {
+      this.detalleServicioService.getServicio(this.pedido.empresa.idEmpresa, this.pedido.idCliente).subscribe(data => {
         console.log("servicio extraido es");
         console.log(data);
         this.servicio = data;
@@ -820,6 +822,7 @@ export class InicioComponent implements OnInit {
       detalleServicio.producto = element;
       detalleServicio.valorUnitario = element.valorProducto;
       detalleServicio.cantidad = element.cantidad;
+      detalleServicio.valorTotal=element.valorProducto*element.cantidad;
       listDetalleServicio.push(detalleServicio);
     });
     this.detalleServicioService.createDetalleServicioList(listDetalleServicio).subscribe(data => {

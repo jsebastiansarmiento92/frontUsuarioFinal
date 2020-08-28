@@ -13,6 +13,7 @@ var barrio_1 = require("src/app/models/barrio");
 var pedido_1 = require("src/app/models/pedido");
 var servicio_1 = require("src/app/models/servicio");
 var detalle_servicio_1 = require("src/app/models/detalle-servicio");
+var empresa_1 = require("src/app/models/empresa");
 var SockJS = require("sockjs-client");
 var Stomp = require("stompjs");
 var usuario_1 = require("src/app/models/usuario");
@@ -62,7 +63,7 @@ var InicioComponent = /** @class */ (function () {
         * @var {boolean} searching
         */
         this.searching = false;
-        this.serverUrl = 'http://localhost:8080/' + 'socket';
+        this.serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket';
         this.isLoaded = false;
         this.isCustomSocketOpened = false;
         this.messages = [];
@@ -703,7 +704,9 @@ var InicioComponent = /** @class */ (function () {
         this.pedido.idCliente = this.getidSesion();
         this.pedido.lugar = this.lugar;
         //alert(this.idEmpresa);
-        this.pedido.idEmpresa = this.idEmpresa;
+        var empresa = new empresa_1.Empresa();
+        empresa.idEmpresa = this.idEmpresa;
+        this.pedido.empresa = empresa;
         this.pedido.modoPagoPedido = "Efectivo";
         this.pedido.estadoPedido = "En proceso";
         this.pedido.valorComision = 0;
@@ -717,7 +720,7 @@ var InicioComponent = /** @class */ (function () {
         this.serviceModal.open(this.tramitandoModal);
         this.tramitando = true;
         this.pedidoService.createPedido(this.pedido).subscribe(function (data) {
-            _this.detalleServicioService.getServicio(_this.pedido.idEmpresa, _this.pedido.idCliente).subscribe(function (data) {
+            _this.detalleServicioService.getServicio(_this.pedido.empresa.idEmpresa, _this.pedido.idCliente).subscribe(function (data) {
                 console.log("servicio extraido es");
                 console.log(data);
                 _this.servicio = data;
@@ -741,6 +744,7 @@ var InicioComponent = /** @class */ (function () {
             detalleServicio.producto = element;
             detalleServicio.valorUnitario = element.valorProducto;
             detalleServicio.cantidad = element.cantidad;
+            detalleServicio.valorTotal = element.valorProducto * element.cantidad;
             listDetalleServicio.push(detalleServicio);
         });
         this.detalleServicioService.createDetalleServicioList(listDetalleServicio).subscribe(function (data) {
