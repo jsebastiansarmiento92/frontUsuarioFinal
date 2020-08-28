@@ -71,16 +71,14 @@
             </a>
         </li>
     </div>
-    </li>
-
-    
+        </li>
     <li class="dropdown nav-item" *ngIf="getIslogin()">
 
         <a style="margin-left: 0px;" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown"
             (click)="cargarPedidosCliente()">
             <i class="material-icons">shopping_basket</i>Mis Pedidos
         </a>
-        <div class="dropdown-menu dropdown-with-icons">
+        <div class="dropdown-menu dropdown-with-icons" style="height: 220px;">
             <div *ngFor="let pedido of pedidos">
 
                 <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item cursormanito">
@@ -102,9 +100,6 @@
 
     </div>
     </li>
-
-
-
     <li class="dropdown nav-item">
         <a href="#" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown">
             <i class="material-icons">apps</i> Nuestro servicios y ayuda
@@ -121,6 +116,30 @@
             </a>
         </div>
     </li>
+    <li class="dropdown nav-item" *ngIf="getIslogin()">
+
+        <a style="margin-left: 0px;" class="cursormanito dropdown-toggle nav-link" data-toggle="dropdown" (click)="refresh()">
+            <i class="material-icons">call</i>Ayuda en linea
+        </a>
+        <div class="dropdown-menu dropdown-with-icons">
+            <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+                <i style="margin-right: 2px;" class="material-icons">call</i> algo
+                
+            </a>
+
+            <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+
+                <i style="margin-right: 2px;" class="material-icons">call</i>algo
+                
+            </a>
+    <li class="button-container nav-item iframe-extern">
+        <a  style="color: white;" class="btn  btn-rose btn-round btn-instagram">
+            boton
+        </a>
+    </li>
+</div>
+    </li>
+    
     <!--<li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="material-icons">view_day</i> Secciones
