@@ -9,7 +9,7 @@ const cabecera = { headers: new HttpHeaders({ 'Content-TYpe': 'application/json'
   providedIn: 'root'
 })
 export class DetalleCajaService {
-  detalleCajaURL = 'http://localhost:8080/detalleCajas';
+  detalleCajaURL = 'https://quickdomicilios.herokuapp.com/detalleCajas';
   constructor(private http: HttpClient) { }
 
 
