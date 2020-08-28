@@ -95,7 +95,7 @@ export class InicioComponent implements OnInit {
 
 
 
-  private serverUrl = 'http://localhost:8080/' + 'socket'
+  private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
   private stompClient;
@@ -809,7 +809,7 @@ export class InicioComponent implements OnInit {
       console.log(err.error.mensaje)
     });
 
-  }
+  }v
   llenarDetalleList(idServicio: number) {
     let estadoServicio = "Activo";
 
@@ -879,19 +879,15 @@ export class InicioComponent implements OnInit {
         console.log(data.mensaje);
         this.solicitarPedido();
         this.notificacionesGeneral();
-        
         alert(data.mensaje);
         this.idEmpresa = 0;
         this.ngOnInit();
-
       }, (err: any) => {
         console.log(err.error.mensaje);
       })
     }, 5000);
-
-
-
   }
+
   notificacionesGeneral() {
     console.log("enviando notificaciones a los usuarios empresa");
     this.usuarioService.getUserEmpresaNotifications(this.idEmpresa).subscribe(data => {

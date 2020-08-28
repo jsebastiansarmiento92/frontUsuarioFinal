@@ -8,7 +8,7 @@ const AUTHORITIES_KEY = 'rol';
 const ID_SESION = 'IdSesion';
 const ID_LUGAR = 'IdLugar';
 const TELEFONO = 'Telefono';
-
+const IMAGEURL='ImageUrl'
 @Injectable({
   providedIn: 'root'
 })
@@ -51,6 +51,13 @@ export class TokenService {
   }
   public getTelefono(): string {
     return sessionStorage.getItem(TELEFONO);
+  }
+  public setImageUrl(imageUrl: string): void {
+    window.sessionStorage.removeItem(IMAGEURL);
+    window.sessionStorage.setItem(IMAGEURL, imageUrl);
+  }
+  public getImageUrl(): string {
+    return sessionStorage.getItem(IMAGEURL);
   }
 
 

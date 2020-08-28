@@ -31,7 +31,7 @@ export class HeadComponent implements OnInit {
   @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
   detalleServicios:DetalleServicio[];
   pedido:Pedido;
-
+  imagePerfil;
   
   constructor(private tokenService: TokenService,
     private router: Router,
@@ -50,6 +50,11 @@ export class HeadComponent implements OnInit {
     if(window.sessionStorage.getItem("Telefono")){
       if(window.sessionStorage.getItem("Telefono")!="0"){
         this.telefono=window.sessionStorage.getItem("Telefono");
+      }
+    }
+    if(window.sessionStorage.getItem("ImageUrl")){
+      if(window.sessionStorage.getItem("ImageUrl")!=""){
+        this.imagePerfil=window.sessionStorage.getItem("ImageUrl");
       }
     }
     console.log(this.lugar);
@@ -91,6 +96,10 @@ export class HeadComponent implements OnInit {
     //alert("se recomienda ingresar numero de contacto ")
     this.serviceModal.open(modal);
 
+  }
+
+  closeModal(){
+    this.serviceModal.dismissAll();
   }
 
   guardarUsuario(){
@@ -162,7 +171,7 @@ export class HeadComponent implements OnInit {
   }
 
   cargarPedidosCliente(){ 
-    this.mensajeTramitando="cargando pedidos de usuario";
+    this.mensajeTramitando="cargando pedidos";
     this.serviceModal.open(this.tramitandoModal);
     this.pedidoService.getPedidosCliente(parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(data=>{
       console.log("pedidos extraidos");

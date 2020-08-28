@@ -36,6 +36,11 @@ var HeadComponent = /** @class */ (function () {
                 this.telefono = window.sessionStorage.getItem("Telefono");
             }
         }
+        if (window.sessionStorage.getItem("ImageUrl")) {
+            if (window.sessionStorage.getItem("ImageUrl") != "") {
+                this.imagePerfil = window.sessionStorage.getItem("ImageUrl");
+            }
+        }
         console.log(this.lugar);
         console.log("verificacion is login");
         //this.lugar=new Lugar();
@@ -71,6 +76,9 @@ var HeadComponent = /** @class */ (function () {
         //this.telefono="";
         //alert("se recomienda ingresar numero de contacto ")
         this.serviceModal.open(modal);
+    };
+    HeadComponent.prototype.closeModal = function () {
+        this.serviceModal.dismissAll();
     };
     HeadComponent.prototype.guardarUsuario = function () {
         var _this = this;
@@ -137,7 +145,7 @@ var HeadComponent = /** @class */ (function () {
     };
     HeadComponent.prototype.cargarPedidosCliente = function () {
         var _this = this;
-        this.mensajeTramitando = "cargando pedidos de usuario";
+        this.mensajeTramitando = "cargando pedidos";
         this.serviceModal.open(this.tramitandoModal);
         this.pedidoService.getPedidosCliente(parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(function (data) {
             console.log("pedidos extraidos");

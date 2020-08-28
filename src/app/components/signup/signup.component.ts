@@ -69,6 +69,7 @@ export class SignupComponent implements OnInit {
       this.tokenService.setIdUser(data.id);
       this.tokenService.setLugar(data.idLugar);
       this.tokenService.setTelefono(data.telefono);
+      this.tokenService.setImageUrl(data.imageUrl);
       //alert("telefono es:"+data.telefono);
       //alert("id del usuario lopueado es "+data.id);
       //window.sessionStorage.setItem("idSesion",data.);

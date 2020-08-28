@@ -55,6 +55,7 @@ var SignupComponent = /** @class */ (function () {
                 _this.tokenService.setIdUser(data.id);
                 _this.tokenService.setLugar(data.idLugar);
                 _this.tokenService.setTelefono(data.telefono);
+                _this.tokenService.setImageUrl(data.imageUrl);
                 //alert("telefono es:"+data.telefono);
                 //alert("id del usuario lopueado es "+data.id);
                 //window.sessionStorage.setItem("idSesion",data.);

@@ -14,6 +14,7 @@ var AUTHORITIES_KEY = 'rol';
 var ID_SESION = 'IdSesion';
 var ID_LUGAR = 'IdLugar';
 var TELEFONO = 'Telefono';
+var IMAGEURL = 'ImageUrl';
 var TokenService = /** @class */ (function () {
     function TokenService() {
         this.roles = [];
@@ -49,6 +50,13 @@ var TokenService = /** @class */ (function () {
     };
     TokenService.prototype.getTelefono = function () {
         return sessionStorage.getItem(TELEFONO);
+    };
+    TokenService.prototype.setImageUrl = function (imageUrl) {
+        window.sessionStorage.removeItem(IMAGEURL);
+        window.sessionStorage.setItem(IMAGEURL, imageUrl);
+    };
+    TokenService.prototype.getImageUrl = function () {
+        return sessionStorage.getItem(IMAGEURL);
     };
     TokenService.prototype.getIdUser = function () {
         return window.sessionStorage.getItem(ID_SESION);
