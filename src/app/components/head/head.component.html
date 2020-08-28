@@ -17,8 +17,18 @@
             <ul class="navbar-nav ml-auto">
                 <br><br>
                 <li class="dropdown nav-item" *ngIf="getIslogin()">
-                    <a (click)="refresh()" class="cursormanito dropdown-toggle nav-link" data-toggle="dropdown">
-                        <i class="material-icons" style="font-size:30px;color:green">account_circle</i> Cuenta
+                    
+                    <a (click)="refresh()" style="padding-bottom: 0%; margin-bottom: 0%;" class="cursormanito nav-link" data-toggle="dropdown">
+                        <!--i class="material-icons" style="font-size:30px;color:green">account_circle</i> Cuenta-->
+                        <div style="margin: inherit;" class="fileinput fileinput-new text-center" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail img-circle img-raised">
+                              <img src="./assets/img/placeholder.jpg" alt="...">
+                            </div>
+                            <div>
+                              <h5>{{nombreUsuario}}</h5>
+                            </div>
+                          </div>
+                    
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
 
