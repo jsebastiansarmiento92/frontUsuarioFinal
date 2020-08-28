@@ -11,7 +11,7 @@ var core_1 = require("@angular/core");
 var PedidoService = /** @class */ (function () {
     function PedidoService(http) {
         this.http = http;
-        this.pedidoURL = 'http://localhost:8080/pedido';
+        this.pedidoURL = 'https://quickdomicilios.herokuapp.com/pedido';
     }
     PedidoService.prototype.createPedido = function (pedido) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)

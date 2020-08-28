@@ -22,7 +22,7 @@ var DetalleServicioService =
 function () {
   function DetalleServicioService(http) {
     this.http = http;
-    this.detalleservicioURL = 'http://localhost:8080/detalleServicio';
+    this.detalleservicioURL = 'https://quickdomicilios.herokuapp.com/detalleServicio';
   }
 
   DetalleServicioService.prototype.createDetalleServicio = function (detalleServicio) {
@@ -37,8 +37,13 @@ function () {
     return this.http.get(this.detalleservicioURL + ("/getServicio/" + idEmpresa) + ("&" + idCliente));
   };
 
+  DetalleServicioService.prototype.getDetalles = function (idPedido) {
+    return this.http.get(this.detalleservicioURL + ("/getDetalles/" + idPedido));
+  };
+
   DetalleServicioService.prototype.createDetalleServicioList = function (detalleServicioList) {
     //alert("nombre que se envia es "+ usuario.nombreUsuario)
+    console.log("la lista que se envia en detalle es:");
     console.log(detalleServicioList);
     return this.http.post(this.detalleservicioURL + '/insertarLista', detalleServicioList);
   };
