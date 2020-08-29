@@ -30,7 +30,7 @@ var UsuarioService =
 function () {
   function UsuarioService(http) {
     this.http = http;
-    this.usuarioURL = 'http://localhost:8080/usuarios';
+    this.usuarioURL = 'https://quickdomicilios.herokuapp.com/usuarios';
   }
 
   UsuarioService.prototype.getUsuarios = function () {

@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.AppComponent = exports.ACCESS_TOKEN = exports.API_BASE_URL = void 0;
 var core_1 = require("@angular/core");
-exports.API_BASE_URL = 'http://localhost:8080';
+exports.API_BASE_URL = 'https://quickdomicilios.herokuapp.com';
 exports.ACCESS_TOKEN = 'accessToken';
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
