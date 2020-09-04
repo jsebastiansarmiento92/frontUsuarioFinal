@@ -94,8 +94,7 @@ export class InicioComponent implements OnInit {
 
 
 
-
-  private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
+  private serverUrl = 'http://localhost:8080/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
   private stompClient;
@@ -770,6 +769,30 @@ export class InicioComponent implements OnInit {
     return parseInt(this.tokenService.getLugar());
 
   }
+
+  sendEmail(){
+
+    
+    /*this.emailObtions={
+      to: ['brayan.sierra@usantoto.edu.co'],
+      subject: 'quickdomicilios.com',
+      body:'prueba 1'
+    }
+    email.available().then(available=>{
+      console.log(`el estado del correo electrónico del dispositivo es ${available}`);
+      if(available){
+        email.compose(this.emailObtions).then(result => {
+          console.log(result);
+          if(result){
+            console.log('el correo fue enviado');
+          } else{
+            console.log('el correo no fue enviado');
+          }
+        }).catch(error => console.error(error));
+      }
+    }).catch(error => console.error(error));*/
+  }
+
   confirmarTransaccion() {
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
@@ -804,6 +827,7 @@ export class InicioComponent implements OnInit {
         
 
       })
+      this.sendEmail();
     }, (err: any) => {
 
       console.log(err.error.mensaje)

@@ -76,7 +76,8 @@
         style="font-size: 24px;">keyboard_arrow_left</i></button>
 
 <div class="ecommerce-page sidebar-collapse">
-    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../assets/img/examples/domicilio.jpg');">
+    <br><br><br><br>
+    <!--div class="page-header header-small" data-parallax="true">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
@@ -87,8 +88,8 @@
             </div>
         </div>
 
-    </div>
-    <div class="main main-raised">
+    </div-->
+    <div class="main main-raised" style="margin-top: 10px;">
         <!--div class="section">
             <div class="features-1" style="padding: 0px;">
                 <div class="container">
@@ -171,8 +172,8 @@
 
         </div-->
         <!-- section -->
-        <div class="section" style="padding: 0px;">
-            <div class="container">
+        <div class="section" style="padding: 0px; margin-top: 40px;">
+            <div class="container" >
                 <div class="row">
                     <div class="col-md-3">
                         <div class="card card-refine card-plain card-rose">
@@ -440,11 +441,11 @@
                                 <!-- End Carousel Card -->
                             </div>
                             <h2 class="section-title">{{categoriaActual}}</h2>
-                            <div class="row" style="margin: auto; width: 90%;">
+                            <div class="row" style="border: groove; margin: auto; width: 92%;">
                                 <i style="padding-top: 9px;" class="material-icons">search</i>
                                 <input class="form-control" id="myInput" type="text" [(ngModel)]="searchText"
                                     placeholder="Buscar establecimiento" (keyup)="showSearchResults($event)"
-                                    style="width: 90%; margin: auto; margin-left: 0px;">
+                                    style="width: 92%; margin: auto; margin-left: 0px;">
                             </div>
                             <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; "
                                 *ngFor="let empresa of empresas|pipeSearch:searchText">
