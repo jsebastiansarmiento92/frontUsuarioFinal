@@ -136,17 +136,17 @@ export class LoginComponent implements OnInit {
   loginGoogle(modal) {
     //this.urlSafe= (this.url);
     
-    this.ngModal.open(modal);
+    //this.ngModal.open(modal);
    // console.log("ingresoa registrer con google");
-    //window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+    window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
  // this.iframe.nativeElement.setAttribute('src', "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup&output=embed");
     
   }
 
   loginFacebook(modal){
-    this.ngModal.open(modal);
+    //this.ngModal.open(modal);
     console.log("ingresoa registrer con facebook")
-    //window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+    location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
 
 }

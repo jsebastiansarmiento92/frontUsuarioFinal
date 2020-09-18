@@ -798,7 +798,7 @@ export class InicioComponent implements OnInit {
     this.tramitando = true;
     this.loaderPedido = true;
     this.pedido.idCliente = this.getidSesion();
-    sthis.pedido.lugar = this.lugar;
+    this.pedido.lugar = this.lugar;
     //alert(this.idEmpresa);
     let empresa:Empresa=new Empresa();
     empresa.idEmpresa=this.idEmpresa
