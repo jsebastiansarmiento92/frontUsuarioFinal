@@ -14,17 +14,22 @@
         <div class="collapse navbar-collapse ">
             <ul class="navbar-nav ml-auto  " style=" height: 100%;">
                 <li class="dropdown nav-item" *ngIf="getIslogin()">
-                    <a (click)="refresh()" style="padding-bottom: 0%; margin-bottom: 0%;" class="cursormanito nav-link" data-toggle="dropdown">
+                    <a (click)="refresh()" style="padding-bottom: 0%; margin-bottom: 0%; padding-top: inherit;" class="cursormanito nav-link" data-toggle="dropdown">
                         <!--i class="material-icons" style="font-size:30px;color:green">account_circle</i> Cuenta-->
-                        <div style="margin: inherit;" class="fileinput fileinput-new text-center" data-provides="fileinput">
-                            <div class="fileinput-new thumbnail img-circle img-raised">
-                                <img src="{{imagePerfil}}" alt="...">
+                        <div style="margin-top: 34px;" class="fileinput fileinput-new text-center d-block d-sm-block d-md-none" data-provides="fileinput">
+                            <div class=" fileinput-new thumbnail img-circle img-raised">
+                                <img src="{{imagePerfil}}" alt="..." srcset="./assets/img/placeholder.jpg">
                             </div>
                             <div>
                                 <h5>{{nombreUsuario}}</h5>
                             </div>
                         </div>
-
+                        <div style="margin: 9px;" class="fileinput fileinput-new text-center d-none d-sm-none d-md-block" data-provides="fileinput">
+                                <div class="row">
+                                    <img class=" fileinput-new thumbnail img-circle img-raised" src="{{imagePerfil}}" alt="" style="height: 30px; width: 30px; margin: auto; margin-right: 1px; padding-right: 1px;" srcset="./assets/img/placeholder.jpg">
+                                <small style="width: 60%;"><h6 class="text-left">{{nombreUsuario}}</h6></small>
+                            </div>                         
+                        </div>
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
                         <a class="dropdown-item cursormanito">
