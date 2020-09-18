@@ -74,7 +74,7 @@ export class LandingComponent implements OnInit {
     this.tokenService.setAuthorities(data.rol);
     this.tokenService.setIdUser(data.id);
     this.tokenService.setLugar(data.idLugar);
-    //this.router.navigate(['inicio']);
+
     }
   }
   autenticarToken(){
@@ -98,19 +98,18 @@ export class LandingComponent implements OnInit {
 
     this.authService.getCurrentUser().subscribe(data=>{
       console.log(data);
-    //this.tokenService.setToken(data.token);
+ 
     window.localStorage.setItem("idSesion",JSON.stringify(data));
     this.tokenService.setUserName(data.name);
     this.tokenService.setAuthorities(data.rol);
     this.tokenService.setIdUser(data.id);
     this.tokenService.setLugar(data.idLugar);
-    //alert("id del usuario lopueado es "+data.id);
-    //window.sessionStorage.setItem("idSesion",data.);
+
     this.isLogged = true;
     this.isLoginFail = false;
     this.roles = this.tokenService.getAuthorities();
     localStorage.setItem('isLoggedin', 'true');
-    //window.location.reload();
+
     this.router.navigate(['inicio']);
     this.loader=false;
     });
@@ -124,20 +123,18 @@ export class LandingComponent implements OnInit {
     console.log("hay tonken guardado porque ingresa al if");
     this.authService.getCurrentUser().subscribe(data=>{
       console.log(data);
-    //this.tokenService.setToken(data.token);
+
     window.localStorage.setItem("idSesion",JSON.stringify(data));
     this.tokenService.setUserName(data.name);
     this.tokenService.setAuthorities(data.rol);
     this.tokenService.setIdUser(data.id);
     this.tokenService.setLugar(data.idLugar);
-    //alert("id del usuario lopueado es "+data.id);
-    //window.sessionStorage.setItem("idSesion",data.);
+
     this.isLogged = true;
     this.isLoginFail = false;
     this.roles = this.tokenService.getAuthorities();
     localStorage.setItem('isLoggedin', 'true');
-    //window.location.reload();
-    //this.router.navigate(['inicio']);
+
     this.loader=false;
     });
   } 
@@ -225,7 +222,6 @@ export class LandingComponent implements OnInit {
     this.getBarrio();
     console.log("barrio seleccionado ");
     console.log(this.barrio);
-
   }
   
   getBarrio() {

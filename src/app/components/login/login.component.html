@@ -9,11 +9,11 @@
                                 <h4 class="card-title">Inicio de Sesion</h4>
                                 <div class="social-line">
                                     <a class="btn btn-just-icon btn-link btn-white">
-                                        <i class="fa fa-facebook-square" (click)="loginFacebook()"></i>
+                                        <i class="fa fa-facebook-square" (click)="loginFacebook(modalFrameFacebook)"></i>
                                     </a>
 
                                     <a class="btn btn-just-icon btn-link btn-white">
-                                        <i class="fa fa-google-plus" (click)="loginGoogle()"></i>
+                                        <i class="fa fa-google-plus" (click)="loginGoogle(modalFrameGoogle)"></i>
                                     </a>
                                 </div>
                             </div>
@@ -73,3 +73,12 @@
 <app-footer></app-footer>
 </div>
 </div>
+
+
+<ng-template #modalFrameGoogle>
+    <iframe width="560" height="315" [src]="urlgoogle|pipeSafe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</ng-template>
+
+<ng-template #modalFrameFacebook>
+    <iframe width="560" height="315" [src]="urlfacebook|pipeSafe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</ng-template>

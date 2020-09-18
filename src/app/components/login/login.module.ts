@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { FooterRoutingModule } from '../footer/footer-routing.module';
 import { FooterComponent } from '../footer/footer.component';
+import { PipeSafePipe } from './pipe-safe.pipe';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { FooterComponent } from '../footer/footer.component';
       FooterRoutingModule,
       FormsModule
   ],
-  declarations: [LoginComponent,FooterComponent]
+  declarations: [LoginComponent,FooterComponent, PipeSafePipe]
 })
 export class LoginModule { }

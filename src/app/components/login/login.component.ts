@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { LoginUsuario } from 'src/app/models/login-usuario';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { Router } from '@angular/router';
 import { SignUpRequest } from 'src/app/models/sign-up-request';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   loader = false;
   logingIn = false;
@@ -23,9 +26,17 @@ export class LoginComponent implements OnInit {
   error: string;
   setState = false;
   currentUser: any;
+  urlgoogle="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+  urlfacebook="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   signupReq: SignUpRequest = new SignUpRequest();
-
-  constructor(private authService: AuthService, private tokenService: TokenService, private router: Router) { }
+  @ViewChild('iframe',{ static: true }) iframe: ElementRef;
+  urlSafe;
+  constructor(private authService: AuthService,
+    private tokenService: TokenService,
+    private router: Router,
+    private ngModal:NgbModal,
+    private sanitizer: DomSanitizer
+    ) { }
 
   ngOnInit() {
 
@@ -117,15 +128,25 @@ export class LoginComponent implements OnInit {
   onRegister() {
     this.router.navigate(['signup']);
   }
-
-  loginGoogle() {
-    console.log("ingresoa registrer con google");
-    window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+  
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
-  loginFacebook(){
+  loginGoogle(modal) {
+    //this.urlSafe= (this.url);
+    
+    this.ngModal.open(modal);
+   // console.log("ingresoa registrer con google");
+    //window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+ // this.iframe.nativeElement.setAttribute('src', "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup&output=embed");
+    
+  }
+
+  loginFacebook(modal){
+    this.ngModal.open(modal);
     console.log("ingresoa registrer con facebook")
-    window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+    //window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
 
 }
