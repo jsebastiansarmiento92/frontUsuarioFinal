@@ -45,7 +45,7 @@ var UsuarioService =
         };
 
         UsuarioService.prototype.updateUsuario = function(usuario, id) {
-            console.log("el ide seleccionado es " + usuario.id);
+            //console.log("el ide seleccionado es " + usuario.id);
             return this.http.put(this.usuarioURL + ("/" + id), usuario);
         };
 
@@ -55,42 +55,42 @@ var UsuarioService =
         };
 
         UsuarioService.prototype.getUsuarioId = function(id) {
-            // console.log("el ide seleccionado es "+ id)
+            // //console.log("el ide seleccionado es "+ id)
             return this.http.get(this.usuarioURL + "/" + id);
         };
 
         UsuarioService.prototype.borrarUsuarioId = function(usuario) {
-            console.log("el ide seleccionado es " + usuario.id);
+            //console.log("el ide seleccionado es " + usuario.id);
             return this.http["delete"](this.usuarioURL + "/" + usuario.id);
         };
 
         UsuarioService.prototype.getUsuariosRol = function(id) {
-            // console.log("el ide seleccionado es "+ id)
+            // //console.log("el ide seleccionado es "+ id)
             return this.http.get(this.usuarioURL + "/finalCaja/" + id);
         };
 
         UsuarioService.prototype.getDomiciliarios = function(estado) {
-            // console.log("el ide seleccionado es "+ id)
+            // //console.log("el ide seleccionado es "+ id)
             return this.http.get(this.usuarioURL + "/domiciliario/" + estado);
         };
 
         UsuarioService.prototype.getUserEmpresaNotifications = function(idEmpresa) {
-            // console.log("el ide seleccionado es "+ id)
+            // //console.log("el ide seleccionado es "+ id)
             return this.http.get(this.usuarioURL + "/userEmpresaNotifications/" + idEmpresa);
         };
 
         UsuarioService.prototype.getUserRepecionistaNotifications = function() {
-            // console.log("el ide seleccionado es "+ id)
+            // //console.log("el ide seleccionado es "+ id)
             return this.http.get(this.usuarioURL + "/userRepecionistaNotifications");
         };
 
         UsuarioService.prototype.getUserAdminNotifications = function() {
-            // console.log("el ide seleccionado es "+ id)
+            // //console.log("el ide seleccionado es "+ id)
             return this.http.get(this.usuarioURL + "/userAdminNotifications");
         };
 
         UsuarioService.prototype.getUserDomiciliarioNotifications = function() {
-            // console.log("el ide seleccionado es "+ id)
+            // //console.log("el ide seleccionado es "+ id)
             return this.http.get(this.usuarioURL + "/userDomiciliarioNotifications");
         };
 

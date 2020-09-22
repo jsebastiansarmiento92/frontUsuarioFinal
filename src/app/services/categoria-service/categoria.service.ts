@@ -29,7 +29,7 @@ export class CategoriaService {
 
 }
   borrarEmpresaId(categoria:Categoria):Observable<any>{
-    console.log("el ide seleccionado es "+ categoria.idCategoria);
+    //console.log("el ide seleccionado es "+ categoria.idCategoria);
     return this.http.delete<Categoria>(this.categoriaURL+"/"+categoria.idCategoria);
   }
 

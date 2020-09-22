@@ -29,16 +29,16 @@ export class RolServiceService {
   }
 
   updateRol(rol:Rol){
-    console.log("el ide seleccionado es "+ rol.id)
+    //console.log("el ide seleccionado es "+ rol.id)
     return this.http.put<Rol>(this.rolURL,rol); 
   }
 
   getRolId(id:number){
-   // console.log("el ide seleccionado es "+ id)
+   // //console.log("el ide seleccionado es "+ id)
     return this.http.get<Rol>(this.rolURL+"/"+id);
   }
   borrarRolId(rol:Rol){
-    // console.log("el ide seleccionado es "+ id)
+    // //console.log("el ide seleccionado es "+ id)
      return this.http.delete<Rol>(this.rolURL+"/"+rol.id);
    }
 }

@@ -30,7 +30,7 @@ var CategoriaService = /** @class */ (function() {
         return this.http.get(this.categoriaURL + "/catEmpresa/" + empresa.idEmpresa);
     };
     CategoriaService.prototype.borrarEmpresaId = function(categoria) {
-        console.log("el ide seleccionado es " + categoria.idCategoria);
+        //console.log("el ide seleccionado es " + categoria.idCategoria);
         return this.http["delete"](this.categoriaURL + "/" + categoria.idCategoria);
     };
     CategoriaService.prototype.getCategoriasDependencia = function(nombreDependencia) {

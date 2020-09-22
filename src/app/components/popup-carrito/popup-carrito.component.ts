@@ -14,7 +14,7 @@ export class PopupCarritoComponent implements OnInit {
   }
 
   showF(){
-    console.log("ingreso de show")
+    //console.log("ingreso de show")
     if (this.show) {
       this.show=false;
     } else {

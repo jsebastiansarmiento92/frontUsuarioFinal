@@ -131,48 +131,48 @@ export class InicioComponent implements OnInit {
       this.getCarrito();
     }
     this.initializeWebSocketConnection();
-    console.log("verificacion variable de cambio de direccion");
-    console.log(localStorage.getItem('cambioDireccion') == 'true');
+    //console.log("verificacion variable de cambio de direccion");
+    //console.log(localStorage.getItem('cambioDireccion') == 'true');
 
     if (window.localStorage.getItem('lugar')) {
-      console.log("hay lugar guardado en el localstorage");
+      //console.log("hay lugar guardado en el localstorage");
       this.lugar = JSON.parse(window.localStorage.getItem('lugar'));
       this.barrio = this.lugar.barrio;
       this.direccionCompleta = this.lugar.direccionLugar;
-      console.log("lugar que llega es:");
-      console.log(this.lugar);
+      //console.log("lugar que llega es:");
+      //console.log(this.lugar);
       this.asignarCosto();
       this.totalPedido = this.calcular();
       this.promesaModificarLugarHead();
     }
-    console.log("datos del telefono en el localstorage en ngoinit: ");
-    console.log(window.sessionStorage.getItem("Telefono"));
+    //console.log("datos del telefono en el localstorage en ngoinit: ");
+    //console.log(window.sessionStorage.getItem("Telefono"));
     if(window.sessionStorage.getItem("Telefono")){
      this.telefono=window.sessionStorage.getItem("Telefono");
     }
-    // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
+    // //console.log("refreshpage es "+localStorage.getItem("refreshPage"));
     if (this.tokenService.getToken() == null) {
       // localStorage.clear();
-      console.log("se limpia el locar storage en inicio");
+      //console.log("se limpia el locar storage en inicio");
       localStorage.setItem("isLoggedin", "false");
     } else {
       localStorage.setItem('isLoggedin', 'true');
     }
-    console.log("id de lugar entrante es:");
-    console.log(parseInt(this.tokenService.getLugar()));
+    //console.log("id de lugar entrante es:");
+    //console.log(parseInt(this.tokenService.getLugar()));
 
     if (localStorage.getItem('cambioDireccion') == 'true') {
       this.lugar = JSON.parse(window.localStorage.getItem('lugar'));
       this.barrio = this.lugar.barrio;
       this.direccionCompleta = this.lugar.direccionLugar;
-      console.log("lugar que llega es:");
-      console.log(this.lugar);
+      //console.log("lugar que llega es:");
+      //console.log(this.lugar);
       this.asignarCosto();
       this.totalPedido = this.calcular();
     } else if (parseInt(this.tokenService.getLugar()) != 0) {
-      console.log("hay lugar guardado del usuario");
-      console.log("lugar guardado desde el landing");
-      console.log(this.lugar);
+      //console.log("hay lugar guardado del usuario");
+      //console.log("lugar guardado desde el landing");
+      //console.log(this.lugar);
       this.serviceLugar.getLugarId(parseInt(this.tokenService.getLugar())).subscribe(data => {
         this.totalPedido = this.calcular();
         this.barrio = data.barrio;
@@ -193,7 +193,7 @@ export class InicioComponent implements OnInit {
     let that = this;
     this.stompClient.connect({}, function (frame) {
       that.isLoaded = true;
-      console.log("quiere decir qu ya hizo conexion con socket");
+      //console.log("quiere decir qu ya hizo conexion con socket");
       that.openGlobalSocket()
       that.openSocket()
     });
@@ -204,8 +204,8 @@ export class InicioComponent implements OnInit {
     });
   }
  promesaModificarLugarHead() {
-    console.log("id del lugar guadados son: ");
-    console.log(sessionStorage.getItem('IdLugar'));
+    //console.log("id del lugar guadados son: ");
+    //console.log(sessionStorage.getItem('IdLugar'));
   
     this.lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
     this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
@@ -216,15 +216,15 @@ export class InicioComponent implements OnInit {
         //this.serviceModal.open(this.loginModal);
         //this.router.navigate(["login"]);
       }
-      console.log(err.error.mensaje)
+      //console.log(err.error.mensaje)
     })
   }
   openSocket() {
-    console.log(this.isLoaded);
-    console.log("ingresa a estos metodos de sockets");
+    //console.log(this.isLoaded);
+    //console.log("ingresa a estos metodos de sockets");
     if (this.isLoaded) {
       this.isCustomSocketOpened = true;
-      console.log("id de usuario actual listo para recibir mensajes es " + this.tokenService.getIdUser());
+      //console.log("id de usuario actual listo para recibir mensajes es " + this.tokenService.getIdUser());
       this.stompClient.subscribe("/socket-publisher/" + this.tokenService.getIdUser(), (message) => {
         this.handleResult(message);
       });
@@ -234,16 +234,16 @@ export class InicioComponent implements OnInit {
   handleResult(message) {
     if (message.body) {
       let messageResult: Message = JSON.parse(message.body);
-      console.log(messageResult);
+      //console.log(messageResult);
       this.messages.push(messageResult);
       /**  this.toastr.success("new message recieved", null, {
          'timeOut': 3000
        });*/
       //this.showNotification("Notificación", messageResult.message);
       //this.showPushNotification("Notificación", "Mensaje recibido");
-      console.log("ingreso de vibracion");
+      //console.log("ingreso de vibracion");
       //Haptics.vibrate();
-      console.log("ingreso de notificacion local");
+      //console.log("ingreso de notificacion local");
       /** const notifs =  LocalNotifications.schedule({
            notifications: [
              {
@@ -258,7 +258,7 @@ export class InicioComponent implements OnInit {
              }
            ]
          });
-         console.log('scheduled notifications', notifs); */
+         //console.log('scheduled notifications', notifs); */
 
       // Method called when tapping on a notification
 
@@ -268,7 +268,7 @@ export class InicioComponent implements OnInit {
   conductor() {
     this.empresaSelected = false;
     this.empresas = this.empresasTemporal;
-    console.log("ingreso a conductor padre");
+    //console.log("ingreso a conductor padre");
     let empresasSeleccion: Empresa[] = [];
     this.empresas.forEach(element => {
       element.categorias.forEach(element2 => {
@@ -284,7 +284,7 @@ export class InicioComponent implements OnInit {
   domicilios() {
     this.empresaSelected = false;
     this.empresas = this.empresasTemporal;
-    console.log("ingreso a domicilios padre");
+    //console.log("ingreso a domicilios padre");
     let empresasSeleccion: Empresa[] = [];
     this.empresas.forEach(element => {
       element.categorias.forEach(element2 => {
@@ -300,8 +300,8 @@ export class InicioComponent implements OnInit {
   licores() {
     this.empresaSelected = false;
     this.empresas = this.empresasTemporal;
-    console.log("ingreso a licores padre");
-    console.log(this.empresas);
+    //console.log("ingreso a licores padre");
+    //console.log(this.empresas);
     let empresasSeleccion: Empresa[] = [];
     this.empresas.forEach(element => {
       element.categorias.forEach(element2 => {
@@ -317,7 +317,7 @@ export class InicioComponent implements OnInit {
   viveres() {
     this.empresaSelected = false;
     this.empresas = this.empresasTemporal;
-    console.log("ingreso a viveres padre");
+    //console.log("ingreso a viveres padre");
     let empresasSeleccion: Empresa[] = [];
     this.empresas.forEach(element => {
       element.categorias.forEach(element2 => {
@@ -332,10 +332,10 @@ export class InicioComponent implements OnInit {
   }
   drogueria() {
     this.empresaSelected = false;
-    console.log("ingreso a drogueria padre");
+    //console.log("ingreso a drogueria padre");
     this.empresas = this.empresasTemporal;
     let empresasSeleccion: Empresa[] = [];
-    console.log(this.empresas);
+    //console.log(this.empresas);
     this.empresas.forEach(element => {
       element.categorias.forEach(element2 => {
         if (element2.dependencia.idCategoria == 4) {
@@ -344,19 +344,19 @@ export class InicioComponent implements OnInit {
       });
     });
     this.empresas = empresasSeleccion;
-    this.categoriaActual = "MEDICAMENTOS";
+    this.categoriaActual = "Medicamentos";
     this.cargarCategorias();
   }
   restaurantes() {
     this.empresaSelected = false;
-    console.log("ingreso a restaurantes padre");
+    //console.log("ingreso a restaurantes padre");
     this.empresas = this.empresasTemporal;
     let empresasSeleccion: Empresa[] = [];
     this.empresas.forEach(element => {
-      console.log(element.razonSocial);
+      //console.log(element.razonSocial);
       let introIf = false;
       element.categorias.forEach(element2 => {
-        console.log("cosas que tiene elemento 2");
+        //console.log("cosas que tiene elemento 2");
         if (!introIf) {
           if (element2.dependencia.idCategoria == 5) {
             introIf = true;
@@ -375,19 +375,19 @@ export class InicioComponent implements OnInit {
     this.empresaSelected = false;
     this.empresaService.getEmpresas().subscribe(data => {
       this.empresas = data;
-      console.log("empresas cargadas");
-      console.log(this.empresas);
+      //console.log("empresas cargadas");
+      //console.log(this.empresas);
       this.empresasTemporal = data;
       this.empresas.forEach(element => {
-        console.log("id de las imagenes de los productos" + element.imagen);
+        //console.log("id de las imagenes de los productos" + element.imagen);
 
         this.imagenService.getImageId(element.imagen).subscribe(data => {
           this.retrieveResonse = data;
-          console.log(data);
+          //console.log(data);
           this.base64Data = this.retrieveResonse.picByte;
           //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-          console.log(this.retrievedImage);
+          //console.log(this.retrievedImage);
 
         })
       });
@@ -408,20 +408,20 @@ export class InicioComponent implements OnInit {
   }
   cargarProductos() {
 
-    console.log("metodo de listar productos oinit");
+    //console.log("metodo de listar productos oinit");
     this.productosService.listarUsuarioFinal().subscribe(data => {
       this.productos = data;
-      console.log(this.productos);
+      //console.log(this.productos);
       this.productos.forEach(element => {
-        console.log("id de las imagenes de los productos" + element.imagen);
+        //console.log("id de las imagenes de los productos" + element.imagen);
 
         this.imagenService.getImageId(element.imagen).subscribe(data => {
           this.retrieveResonse = data;
-          console.log(data);
+          //console.log(data);
           this.base64Data = this.retrieveResonse.picByte;
           //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-          console.log(this.retrievedImage);
+          //console.log(this.retrievedImage);
 
         })
       });
@@ -445,8 +445,8 @@ export class InicioComponent implements OnInit {
       alert("no es posible solicitar productos de dos empresas en un mismo servicio");
     } else {
       this.verificarRepetidos(this.producto);
-      console.log("agregando al local storage:");
-      console.log(this.productosCarrito);
+      //console.log("agregando al local storage:");
+      //console.log(this.productosCarrito);
       localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
       this.serviceModal.dismissAll();
       this.totalPedido = this.calcular();
@@ -456,7 +456,7 @@ export class InicioComponent implements OnInit {
     let isRepetido = false;
     this.productosCarrito.forEach(element => {
       if (element.nombreProducto == producto.nombreProducto) {
-        console.log("producto ya solicitado anteriormente");
+        //console.log("producto ya solicitado anteriormente");
         isRepetido = true;
       }
     });
@@ -465,8 +465,8 @@ export class InicioComponent implements OnInit {
   cargarCategorias() {
     if (this.categoriaActual != "Todas las Categorias") {
       this.categoriaService.getCategoriasDependencia(this.categoriaActual).subscribe(data => {
-        console.log("ingreso de categoprias con dependencia");
-        console.log(data);
+        //console.log("ingreso de categoprias con dependencia");
+        //console.log(data);
         this.categorias = data;
       });
     }
@@ -485,7 +485,7 @@ export class InicioComponent implements OnInit {
   }
 
   showF() {
-    console.log("ingreso de show")
+    //console.log("ingreso de show")
     if (this.show) {
       this.show = false;
     } else {
@@ -494,13 +494,13 @@ export class InicioComponent implements OnInit {
   }
   getCarrito() {
 
-    console.log(JSON.parse(localStorage.getItem('myCar')));
+    //console.log(JSON.parse(localStorage.getItem('myCar')));
     this.productosCarrito = JSON.parse(localStorage.getItem('myCar'));
-    console.log("carrito de local storage");
-    console.log(this.productosCarrito);
+    //console.log("carrito de local storage");
+    //console.log(this.productosCarrito);
 
     if (this.productosCarrito.length <= 0) {
-      console.log("carrito vacio")
+      //console.log("carrito vacio")
     } else this.idEmpresa = this.productosCarrito[0].empresa.idEmpresa;
     this.totalPedido = this.calcular();
 
@@ -518,7 +518,7 @@ export class InicioComponent implements OnInit {
       this.productosCarrito.splice(i, 1);
       this.totalPedido = this.calcular();
     }
-    console.log("productos en mycar antes del if");
+    //console.log("productos en mycar antes del if");
     if (this.verificarCarrito) {
       this.idEmpresa = 0;
     }
@@ -543,17 +543,17 @@ export class InicioComponent implements OnInit {
   verificarCarrito(): boolean {
 
 
-    console.log("productos en mycar");
-    console.log(localStorage.getItem('myCar'));
+    //console.log("productos en mycar");
+    //console.log(localStorage.getItem('myCar'));
     if (this.productosCarrito.length <= 0) {
       return false;
     } else
       return false;
   }
   agregarBarrio(modal) {
-    console.log("modal activo de barrio");
+    //console.log("modal activo de barrio");
     //console.log(this.getidLugar());
-    console.log("datos de direccion son " + this.tipoDireccionSeleccionada + "-" + this.n1 + "-" + this.n2 + "-" + this.n3);
+    //console.log("datos de direccion son " + this.tipoDireccionSeleccionada + "-" + this.n1 + "-" + this.n2 + "-" + this.n3);
     if ((this.n1 <= 0 || this.n2 <= 0) || (this.n1 === undefined || this.n2 === undefined) || this.tipoDireccionSeleccionada === "") {
       if (this.tipoDireccionSeleccionada === "") {
         alert("Tipo de direccion no seleccionada");
@@ -566,8 +566,8 @@ export class InicioComponent implements OnInit {
       this.serviceModal.open(modal);
       this.serviceBarrio.getBarrios().subscribe(data => {
         this.barrios = data;
-        console.log("barrios cargados");
-        console.log(this.barrios);
+        //console.log("barrios cargados");
+        //console.log(this.barrios);
         this.loader = false;
 
       });
@@ -577,8 +577,8 @@ export class InicioComponent implements OnInit {
 
   capturarTipoDireccion() {
     //this.getBarrio();
-    console.log("direccion seleccionado ");
-    console.log(this.tipoDireccionSeleccionada);
+    //console.log("direccion seleccionado ");
+    //console.log(this.tipoDireccionSeleccionada);
   }
   getBarrio() {
 
@@ -592,23 +592,23 @@ export class InicioComponent implements OnInit {
   seleccionEmpresa(empresa) {
     this.empresaSelected = true;
     this.empresaSeleccionada = empresa;
-    console.log("empresa Seleccionada");
-    console.log(this.empresaSeleccionada);
+    //console.log("empresa Seleccionada");
+    //console.log(this.empresaSeleccionada);
     this.categorias = this.empresaSeleccionada.categorias;
     this.productosService.getProductosEmpresa(empresa).subscribe(data => {
-      console.log("productos de esa empresa son:");
+      //console.log("productos de esa empresa son:");
       this.productos = data;
-      console.log(this.productos);
+      //console.log(this.productos);
       this.productos.forEach(element => {
-        console.log("id de las imagenes de los productos" + element.imagen);
+        //console.log("id de las imagenes de los productos" + element.imagen);
 
         this.imagenService.getImageId(element.imagen).subscribe(data => {
           this.retrieveResonse = data;
-          console.log(data);
+          //console.log(data);
           this.base64Data = this.retrieveResonse.picByte;
           //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-          console.log(this.retrievedImage);
+          //console.log(this.retrievedImage);
 
         })
       });
@@ -617,8 +617,8 @@ export class InicioComponent implements OnInit {
   }
 
   asignarCosto() {
-    console.log("barrio en sistema es");
-    console.log(this.barrio);
+    //console.log("barrio en sistema es");
+    //console.log(this.barrio);
     if (this.barrio.tipoCosto == "COSTO1") {
       this.valorServicio = 4000;
     } if (this.barrio.tipoCosto == "COSTO2") {
@@ -650,17 +650,16 @@ export class InicioComponent implements OnInit {
           window.sessionStorage.setItem("Telefono",this.telefono+"");
           this.serviceModal.dismissAll();
         }, (err: any) => {
-          console.log(err.error.mensaje)
+          //console.log(err.error.mensaje)
           this.telefono=window.sessionStorage.getItem("Telefono");
         });
       }else alert("numero de contacto no valido");
   }
   confirmarPedido() {
-    // this.tramitando=true;
-    // this.serviceModal.open(modal);
-    console.log("ingreso a confirmar pedido");
-    console.log("datos del lugar");
-    console.log(this.lugar);
+
+    //console.log("ingreso a confirmar pedido");
+    //console.log("datos del lugar");
+    //console.log(this.lugar);
 
     if (this.productosCarrito.length > 0) {
       if (this.lugar == null) {
@@ -689,9 +688,9 @@ export class InicioComponent implements OnInit {
     //  this.lugar.idUsuario = this.getidSesion();
     
     if (parseInt(this.tokenService.getLugar()) == 0) {
-      console.log("ingreso antes de las validaciones de guardar lugar local");
+      //console.log("ingreso antes de las validaciones de guardar lugar local");
       if (this.lugar != null&&this.telefono!=null) {
-        console.log("ingreso a condicional donde lugar es diferente de nulo y telefono tambien")
+        //console.log("ingreso a condicional donde lugar es diferente de nulo y telefono tambien")
         if(this.telefono=="0") {
           alert("no tiene telefono guardado le recomendamos")
           this.guardarTelefonoModalOpen();
@@ -702,9 +701,9 @@ export class InicioComponent implements OnInit {
       }
 
     } else {
-      console.log("tiene direccion guardada pero la va a modificar");
-      console.log("datos del telefono son:");
-      console.log(this.telefono);
+      //console.log("tiene direccion guardada pero la va a modificar");
+      //console.log("datos del telefono son:");
+      //console.log(this.telefono);
       if(this.telefono=="0"){
         this.guardarTelefonoModalOpen();
       }else{
@@ -717,14 +716,14 @@ export class InicioComponent implements OnInit {
 
   promesaCrearLugar() {
     //console.log("id del lugar guadados son: ");
-    // console.log(sessionStorage.getItem('IdLugar'));
+    // //console.log(sessionStorage.getItem('IdLugar'));
     //this.lugar.idLugar=parseInt(sessionStorage.getItem('IdLugar'));
     this.lugar.idUsuario = parseInt(this.tokenService.getIdUser());
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
 
     this.serviceLugar.createLugar(this.lugar).subscribe(data => {
-      console.log("alerta antes de extraer el id del lugar por primera vez");
+      //console.log("alerta antes de extraer el id del lugar por primera vez");
         //alert("pendiente id que llega del lugar es: "+data.idLugar);
         window.sessionStorage.setItem("IdLugar",(data.idLugar+""));
         this.lugar.idLugar=data.idLugar;
@@ -736,12 +735,12 @@ export class InicioComponent implements OnInit {
       }
     }, (err: any) => {
 
-      console.log(err.error.mensaje)
+      //console.log(err.error.mensaje)
     })
   }
   promesaModificarLugar() {
-    console.log("id del lugar guadados son: ");
-    console.log(sessionStorage.getItem('IdLugar'));
+    //console.log("id del lugar guadados son: ");
+    //console.log(sessionStorage.getItem('IdLugar'));
     this.lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
@@ -755,10 +754,13 @@ export class InicioComponent implements OnInit {
       if (err.error.mensaje === undefined) {
         alert("debes ingresar o registrarse para poder confirmar pedido");
         localStorage.setItem("reabrirCarrito","true");
-        this.serviceModal.open(this.loginModal);
+        //this.serviceModal.open(this.loginModal);
+        this.serviceModal.dismissAll();
+        this.router.navigate(["login"]);
+
        // this.router.navigate(["login"]);
       }
-      console.log(err.error.mensaje)
+      //console.log(err.error.mensaje)
     })
   }
   getidSesion(): number {
@@ -779,14 +781,14 @@ export class InicioComponent implements OnInit {
       body:'prueba 1'
     }
     email.available().then(available=>{
-      console.log(`el estado del correo electrónico del dispositivo es ${available}`);
+      //console.log(`el estado del correo electrónico del dispositivo es ${available}`);
       if(available){
         email.compose(this.emailObtions).then(result => {
-          console.log(result);
+          //console.log(result);
           if(result){
-            console.log('el correo fue enviado');
+            //console.log('el correo fue enviado');
           } else{
-            console.log('el correo no fue enviado');
+            //console.log('el correo no fue enviado');
           }
         }).catch(error => console.error(error));
       }
@@ -809,19 +811,19 @@ export class InicioComponent implements OnInit {
     this.pedido.valorGanancia = 0;
     this.pedido.valorTotalPedido = 0;
     this.serviceModal.dismissAll();
-    console.log("valor gananacia " + this.valorServicio);
+    //console.log("valor gananacia " + this.valorServicio);
     this.pedido.valorGanancia = this.valorServicio;
-    console.log("ingreso a crear el pedido");
-    console.log(this.pedido);
+    //console.log("ingreso a crear el pedido");
+    //console.log(this.pedido);
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
     this.pedidoService.createPedido(this.pedido).subscribe(data => {
       this.detalleServicioService.getServicio(this.pedido.empresa.idEmpresa, this.pedido.idCliente).subscribe(data => {
-        console.log("servicio extraido es");
-        console.log(data);
+        //console.log("servicio extraido es");
+        //console.log(data);
         this.servicio = data;
         this.idservicio = data.id;
-        console.log("id de servicio " + this.idservicio);
+        //console.log("id de servicio " + this.idservicio);
         this.llenarDetalleList(this.idservicio);
         //this.llenarDetalle(this.idservicio);
         
@@ -830,14 +832,14 @@ export class InicioComponent implements OnInit {
       this.sendEmail();
     }, (err: any) => {
 
-      console.log(err.error.mensaje)
+      //console.log(err.error.mensaje)
     });
 
   }
   llenarDetalleList(idServicio: number) {
     let estadoServicio = "Activo";
 
-    console.log(this.productosCarrito);
+    //console.log(this.productosCarrito);
     let listDetalleServicio: DetalleServicio[] = [];
 
     this.productosCarrito.forEach(element => {
@@ -850,13 +852,13 @@ export class InicioComponent implements OnInit {
       listDetalleServicio.push(detalleServicio);
     });
     this.detalleServicioService.createDetalleServicioList(listDetalleServicio).subscribe(data => {
-      console.log("mensaje de confirmacion de la lista de detalle");
-      console.log(data);
+      //console.log("mensaje de confirmacion de la lista de detalle");
+      //console.log(data);
       this.servicio.estadoServicio = estadoServicio;
       this.servicioService.updateServicio(this.servicio).subscribe(data => {
         this.serviceModal.dismissAll();
         this.tramitando = false;
-        console.log(data.mensaje);
+        //console.log(data.mensaje);
         this.solicitarPedido();
         this.notificacionesGeneral();
         
@@ -865,14 +867,14 @@ export class InicioComponent implements OnInit {
         
 
       }, (err: any) => {
-        console.log(err.error.mensaje);
+        //console.log(err.error.mensaje);
       });
     })
   }
   llenarDetalle(idServicio: number) {
     let estadoServicio = "Activo";
-    console.log("productos del carriot son:");
-    console.log(this.productosCarrito);
+    //console.log("productos del carriot son:");
+    //console.log(this.productosCarrito);
 
     this.productosCarrito.forEach(element => {
       let detalleServicio: DetalleServicio = new DetalleServicio();
@@ -881,7 +883,7 @@ export class InicioComponent implements OnInit {
       detalleServicio.valorUnitario = element.valorProducto;
       detalleServicio.cantidad = element.cantidad;
       this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(data => {
-        console.log("detalle servicio agregado");
+        //console.log("detalle servicio agregado");
 
         //this.ngOnInit();
         localStorage.removeItem('myCar');
@@ -895,48 +897,48 @@ export class InicioComponent implements OnInit {
     });
 
     setTimeout(() => { /*Your Code*/
-      console.log("delay ingresando");
+      //console.log("delay ingresando");
       this.servicio.estadoServicio = estadoServicio;
       this.servicioService.updateServicio(this.servicio).subscribe(data => {
         this.serviceModal.dismissAll();
         this.tramitando = false;
-        console.log(data.mensaje);
+        //console.log(data.mensaje);
         this.solicitarPedido();
         this.notificacionesGeneral();
         alert(data.mensaje);
         this.idEmpresa = 0;
         this.ngOnInit();
       }, (err: any) => {
-        console.log(err.error.mensaje);
+        //console.log(err.error.mensaje);
       })
     }, 5000);
   }
 
   notificacionesGeneral() {
-    console.log("enviando notificaciones a los usuarios empresa");
+    //console.log("enviando notificaciones a los usuarios empresa");
     this.usuarioService.getUserEmpresaNotifications(this.idEmpresa).subscribe(data => {
-      console.log("promesa de get usuarios empresa");
+      //console.log("promesa de get usuarios empresa");
       data.forEach(element => {
         this.enviarNotificaciones(element.id, "Tiene un pedido de su negocio");
       });
     });
-    console.log("enviando notificaciones a los usuarios recepcionista");
+    //console.log("enviando notificaciones a los usuarios recepcionista");
     this.usuarioService.getUserRepecionistaNotifications().subscribe(data => {
-      console.log("promesa de get usuarios recepcionista");
+      //console.log("promesa de get usuarios recepcionista");
       data.forEach(element => {
         this.enviarNotificaciones(element.id, "Tiene un pedido sin asignar");
       });
     });
-    console.log("enviando notificaciones a los usuarios admi");
+    //console.log("enviando notificaciones a los usuarios admi");
     this.usuarioService.getUserAdminNotifications().subscribe(data => {
-      console.log("promesa de get usuarios admi");
+      //console.log("promesa de get usuarios admi");
       data.forEach(element => {
         this.enviarNotificaciones(element.id, "Tiene un pedido sin asignar");
       });
     });
-    console.log("enviando notificaciones a los usuarios domiciliario");
+    //console.log("enviando notificaciones a los usuarios domiciliario");
     this.usuarioService.getUserDomiciliarioNotifications().subscribe(data => {
-      console.log("promesa de get usuarios admi");
+      //console.log("promesa de get usuarios admi");
       data.forEach(element => {
         this.enviarNotificaciones(element.id, "Tiene un pedido sin asignar");
       });
@@ -949,16 +951,16 @@ export class InicioComponent implements OnInit {
       toId: id + ""
     };
     this.socketService.postMessage(message).subscribe(res => {
-      console.log(res);
+      //console.log(res);
     })
   }
   solicitarPedido() {
-    console.log("listo para extraer pedido ");
-    console.log(this.servicio);
+    //console.log("listo para extraer pedido ");
+    //console.log(this.servicio);
     this.pedidoService.getPedido(this.servicio.idPedido).subscribe(data => {
       // this.pedido=data;
-      console.log("pedido obtenido  es ");
-      console.log(data);
+      //console.log("pedido obtenido  es ");
+      //console.log(data);
       this.tokenService.setLugar(data.lugar.idLugar + "");
       this.lugar.idLugar = data.lugar.idLugar;
       // alert("pedido solicitado");

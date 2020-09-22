@@ -44,17 +44,17 @@ var RolServiceService =
         };
 
         RolServiceService.prototype.updateRol = function(rol) {
-            console.log("el ide seleccionado es " + rol.id);
+            //console.log("el ide seleccionado es " + rol.id);
             return this.http.put(this.rolURL, rol);
         };
 
         RolServiceService.prototype.getRolId = function(id) {
-            // console.log("el ide seleccionado es "+ id)
+            // //console.log("el ide seleccionado es "+ id)
             return this.http.get(this.rolURL + "/" + id);
         };
 
         RolServiceService.prototype.borrarRolId = function(rol) {
-            // console.log("el ide seleccionado es "+ id)
+            // //console.log("el ide seleccionado es "+ id)
             return this.http["delete"](this.rolURL + "/" + rol.id);
         };
 

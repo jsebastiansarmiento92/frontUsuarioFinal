@@ -49,7 +49,7 @@ var CategoriaService =
         };
 
         CategoriaService.prototype.borrarEmpresaId = function(categoria) {
-            console.log("el ide seleccionado es " + categoria.idCategoria);
+            //console.log("el ide seleccionado es " + categoria.idCategoria);
             return this.http["delete"](this.categoriaURL + "/" + categoria.idCategoria);
         };
 

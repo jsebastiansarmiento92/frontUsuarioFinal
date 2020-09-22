@@ -21,7 +21,7 @@ var DetalleCajaService = /** @class */ (function() {
     }
     DetalleCajaService.prototype.getCajas = function(id) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)
-        console.log("se busca la caja con id " + id);
+        //console.log("se busca la caja con id " + id);
         return this.http.get(this.detalleCajaURL + "/" + id);
     };
     DetalleCajaService = __decorate([

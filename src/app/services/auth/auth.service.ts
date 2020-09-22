@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   onRegister(signupReq:SignUpRequest): Observable<any>{
-    console.log("registro manual de usuario");
+    //console.log("registro manual de usuario");
     return  this.httpClient.post<any>(this.authURL+'signup',signupReq);
   }
   

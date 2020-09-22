@@ -7,7 +7,7 @@
                     <div class="card card-signup">
                         <h2 class="card-title text-center">Registrase</h2>
                         <div class="card-body">
-                            <div class="social text-center">
+                            <!--<div class="social text-center">
                                 <button class="btn btn-just-icon btn-round btn-google">
                                         <i class="fa fa-google" (click)="registerGoogle()"></i>
                                     </button>
@@ -15,8 +15,8 @@
                                         <i class="fa fa-facebook" (click)="registerFacebook()"> </i>
                                     </button>
                                 <h4> O </h4>
-                            </div>
-                            <form class="form" method="" action="">
+                            </div>-->
+                            <form class="form" method="" #f="ngForm" novalidate action="">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -24,7 +24,7 @@
                                                     <i class="material-icons">face</i>
                                                 </span>
                                         </div>
-                                        <input type="text" class="form-control" [(ngModel)]="signupRequest.name" name="name" placeholder="Primer nombre...">
+                                        <input type="text" class="form-control" [(ngModel)]="signupRequest.name" name="name" placeholder="Primer nombre..." required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -34,9 +34,20 @@
                                                     <i class="material-icons">mail</i>
                                                 </span>
                                         </div>
-                                        <input type="text" class="form-control" [(ngModel)]="signupRequest.email" name="email" placeholder="Correo electronico...">
+                                        <input type="text" class="form-control" [(ngModel)]="signupRequest.email" name="email" placeholder="Correo electronico..." required>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                    <i class="material-icons">phone</i>
+                                                </span>
+                                        </div>
+                                        <input type="number" class="form-control" [(ngModel)]="signupRequest.telefono" name="telefono" placeholder="Numero de telefono..." required>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -44,20 +55,21 @@
                                                     <i class="material-icons">lock_outline</i>
                                                 </span>
                                         </div>
-                                        <input type="password" [(ngModel)]="signupRequest.password" name="password" placeholder="Contaseña..." class="form-control" />
+                                        <input type="password" [(ngModel)]="signupRequest.password" name="password" placeholder="Contaseña..." class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="" checked>
+                                            <input class="form-check-input" type="checkbox" value="" (change)="capturarCheck()" >
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
-                                            I agree to the <a href="">terms and conditions</a>.
+                                            de acuerdo con <a href="">Terminos y condiciones</a>.
                                         </label>
                                 </div>
                                 <div class="text-center">
-                                    <a class="btn btn-primary btn-danger btn-round" (click)="registerManual()">Registrar</a>
+
+                                    <button class="btn btn-primary btn-danger btn-round" [disabled]="!f.valid" (click)="registerManual(registrandoModal)">Registrar</button>
                                 </div>
                                 <div *ngIf="failCreado" class="float-left">
                                     <p class="p-3 bg-danger text-white rounded" style="margin: 10px">Error: {{msjErr}}</p>
@@ -66,24 +78,7 @@
                                     <p class="p-3 bg-success text-white rounded" style="margin: 10px">OK: {{msjOK}}</p>
                                 </div>
                             </form>
-                            <!--div class="row">
-                                <div class="col-md-5 ml-auto text-center">
-                                    <div class="info info-horizontal">
-                                        <div class="icon icon-rose">
-                                            <i class="material-icons">cronograma</i>
-                                        </div>
-                                        <div class="description">
-                                            <h4 class="info-title">Marketing</h4>
-                                            <p class="description">
-                                                Hemos creado la campaña de marketing del sitio web. Fue una colaboración
-                                                muy interesante.
-                                            </p>
-                                        </div>
-                                    </div>
 
-                                </div>
-                                
-                            </div-->
                         </div>
                     </div>
                 </div>
@@ -93,7 +88,13 @@
 </div>
 <ng-template #autenticandoModal>
     <div class="text-center">
-        <a class="btn btn-primary btn-danger btn-round" (click)="registerManual()">Regidddddddddddddddddr</a>
+        <a class="btn btn-primary btn-danger btn-round">Registrando</a>
+    </div>
+
+</ng-template>
+<ng-template #registrandoModal>
+    <div class="text-center">
+        <label for="regsitrando">registrando...</label>
     </div>
 
 </ng-template>

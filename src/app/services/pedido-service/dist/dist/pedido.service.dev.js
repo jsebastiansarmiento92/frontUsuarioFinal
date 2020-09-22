@@ -29,7 +29,7 @@ var PedidoService =
 
         PedidoService.prototype.createPedido = function(pedido) {
             //alert("nombre que se envia es "+ usuario.nombreUsuario)
-            console.log(pedido);
+            //console.log(pedido);
             return this.http.post(this.pedidoURL, pedido);
         };
 
@@ -42,7 +42,7 @@ var PedidoService =
         };
 
         PedidoService.prototype.modificarPedidoDomiciliario = function(idPedido, idDomiciliario, pedido) {
-            console.log("el ide seleccionado es de modificarpeidoDom" + idDomiciliario);
+            //console.log("el ide seleccionado es de modificarpeidoDom" + idDomiciliario);
             return this.http.put(this.pedidoURL + ("/modificarDomiciliario/" + idPedido) + ("&" + idDomiciliario), pedido);
         };
 

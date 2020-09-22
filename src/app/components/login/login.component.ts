@@ -41,12 +41,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     /**  if (this.tokenService.getToken()) {
-       console.log("usuario "+this.tokenService.getUserName());
+       //console.log("usuario "+this.tokenService.getUserName());
        this.isLogged = true;
        this.isLoginFail = false;
        this.roles = this.tokenService.getAuthorities();
      }*/
-    // console.log("no hay token guardado");
+    // //console.log("no hay token guardado");
     this.urlTree = this.router.parseUrl(this.router.url);
     this.token = this.urlTree.queryParams['token'];
     this.error = this.urlTree.queryParams['error'];
@@ -56,13 +56,13 @@ export class LoginComponent implements OnInit {
         window.localStorage.setItem('AuthToken', this.token);
        }
       
-      console.log("token llegando es:");
-      console.log(this.token);
-      console.log("erro llegando es ");
-      console.log(this.error);
+      //console.log("token llegando es:");
+      //console.log(this.token);
+      //console.log("erro llegando es ");
+      //console.log(this.error);
       if (window.sessionStorage.getItem('AuthToken')) {
   
-        console.log("hay tonken guardado porque ingresa al if");
+        //console.log("hay tonken guardado porque ingresa al if");
   
         this.getUser();
       }
@@ -78,8 +78,8 @@ export class LoginComponent implements OnInit {
     this.logingIn = true;
     this.loader = true;
     this.authService.login(this.signupReq).subscribe(data => {
-      console.log("ingreso a la promesa de login");
-      console.log(data);
+      //console.log("ingreso a la promesa de login");
+      //console.log(data);
       this.tokenService.setToken(data.accessToken);
       this.isLogged = true;
       this.isLoginFail = false;
@@ -105,7 +105,7 @@ export class LoginComponent implements OnInit {
   getUser() {
 
     this.authService.getCurrentUser().subscribe(data => {
-      console.log(data);
+      //console.log(data);
       window.localStorage.setItem("idSesion", JSON.stringify(data));
       //this.tokenService.setToken(data.token);
       this.tokenService.setUserName(data.name);
@@ -137,7 +137,7 @@ export class LoginComponent implements OnInit {
     //this.urlSafe= (this.url);
     
     //this.ngModal.open(modal);
-   // console.log("ingresoa registrer con google");
+   // //console.log("ingresoa registrer con google");
     window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
  // this.iframe.nativeElement.setAttribute('src', "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup&output=embed");
     
@@ -145,7 +145,7 @@ export class LoginComponent implements OnInit {
 
   loginFacebook(modal){
     //this.ngModal.open(modal);
-    console.log("ingresoa registrer con facebook")
+    //console.log("ingresoa registrer con facebook")
     location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
 

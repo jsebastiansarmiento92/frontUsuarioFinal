@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
   failCreado;
   msjErr= ''; ;
   msjOK = '';
-  
+  checkTErminos=false;
   autenticando=false;
   @ViewChild('autenticandoModal',{static:false})autenticandoModal;
 
@@ -42,56 +42,61 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
       this.serviceModal.dismissAll();
-     // console.log("no hay token guardado");
+     // //console.log("no hay token guardado");
       this.urlTree = this.router.parseUrl(this.router.url);
       this.token = this.urlTree.queryParams['token'];
       this.error = this.urlTree.queryParams['error'];
-      if(this.token.length>1){
-        window.sessionStorage.setItem('AuthToken', this.token);
-        window.localStorage.setItem('AuthToken', this.token);
-       }
-      console.log("token llegando es:");
-      console.log(this.token);
-      console.log("error llegando es ");
-      console.log(this.error);
-    if(window.sessionStorage.getItem('AuthToken')){
-      this.serviceModal.open(this.autenticandoModal);
-      console.log("hay tonken guardado porque ingresa al if");
-      this.autenticando=true;
-     
+      if(this.token==undefined){
 
-      this.authService.getCurrentUser().subscribe(data=>{
+      }else{
+        if(this.token.length>1){
+          window.sessionStorage.setItem('AuthToken', this.token);
+          window.localStorage.setItem('AuthToken', this.token);
+         }
+        //console.log("token llegando es:");
+        //console.log(this.token);
+        //console.log("error llegando es ");
+        //console.log(this.error);
+      if(window.sessionStorage.getItem('AuthToken')){
+        this.serviceModal.open(this.autenticandoModal);
+        //console.log("hay tonken guardado porque ingresa al if");
+        this.autenticando=true;
        
-        console.log(data);
-      //this.tokenService.setToken(data.token);
-      window.localStorage.setItem("idSesion",JSON.stringify(data));
-      this.tokenService.setUserName(data.name);
-      this.tokenService.setAuthorities(data.rol);
-      this.tokenService.setIdUser(data.id);
-      this.tokenService.setLugar(data.idLugar);
-      this.tokenService.setTelefono(data.telefono);
-      this.tokenService.setImageUrl(data.imageUrl);
-      //alert("telefono es:"+data.telefono);
-      //alert("id del usuario lopueado es "+data.id);
-      //window.sessionStorage.setItem("idSesion",data.);
-      this.isLogged = true;
-      this.isLoginFail = false;
-      this.roles = this.tokenService.getAuthorities();
-      localStorage.setItem('isLoggedin', 'true');
-      //window.location.reload();
-      this.autenticando=false;
-      this.serviceModal.dismissAll();
-      this.router.navigate(['inicio']);
-      this.loader=false;
+  
+        this.authService.getCurrentUser().subscribe(data=>{
+         
+          //console.log(data);
+        //this.tokenService.setToken(data.token);
+        window.localStorage.setItem("idSesion",JSON.stringify(data));
+        this.tokenService.setUserName(data.name);
+        this.tokenService.setAuthorities(data.rol);
+        this.tokenService.setIdUser(data.id);
+        this.tokenService.setLugar(data.idLugar);
+        this.tokenService.setTelefono(data.telefono);
+        this.tokenService.setImageUrl(data.imageUrl);
+        //alert("telefono es:"+data.telefono);
+        //alert("id del usuario lopueado es "+data.id);
+        //window.sessionStorage.setItem("idSesion",data.);
+        this.isLogged = true;
+        this.isLoginFail = false;
+        this.roles = this.tokenService.getAuthorities();
+        localStorage.setItem('isLoggedin', 'true');
+        //window.location.reload();
+        this.autenticando=false;
+        this.serviceModal.dismissAll();
+        this.router.navigate(['inicio']);
+        this.loader=false;
+        
+        });
+      }
+      }
       
-      });
-    }
     
   }
   guardarTelefono(){
   if(window.sessionStorage.getItem("telefono")){
     if(window.sessionStorage.getItem("telefono").length>=7){
-      console.log("telefono valido");
+      //console.log("telefono valido");
     //  this.
     } else alert("telefono invalido se recomienda modifica en menu cuenta");
   }
@@ -103,28 +108,45 @@ export class SignupComponent implements OnInit {
     
   }
   registerGoogle(){
-   // console.log("ingresoa registrer con google");
+   // //console.log("ingresoa registrer con google");
     location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
   }
   registerFacebook(){
-    console.log("ingresoa registrer con facebook");
+    //console.log("ingresoa registrer con facebook");
     location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
 
 
-  registerManual(){
-    console.log("datos que se envian para el registro");
-    console.log(this.signupRequest);
-    this.authService.onRegister(this.signupRequest).subscribe(data=>{
-      console.log(data);
-      alert("Registro completo por favor inicie sesion con sus datos para continuar");
-      this.router.navigate(['login']);
-    },(err: any) => {
+  registerManual(modal){
+    this.serviceModal.open(modal);
+    //console.log("datos que se envian para el registro");
+    //console.log(this.signupRequest);
+    if(this.checkTErminos){
+      this.authService.onRegister(this.signupRequest).subscribe(data=>{
+        //console.log(data);
+        alert("Registro completo por favor inicie sesion con sus datos para continuar");
+        this.router.navigate(['login']);
+        this.serviceModal.dismissAll();
+      },(err: any) => {
+        this.creado = false;
+        this.failCreado = true;
+        this.msjErr = err.error.mensaje;
+        this.serviceModal.dismissAll();
+        //console.log(err.error.mensaje)
+      });
+    }else{
+      //console.log("no registro porque no acepto terminos y condicieones");
       this.creado = false;
       this.failCreado = true;
-      this.msjErr = err.error.mensaje;
-      console.log(err.error.mensaje)
-    });
+      this.msjErr = "para continuar con el registro es necesario que acepte terminos y condiciones";
+      this.serviceModal.dismissAll();
+    }
+    
   }
+  capturarCheck(){
+    this.checkTErminos=!this.checkTErminos;
+    
+    //console.log("primir"+this.checkTErminos);
 
+  }
 }

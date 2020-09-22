@@ -28,7 +28,7 @@ export class UsuarioService {
   }
 
   updateUsuario(usuario: Usuario, id: number): Observable<any> {
-    console.log("el ide seleccionado es " + usuario.id)
+    //console.log("el ide seleccionado es " + usuario.id)
     return this.http.put<any>(this.usuarioURL + `/${id}`, usuario);
   }
   updateUsuarioLugar(lugar: Lugar, id: number): Observable<any> {
@@ -37,39 +37,39 @@ export class UsuarioService {
   }
 
   getUsuarioId(id: number): Observable<Usuario> {
-    // console.log("el ide seleccionado es "+ id)
+    // //console.log("el ide seleccionado es "+ id)
     return this.http.get<Usuario>(this.usuarioURL + "/" + id);
   }
   borrarUsuarioId(usuario: Usuario): Observable<any> {
-    console.log("el ide seleccionado es " + usuario.id);
+    //console.log("el ide seleccionado es " + usuario.id);
     return this.http.delete<Usuario>(this.usuarioURL + "/" + usuario.id);
   }
 
   getUsuariosRol(id: number) {
-    // console.log("el ide seleccionado es "+ id)
+    // //console.log("el ide seleccionado es "+ id)
     return this.http.get<Usuario[]>(this.usuarioURL + "/finalCaja/" + id);
   }
 
 
   getDomiciliarios(estado: String) {
-    // console.log("el ide seleccionado es "+ id)
+    // //console.log("el ide seleccionado es "+ id)
     return this.http.get<Usuario[]>(this.usuarioURL + "/domiciliario/" + estado);
   }
 
   getUserEmpresaNotifications(idEmpresa:number) {
-    // console.log("el ide seleccionado es "+ id)
+    // //console.log("el ide seleccionado es "+ id)
     return this.http.get<Usuario[]>(this.usuarioURL + "/userEmpresaNotifications/"+idEmpresa);
   }
   getUserRepecionistaNotifications() {
-    // console.log("el ide seleccionado es "+ id)
+    // //console.log("el ide seleccionado es "+ id)
     return this.http.get<Usuario[]>(this.usuarioURL + "/userRepecionistaNotifications");
   }
   getUserAdminNotifications() {
-    // console.log("el ide seleccionado es "+ id)
+    // //console.log("el ide seleccionado es "+ id)
     return this.http.get<Usuario[]>(this.usuarioURL + "/userAdminNotifications");
   }
   getUserDomiciliarioNotifications() {
-    // console.log("el ide seleccionado es "+ id)
+    // //console.log("el ide seleccionado es "+ id)
     return this.http.get<Usuario[]>(this.usuarioURL + "/userDomiciliarioNotifications");
   }
 }
