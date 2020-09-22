@@ -13,4 +13,5 @@ export class Pedido {
     valorComision:number;
     valorGanancia:number;
     id_caja:number;
+    observaciones:string="";
 }

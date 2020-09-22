@@ -191,4 +191,17 @@ export class HeadComponent implements OnInit {
       this.detalleServicios=data;
     });
   }
+
+  modificarObservacion(modal){
+
+this.serviceModal.open(modal);
+  }
+  confirmarObservacion(){
+    this.mensajeTramitando="cambiando obseraciones";
+    this.serviceModal.open(this.tramitandoModal);
+    this.pedidoService.modificarPedidoObservaciones(this.pedido.id,this.pedido).subscribe(data=>{
+      alert("observacion modificada");
+      this.serviceModal.dismissAll();
+    });
+  }
 }

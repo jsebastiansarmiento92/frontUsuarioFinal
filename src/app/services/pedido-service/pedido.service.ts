@@ -31,6 +31,14 @@ export class PedidoService {
     //console.log("el ide seleccionado es de modificarpeidoDom"+ idDomiciliario)
     return this.http.put<any>(this.pedidoURL+`/modificarDomiciliario/${idPedido}`+`&${idDomiciliario}`,pedido); 
   }
+
+    modificarPedidoObservaciones(idPedido:number,pedido:Pedido): Observable<any>{
+    //console.log("el ide seleccionado es de modificarpeidoDom"+ idDomiciliario)
+    return this.http.put<any>(this.pedidoURL+`/modificarObservaciones/${idPedido}`,pedido); 
+  }
+
+
+
   getPedido(idPedido:number): Observable<any> {
     
     return this.http.get<Pedido>(this.pedidoURL+`/${idPedido}`);

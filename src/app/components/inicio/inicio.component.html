@@ -63,6 +63,9 @@
 
     </div>
     <div>
+        <a class="btn btn-chartjs btn-round" (click)="agregarObservacion(modaObesrvacion)">
+            Observaciones
+        </a>
         <a class="btn btn-rose btn-round" (click)="confirmarPedido()">
             Confirmar
         </a>
@@ -834,6 +837,13 @@
         </div>
     </div>
 </div>
+
+<ng-template #modaObesrvacion>
+    <div class="card-body">
+        <textarea type="textarea" class="form-control" rows="10" cols="50" [(ngModel)]="pedido.observaciones" name="cantidad" placeholder="Agrega observacion del pedido"></textarea>
+    </div>
+    <button (click)="confirmarObservacion()" class="btn btn-danger">Guardar</button>
+</ng-template>
 
 <ng-template #confirmarModal>
     <div class="card-body">

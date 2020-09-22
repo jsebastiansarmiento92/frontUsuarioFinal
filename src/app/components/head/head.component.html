@@ -25,10 +25,10 @@
                             </div>
                         </div>
                         <div style="margin: 9px;" class="fileinput fileinput-new text-center d-none d-sm-none d-md-block" data-provides="fileinput">
-                                <div class="row">
-                                    <img class=" fileinput-new thumbnail img-circle img-raised" src="{{imagePerfil}}" alt="" style="height: 30px; width: 30px; margin: auto; margin-right: 1px; padding-right: 1px;" srcset="./assets/img/placeholder.jpg">
+                            <div class="row">
+                                <img class=" fileinput-new thumbnail img-circle img-raised" src="{{imagePerfil}}" alt="" style="height: 30px; width: 30px; margin: auto; margin-right: 1px; padding-right: 1px;" srcset="./assets/img/placeholder.jpg">
                                 <small style="width: 60%;"><h6 class="text-left">{{nombreUsuario}}</h6></small>
-                            </div>                         
+                            </div>
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
@@ -304,6 +304,15 @@
         <label class="modal-title">Valor Productos: {{pedido.valorTotalPedido}}</label><br>
         <label class="modal-title">Valor valor Domicilio: {{pedido.valorGanancia}}</label><br>
         <label class="modal-title">Valor valor total: {{pedido.valorGanancia+pedido.valorTotalPedido}}</label><br>
+        <br>
+        <label class="modal-title">Onservaciones (las observaciones solo son aplicables 10 minutos despues de realizado el pedido antes no se garantiza que se ejecuten)</label><br>
+        <div class="card-body">
+            <textarea type="textarea" class="form-control" disabled rows="5" cols="10" [(ngModel)]="pedido.observaciones" name="cantidad" placeholder="Agrega observacion del pedido"></textarea>
+        </div>
+        <a class="btn btn-chartjs btn-round" (click)="modificarObservacion(modaObesrvacion)">
+            Cambiar
+        </a>
+
         <h5 class="modal-title">Detalle de pedido:</h5>
     </div>
 
@@ -333,40 +342,11 @@
         </table>
     </div>
 
-    <!--label>Empresa pedido: {{pedido.empresa.razonSocial}}</label>
-    <br>
-    <label>Estado Pedido: {{pedido.estadoPedido}}</label>
-    <br>
-    <label>Valor Productos: {{pedido.valorTotalPedido}}</label>
-    <br>
-    <label>Valor valor Domicilio: {{pedido.valorGanancia}}</label>
-    <br>
-    <label>Valor valor total: {{pedido.valorGanancia+pedido.valorTotalPedido}}</label>
-    <br>
-    <br>
-    <label>Detalle de pedido</label>
 
-    <br>
-    <table class="table">
-        <thead>
-            <tr>
-
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Valor unitario</th>
-                <th class="text-right">Total</th>
-
-            </tr>
-        </thead>
-        <tbody *ngFor="let detalleServicio of detalleServicios">
-            <tr>
-
-                <td>{{detalleServicio.producto.nombreProducto}}</td>
-                <td>{{detalleServicio.cantidad}}</td>
-                <td>{{detalleServicio.valorUnitario}}</td>
-                <td class="text-right">{{detalleServicio.valorTotal}}</td>
-
-            </tr>
-        </tbody>
-    </table-->
+</ng-template>
+<ng-template #modaObesrvacion>
+    <div class="card-body">
+        <textarea type="textarea" class="form-control" rows="10" cols="50" [(ngModel)]="pedido.observaciones" name="cantidad" placeholder="Agrega observacion del pedido"></textarea>
+    </div>
+    <button (click)="confirmarObservacion()" class="btn btn-danger">Guardar</button>
 </ng-template>

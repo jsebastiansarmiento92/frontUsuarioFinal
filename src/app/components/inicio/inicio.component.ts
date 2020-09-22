@@ -991,4 +991,11 @@ export class InicioComponent implements OnInit {
       this.searching = false;
     }
   }
+  agregarObservacion(modal){
+    this.serviceModal.open(modal);
+
+  }
+  confirmarObservacion(){
+    this.serviceModal.dismissAll();
+  }
 }

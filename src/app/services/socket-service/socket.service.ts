@@ -9,7 +9,7 @@ import { Message } from 'src/app/models/message';
 
 @Injectable()
 export class SocketService {
-  url: string = 'https://quickdomiciliosadmin.herokuapp.com/' + "api/socket";
+  url: string = 'https://quickdomicilios.herokuapp.com/' + "api/socket";
 
   constructor(private http: HttpClient) { }
   
