@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
   error: string;
   setState = false;
   currentUser: any;
-  urlgoogle="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
-  urlfacebook="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+  urlgoogle="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+  urlfacebook="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
   signupReq: SignUpRequest = new SignUpRequest();
   @ViewChild('iframe',{ static: true }) iframe: ElementRef;
   urlSafe;
@@ -138,15 +138,15 @@ export class LoginComponent implements OnInit {
     
     //this.ngModal.open(modal);
    // //console.log("ingresoa registrer con google");
-    window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
- // this.iframe.nativeElement.setAttribute('src', "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup&output=embed");
+    window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+ // this.iframe.nativeElement.setAttribute('src', "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup&output=embed");
     
   }
 
   loginFacebook(modal){
     //this.ngModal.open(modal);
     //console.log("ingresoa registrer con facebook")
-    location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+    location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
   }
 
 }

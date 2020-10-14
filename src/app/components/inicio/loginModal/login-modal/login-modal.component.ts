@@ -123,11 +123,11 @@ export class LoginModalComponent implements OnInit {
   }
   loginGoogle() {
     //console.log("ingresoa registrer con google");
-    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
   }
   loginFacebook(){
     //console.log("ingresoa registrer con facebook");
-    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
   }
 
 }

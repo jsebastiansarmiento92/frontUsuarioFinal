@@ -23,7 +23,7 @@ export class AuthService {
   private authURL = 'https://quickdomicilios.herokuapp.com/auth/';
 
   constructor(private httpClient: HttpClient) { }
-
+  
   public login(signupReq: SignUpRequest): Observable<any> {
     return this.httpClient.post<any>(this.authURL + 'login', signupReq);
   }
@@ -31,19 +31,17 @@ export class AuthService {
   public registro(usuario: NuevoUsuario): Observable<any> {
     return this.httpClient.post<any>(this.authURL + 'nuevo', usuario, cabecera);
   }
+
   googleLogin(): Observable<any> {
-    
-    return this.httpClient.get<any>(window.location.href='https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup');
-  
+    return this.httpClient.get<any>(window.location.href='https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
   }
 
   getCurrentUser(): Observable<any>{
-    
     return  this.httpClient.get<any>('https://quickdomicilios.herokuapp.com/usuarios/user/me');
   }
 
+
   onRegister(signupReq:SignUpRequest): Observable<any>{
-    //console.log("registro manual de usuario");
     return  this.httpClient.post<any>(this.authURL+'signup',signupReq);
   }
   

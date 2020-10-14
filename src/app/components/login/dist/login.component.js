@@ -109,11 +109,11 @@ var LoginComponent = /** @class */ (function() {
     };
     LoginComponent.prototype.loginGoogle = function() {
         //console.log("ingresoa registrer con google");
-        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
     };
     LoginComponent.prototype.loginFacebook = function() {
         //console.log("ingresoa registrer con facebook");
-        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
     };
     LoginComponent = __decorate([
         core_1.Component({

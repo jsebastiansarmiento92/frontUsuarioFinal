@@ -94,7 +94,7 @@ export class InicioComponent implements OnInit {
 
 
 
-  private serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket'
+  private serverUrl = 'https://quickdomiciliosadmin.herokuapp.com/' + 'socket'
   isLoaded: boolean = false;
   isCustomSocketOpened = false;
   private stompClient;
@@ -117,7 +117,6 @@ export class InicioComponent implements OnInit {
     private empresaService: EmpresaService,
     private socketService: SocketService,
     private usuarioService: UsuarioService,
-
   ) { }
 
   ngOnInit() {
@@ -374,13 +373,16 @@ export class InicioComponent implements OnInit {
   cargarEmpresas() {
     this.empresaSelected = false;
     this.empresaService.getEmpresas().subscribe(data => {
-      this.empresas = data;
+     // this.empresas = data;
       //console.log("empresas cargadas");
       //console.log(this.empresas);
-      this.empresasTemporal = data;
-      this.empresas.forEach(element => {
+      //this.empresasTemporal = data;
+      data.forEach(element => {
         //console.log("id de las imagenes de los productos" + element.imagen);
-
+        if(element.estadoEmpresa=='Activa'){
+          this.empresas.push(element);
+          
+        }
         this.imagenService.getImageId(element.imagen).subscribe(data => {
           this.retrieveResonse = data;
           //console.log(data);
@@ -388,7 +390,6 @@ export class InicioComponent implements OnInit {
           //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           //console.log(this.retrievedImage);
-
         })
       });
     })
@@ -993,7 +994,6 @@ export class InicioComponent implements OnInit {
   }
   agregarObservacion(modal){
     this.serviceModal.open(modal);
-
   }
   confirmarObservacion(){
     this.serviceModal.dismissAll();

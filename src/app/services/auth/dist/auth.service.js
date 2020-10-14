@@ -29,7 +29,7 @@ var AuthService = /** @class */ (function() {
         return this.httpClient.post(this.authURL + 'nuevo', usuario, cabecera);
     };
     AuthService.prototype.googleLogin = function() {
-        return this.httpClient.get(window.location.href = 'https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup');
+        return this.httpClient.get(window.location.href = 'https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
     };
     AuthService.prototype.getCurrentUser = function() {
         return this.httpClient.get('https://quickdomicilios.herokuapp.com/usuarios/user/me');

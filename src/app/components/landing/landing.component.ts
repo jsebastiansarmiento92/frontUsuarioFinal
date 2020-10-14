@@ -155,7 +155,7 @@ export class LandingComponent implements OnInit {
       this.promesaModificarLugar(lugar);
       
       window.localStorage.setItem("lugar", JSON.stringify(lugar));
-      window.sessionStorage.setItem("telefono",this.telefono);
+      window.sessionStorage.setItem("Telefono",this.telefono);
       //console.log("oprimidio inicio")
       this.router.navigate(["inicio"]);
     }else{

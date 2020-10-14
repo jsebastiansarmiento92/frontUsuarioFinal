@@ -31,7 +31,8 @@ export class HeadComponent implements OnInit {
   @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
   detalleServicios:DetalleServicio[];
   pedido:Pedido;
-  imagePerfil;
+  imagePerfil='';
+  isImagePerfil=false;
   
   constructor(private tokenService: TokenService,
     private router: Router,
@@ -47,14 +48,18 @@ export class HeadComponent implements OnInit {
       //console.log("hay lugar guardado en el localstorage");
       this.lugar = JSON.parse(localStorage.getItem('lugar'));
     }
+
     if(window.sessionStorage.getItem("Telefono")){
       if(window.sessionStorage.getItem("Telefono")!="0"){
+        console.log("telefono es "+window.sessionStorage.getItem("Telefono"));
         this.telefono=window.sessionStorage.getItem("Telefono");
       }
     }
     if(window.sessionStorage.getItem("ImageUrl")){
       if(window.sessionStorage.getItem("ImageUrl")!=""){
+        console.log(window.sessionStorage.getItem("ImageUrl"));
         this.imagePerfil=window.sessionStorage.getItem("ImageUrl");
+        this.isImagePerfil=true;
       }
     }
     //console.log(this.lugar);

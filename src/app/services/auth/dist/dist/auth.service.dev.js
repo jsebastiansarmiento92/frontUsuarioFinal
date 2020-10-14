@@ -47,7 +47,7 @@ var AuthService =
         };
 
         AuthService.prototype.googleLogin = function() {
-            return this.httpClient.get(window.location.href = 'https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup');
+            return this.httpClient.get(window.location.href = 'https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
         };
 
         AuthService.prototype.getCurrentUser = function() {
