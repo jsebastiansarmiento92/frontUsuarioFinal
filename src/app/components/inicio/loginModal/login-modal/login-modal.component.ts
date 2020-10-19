@@ -35,12 +35,12 @@ export class LoginModalComponent implements OnInit {
   ngOnInit() {
 
     /**  if (this.tokenService.getToken()) {
-       //console.log("usuario "+this.tokenService.getUserName());
+       console.log("usuario "+this.tokenService.getUserName());
        this.isLogged = true;
        this.isLoginFail = false;
        this.roles = this.tokenService.getAuthorities();
      }*/
-    // //console.log("no hay token guardado");
+    // console.log("no hay token guardado");
     this.urlTree = this.router.parseUrl(this.router.url);
     this.token = this.urlTree.queryParams['token'];
     this.error = this.urlTree.queryParams['error'];
@@ -49,13 +49,13 @@ export class LoginModalComponent implements OnInit {
       window.localStorage.setItem('AuthToken', this.token);
      }
     
-    //console.log("token llegando es:");
-    //console.log(this.token);
-    //console.log("erro llegando es ");
-    //console.log(this.error);
+    console.log("token llegando es:");
+    console.log(this.token);
+    console.log("erro llegando es ");
+    console.log(this.error);
     if (window.sessionStorage.getItem('AuthToken')) {
 
-      //console.log("hay tonken guardado porque ingresa al if");
+      console.log("hay tonken guardado porque ingresa al if");
 
       this.getUser();
     }
@@ -69,8 +69,8 @@ export class LoginModalComponent implements OnInit {
     this.logingIn = true;
     this.loader = true;
     this.authService.login(this.signupReq).subscribe(data => {
-      //console.log("ingreso a la promesa de login");
-      //console.log(data);
+      console.log("ingreso a la promesa de login");
+      console.log(data);
       this.tokenService.setToken(data.accessToken);
       this.isLogged = true;
       this.isLoginFail = false;
@@ -88,21 +88,22 @@ export class LoginModalComponent implements OnInit {
         this.isLoginFail = true;
         this.errorMsg = err.error.message;
         //this.router.navigate(['']);
-        //console.log("error "+ err.error.message);
+        console.log("error "+ err.error.message);
       }
     );
   }
   
   getUser() {
-
+    console.log("get user");
     this.authService.getCurrentUser().subscribe(data => {
-      //console.log(data);
+      console.log(data);
       window.localStorage.setItem("idSesion", JSON.stringify(data));
       //this.tokenService.setToken(data.token);
       this.tokenService.setUserName(data.name);
       this.tokenService.setAuthorities(data.rol);
       this.tokenService.setIdUser(data.id);
       this.tokenService.setLugar(data.idLugar);
+      this.tokenService.setTelefono(data.telefono);
       //alert("id del usuario lopueado es "+data.id);
       //window.sessionStorage.setItem("idSesion",data.);
       //window.sessionStorage.setItem("AuthToken",this.tokenService.getToken());
@@ -111,7 +112,7 @@ export class LoginModalComponent implements OnInit {
       this.roles = this.tokenService.getAuthorities();
       localStorage.setItem('isLoggedin', 'true');
       //window.location.reload();
-      this.router.navigate(['']);
+      this.router.navigate(['/inicio']);
       this.loader = false;
     });
   }
@@ -122,12 +123,12 @@ export class LoginModalComponent implements OnInit {
 
   }
   loginGoogle() {
-    //console.log("ingresoa registrer con google");
-    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+    console.log("ingresoa registrer con google");
+    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
   }
   loginFacebook(){
-    //console.log("ingresoa registrer con facebook");
-    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
+    console.log("ingresoa registrer con facebook");
+    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
 
 }

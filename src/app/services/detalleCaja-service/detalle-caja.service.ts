@@ -15,7 +15,7 @@ export class DetalleCajaService {
 
   getCajas(id:number): Observable<any> {
     //alert("nombre que se envia es "+ usuario.nombreUsuario)
-    //console.log("se busca la caja con id "+id);
+    console.log("se busca la caja con id "+id);
     return this.http.get<DetalleCaja[]>(this.detalleCajaURL+"/"+id);
   }
 }

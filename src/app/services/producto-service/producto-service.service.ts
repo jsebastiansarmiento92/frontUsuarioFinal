@@ -16,7 +16,7 @@ export class ProductoServiceService {
 
   creaProducto(producto: Producto): Observable<any> {
     //alert("nombre que se envia es "+ usuario.nombreUsuario)
-    //console.log(producto);
+    console.log(producto);
     return this.httpClient.post<Producto>(this.productoURL, producto);
   }
   getProductos() : Observable<any>{

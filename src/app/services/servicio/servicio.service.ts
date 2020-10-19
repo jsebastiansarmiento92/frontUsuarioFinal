@@ -11,7 +11,7 @@ export class ServicioService {
   constructor(private http: HttpClient) { }
 
   updateServicio(servicio:Servicio): Observable<any>{
-    //console.log("el ide seleccionado es "+ servicio.id)
+    console.log("el ide seleccionado es "+ servicio.id)
     return this.http.put<any>(this.servicioURL+"/modificarEstado",servicio); 
   }
 }

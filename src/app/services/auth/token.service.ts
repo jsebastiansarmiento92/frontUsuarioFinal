@@ -74,8 +74,8 @@ export class TokenService {
   public getAuthorities(): string[] {
     this.roles = [];
     if (sessionStorage.getItem(AUTHORITIES_KEY)) {
-      //console.log(123455);
-       //console.log(sessionStorage.getItem(AUTHORITIES_KEY));
+      console.log(123455);
+       console.log(sessionStorage.getItem(AUTHORITIES_KEY));
         
         this.roles.push(JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)));
       

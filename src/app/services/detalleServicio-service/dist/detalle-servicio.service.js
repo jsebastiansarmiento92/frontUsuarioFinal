@@ -19,12 +19,12 @@ var DetalleServicioService = /** @class */ (function() {
     }
     DetalleServicioService.prototype.createDetalleServicio = function(detalleServicio) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)
-        //console.log(detalleServicio);
+        console.log(detalleServicio);
         return this.http.post(this.detalleservicioURL, detalleServicio);
     };
     DetalleServicioService.prototype.getServicio = function(idEmpresa, idCliente) {
-        //console.log("el id empresa es " + idEmpresa);
-        //console.log("el id cliente es " + idCliente);
+        console.log("el id empresa es " + idEmpresa);
+        console.log("el id cliente es " + idCliente);
         return this.http.get(this.detalleservicioURL + ("/getServicio/" + idEmpresa) + ("&" + idCliente));
     };
     DetalleServicioService.prototype.getDetalles = function(idPedido) {
@@ -32,8 +32,8 @@ var DetalleServicioService = /** @class */ (function() {
     };
     DetalleServicioService.prototype.createDetalleServicioList = function(detalleServicioList) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)
-        //console.log("la lista que se envia en detalle es:");
-        //console.log(detalleServicioList);
+        console.log("la lista que se envia en detalle es:");
+        console.log(detalleServicioList);
         return this.http.post(this.detalleservicioURL + '/insertarLista', detalleServicioList);
     };
     DetalleServicioService = __decorate([

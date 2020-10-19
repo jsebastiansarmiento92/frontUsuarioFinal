@@ -32,7 +32,7 @@ var HeadComponent = /** @class */ (function() {
     }
     HeadComponent.prototype.ngOnInit = function() {
         if (JSON.parse(localStorage.getItem('lugar'))) {
-            //console.log("hay lugar guardado en el localstorage");
+            console.log("hay lugar guardado en el localstorage");
             this.lugar = JSON.parse(localStorage.getItem('lugar'));
         }
         if (window.sessionStorage.getItem("Telefono")) {
@@ -45,17 +45,17 @@ var HeadComponent = /** @class */ (function() {
                 this.imagePerfil = window.sessionStorage.getItem("ImageUrl");
             }
         }
-        //console.log(this.lugar);
-        //console.log("verificacion is login");
+        console.log(this.lugar);
+        console.log("verificacion is login");
         //this.lugar=new Lugar();
         this.mostrarNombreSesion();
         if (this.tokenService.getToken() == null) {
-            //console.log("se limpia el locar storage en inicio");
+            console.log("se limpia el locar storage en inicio");
             localStorage.removeItem("isLoggedin");
         }
         if (localStorage.getItem("isLoggedin") && this.refreshHead) {
             if (localStorage.getItem("isLoggedin") == 'true') {
-                //console.log("ingreso a guardar mi direccions");
+                console.log("ingreso a guardar mi direccions");
                 this.guardarMidireccion();
                 this.isLogin = true;
             }
@@ -68,7 +68,7 @@ var HeadComponent = /** @class */ (function() {
     HeadComponent.prototype.guardarMidireccion = function() {
         var _this = this;
         if (sessionStorage.getItem("IdLugar") == "0") {
-            //console.log("no se extrae lugar de ningun lado");
+            console.log("no se extrae lugar de ningun lado");
         } else {
             this.lugarService.getLugarId(parseInt(sessionStorage.getItem("IdLugar"))).subscribe(function(data) {
                 _this.lugar = data;
@@ -86,7 +86,7 @@ var HeadComponent = /** @class */ (function() {
     HeadComponent.prototype.guardarUsuario = function() {
         var _this = this;
         var usuario = new usuario_1.Usuario();
-        //console.log("nombre de usuario: " + this.nombreUsuario);
+        console.log("nombre de usuario: " + this.nombreUsuario);
         usuario.name = this.nombreUsuario;
         usuario.id = parseInt(window.sessionStorage.getItem("IdSesion"));
         usuario.telefono = this.telefono;
@@ -98,7 +98,7 @@ var HeadComponent = /** @class */ (function() {
                 window.sessionStorage.setItem("Telefono", _this.telefono + "");
                 _this.serviceModal.dismissAll();
             }, function(err) {
-                //console.log(err.error.mensaje);
+                console.log(err.error.mensaje);
                 _this.telefono = window.sessionStorage.getItem("Telefono");
             });
         } else
@@ -115,7 +115,7 @@ var HeadComponent = /** @class */ (function() {
     };
     HeadComponent.prototype.logOut = function() {
         if (confirm("desea cerrar sesion?")) {
-            //console.log("cerrar sesion");
+            console.log("cerrar sesion");
             this.tokenService.logOut();
             this.isLogin = false;
             this.authority = '';
@@ -127,7 +127,7 @@ var HeadComponent = /** @class */ (function() {
         this.router.navigate(["login"]);
     };
     HeadComponent.prototype.privacyPolicy = function() {
-        //console.log("ingreso a politica de privacidad");
+        console.log("ingreso a politica de privacidad");
         this.router.navigate(["privacy-policy"]);
     };
     HeadComponent.prototype.inicio = function() {
@@ -147,8 +147,8 @@ var HeadComponent = /** @class */ (function() {
         this.mensajeTramitando = "cargando pedidos";
         this.serviceModal.open(this.tramitandoModal);
         this.pedidoService.getPedidosCliente(parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(function(data) {
-            //console.log("pedidos extraidos");
-            //console.log(data);
+            console.log("pedidos extraidos");
+            console.log(data);
             _this.pedidos = data;
             _this.serviceModal.dismissAll();
         });
@@ -158,8 +158,8 @@ var HeadComponent = /** @class */ (function() {
         this.pedido = pedido;
         this.serviceModal.open(modal);
         this.detalleServicioService.getDetalles(pedido.id).subscribe(function(data) {
-            //console.log("detalles encontrados son: ");
-            //console.log(data);
+            console.log("detalles encontrados son: ");
+            console.log(data);
             _this.detalleServicios = data;
         });
     };

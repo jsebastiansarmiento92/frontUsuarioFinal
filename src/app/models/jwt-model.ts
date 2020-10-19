@@ -5,5 +5,6 @@ export class JwtModel {
     authorities: string[];
     id:string;
     idLugar:string;
+    
     //id:number;
 }

@@ -24,7 +24,7 @@ export class EmpresaService {
   }
 
   borrarEmpresaId(empresa:Empresa):Observable<any>{
-    //console.log("el ide seleccionado es "+ empresa.idEmpresa);
+    console.log("el ide seleccionado es "+ empresa.idEmpresa);
     return this.http.delete<Empresa>(this.empresaURL+"/"+empresa.idEmpresa);
   }
 }
