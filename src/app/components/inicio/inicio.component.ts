@@ -694,6 +694,7 @@ export class InicioComponent implements OnInit {
   confirmarPedido() {
 
     console.log("ingreso a confirmar pedido");
+    this.serviceModal.dismissAll();
     console.log("datos del lugar");
     console.log(this.lugar);
 
@@ -1033,5 +1034,8 @@ export class InicioComponent implements OnInit {
   }
   confirmarObservacion(){
     this.serviceModal.dismissAll();
+  }
+  verPagoModal(modal){
+    this.serviceModal.open(modal);
   }
 }

@@ -1,10 +1,12 @@
 <nav class="navbar fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="card-header card-header-image" (click)="inicio()" style="border-bottom: none;height: 73px;padding-top: 0px;">
+            <a class="card-header card-header-image" (click)="inicio()"
+                style="border-bottom: none;height: 73px;padding-top: 0px;">
                 <img src="./assets/imageLogo/IsologotipoCromaticoVectorial.png" height="80px" alt="QuickDomicilos">
             </a>
-            <button class="navbar-toggler" style="color: black;" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" style="color: black;" type="button" data-toggle="collapse"
+                aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only"></span>
                 <span class="navbar-toggler-icon"></span>
                 <span class="navbar-toggler-icon"></span>
@@ -14,11 +16,15 @@
         <div class="collapse navbar-collapse ">
             <ul class="navbar-nav ml-auto  " style=" height: 100%;">
                 <li class="dropdown nav-item" *ngIf="getIslogin()">
-                    <a (click)="refresh()" style="padding-bottom: 0%; margin-bottom: 0%; padding-top: inherit;" class="cursormanito nav-link" data-toggle="dropdown">
+                    <a (click)="refresh()" style="padding-bottom: 0%; margin-bottom: 0%; padding-top: inherit;"
+                        class="cursormanito nav-link" data-toggle="dropdown">
                         <!--i class="material-icons" style="font-size:30px;color:green">account_circle</i> Cuenta-->
-                        <div style="margin-top: 34px;" class="fileinput fileinput-new text-center d-block d-sm-block d-md-none" data-provides="fileinput">
+                        <div style="margin-top: 34px;"
+                            class="fileinput fileinput-new text-center d-block d-sm-block d-md-none"
+                            data-provides="fileinput">
                             <div class=" fileinput-new thumbnail img-circle img-raised">
-                                <img src="{{imagePerfil}}" alt="..." srcset="./assets/img/placeholder.jpg" *ngIf="!isImagePerfil;else elseImage">
+                                <img src="{{imagePerfil}}" alt="..." srcset="./assets/img/placeholder.jpg"
+                                    *ngIf="!isImagePerfil;else elseImage">
                                 <ng-template #elseImage>
                                     <img src="{{imagePerfil}}">
                                 </ng-template>
@@ -28,18 +34,31 @@
                             </div>
                         </div>
 
-                        <div style="margin: 9px; " class="fileinput fileinput-new text-center d-none d-sm-none d-md-block " data-provides="fileinput " *ngIf="!isImagePerfil;else elseImageGrant">
+                        <div style="margin: 9px; "
+                            class="fileinput fileinput-new text-center d-none d-sm-none d-md-block "
+                            data-provides="fileinput " *ngIf="!isImagePerfil;else elseImageGrant">
                             <div class="row ">
-                                <img class=" fileinput-new thumbnail img-circle img-raised " src="{{imagePerfil}} " alt=" " style="height: 30px; width: 30px; margin: auto; margin-right: 1px; padding-right: 1px; " srcset="./assets/img/placeholder.jpg">
-                                <small style="width: 60%; "><h6 class="text-left ">{{nombreUsuario}}</h6></small>
+                                <img class=" fileinput-new thumbnail img-circle img-raised " src="{{imagePerfil}} "
+                                    alt=" "
+                                    style="height: 30px; width: 30px; margin: auto; margin-right: 1px; padding-right: 1px; "
+                                    srcset="./assets/img/placeholder.jpg">
+                                <small style="width: 60%; ">
+                                    <h6 class="text-left ">{{nombreUsuario}}</h6>
+                                </small>
                             </div>
                         </div>
                         <ng-template #elseImageGrant>
-                            <div style="margin: 9px; " class="fileinput fileinput-new text-center d-none d-sm-none d-md-block " data-provides="fileinput ">
+                            <div style="margin: 9px; "
+                                class="fileinput fileinput-new text-center d-none d-sm-none d-md-block "
+                                data-provides="fileinput ">
                                 <div class="row ">
-                                    <img class=" fileinput-new thumbnail img-circle img-raised " src="{{imagePerfil}} " alt=" " style="height: 30px; width: 30px; margin: auto; margin-right: 1px; padding-right: 1px; ">
+                                    <img class=" fileinput-new thumbnail img-circle img-raised " src="{{imagePerfil}} "
+                                        alt=" "
+                                        style="height: 30px; width: 30px; margin: auto; margin-right: 1px; padding-right: 1px; ">
 
-                                    <small style="width: 60%; "><h6 class="text-left ">{{nombreUsuario}}</h6></small>
+                                    <small style="width: 60%; ">
+                                        <h6 class="text-left ">{{nombreUsuario}}</h6>
+                                    </small>
                                 </div>
                             </div>
                         </ng-template>
@@ -51,88 +70,85 @@
                         <a class="dropdown-item cursormanito">
                             <i class="material-icons">call</i> {{telefono}}
                         </a>
-                        <li class="button-container nav-item iframe-extern">
-                            <a data-toggle="modal" data-target="#smallTelefonoModal" style="color: white;" class="btn  btn-rose btn-round">
+                <li class="button-container nav-item iframe-extern">
+                    <a data-toggle="modal" data-target="#smallTelefonoModal" style="color: white;"
+                        class="btn  btn-rose btn-round">
                         Editar informacion
                     </a>
-                        </li>
-                    </div>
-
                 </li>
-                <li class="dropdown nav-item" *ngIf="getIslogin()">
+        </div>
 
-                    <a style="margin-left: 0px;" class="cursormanito dropdown-toggle nav-link" data-toggle="dropdown" (click)="refresh()">
-                        <i class="material-icons">location_on</i>Mi Direccion
-                    </a>
-                    <div class="dropdown-menu dropdown-with-icons">
-                        <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
-                            <i style="margin-right: 2px;" class="material-icons">location_on</i>Direccion:
-                            <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite">
-                                {{lugar.direccionLugar}}</marquee>
-                        </a>
+        </li>
+        <li class="dropdown nav-item" *ngIf="getIslogin()">
 
-                        <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+            <a style="margin-left: 0px;" class="cursormanito dropdown-toggle nav-link" data-toggle="dropdown"
+                (click)="refresh()">
+                <i class="material-icons">location_on</i>Mi Direccion
+            </a>
+            <div class="dropdown-menu dropdown-with-icons">
+                <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+                    <i style="margin-right: 2px;" class="material-icons">location_on</i>Direccion:
+                    <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite">
+                        {{lugar.direccionLugar}}</marquee>
+                </a>
 
-                            <i style="margin-right: 2px;" class="material-icons">location_on</i>Barrio:
-                            <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite">
-                                {{lugar.barrio.nombreBarrio}}</marquee>
+                <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
 
-                        </a>
-                        <li class="button-container nav-item iframe-extern">
-                            <a (click)="cambiar()" style="color: white;" class="btn btn-rose btn-round ">
+                    <i style="margin-right: 2px;" class="material-icons">location_on</i>Barrio:
+                    <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite">
+                        {{lugar.barrio.nombreBarrio}}</marquee>
+
+                </a>
+        <li class="button-container nav-item iframe-extern">
+            <a (click)="cambiar()" style="color: white;" class="btn btn-rose btn-round ">
                 Cambiar
             </a>
-                        </li>
-                    </div>
-                </li>
+        </li>
+    </div>
+    </li>
+    <li class="dropdown nav-item" *ngIf="getIslogin()">
 
-
-                <li class="dropdown nav-item" *ngIf="getIslogin()">
-
-                    <a style="margin-left: 0px;" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown" (click)="cargarPedidosCliente()">
-                        <i class="material-icons">shopping_basket</i>Mis Pedidos
-                    </a>
-                    <div class="dropdown-menu dropdown-with-icons">
-                        <div *ngFor="let pedido of pedidos">
-
-                            <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item cursormanito">
-                                <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
-
-                            </a>
-
-                            <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
-                                <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}
-
-                            </a>
-                            <li class="button-container nav-item iframe-extern" style="text-align: center; margin: auto;">
-                                <a style="color: white; " class="btn btn-rose btn-round btn-instagram" (click)="detallePedido(pedido,detallePedidoModal)">
-            Detalle
+        <a style="margin-left: 0px;" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown"
+            (click)="cargarPedidosCliente()">
+            <i class="material-icons">shopping_basket</i>Mis Pedidos
         </a>
-                            </li>
-                        </div>
+        <div class="dropdown-menu dropdown-with-icons container " style=" overflow-y:scroll; width:auto; height: 250px;">
+            <div class="container" *ngFor="let pedido of pedidos">
 
-                    </div>
-                </li>
+                <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item cursormanito">
+                    <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
+                </a>
 
-
-
-                <li class="dropdown nav-item">
-                    <a href="#" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown">
-                        <i class="material-icons">apps</i> Nuestro servicios y ayuda
+                <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+                    <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor
+                    Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}
+                </a>
+                <li class="button-container nav-item iframe-extern" style="text-align: center; margin: auto;">
+                    <a style="color: white; " class="btn btn-rose btn-round" (click)="detallePedido(pedido,detallePedidoModal)">
+                        Detalle
                     </a>
-                    <div class="dropdown-menu dropdown-with-icons">
-                        <a class="dropdown-item cursormanito" (click)="privacyPolicy()">
-                            <i class="material-icons">line_style</i> Politica de privacidad
-                        </a>
-                        <a class="dropdown-item cursormanito">
-                            <i class="material-icons ">layers</i>Nuestra app
-                        </a>
-                        <a class="dropdown-item cursormanito">
-                            <i class="material-icons ">content_paste</i> Terminos y condiciones
-                        </a>
-                    </div>
                 </li>
-                <!--<li class="dropdown nav-item">
+            </div>
+        </div>
+    </li>
+
+    <li class="dropdown nav-item">
+        <a href="#" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown">
+            <i class="material-icons">apps</i> Nuestro servicios y ayuda
+        </a>
+        <div class="dropdown-menu dropdown-with-icons">
+            <a class="dropdown-item cursormanito" (click)="privacyPolicy()">
+                <i class="material-icons">line_style</i> Politica de privacidad
+            </a>
+            <a class="dropdown-item cursormanito">
+                <i class="material-icons ">layers</i>Nuestra app
+            </a>
+            <a class="dropdown-item cursormanito">
+                <i class="material-icons ">content_paste</i> Terminos y condiciones
+            </a>
+        </div>
+    </li>
+    <!--<li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="material-icons">view_day</i> Secciones
                     </a>
@@ -163,7 +179,7 @@
                         </a>
                     </div>
                 </li>-->
-                <!--  <li class="dropdown nav-item">
+    <!--  <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="material-icons">view_carousel</i> Examples
                     </a>
@@ -206,36 +222,37 @@
                         </a>
                     </div>
                 </li>-->
-                <div *ngIf="!getIslogin(); else elseBlock">
-                    <li class="button-container nav-item iframe-extern">
+    <div *ngIf="!getIslogin(); else elseBlock">
+        <li class="button-container nav-item iframe-extern">
 
-                        <a (click)="login()" style="margin-top: 2vh;  color: white;" class="btn  btn-rose   btn-round btn-block">
-                            <i class="material-icons">login</i> Iniciar Sesion
-                        </a>
-                    </li>
+            <a (click)="login()" style="margin-top: 2vh;  color: white;" class="btn  btn-rose   btn-round btn-block">
+                <i class="material-icons">login</i> Iniciar Sesion
+            </a>
+        </li>
 
-                </div>
-                <div *ngIf="!getIslogin()">
-                    <li class="button-container nav-item iframe-extern">
+    </div>
+    <div *ngIf="!getIslogin()">
+        <li class="button-container nav-item iframe-extern">
 
-                        <a (click)="onRegister()" style="background-color: #df0000ef; margin-top: 2vh; color: white;" class="btn  btn-rose   btn-round btn-block">
-                            <i class="material-icons">login</i> Registrarse
-                        </a>
-                    </li>
+            <a (click)="onRegister()" style="background-color: #df0000ef; margin-top: 2vh; color: white;"
+                class="btn  btn-rose   btn-round btn-block">
+                <i class="material-icons">login</i> Registrarse
+            </a>
+        </li>
 
-                </div>
-                <ng-template #elseBlock>
-                    <li class="button-container nav-item iframe-extern">
-                        <a (click)="logOut()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">
+    </div>
+    <ng-template #elseBlock>
+        <li class="button-container nav-item iframe-extern">
+            <a (click)="logOut()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">
                 Cerrar Sesion
             </a>
-                    </li>
-                </ng-template>
+        </li>
+    </ng-template>
 
 
 
-            </ul>
-        </div>
+    </ul>
+    </div>
     </div>
 </nav>
 
@@ -250,13 +267,15 @@
             </div>
             <div class="modal-body">
                 <label class="modal-title ">Editar nombre de usuario</label>
-                <input class="form-control" type="text" [(ngModel)]="nombreUsuario" name="nombreUsuario" placeholder="Nombre usuario" />
+                <input class="form-control" type="text" [(ngModel)]="nombreUsuario" name="nombreUsuario"
+                    placeholder="Nombre usuario" />
                 <label class="modal-title">Ingresar numero de contacto</label>
                 <input class="form-control" type="number" [(ngModel)]="telefono" placeholder="telefono" />
 
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" data-dismiss="modal" (click)="guardarUsuario()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">Guardar</button>
+                <button type="button" data-dismiss="modal" (click)="guardarUsuario()"
+                    style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">Guardar</button>
 
             </div>
 
@@ -274,13 +293,15 @@
     </div>
     <div class="modal-body">
         <label class="modal-title ">Editar nombre de usuario</label>
-        <input class="form-control" type="text" [(ngModel)]="nombreUsuario" name="nombreUsuario" placeholder="Nombre usuario" />
+        <input class="form-control" type="text" [(ngModel)]="nombreUsuario" name="nombreUsuario"
+            placeholder="Nombre usuario" />
         <label class="modal-title">Ingresar numero de contacto</label>
         <input class="form-control" type="number" [(ngModel)]="telefono" placeholder="telefono" />
 
     </div>
     <div class="modal-footer justify-content-center">
-        <button type="button" (click)="guardarUsuario()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">Guardar</button>
+        <button type="button" (click)="guardarUsuario()" style="margin-top: 2vh; color: white;"
+            class="btn  btn-rose btn-round btn-danger">Guardar</button>
 
     </div>
 
@@ -318,9 +339,12 @@
         <label class="modal-title">Valor valor Domicilio: {{pedido.valorGanancia}}</label><br>
         <label class="modal-title">Valor valor total: {{pedido.valorGanancia+pedido.valorTotalPedido}}</label><br>
         <br>
-        <label class="modal-title">Onservaciones (las observaciones solo son aplicables 10 minutos despues de realizado el pedido antes no se garantiza que se ejecuten)</label><br>
+        <label class="modal-title">Onservaciones (las observaciones solo son aplicables 10 minutos despues de realizado
+            el pedido antes no se garantiza que se ejecuten)</label><br>
         <div class="card-body">
-            <textarea type="textarea" class="form-control" disabled rows="5" cols="10" [(ngModel)]="pedido.observaciones" name="cantidad" placeholder="Agrega observacion del pedido"></textarea>
+            <textarea type="textarea" class="form-control" disabled rows="5" cols="10"
+                [(ngModel)]="pedido.observaciones" name="cantidad"
+                placeholder="Agrega observacion del pedido"></textarea>
         </div>
         <a class="btn btn-chartjs btn-round" (click)="modificarObservacion(modaObesrvacion)">
             Cambiar
@@ -359,7 +383,8 @@
 </ng-template>
 <ng-template #modaObesrvacion>
     <div class="card-body">
-        <textarea type="textarea" class="form-control" rows="10" cols="50" [(ngModel)]="pedido.observaciones" name="cantidad" placeholder="Agrega observacion del pedido"></textarea>
+        <textarea type="textarea" class="form-control" rows="10" cols="50" [(ngModel)]="pedido.observaciones"
+            name="cantidad" placeholder="Agrega observacion del pedido"></textarea>
     </div>
     <button (click)="confirmarObservacion()" class="btn btn-danger">Guardar</button>
 </ng-template>
