@@ -75,8 +75,7 @@
     </div>
 </div>
 <button (click)="showF()" class="btn btn-rose btn-flotante"><i class="material-icons">shopping_cart</i> Carrito</button>
-<button class="btn btn-secondary btn-back "><i class="material-icons"
-        style="font-size: 24px;">keyboard_arrow_left</i></button>
+
 
 <div class="ecommerce-page sidebar-collapse">
     <br><br><br><br>
@@ -364,7 +363,7 @@
                                             </div>
                                         </div>-->
 
-                                        <div class="card card-collapse  d-none d-sm-none d-md-block">
+                                        <!--div class="card card-collapse  d-none d-sm-none d-md-block">
                                             <div class="card-header" role="tab" id="headingThree">
                                                 <h5 class="mb-0">
                                                     <a class="collapsed" data-toggle="collapse" aria-expanded="false" aria-controls="collapseThree">
@@ -389,7 +388,7 @@
 
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div-->
 
                                     </div>
                                 </div>
@@ -471,6 +470,47 @@
     
                                             
     
+                                            <div Style=" width: 70%; text-align: left;">
+                                                <div style="margin: 10px; line-height: 1em; ">
+    
+                                                    <h4 class="card-title"
+                                                        style="font-size: 1rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                                                        {{empresa.razonSocial}}</h4>
+    
+                                                    <h6 class="card-category text-success"
+                                                        style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                        {{empresa.estadoEmpresa}}
+                                                    </h6>
+                                                    <br>
+                                                    <div class="ui-icon-mail-open">
+                                                        <span class="ui-icon-mail-closed"> {{empresa.email}} </span>
+                                                    </div>
+    
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                    </button>
+    
+    
+                                </div>
+                                <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of totalEmpresas|pipeSearch:searchText">
+                                    <button class="btn btn-link " (click)="seleccionEmpresa(empresa)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
+                                        <div class="row" style="margin: auto; ">
+                                            <div class="profile-photo-small"
+                                                style="margin-top: 5px; margin-left: 15px; width: 20%;">
+    
+                                                <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
+                                                    <img class="img-raised rounded img-fluid"
+                                                        [src]="empresa.retrievedImage">
+                                                </div>
+                                                <ng-template #elseBlockEmpresa1>
+                                                    <td>
+                                                        <img class="img-raised rounded img-fluid"
+                                                            src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
+                                                    </td>
+                                                </ng-template>    
+                                            </div>
                                             <div Style=" width: 70%; text-align: left;">
                                                 <div style="margin: 10px; line-height: 1em; ">
     
