@@ -15,12 +15,12 @@ export class DetalleServicioService {
    }
    createDetalleServicio(detalleServicio:DetalleServicio): Observable<any> {
     //alert("nombre que se envia es "+ usuario.nombreUsuario)
-    //console.log(detalleServicio);
+    console.log(detalleServicio);
     return this.http.post<DetalleServicio>(this.detalleservicioURL, detalleServicio);
   }
   getServicio(idEmpresa: number,idCliente:number): Observable<any>{
-   //console.log("el id empresa es "+ idEmpresa);
-   //console.log("el id cliente es "+ idCliente);
+   console.log("el id empresa es "+ idEmpresa);
+   console.log("el id cliente es "+ idCliente);
    return this.http.get<any>(this.detalleservicioURL+`/getServicio/${idEmpresa}`+`&${idCliente}`); 
   }
 
@@ -32,8 +32,8 @@ export class DetalleServicioService {
 
   createDetalleServicioList(detalleServicioList:DetalleServicio[]): Observable<any> {
     //alert("nombre que se envia es "+ usuario.nombreUsuario)
-    //console.log("la lista que se envia en detalle es:");
-    //console.log(detalleServicioList);
+    console.log("la lista que se envia en detalle es:");
+    console.log(detalleServicioList);
 
     return this.http.post<DetalleServicio[]>(this.detalleservicioURL+'/insertarLista', detalleServicioList);
   }

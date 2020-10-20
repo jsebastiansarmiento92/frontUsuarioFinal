@@ -14,7 +14,7 @@ export class PedidoService {
    }
    createPedido(pedido:Pedido): Observable<any> {
     //alert("nombre que se envia es "+ usuario.nombreUsuario)
-    //console.log(pedido);
+    console.log(pedido);
     return this.http.post<Pedido>(this.pedidoURL, pedido);
   }
 
@@ -28,12 +28,12 @@ export class PedidoService {
   }
 
   modificarPedidoDomiciliario(idPedido:number, idDomiciliario: number,pedido:Pedido): Observable<any>{
-    //console.log("el ide seleccionado es de modificarpeidoDom"+ idDomiciliario)
+    console.log("el ide seleccionado es de modificarpeidoDom"+ idDomiciliario)
     return this.http.put<any>(this.pedidoURL+`/modificarDomiciliario/${idPedido}`+`&${idDomiciliario}`,pedido); 
   }
 
     modificarPedidoObservaciones(idPedido:number,pedido:Pedido): Observable<any>{
-    //console.log("el ide seleccionado es de modificarpeidoDom"+ idDomiciliario)
+   // console.log("el ide seleccionado es de modificarpeidoDom"+ idDomiciliario)
     return this.http.put<any>(this.pedidoURL+`/modificarObservaciones/${idPedido}`,pedido); 
   }
 

@@ -27,7 +27,7 @@ var EmpresaService = /** @class */ (function() {
         return this.http.get(this.empresaURL);
     };
     EmpresaService.prototype.borrarEmpresaId = function(empresa) {
-        //console.log("el ide seleccionado es " + empresa.idEmpresa);
+        console.log("el ide seleccionado es " + empresa.idEmpresa);
         return this.http["delete"](this.empresaURL + "/" + empresa.idEmpresa);
     };
     EmpresaService = __decorate([

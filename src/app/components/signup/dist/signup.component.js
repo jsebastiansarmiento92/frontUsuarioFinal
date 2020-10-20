@@ -33,7 +33,7 @@ var SignupComponent = /** @class */ (function() {
     SignupComponent.prototype.ngOnInit = function() {
         var _this = this;
         this.serviceModal.dismissAll();
-        // //console.log("no hay token guardado");
+        // console.log("no hay token guardado");
         this.urlTree = this.router.parseUrl(this.router.url);
         this.token = this.urlTree.queryParams['token'];
         this.error = this.urlTree.queryParams['error'];
@@ -41,16 +41,16 @@ var SignupComponent = /** @class */ (function() {
             window.sessionStorage.setItem('AuthToken', this.token);
             window.localStorage.setItem('AuthToken', this.token);
         }
-        //console.log("token llegando es:");
-        //console.log(this.token);
-        //console.log("error llegando es ");
-        //console.log(this.error);
+        console.log("token llegando es:");
+        console.log(this.token);
+        console.log("error llegando es ");
+        console.log(this.error);
         if (window.sessionStorage.getItem('AuthToken')) {
             this.serviceModal.open(this.autenticandoModal);
-            //console.log("hay tonken guardado porque ingresa al if");
+            console.log("hay tonken guardado porque ingresa al if");
             this.autenticando = true;
             this.authService.getCurrentUser().subscribe(function(data) {
-                //console.log(data);
+                console.log(data);
                 //this.tokenService.setToken(data.token);
                 window.localStorage.setItem("idSesion", JSON.stringify(data));
                 _this.tokenService.setUserName(data.name);
@@ -77,7 +77,7 @@ var SignupComponent = /** @class */ (function() {
     SignupComponent.prototype.guardarTelefono = function() {
         if (window.sessionStorage.getItem("telefono")) {
             if (window.sessionStorage.getItem("telefono").length >= 7) {
-                //console.log("telefono valido");
+                console.log("telefono valido");
                 //  this.
             } else
                 alert("telefono invalido se recomienda modifica en menu cuenta");
@@ -88,26 +88,26 @@ var SignupComponent = /** @class */ (function() {
     };
     SignupComponent.prototype.logOut = function() {};
     SignupComponent.prototype.registerGoogle = function() {
-        //console.log("ingresoa registrer con google");
-        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup";
+        console.log("ingresoa registrer con google");
+        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
     };
     SignupComponent.prototype.registerFacebook = function() {
-        //console.log("ingresoa registrer con facebook");
-        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=http://localhost:4200/signup";
+        console.log("ingresoa registrer con facebook");
+        window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
     };
     SignupComponent.prototype.registerManual = function() {
         var _this = this;
-        //console.log("datos que se envian para el registro");
-        //console.log(this.signupRequest);
+        console.log("datos que se envian para el registro");
+        console.log(this.signupRequest);
         this.authService.onRegister(this.signupRequest).subscribe(function(data) {
-            //console.log(data);
+            console.log(data);
             alert("Registro completo por favor inicie sesion con sus datos para continuar");
             _this.router.navigate(['login']);
         }, function(err) {
             _this.creado = false;
             _this.failCreado = true;
             _this.msjErr = err.error.mensaje;
-            //console.log(err.error.mensaje);
+            console.log(err.error.mensaje);
         });
     };
     __decorate([

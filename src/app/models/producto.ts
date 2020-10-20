@@ -20,7 +20,7 @@ export class Producto {
     cantidad: number;
 
    // constructor(){
-   //     //console.log("ingreso a constructor de producto")
+   //     console.log("ingreso a constructor de producto")
     //    this.retrieveResonse = this.imagen;
   //      this.base64Data = this.retrieveResonse.picByte;
   //     this.retrievedImage='data:image/jpeg;base64,' + this.base64Data;
@@ -29,10 +29,10 @@ export class Producto {
         this.retrieveResonse = this.imagen;
         this.base64Data = this.retrieveResonse.picByte;
         return 'data:image/jpeg;base64,' + this.base64Data;
-        //console.log(this.retrievedImage);
+        console.log(this.retrievedImage);
 
     }
     getPrueba(){
-        //console.log("prueba de impresion desde la clase producto")
+        console.log("prueba de impresion desde la clase producto")
     }
 }

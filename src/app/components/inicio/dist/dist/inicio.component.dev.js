@@ -108,52 +108,52 @@ var InicioComponent =
             }
 
             this.initializeWebSocketConnection();
-            //console.log("verificacion variable de cambio de direccion");
-            //console.log(localStorage.getItem('cambioDireccion') == 'true');
+            console.log("verificacion variable de cambio de direccion");
+            console.log(localStorage.getItem('cambioDireccion') == 'true');
 
             if (window.localStorage.getItem('lugar')) {
-                //console.log("hay lugar guardado en el localstorage");
+                console.log("hay lugar guardado en el localstorage");
                 this.lugar = JSON.parse(window.localStorage.getItem('lugar'));
                 this.barrio = this.lugar.barrio;
                 this.direccionCompleta = this.lugar.direccionLugar;
-                //console.log("lugar que llega es:");
-                //console.log(this.lugar);
+                console.log("lugar que llega es:");
+                console.log(this.lugar);
                 this.asignarCosto();
                 this.totalPedido = this.calcular();
                 this.promesaModificarLugarHead();
             }
 
-            //console.log("datos del telefono en el localstorage en ngoinit: ");
-            //console.log(window.sessionStorage.getItem("Telefono"));
+            console.log("datos del telefono en el localstorage en ngoinit: ");
+            console.log(window.sessionStorage.getItem("Telefono"));
 
             if (window.sessionStorage.getItem("Telefono")) {
                 this.telefono = window.sessionStorage.getItem("Telefono");
-            } // //console.log("refreshpage es "+localStorage.getItem("refreshPage"));
+            } // console.log("refreshpage es "+localStorage.getItem("refreshPage"));
 
 
             if (this.tokenService.getToken() == null) {
                 // localStorage.clear();
-                //console.log("se limpia el locar storage en inicio");
+                console.log("se limpia el locar storage en inicio");
                 localStorage.setItem("isLoggedin", "false");
             } else {
                 localStorage.setItem('isLoggedin', 'true');
             }
 
-            //console.log("id de lugar entrante es:");
-            //console.log(parseInt(this.tokenService.getLugar()));
+            console.log("id de lugar entrante es:");
+            console.log(parseInt(this.tokenService.getLugar()));
 
             if (localStorage.getItem('cambioDireccion') == 'true') {
                 this.lugar = JSON.parse(window.localStorage.getItem('lugar'));
                 this.barrio = this.lugar.barrio;
                 this.direccionCompleta = this.lugar.direccionLugar;
-                //console.log("lugar que llega es:");
-                //console.log(this.lugar);
+                console.log("lugar que llega es:");
+                console.log(this.lugar);
                 this.asignarCosto();
                 this.totalPedido = this.calcular();
             } else if (parseInt(this.tokenService.getLugar()) != 0) {
-                //console.log("hay lugar guardado del usuario");
-                //console.log("lugar guardado desde el landing");
-                //console.log(this.lugar);
+                console.log("hay lugar guardado del usuario");
+                console.log("lugar guardado desde el landing");
+                console.log(this.lugar);
                 this.serviceLugar.getLugarId(parseInt(this.tokenService.getLugar())).subscribe(function(data) {
                     _this.totalPedido = _this.calcular();
                     _this.barrio = data.barrio;
@@ -174,7 +174,7 @@ var InicioComponent =
             var that = this;
             this.stompClient.connect({}, function(frame) {
                 that.isLoaded = true;
-                //console.log("quiere decir qu ya hizo conexion con socket");
+                console.log("quiere decir qu ya hizo conexion con socket");
                 that.openGlobalSocket();
                 that.openSocket();
             });
@@ -189,8 +189,8 @@ var InicioComponent =
         };
 
         InicioComponent.prototype.promesaModificarLugarHead = function() {
-            //console.log("id del lugar guadados son: ");
-            //console.log(sessionStorage.getItem('IdLugar'));
+            console.log("id del lugar guadados son: ");
+            console.log(sessionStorage.getItem('IdLugar'));
             this.lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
             this.serviceLugar.modificarLugar(this.lugar).subscribe(function(data) {}, function(err) {
                 if (err.error.mensaje === undefined) { // alert("debe ingresar o registrarse");
@@ -198,19 +198,19 @@ var InicioComponent =
                     //this.router.navigate(["login"]);
                 }
 
-                //console.log(err.error.mensaje);
+                console.log(err.error.mensaje);
             });
         };
 
         InicioComponent.prototype.openSocket = function() {
             var _this = this;
 
-            //console.log(this.isLoaded);
-            //console.log("ingresa a estos metodos de sockets");
+            console.log(this.isLoaded);
+            console.log("ingresa a estos metodos de sockets");
 
             if (this.isLoaded) {
                 this.isCustomSocketOpened = true;
-                //console.log("id de usuario actual listo para recibir mensajes es " + this.tokenService.getIdUser());
+                console.log("id de usuario actual listo para recibir mensajes es " + this.tokenService.getIdUser());
                 this.stompClient.subscribe("/socket-publisher/" + this.tokenService.getIdUser(), function(message) {
                     _this.handleResult(message);
                 });
@@ -220,7 +220,7 @@ var InicioComponent =
         InicioComponent.prototype.handleResult = function(message) {
             if (message.body) {
                 var messageResult = JSON.parse(message.body);
-                //console.log(messageResult);
+                console.log(messageResult);
                 this.messages.push(messageResult);
                 /**  this.toastr.success("new message recieved", null, {
                    'timeOut': 3000
@@ -228,9 +228,9 @@ var InicioComponent =
                 //this.showNotification("Notificación", messageResult.message);
                 //this.showPushNotification("Notificación", "Mensaje recibido");
 
-                //console.log("ingreso de vibracion"); //Haptics.vibrate();
+                console.log("ingreso de vibracion"); //Haptics.vibrate();
 
-                //console.log("ingreso de notificacion local");
+                console.log("ingreso de notificacion local");
                 /** const notifs =  LocalNotifications.schedule({
                      notifications: [
                        {
@@ -245,7 +245,7 @@ var InicioComponent =
                        }
                      ]
                    });
-                   //console.log('scheduled notifications', notifs); */
+                   console.log('scheduled notifications', notifs); */
                 // Method called when tapping on a notification
             }
         };
@@ -253,7 +253,7 @@ var InicioComponent =
         InicioComponent.prototype.conductor = function() {
             this.empresaSelected = false;
             this.empresas = this.empresasTemporal;
-            //console.log("ingreso a conductor padre");
+            console.log("ingreso a conductor padre");
             var empresasSeleccion = [];
             this.empresas.forEach(function(element) {
                 element.categorias.forEach(function(element2) {
@@ -270,7 +270,7 @@ var InicioComponent =
         InicioComponent.prototype.domicilios = function() {
             this.empresaSelected = false;
             this.empresas = this.empresasTemporal;
-            //console.log("ingreso a domicilios padre");
+            console.log("ingreso a domicilios padre");
             var empresasSeleccion = [];
             this.empresas.forEach(function(element) {
                 element.categorias.forEach(function(element2) {
@@ -287,8 +287,8 @@ var InicioComponent =
         InicioComponent.prototype.licores = function() {
             this.empresaSelected = false;
             this.empresas = this.empresasTemporal;
-            //console.log("ingreso a licores padre");
-            //console.log(this.empresas);
+            console.log("ingreso a licores padre");
+            console.log(this.empresas);
             var empresasSeleccion = [];
             this.empresas.forEach(function(element) {
                 element.categorias.forEach(function(element2) {
@@ -305,7 +305,7 @@ var InicioComponent =
         InicioComponent.prototype.viveres = function() {
             this.empresaSelected = false;
             this.empresas = this.empresasTemporal;
-            //console.log("ingreso a viveres padre");
+            console.log("ingreso a viveres padre");
             var empresasSeleccion = [];
             this.empresas.forEach(function(element) {
                 element.categorias.forEach(function(element2) {
@@ -321,10 +321,10 @@ var InicioComponent =
 
         InicioComponent.prototype.drogueria = function() {
             this.empresaSelected = false;
-            //console.log("ingreso a drogueria padre");
+            console.log("ingreso a drogueria padre");
             this.empresas = this.empresasTemporal;
             var empresasSeleccion = [];
-            //console.log(this.empresas);
+            console.log(this.empresas);
             this.empresas.forEach(function(element) {
                 element.categorias.forEach(function(element2) {
                     if (element2.dependencia.idCategoria == 4) {
@@ -339,14 +339,14 @@ var InicioComponent =
 
         InicioComponent.prototype.restaurantes = function() {
             this.empresaSelected = false;
-            //console.log("ingreso a restaurantes padre");
+            console.log("ingreso a restaurantes padre");
             this.empresas = this.empresasTemporal;
             var empresasSeleccion = [];
             this.empresas.forEach(function(element) {
-                //console.log(element.razonSocial);
+                console.log(element.razonSocial);
                 var introIf = false;
                 element.categorias.forEach(function(element2) {
-                    //console.log("cosas que tiene elemento 2");
+                    console.log("cosas que tiene elemento 2");
 
                     if (!introIf) {
                         if (element2.dependencia.idCategoria == 5) {
@@ -367,20 +367,20 @@ var InicioComponent =
             this.empresaSelected = false;
             this.empresaService.getEmpresas().subscribe(function(data) {
                 _this.empresas = data;
-                //console.log("empresas cargadas");
-                //console.log(_this.empresas);
+                console.log("empresas cargadas");
+                console.log(_this.empresas);
                 _this.empresasTemporal = data;
 
                 _this.empresas.forEach(function(element) {
-                    //console.log("id de las imagenes de los productos" + element.imagen);
+                    console.log("id de las imagenes de los productos" + element.imagen);
 
                     _this.imagenService.getImageId(element.imagen).subscribe(function(data) {
                         _this.retrieveResonse = data;
-                        //console.log(data);
+                        console.log(data);
                         _this.base64Data = _this.retrieveResonse.picByte; //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
 
                         element.retrievedImage = 'data:image/jpeg;base64,' + _this.base64Data;
-                        //console.log(_this.retrievedImage);
+                        console.log(_this.retrievedImage);
                     });
                 });
             });
@@ -401,21 +401,21 @@ var InicioComponent =
         InicioComponent.prototype.cargarProductos = function() {
             var _this = this;
 
-            //console.log("metodo de listar productos oinit");
+            console.log("metodo de listar productos oinit");
             this.productosService.listarUsuarioFinal().subscribe(function(data) {
                 _this.productos = data;
-                //console.log(_this.productos);
+                console.log(_this.productos);
 
                 _this.productos.forEach(function(element) {
-                    //console.log("id de las imagenes de los productos" + element.imagen);
+                    console.log("id de las imagenes de los productos" + element.imagen);
 
                     _this.imagenService.getImageId(element.imagen).subscribe(function(data) {
                         _this.retrieveResonse = data;
-                        //console.log(data);
+                        console.log(data);
                         _this.base64Data = _this.retrieveResonse.picByte; //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
 
                         element.retrievedImage = 'data:image/jpeg;base64,' + _this.base64Data;
-                        //console.log(_this.retrievedImage);
+                        console.log(_this.retrievedImage);
                     });
                 }); // this.loader = false;
 
@@ -438,8 +438,8 @@ var InicioComponent =
                 alert("no es posible solicitar productos de dos empresas en un mismo servicio");
             } else {
                 this.verificarRepetidos(this.producto);
-                //console.log("agregando al local storage:");
-                //console.log(this.productosCarrito);
+                console.log("agregando al local storage:");
+                console.log(this.productosCarrito);
                 localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
                 this.serviceModal.dismissAll();
                 this.totalPedido = this.calcular();
@@ -450,7 +450,7 @@ var InicioComponent =
             var isRepetido = false;
             this.productosCarrito.forEach(function(element) {
                 if (element.nombreProducto == producto.nombreProducto) {
-                    //console.log("producto ya solicitado anteriormente");
+                    console.log("producto ya solicitado anteriormente");
                     isRepetido = true;
                 }
             });
@@ -462,8 +462,8 @@ var InicioComponent =
 
             if (this.categoriaActual != "Todas las Categorias") {
                 this.categoriaService.getCategoriasDependencia(this.categoriaActual).subscribe(function(data) {
-                    //console.log("ingreso de categoprias con dependencia");
-                    //console.log(data);
+                    console.log("ingreso de categoprias con dependencia");
+                    console.log(data);
                     _this.categorias = data;
                 });
             }
@@ -479,7 +479,7 @@ var InicioComponent =
         };
 
         InicioComponent.prototype.showF = function() {
-            //console.log("ingreso de show");
+            console.log("ingreso de show");
 
             if (this.show) {
                 this.show = false;
@@ -489,13 +489,13 @@ var InicioComponent =
         };
 
         InicioComponent.prototype.getCarrito = function() {
-            //console.log(JSON.parse(localStorage.getItem('myCar')));
+            console.log(JSON.parse(localStorage.getItem('myCar')));
             this.productosCarrito = JSON.parse(localStorage.getItem('myCar'));
-            //console.log("carrito de local storage");
-            //console.log(this.productosCarrito);
+            console.log("carrito de local storage");
+            console.log(this.productosCarrito);
 
             if (this.productosCarrito.length <= 0) {
-                //console.log("carrito vacio");
+                console.log("carrito vacio");
             } else this.idEmpresa = this.productosCarrito[0].empresa.idEmpresa;
 
             this.totalPedido = this.calcular();
@@ -517,7 +517,7 @@ var InicioComponent =
                 this.totalPedido = this.calcular();
             }
 
-            //console.log("productos en mycar antes del if");
+            console.log("productos en mycar antes del if");
 
             if (this.verificarCarrito) {
                 this.idEmpresa = 0;
@@ -544,8 +544,8 @@ var InicioComponent =
         };
 
         InicioComponent.prototype.verificarCarrito = function() {
-            //console.log("productos en mycar");
-            //console.log(localStorage.getItem('myCar'));
+            console.log("productos en mycar");
+            console.log(localStorage.getItem('myCar'));
 
             if (this.productosCarrito.length <= 0) {
                 return false;
@@ -555,9 +555,10 @@ var InicioComponent =
         InicioComponent.prototype.agregarBarrio = function(modal) {
             var _this = this;
 
-            //console.log("modal activo de barrio"); //console.log(this.getidLugar());
+            console.log("modal activo de barrio");
+            console.log(this.getidLugar());
 
-            //console.log("datos de direccion son " + this.tipoDireccionSeleccionada + "-" + this.n1 + "-" + this.n2 + "-" + this.n3);
+            console.log("datos de direccion son " + this.tipoDireccionSeleccionada + "-" + this.n1 + "-" + this.n2 + "-" + this.n3);
 
             if (this.n1 <= 0 || this.n2 <= 0 || this.n1 === undefined || this.n2 === undefined || this.tipoDireccionSeleccionada === "") {
                 if (this.tipoDireccionSeleccionada === "") {
@@ -568,8 +569,8 @@ var InicioComponent =
                 this.serviceModal.open(modal);
                 this.serviceBarrio.getBarrios().subscribe(function(data) {
                     _this.barrios = data;
-                    //console.log("barrios cargados");
-                    //console.log(_this.barrios);
+                    console.log("barrios cargados");
+                    console.log(_this.barrios);
                     _this.loader = false;
                 });
             }
@@ -577,8 +578,8 @@ var InicioComponent =
 
         InicioComponent.prototype.capturarTipoDireccion = function() {
             //this.getBarrio();
-            //console.log("direccion seleccionado ");
-            //console.log(this.tipoDireccionSeleccionada);
+            console.log("direccion seleccionado ");
+            console.log(this.tipoDireccionSeleccionada);
         };
 
         InicioComponent.prototype.getBarrio = function() {
@@ -596,32 +597,32 @@ var InicioComponent =
 
             this.empresaSelected = true;
             this.empresaSeleccionada = empresa;
-            //console.log("empresa Seleccionada");
-            //console.log(this.empresaSeleccionada);
+            console.log("empresa Seleccionada");
+            console.log(this.empresaSeleccionada);
             this.categorias = this.empresaSeleccionada.categorias;
             this.productosService.getProductosEmpresa(empresa).subscribe(function(data) {
-                //console.log("productos de esa empresa son:");
+                console.log("productos de esa empresa son:");
                 _this.productos = data;
-                //console.log(_this.productos);
+                console.log(_this.productos);
 
                 _this.productos.forEach(function(element) {
-                    //console.log("id de las imagenes de los productos" + element.imagen);
+                    console.log("id de las imagenes de los productos" + element.imagen);
 
                     _this.imagenService.getImageId(element.imagen).subscribe(function(data) {
                         _this.retrieveResonse = data;
-                        //console.log(data);
+                        console.log(data);
                         _this.base64Data = _this.retrieveResonse.picByte; //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
 
                         element.retrievedImage = 'data:image/jpeg;base64,' + _this.base64Data;
-                        //console.log(_this.retrievedImage);
+                        console.log(_this.retrievedImage);
                     });
                 });
             });
         };
 
         InicioComponent.prototype.asignarCosto = function() {
-            //console.log("barrio en sistema es");
-            //console.log(this.barrio);
+            console.log("barrio en sistema es");
+            console.log(this.barrio);
 
             if (this.barrio.tipoCosto == "COSTO1") {
                 this.valorServicio = 4000;
@@ -663,7 +664,7 @@ var InicioComponent =
 
                     _this.serviceModal.dismissAll();
                 }, function(err) {
-                    //console.log(err.error.mensaje);
+                    console.log(err.error.mensaje);
                     _this.telefono = window.sessionStorage.getItem("Telefono");
                 });
             } else alert("numero de contacto no valido");
@@ -672,9 +673,9 @@ var InicioComponent =
         InicioComponent.prototype.confirmarPedido = function() {
             // this.tramitando=true;
             // this.serviceModal.open(modal);
-            //console.log("ingreso a confirmar pedido");
-            //console.log("datos del lugar");
-            //console.log(this.lugar);
+            console.log("ingreso a confirmar pedido");
+            console.log("datos del lugar");
+            console.log(this.lugar);
 
             if (this.productosCarrito.length > 0) {
                 if (this.lugar == null) {
@@ -703,10 +704,10 @@ var InicioComponent =
             /// this.lugar.direccionLugar = this.direccionCompleta;
             //  this.lugar.idUsuario = this.getidSesion();
             if (parseInt(this.tokenService.getLugar()) == 0) {
-                //console.log("ingreso antes de las validaciones de guardar lugar local");
+                console.log("ingreso antes de las validaciones de guardar lugar local");
 
                 if (this.lugar != null && this.telefono != null) {
-                    //console.log("ingreso a condicional donde lugar es diferente de nulo y telefono tambien");
+                    console.log("ingreso a condicional donde lugar es diferente de nulo y telefono tambien");
 
                     if (this.telefono == "0") {
                         alert("no tiene telefono guardado le recomendamos");
@@ -718,9 +719,9 @@ var InicioComponent =
                     this.router.navigate(['landing']);
                 }
             } else {
-                //console.log("tiene direccion guardada pero la va a modificar");
-                //console.log("datos del telefono son:");
-                //console.log(this.telefono);
+                console.log("tiene direccion guardada pero la va a modificar");
+                console.log("datos del telefono son:");
+                console.log(this.telefono);
 
                 if (this.telefono == "0") {
                     this.guardarTelefonoModalOpen();
@@ -731,8 +732,9 @@ var InicioComponent =
         };
 
         InicioComponent.prototype.promesaCrearLugar = function() {
-            var _this = this; //console.log("id del lugar guadados son: ");
-            // //console.log(sessionStorage.getItem('IdLugar'));
+            var _this = this;
+            console.log("id del lugar guadados son: ");
+            // console.log(sessionStorage.getItem('IdLugar'));
             //this.lugar.idLugar=parseInt(sessionStorage.getItem('IdLugar'));
 
 
@@ -740,7 +742,7 @@ var InicioComponent =
             this.serviceModal.open(this.tramitandoModal);
             this.tramitando = true;
             this.serviceLugar.createLugar(this.lugar).subscribe(function(data) {
-                //console.log("alerta antes de extraer el id del lugar por primera vez"); //alert("pendiente id que llega del lugar es: "+data.idLugar);
+                console.log("alerta antes de extraer el id del lugar por primera vez"); //alert("pendiente id que llega del lugar es: "+data.idLugar);
 
                 window.sessionStorage.setItem("IdLugar", data.idLugar + "");
                 _this.lugar.idLugar = data.idLugar;
@@ -749,15 +751,15 @@ var InicioComponent =
                     _this.confirmarTransaccion();
                 }
             }, function(err) {
-                //console.log(err.error.mensaje);
+                console.log(err.error.mensaje);
             });
         };
 
         InicioComponent.prototype.promesaModificarLugar = function() {
             var _this = this;
 
-            //console.log("id del lugar guadados son: ");
-            //console.log(sessionStorage.getItem('IdLugar'));
+            console.log("id del lugar guadados son: ");
+            console.log(sessionStorage.getItem('IdLugar'));
             this.lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
             this.serviceModal.open(this.tramitandoModal);
             this.tramitando = true;
@@ -774,7 +776,7 @@ var InicioComponent =
 
                 }
 
-                //console.log(err.error.mensaje);
+                console.log(err.error.mensaje);
             });
         };
 
@@ -804,25 +806,25 @@ var InicioComponent =
             this.pedido.valorGanancia = 0;
             this.pedido.valorTotalPedido = 0;
             this.serviceModal.dismissAll();
-            //console.log("valor gananacia " + this.valorServicio);
+            console.log("valor gananacia " + this.valorServicio);
             this.pedido.valorGanancia = this.valorServicio;
-            //console.log("ingreso a crear el pedido");
-            //console.log(this.pedido);
+            console.log("ingreso a crear el pedido");
+            console.log(this.pedido);
             this.serviceModal.open(this.tramitandoModal);
             this.tramitando = true;
             this.pedidoService.createPedido(this.pedido).subscribe(function(data) {
                 _this.detalleServicioService.getServicio(_this.pedido.empresa.idEmpresa, _this.pedido.idCliente).subscribe(function(data) {
-                    //console.log("servicio extraido es");
-                    //console.log(data);
+                    console.log("servicio extraido es");
+                    console.log(data);
                     _this.servicio = data;
                     _this.idservicio = data.id;
-                    //console.log("id de servicio " + _this.idservicio);
+                    console.log("id de servicio " + _this.idservicio);
 
                     _this.llenarDetalleList(_this.idservicio); //this.llenarDetalle(this.idservicio);
 
                 });
             }, function(err) {
-                //console.log(err.error.mensaje);
+                console.log(err.error.mensaje);
             });
         };
 
@@ -830,7 +832,7 @@ var InicioComponent =
             var _this = this;
 
             var estadoServicio = "Activo";
-            //console.log(this.productosCarrito);
+            console.log(this.productosCarrito);
             var listDetalleServicio = [];
             this.productosCarrito.forEach(function(element) {
                 var detalleServicio = new detalle_servicio_1.DetalleServicio();
@@ -842,15 +844,15 @@ var InicioComponent =
                 listDetalleServicio.push(detalleServicio);
             });
             this.detalleServicioService.createDetalleServicioList(listDetalleServicio).subscribe(function(data) {
-                //console.log("mensaje de confirmacion de la lista de detalle");
-                //console.log(data);
+                console.log("mensaje de confirmacion de la lista de detalle");
+                console.log(data);
                 _this.servicio.estadoServicio = estadoServicio;
 
                 _this.servicioService.updateServicio(_this.servicio).subscribe(function(data) {
                     _this.serviceModal.dismissAll();
 
                     _this.tramitando = false;
-                    //console.log(data.mensaje);
+                    console.log(data.mensaje);
 
                     _this.solicitarPedido();
 
@@ -859,7 +861,7 @@ var InicioComponent =
                     alert(data.mensaje);
                     _this.idEmpresa = 0;
                 }, function(err) {
-                    //console.log(err.error.mensaje);
+                    console.log(err.error.mensaje);
                 });
             });
         };
@@ -868,8 +870,8 @@ var InicioComponent =
             var _this = this;
 
             var estadoServicio = "Activo";
-            //console.log("productos del carriot son:");
-            //console.log(this.productosCarrito);
+            console.log("productos del carriot son:");
+            console.log(this.productosCarrito);
             this.productosCarrito.forEach(function(element) {
                 var detalleServicio = new detalle_servicio_1.DetalleServicio();
                 detalleServicio.idServicio = idServicio;
@@ -878,7 +880,7 @@ var InicioComponent =
                 detalleServicio.cantidad = element.cantidad;
 
                 _this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(function(data) {
-                    //console.log("detalle servicio agregado"); //this.ngOnInit();
+                    console.log("detalle servicio agregado"); //this.ngOnInit();
 
                     localStorage.removeItem('myCar');
 
@@ -890,14 +892,14 @@ var InicioComponent =
                 });
             });
             setTimeout(function() {
-                //console.log("delay ingresando");
+                console.log("delay ingresando");
                 _this.servicio.estadoServicio = estadoServicio;
 
                 _this.servicioService.updateServicio(_this.servicio).subscribe(function(data) {
                     _this.serviceModal.dismissAll();
 
                     _this.tramitando = false;
-                    //console.log(data.mensaje);
+                    console.log(data.mensaje);
 
                     _this.solicitarPedido();
 
@@ -908,7 +910,7 @@ var InicioComponent =
 
                     _this.ngOnInit();
                 }, function(err) {
-                    //console.log(err.error.mensaje);
+                    console.log(err.error.mensaje);
                 });
             }, 5000);
         };
@@ -916,23 +918,23 @@ var InicioComponent =
         InicioComponent.prototype.notificacionesGeneral = function() {
             var _this = this;
 
-            //console.log("enviando notificaciones a los usuarios empresa");
+            console.log("enviando notificaciones a los usuarios empresa");
             this.usuarioService.getUserEmpresaNotifications(this.idEmpresa).subscribe(function(data) {
-                //console.log("promesa de get usuarios empresa");
+                console.log("promesa de get usuarios empresa");
                 data.forEach(function(element) {
                     _this.enviarNotificaciones(element.id, "Tiene un pedido de su negocio");
                 });
             });
-            //console.log("enviando notificaciones a los usuarios recepcionista");
+            console.log("enviando notificaciones a los usuarios recepcionista");
             this.usuarioService.getUserRepecionistaNotifications().subscribe(function(data) {
-                //console.log("promesa de get usuarios recepcionista");
+                console.log("promesa de get usuarios recepcionista");
                 data.forEach(function(element) {
                     _this.enviarNotificaciones(element.id, "Tiene un pedido sin asignar");
                 });
             });
-            //console.log("enviando notificaciones a los usuarios admi");
+            console.log("enviando notificaciones a los usuarios admi");
             this.usuarioService.getUserAdminNotifications().subscribe(function(data) {
-                //console.log("promesa de get usuarios admi");
+                console.log("promesa de get usuarios admi");
                 data.forEach(function(element) {
                     _this.enviarNotificaciones(element.id, "Tiene un pedido sin asignar");
                 });
@@ -946,19 +948,19 @@ var InicioComponent =
                 toId: id + ""
             };
             this.socketService.postMessage(message).subscribe(function(res) {
-                //console.log(res);
+                console.log(res);
             });
         };
 
         InicioComponent.prototype.solicitarPedido = function() {
             var _this = this;
 
-            //console.log("listo para extraer pedido ");
-            //console.log(this.servicio);
+            console.log("listo para extraer pedido ");
+            console.log(this.servicio);
             this.pedidoService.getPedido(this.servicio.idPedido).subscribe(function(data) {
                 // this.pedido=data;
-                //console.log("pedido obtenido  es ");
-                //console.log(data);
+                console.log("pedido obtenido  es ");
+                console.log(data);
 
                 _this.tokenService.setLugar(data.lugar.idLugar + "");
 

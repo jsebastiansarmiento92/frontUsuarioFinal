@@ -18,7 +18,7 @@ export class CajaService {
 
   createCaja(caja:Caja): Observable<any> {
     //alert("nombre que se envia es "+ usuario.nombreUsuario)
-    //console.log(caja);
+    console.log(caja);
     return this.http.post<Caja>(this.cajaURL, caja);
   }
   getCajas(): Observable<any> {
@@ -30,23 +30,23 @@ export class CajaService {
     return this.http.get<Caja[]>(this.cajaURL+"/all");
   }
   getCajaId(id:number): Observable<Caja>{
-     //console.log("el ide el usuario que asigna id es "+ id)
+     console.log("el ide el usuario que asigna id es "+ id)
      return this.http.get<Caja>(this.cajaURL+"/"+id);
    }
    getCajaUsuario(id:number): Observable<Caja>{
-    //console.log("el ide el usuario que asigna id es "+ id)
+    console.log("el ide el usuario que asigna id es "+ id)
     return this.http.get<Caja>(this.cajaURL+"/getCajaUsuario/"+id);
   }
    updateCajaDar(caja:Caja, id: number,valor:number): Observable<any>{
-    //console.log("el ide seleccionado es de dar"+ id)
+    console.log("el ide seleccionado es de dar"+ id)
     return this.http.put<any>(this.cajaURL+`/modificarDar/${id}`+`&${valor}`,caja); 
   }
   updateCaja(caja:Caja, id: number): Observable<any>{
-    //console.log("el ide seleccionado es solo update "+ id)
+    console.log("el ide seleccionado es solo update "+ id)
     return this.http.put<any>(this.cajaURL+`/modificar/${id}`,caja); 
   }
   updateCajaQuitar(caja:Caja, id: number,valor:number): Observable<any>{
-    //console.log("el ide seleccionado es de quitar"+ id)
+    console.log("el ide seleccionado es de quitar"+ id)
     return this.http.put<any>(this.cajaURL+`/modificarQuitar/${id}`+`&${valor}`,caja); 
   }
 

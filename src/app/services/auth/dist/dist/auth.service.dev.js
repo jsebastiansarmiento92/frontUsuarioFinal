@@ -47,7 +47,7 @@ var AuthService =
         };
 
         AuthService.prototype.googleLogin = function() {
-            return this.httpClient.get(window.location.href = 'https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=http://localhost:4200/signup');
+            return this.httpClient.get(window.location.href = 'https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup');
         };
 
         AuthService.prototype.getCurrentUser = function() {
@@ -55,7 +55,7 @@ var AuthService =
         };
 
         AuthService.prototype.onRegister = function(signupReq) {
-            //console.log("registro manual de usuario");
+            console.log("registro manual de usuario");
             return this.httpClient.post(this.authURL + 'signup', signupReq);
         };
 

@@ -29,7 +29,7 @@ var ProductoServiceService =
 
         ProductoServiceService.prototype.creaProducto = function(producto) {
             //alert("nombre que se envia es "+ usuario.nombreUsuario)
-            //console.log(producto);
+            console.log(producto);
             return this.httpClient.post(this.productoURL, producto);
         };
 

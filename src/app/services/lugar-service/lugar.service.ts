@@ -13,20 +13,20 @@ export class LugarService {
 
   createLugar(lugar:Lugar): Observable<Lugar> {
     //alert("nombre que se envia es "+ usuario.nombreUsuario)
-    //console.log(lugar);
+    console.log(lugar);
     return this.http.post<Lugar>(this.lugarURL, lugar);
   }
 
   getLugarId(id: number): Observable<Lugar> {
-    // //console.log("el ide seleccionado es "+ id)
+    // console.log("el ide seleccionado es "+ id)
     return this.http.get<Lugar>(this.lugarURL + "/" + id);
   }
   getLugaresIdUsuario1(id: number): Observable<any> {
-    // //console.log("el ide seleccionado es "+ id)
+    // console.log("el ide seleccionado es "+ id)
     return this.http.get<Lugar[]>(this.lugarURL + "/usuario/" + id);
   }
   modificarLugar(lugar:Lugar): Observable<any>{
-    //console.log(lugar);
+    console.log(lugar);
     return this.http.put<Lugar>(this.lugarURL+'/modificarLugar', lugar);
   }
 }
