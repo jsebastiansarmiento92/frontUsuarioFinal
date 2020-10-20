@@ -31,6 +31,7 @@ import { Usuario } from 'src/app/models/usuario';
 
 
 
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -265,8 +266,10 @@ export class InicioComponent implements OnInit {
     }
   }
 
-  empresaisVacia(empresa: any):boolean{
-    if (empresa.length==0) {
+  empresaisVacia():boolean{
+    console.log("ingreso a validador de emrpesas");
+    console.log(this.empresas);
+    if (this.empresas.length==0) {
       return true;
     } else {
       return false;
@@ -274,110 +277,133 @@ export class InicioComponent implements OnInit {
   }
 
   conductor() {
-    this.empresaSelected = false;
-    this.empresas = this.empresasTemporal;
-    console.log("ingreso a conductor padre");
-    let empresasSeleccion: Empresa[] = [];
-    this.empresas.forEach(element => {
-      element.categorias.forEach(element2 => {
-        if (element2.dependencia.idCategoria == 9) {
-          empresasSeleccion.push(element);
-        }
-      });
-    });
-    this.empresas = empresasSeleccion;
-    this.categoriaActual = "Conductor";
-    this.cargarCategorias();
-  }
-  domicilios() {
-    this.empresaSelected = false;
-    this.empresas = this.empresasTemporal;
-    console.log("ingreso a domicilios padre");
-    let empresasSeleccion: Empresa[] = [];
-    this.empresas.forEach(element => {
-      element.categorias.forEach(element2 => {
-        if (element2.dependencia.idCategoria == 8) {
-          empresasSeleccion.push(element);
-        }
-      });
-    });
-    this.empresas = empresasSeleccion;
-    this.categoriaActual = "Domicilio";
-    this.cargarCategorias();
-  }
-  licores() {
-    this.empresaSelected = false;
-    this.empresas = this.empresasTemporal;
-    console.log("ingreso a licores padre");
-    console.log(this.empresas);
-    let empresasSeleccion: Empresa[] = [];
-    this.empresas.forEach(element => {
-      element.categorias.forEach(element2 => {
-        if (element2.dependencia.idCategoria == 7) {
-          empresasSeleccion.push(element);
-        }
-      });
-    });
-    this.empresas = empresasSeleccion;
-    this.categoriaActual = "Licores";
-    this.cargarCategorias();
-  }
-  viveres() {
-    this.empresaSelected = false;
-    this.empresas = this.empresasTemporal;
-    console.log("ingreso a viveres padre");
-    let empresasSeleccion: Empresa[] = [];
-    this.empresas.forEach(element => {
-      element.categorias.forEach(element2 => {
-        if (element2.dependencia.idCategoria == 6) {
-          empresasSeleccion.push(element);
-        }
-      });
-    });
-    this.empresas = empresasSeleccion;
-    this.categoriaActual = "Viveres";
-    this.cargarCategorias();
-  }
-  drogueria() {
-    this.empresaSelected = false;
-    console.log("ingreso a drogueria padre");
-    this.empresas = this.empresasTemporal;
-    let empresasSeleccion: Empresa[] = [];
-    console.log(this.empresas);
-    this.empresas.forEach(element => {
-      element.categorias.forEach(element2 => {
-        if (element2.dependencia.idCategoria == 4) {
-          empresasSeleccion.push(element);
-        }
-      });
-    });
-    this.empresas = empresasSeleccion;
-    this.categoriaActual = "Medicamentos";
-    this.cargarCategorias();
-  }
-  restaurantes() {
-    this.empresaSelected = false;
-    console.log("ingreso a restaurantes padre");
-    this.empresas = this.empresasTemporal;
-    let empresasSeleccion: Empresa[] = [];
-    this.empresas.forEach(element => {
-      console.log(element.razonSocial);
-      let introIf = false;
-      element.categorias.forEach(element2 => {
-        console.log("cosas que tiene elemento 2");
-        if (!introIf) {
-          if (element2.dependencia.idCategoria == 5) {
-            introIf = true;
+    if(this.totalEmpresas.length){
+      this.empresaSelected = false;
+      //this.empresas = this.empresasTemporal;
+      console.log("ingreso a conductor padre");
+      let empresasSeleccion: Empresa[] = [];
+      this.totalEmpresas.forEach(element => {
+        element.categorias.forEach(element2 => {
+          if (element2.idCategoria == 9) {
             empresasSeleccion.push(element);
           }
-        }
-
+        });
       });
-
-    });
-    this.empresas = empresasSeleccion;
-    this.categoriaActual = "Restaurantes";
-    this.cargarCategorias();
+      this.empresas = empresasSeleccion;
+      this.categoriaActual = "Conductor";
+      this.cargarCategorias();
+    }
+    
+  }
+  domicilios() {
+    if(this.totalEmpresas.length){
+      this.empresaSelected = false;
+      //this.empresas = this.empresasTemporal;
+      console.log("ingreso a domicilios padre");
+      let empresasSeleccion: Empresa[] = [];
+      this.totalEmpresas.forEach(element => {
+        element.categorias.forEach(element2 => {
+          if (element2.idCategoria == 8) {
+            empresasSeleccion.push(element);
+          }
+        });
+      });
+      this.empresas = empresasSeleccion;
+      this.categoriaActual = "Domicilio";
+      this.cargarCategorias();
+    }
+    
+  }
+  licores() {
+    if(this.totalEmpresas.length){
+      this.empresaSelected = false;
+      //this.empresas = this.empresasTemporal;
+      console.log("ingreso a licores padre");
+      console.log(this.empresas);
+      let empresasSeleccion: Empresa[] = [];
+      this.totalEmpresas.forEach(element => {
+        element.categorias.forEach(element2 => {
+          if (element2.idCategoria == 7) {
+            empresasSeleccion.push(element);
+          }
+        });
+      });
+      this.empresas = empresasSeleccion;
+      this.categoriaActual = "Licores";
+      this.cargarCategorias();
+    }else this.cargarEmpresas();
+    
+  }
+  viveres() {
+    if(this.totalEmpresas.length){
+      this.empresaSelected = false;
+      //this.empresas = this.empresasTemporal;
+      console.log("ingreso a viveres padre");
+      let empresasSeleccion: Empresa[] = [];
+      this.totalEmpresas.forEach(element => {
+        element.categorias.forEach(element2 => {
+          if (element2.idCategoria == 6) {
+            empresasSeleccion.push(element);
+          }
+        });
+      });
+      this.empresas = empresasSeleccion;
+      this.categoriaActual = "Viveres";
+      this.cargarCategorias();
+    }else this.cargarEmpresas();
+   
+  }
+  drogueria() {
+    console.log("imprimir todas las empresas");
+    console.log(this.totalEmpresas.length);
+    if(this.totalEmpresas.length){
+      this.empresaSelected = false;
+      console.log("ingreso a drogueria padre");
+     // this.empresas = this.empresasTemporal;
+  
+      let empresasSeleccion: Empresa[] = [];
+      console.log(this.totalEmpresas);
+      this.totalEmpresas.forEach(element => {
+        console.log("detalle de empresa por empresa")
+        console.log(element);
+        element.categorias.forEach(element2 => {
+          if (element2.idCategoria == 4) {
+            empresasSeleccion.push(element);
+          }
+        });
+      });
+      this.empresas = empresasSeleccion;
+      this.categoriaActual = "Medicamentos";
+      this.cargarCategorias();
+    }else this.cargarEmpresas();
+  
+  }
+  restaurantes() {
+    if(this.totalEmpresas.length){
+      this.empresaSelected = false;
+      console.log("ingreso a restaurantes padre");
+      //this.empresas = this.empresasTemporal;
+      let empresasSeleccion: Empresa[] = [];
+      this.totalEmpresas.forEach(element => {
+        console.log(element.razonSocial);
+        //let introIf = false;
+        element.categorias.forEach(element2 => {
+          console.log("cosas que tiene elemento 2");
+        //  if (!introIf) {
+            if (element2.idCategoria == 5) {
+              //introIf = true;
+              empresasSeleccion.push(element);
+            }
+        //  }
+  
+        });
+  
+      });
+      this.empresas = empresasSeleccion;
+      this.categoriaActual = "Restaurantes";
+      this.cargarCategorias();
+    }else this.cargarEmpresas();
+   
   }
   cargarEmpresas() {
     this.empresaSelected = false;
@@ -390,7 +416,6 @@ export class InicioComponent implements OnInit {
         console.log("id de las imagenes de los productos" + element.imagen);
         if(element.estadoEmpresa=='Activa'){
           this.empresas.push(element);
-          
         }
         this.imagenService.getImageId(element.imagen).subscribe(data => {
           this.retrieveResonse = data;
