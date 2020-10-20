@@ -494,8 +494,10 @@
 
 
                                 </div>
-                                <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of totalEmpresas|pipeSearch:searchText">
-                                    <button class="btn btn-link " (click)="seleccionEmpresa(empresa)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
+                                <div class="container" *ngIf="categoriaActual!='Todas las categorias'">
+                                    <h2 class="section-title">Todas las Categorias</h2>
+                                    <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of totalEmpresas|pipeSearch:searchText">
+                                        <button class="btn btn-link " (click)="seleccionEmpresa(empresa)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                         <div class="row" style="margin: auto; ">
                                             <div class="profile-photo-small"
                                                 style="margin-top: 5px; margin-left: 15px; width: 20%;">
@@ -532,8 +534,10 @@
                                         </div>
     
                                     </button>
-    
-    
+
+
+                                    </div>
+
                                 </div>
                             </div>
                             <ng-template #elseBlockListEmpresas>
