@@ -82,9 +82,10 @@ export class InicioComponent implements OnInit {
   tipoDirecciones: String[] = [];
   productos: Producto[] = [];
   empresas: Empresa[] = [];
+  totalEmpresas: Empresa[] = [];
   empresasTemporal: Empresa[] = [];
   totalPedido = 0;
-  categoriaActual = " ";
+  categoriaActual = "Todas las categorias";
 
   /**
   * Shows or hide the search elements
@@ -264,6 +265,14 @@ export class InicioComponent implements OnInit {
     }
   }
 
+  empresaisVacia(empresa: any):boolean{
+    if (empresa.length==0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   conductor() {
     this.empresaSelected = false;
     this.empresas = this.empresasTemporal;
@@ -393,6 +402,7 @@ export class InicioComponent implements OnInit {
         })
       });
     })
+    this.totalEmpresas=this.empresas;
   }
 
   llenarTipodirecciones() {
