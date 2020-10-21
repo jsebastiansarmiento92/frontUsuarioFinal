@@ -68,6 +68,7 @@ export class InicioComponent implements OnInit {
   @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
   @ViewChild('loginModal', { static: false }) loginModal;
   @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
+  
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
@@ -673,18 +674,24 @@ export class InicioComponent implements OnInit {
 
   guardarTelefonoModalOpen(){
    // this.telefono="";
-   // alert("se recomienda ingresar numero de contacto ")
-   // this.serviceModal.open(this.guardarTelefonoModal);
+   // alert("se recomienda ingresar numero de contacto ");
+   alert("no tiene un telefono guardado");
+    this.serviceModal.open(this.guardarTelefonoModal);
   }
   guardarTelefono(){
+    this.tramitando = true;
+    this.serviceModal.open(this.tramitandoModal);
     let usuario:Usuario= new Usuario();
         usuario.id=parseInt(window.sessionStorage.getItem("IdSesion"));
+        usuario.name=(window.sessionStorage.getItem("AuthUserName"));
       usuario.telefono=this.telefono;
+      //window.sessionStorage.setItem("AuthUserName",usuario.name);
             if((this.telefono+"").length>6){
         this.usuarioService.updateUsuario(usuario,parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(data=>{
           alert(data.mensaje);
-          window.sessionStorage.setItem("Telefono",this.telefono+"");
+          window.sessionStorage.setItem("Telefono",this.telefono);
           this.serviceModal.dismissAll();
+          this.tramitando = false;
         }, (err: any) => {
           console.log(err.error.mensaje)
           this.telefono=window.sessionStorage.getItem("Telefono");
@@ -740,7 +747,8 @@ export class InicioComponent implements OnInit {
       console.log("tiene direccion guardada pero la va a modificar");
       console.log("datos del telefono son:");
       console.log(this.telefono);
-      if(this.telefono=="0"){
+      if(this.telefono==="0"){
+        console.log("ongreso a modal de guardar telefono");
         this.guardarTelefonoModalOpen();
       }else{
         this.promesaModificarLugar();

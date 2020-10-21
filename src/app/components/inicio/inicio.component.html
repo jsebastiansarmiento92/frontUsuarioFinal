@@ -1018,16 +1018,17 @@
     </div>
 
 </ng-template>
-<ng-template #guardarTelefonoModal>
-    <div>
-        <label>Ingresar numero de contacto</label>
-        <br>
-        <input type="number" [(ngModel)]="telefono" placeholder="telefono" value="" />
-        <br>
-        <button type="button" (click)="guardarTelefono()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">Guardar</button>
 
-    </div>
+<ng-template #guardarTelefonoModal>
+    <br>
+    <label>Ingresar numero de contacto</label>
+    <br>
+    <input type="number" [(ngModel)]="telefono" placeholder="telefono" value="" />
+    <br>
+    <button type="button" (click)="guardarTelefono()" class="btn  btn-rose btn-round btn-danger">Guardar</button>
+
 </ng-template>
+
 <ng-template #loginModal>
     <!-- <app-footer></app-footer>-->
     <app-login-modal></app-login-modal>
