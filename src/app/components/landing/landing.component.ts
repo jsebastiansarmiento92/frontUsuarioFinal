@@ -6,6 +6,7 @@ import { Lugar } from 'src/app/models/lugar';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { LugarService } from 'src/app/services/lugar-service/lugar.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-landing',
@@ -47,6 +48,7 @@ export class LandingComponent implements OnInit {
 
 
   constructor(private router:Router,private barrioService:BarrioService,
+    private serviceModal : NgbModal,
     private authService:AuthService,
     private tokenService:TokenService,
     private serviceLugar:LugarService) { }
@@ -142,7 +144,8 @@ export class LandingComponent implements OnInit {
     this.reanudarSesion();
   
   }
-  inicio(){
+  inicio(modal){
+    this.serviceModal.open(modal);
     if(localStorage.getItem('cambioDireccion')){
       if(localStorage.getItem('cambioDireccion')=='false'){
         localStorage.setItem('cambioDireccion','true');
@@ -159,6 +162,7 @@ export class LandingComponent implements OnInit {
       window.sessionStorage.setItem("Telefono",this.telefono);
       console.log("oprimidio inicio")
       this.router.navigate(["inicio"]);
+      this.serviceModal.dismissAll();
     }else{
       this.serviceLugar.createLugar(lugar).subscribe(data=>{
         console.log(data);
@@ -169,10 +173,11 @@ export class LandingComponent implements OnInit {
      
       window.localStorage.setItem("lugar", JSON.stringify(lugar));
       console.log("oprimidio inicio")
+      this.serviceModal.dismissAll();
       this.router.navigate(["inicio"]);
     }
-    
   }
+
   promesaModificarTelefono(){
 
   }
