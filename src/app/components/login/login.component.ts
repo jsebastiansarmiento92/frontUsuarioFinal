@@ -73,8 +73,14 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onLoggedin() {
+  cerrarModal(){
+    this.ngModal.dismissAll();
+  }
+
+  onLoggedin(modal) {
+    this.ngModal.open(modal);
     // this.usuario = new LoginUsuario(this.usuario.nombreUsuario, this.usuario.password);
+    
     this.logingIn = true;
     this.loader = true;
     this.authService.login(this.signupReq).subscribe(data => {
@@ -89,10 +95,12 @@ export class LoginComponent implements OnInit {
       //window.location.reload();
       this.router.navigate(['']);
       this.loader = false;
+      this.cerrarModal();
       //window.location.href = '';
     },
       (err: any) => {
         this.loader = false;
+        this.cerrarModal();
         this.isLogged = false;
         this.isLoginFail = true;
         this.errorMsg = err.error.message;
@@ -100,6 +108,7 @@ export class LoginComponent implements OnInit {
         console.log("error "+ err.error.message);
       }
     );
+    
   }
   
   getUser() {
@@ -123,6 +132,7 @@ export class LoginComponent implements OnInit {
       //window.location.reload();
       this.router.navigate(['/inicio']);
       this.loader = false;
+      this.cerrarModal();
     });
   }
   

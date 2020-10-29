@@ -70,8 +70,8 @@
                                 </div>
                                 <input type="text" placeholder="Numero de telefono" name="telefono" required class="form-control " style="text-align: center;" [(ngModel)]="telefono" required>
                                 <br>
-                                <button [disabled]="!f.valid" (click)="inicio() " class="btn btn-rose btn-lg " style=" color: white; margin: auto; ">
-                              <i class="material-icons ">search</i> Buscar Establecimientos
+                                <button [disabled]="!f.valid" (click)="inicio(cargandoModal) " class="btn btn-rose btn-lg " style=" color: white; margin: auto; ">
+                              <i class="material-icons ">search</i> Buscar Establecimientos 
 
                           </button>
                                 <br>
@@ -125,3 +125,23 @@
         </div>
     </div>
 </footer>
+
+<ng-template #cargandoModal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <br>
+        </div>
+        <div class="modal-body text-center">
+            <div class=" center-loader">
+                <strong>Cargando
+                    <span class="loader__dot">.</span>
+                    <span class="loader__dot">.</span>
+                    <span class="loader__dot">.</span></strong>
+            </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+            <br>
+        </div>
+    </div>
+
+</ng-template>
