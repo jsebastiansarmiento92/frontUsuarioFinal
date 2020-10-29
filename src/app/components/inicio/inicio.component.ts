@@ -77,7 +77,7 @@ export class InicioComponent implements OnInit {
   loaderPedido = true;
   loader = false;
   empresaSelected = false;
-
+  formaPago="";
   barrios: Barrio[] = [];
   productosCarrito: Producto[] = [];
   categorias: Categoria[] = [];
@@ -414,9 +414,12 @@ export class InicioComponent implements OnInit {
       console.log(this.empresas);
       //this.empresasTemporal = data;
       data.forEach(element => {
-        console.log("id de las imagenes de los productos" + element.imagen);
+        console.log("id de las imagenes de los productos " + element.imagen);
         if(element.estadoEmpresa=='Activa'){
           this.empresas.push(element);
+        }
+        if(element.imagen==0){
+          element.imagen=1;
         }
         this.imagenService.getImageId(element.imagen).subscribe(data => {
           this.retrieveResonse = data;
@@ -637,8 +640,10 @@ export class InicioComponent implements OnInit {
       this.productos = data;
       console.log(this.productos);
       this.productos.forEach(element => {
-        console.log("id de las imagenes de los productos" + element.imagen);
-
+        console.log("id de las imagenes de los productossss" + element.imagen);
+        if(element.imagen==0){
+          element.imagen=1;
+        }
         this.imagenService.getImageId(element.imagen).subscribe(data => {
           this.retrieveResonse = data;
           console.log(data);
@@ -652,7 +657,6 @@ export class InicioComponent implements OnInit {
     });
 
   }
-
   asignarCosto() {
     console.log("barrio en sistema es");
     console.log(this.barrio);
@@ -669,9 +673,7 @@ export class InicioComponent implements OnInit {
     } else if (this.barrio.tipoCosto == "COSTO6") {
       this.valorServicio = 10000;
     }
-
   }
-
   guardarTelefonoModalOpen(){
    // this.telefono="";
    // alert("se recomienda ingresar numero de contacto ");
@@ -698,12 +700,17 @@ export class InicioComponent implements OnInit {
         });
       }else alert("numero de contacto no valido");
   }
+  confirmMedioPago(formaPago:string){
+    this.formaPago=" Pago con: "+formaPago;
+    if (confirm('¿Estás seguro que desea confirmar el pago '+formaPago+'?')) {
+        this.confirmarPedido();
+      }
+  }
   confirmarPedido() {
-
     console.log("ingreso a confirmar pedido");
+    this.serviceModal.dismissAll();
     console.log("datos del lugar");
     console.log(this.lugar);
-
     if (this.productosCarrito.length > 0) {
       if (this.lugar == null) {
         alert("no ha ingresado direccion de pedido");
@@ -717,7 +724,6 @@ export class InicioComponent implements OnInit {
     } else {
       alert("carrito vacio");
     }
-
   }
   cambiarDireccion() {
     // window.scrollTo(0, 0 - 20);
@@ -840,6 +846,7 @@ export class InicioComponent implements OnInit {
   }
 
   confirmarTransaccion() {
+    this.pedido.observaciones+=this.formaPago;
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
     this.loaderPedido = true;
@@ -1041,5 +1048,8 @@ export class InicioComponent implements OnInit {
   }
   confirmarObservacion(){
     this.serviceModal.dismissAll();
+  }
+  verPagoModal(modal){
+    this.serviceModal.open(modal);
   }
 }

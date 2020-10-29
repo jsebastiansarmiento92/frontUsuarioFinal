@@ -9,7 +9,7 @@
         </button>
     </div>
 
-    <div class="card-body " style="width: 233px; height: 213px; overflow-y: scroll;">
+    <div class="card-body " style="width: 233px; height: 200px; overflow-y: scroll;">
         <div style="border: 1px solid rgba(153, 153, 153, 0.3);" *ngFor="let productoCarrito of productosCarrito">
             <div class="row" style="margin-bottom: 5px;">
                 <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
@@ -63,13 +63,13 @@
 
     </div>
     <div>
-        <a class="btn btn-chartjs btn-round" (click)="agregarObservacion(modaObesrvacion)">
+        <a class="btn btn-chartjs btn-round col-11" (click)="agregarObservacion(modaObesrvacion)">
             Observaciones
         </a>
-        <a class="btn btn-rose btn-round" (click)="confirmarPedido()">
+        <a class="btn btn-rose btn-round col-11" (click)="verPagoModal(pagoModal)">
             Confirmar
         </a>
-        <a class="btn btn-warning btn-round" (click)="cambiarDireccion()">
+        <a class="btn btn-warning btn-round col-11" (click)="cambiarDireccion()">
             Cambiar Direccion
         </a>
     </div>
@@ -958,7 +958,7 @@
             </a>
                 </li>
                 <li>
-                    <a href="http://localhost:4200/privacy-policy">
+                    <a href="https://quickdomicilios.com/privacy-policy">
               Politica de privacidad
             </a>
                 </li>
@@ -995,6 +995,20 @@
                 <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad" placeholder="ingresar cantidad" value="1">
             </div>
             <button (click)="confirmarAgregar()" class="btn btn-danger">Confirmar</button>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #pagoModal>
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+                <h3>Medio de Pago </h3>
+                <h4>Elige la forma de pago</h4>
+            </div>
+            <button (click)="confirmMedioPago('Efectivo')" class="btn btn-danger col-12">Efectivo</button>
+            <button (click)="confirmMedioPago('Datafono')" class=" btn btn-danger col-12">Datafono</button>
+            <button (click)="confirmMedioPago('Codigo QR')" class="btn btn-danger col-12 ">Codigo QR</button>
         </form>
     </div>
 </ng-template>

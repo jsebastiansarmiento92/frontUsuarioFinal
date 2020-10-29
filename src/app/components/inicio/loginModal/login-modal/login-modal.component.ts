@@ -74,7 +74,7 @@ export class LoginModalComponent implements OnInit {
       this.tokenService.setToken(data.accessToken);
       this.isLogged = true;
       this.isLoginFail = false;
-      this.roles = this.tokenService.getAuthorities();
+     // this.roles = this.tokenService.getAuthorities();
       localStorage.setItem('isLoggedin', 'true');
       this.getUser();
       //window.location.reload();
@@ -124,11 +124,11 @@ export class LoginModalComponent implements OnInit {
   }
   loginGoogle() {
     console.log("ingresoa registrer con google");
-    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+    location.href = "http://localhost:8080/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
   }
   loginFacebook(){
     console.log("ingresoa registrer con facebook");
-    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+    location.href = "http://localhost:8080/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
 
 }

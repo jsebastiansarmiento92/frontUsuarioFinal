@@ -11,7 +11,7 @@ import { Empresa } from 'src/app/models/empresa';
   providedIn: 'root'
 })
 export class ProductoServiceService {
-  productoURL = 'https://quickdomicilios.herokuapp.com/productos';
+  productoURL = 'http://localhost:8080/productos';
   constructor(private httpClient: HttpClient) { }
 
   creaProducto(producto: Producto): Observable<any> {

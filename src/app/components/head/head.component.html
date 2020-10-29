@@ -31,7 +31,9 @@
                         <div style="margin: 9px; " class="fileinput fileinput-new text-center d-none d-sm-none d-md-block " data-provides="fileinput " *ngIf="!isImagePerfil;else elseImageGrant">
                             <div class="row ">
                                 <img class=" fileinput-new thumbnail img-circle img-raised " src="{{imagePerfil}} " alt=" " style="height: 30px; width: 30px; margin: auto; margin-right: 1px; padding-right: 1px; " srcset="./assets/img/placeholder.jpg">
-                                <small style="width: 60%; "><h6 class="text-left ">{{nombreUsuario}}</h6></small>
+                                <small style="width: 60%; ">
+                                    <h6 class="text-left ">{{nombreUsuario}}</h6>
+                                </small>
                             </div>
                         </div>
                         <ng-template #elseImageGrant>
@@ -39,7 +41,9 @@
                                 <div class="row ">
                                     <img class=" fileinput-new thumbnail img-circle img-raised " src="{{imagePerfil}} " alt=" " style="height: 30px; width: 30px; margin: auto; margin-right: 1px; padding-right: 1px; ">
 
-                                    <small style="width: 60%; "><h6 class="text-left ">{{nombreUsuario}}</h6></small>
+                                    <small style="width: 60%; ">
+                                        <h6 class="text-left ">{{nombreUsuario}}</h6>
+                                    </small>
                                 </div>
                             </div>
                         </ng-template>
@@ -54,6 +58,12 @@
                         <li class="button-container nav-item iframe-extern">
                             <a data-toggle="modal" data-target="#smallTelefonoModal" style="color: white;" class="btn  btn-rose btn-round">
                         Editar informacion
+                    </a>
+                            <br>
+                        </li>
+                        <li class="button-container nav-item iframe-extern" (click)="openChangePass(changePasswordModal)">
+                            <a data-toggle="modal" style="color: white;" class="btn  btn-rose btn-round">
+                        Cambiar contraseña
                     </a>
                         </li>
                     </div>
@@ -85,36 +95,28 @@
                         </li>
                     </div>
                 </li>
-
-
                 <li class="dropdown nav-item" *ngIf="getIslogin()">
 
                     <a style="margin-left: 0px;" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown" (click)="cargarPedidosCliente()">
                         <i class="material-icons">shopping_basket</i>Mis Pedidos
                     </a>
-                    <div class="dropdown-menu dropdown-with-icons">
-                        <div *ngFor="let pedido of pedidos">
+                    <div class="dropdown-menu dropdown-with-icons container " style=" overflow-y:scroll; width:auto; height: 250px;">
+                        <div class="container" *ngFor="let pedido of pedidos">
 
                             <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item cursormanito">
                                 <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
-
                             </a>
-
                             <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
                                 <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}
-
                             </a>
                             <li class="button-container nav-item iframe-extern" style="text-align: center; margin: auto;">
-                                <a style="color: white; " class="btn btn-rose btn-round btn-instagram" (click)="detallePedido(pedido,detallePedidoModal)">
-            Detalle
-        </a>
+                                <a style="color: white; " class="btn btn-rose btn-round" (click)="detallePedido(pedido,detallePedidoModal)">
+                        Detalle
+                    </a>
                             </li>
                         </div>
-
                     </div>
                 </li>
-
-
 
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown">
@@ -318,7 +320,8 @@
         <label class="modal-title">Valor valor Domicilio: {{pedido.valorGanancia}}</label><br>
         <label class="modal-title">Valor valor total: {{pedido.valorGanancia+pedido.valorTotalPedido}}</label><br>
         <br>
-        <label class="modal-title">Onservaciones (las observaciones solo son aplicables 10 minutos despues de realizado el pedido antes no se garantiza que se ejecuten)</label><br>
+        <label class="modal-title">Onservaciones (las observaciones solo son aplicables 10 minutos despues de realizado
+            el pedido antes no se garantiza que se ejecuten)</label><br>
         <div class="card-body">
             <textarea type="textarea" class="form-control" disabled rows="5" cols="10" [(ngModel)]="pedido.observaciones" name="cantidad" placeholder="Agrega observacion del pedido"></textarea>
         </div>
@@ -362,4 +365,20 @@
         <textarea type="textarea" class="form-control" rows="10" cols="50" [(ngModel)]="pedido.observaciones" name="cantidad" placeholder="Agrega observacion del pedido"></textarea>
     </div>
     <button (click)="confirmarObservacion()" class="btn btn-danger">Guardar</button>
+</ng-template>
+<ng-template #changePasswordModal>
+    <div class="card-body">
+        <h3>Cambiar password </h3>
+        <div class="card mb-2 overflow-hidden">
+            <div class="card-body p-0">
+                <label class="sr-only">ingresar nueva password</label>
+                <input type="password" class="form-control rounded-0 border-0 text-center" [(ngModel)]="passwordNueva" name="passwordNueva" placeholder="password Nueva" required="">
+                <label class="sr-only">confirmar nueva password</label>
+                <input type="password" class="form-control rounded-0 border-0 text-center" [(ngModel)]="confirmacionPassword" name="confirmacionPassword" placeholder="confirmar password" required="">
+            </div>
+        </div>
+        <div class="">
+            <a class=" btn btn-primary btn-block" (click)="confirmarPassw()">Confirmar <i class="material-icons md-18">arrow_forward</i></a>
+        </div>
+    </div>
 </ng-template>
