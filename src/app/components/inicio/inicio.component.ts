@@ -68,6 +68,8 @@ export class InicioComponent implements OnInit {
   @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
   @ViewChild('loginModal', { static: false }) loginModal;
   @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
+  @ViewChild('calificacionModal', { static: false }) calificacionModal;
+
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
@@ -864,6 +866,7 @@ export class InicioComponent implements OnInit {
         this.llenarDetalleList(this.idservicio);
         //this.llenarDetalle(this.idservicio);
         
+        
 
       })
       this.sendEmail();
@@ -896,13 +899,13 @@ export class InicioComponent implements OnInit {
         this.serviceModal.dismissAll();
         this.tramitando = false;
         console.log(data.mensaje);
+        
         this.solicitarPedido();
         this.notificacionesGeneral();
         
         alert(data.mensaje);
+        this.serviceModal.open(this.calificacionModal);
         this.idEmpresa = 0;
-        
-
       }, (err: any) => {
         console.log(err.error.mensaje);
       });
