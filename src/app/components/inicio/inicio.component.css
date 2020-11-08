@@ -66,3 +66,66 @@
     animation-delay: 500ms;
     font-size: x-large;
 }
+#form {
+	width: 250px;
+	margin: 0 auto;
+	height: 50px;
+  }
+  
+  #form p {
+	text-align: center;
+  }
+  
+  #form label {
+	font-size: 20px;
+  }
+  
+  input[type="radio"] {
+	display: none;
+  }
+  
+  .startorange {
+	color: orange;
+	font-size: large;
+	margin: 0px;
+  }
+  
+  .starcalificacion{
+	color: gray;
+	font-size: x-large;
+	margin: 0px;
+  }
+
+  .clasificacion {
+	direction: rtl;
+	unicode-bidi: bidi-override;
+  }
+  
+  label:hover,
+  label:hover ~ label {
+	color: orange;
+  }
+  
+  input[type="radio"]:checked ~ label {
+	color: orange;
+  }
+  
+  .estrella {
+	display: block;
+	position: relative;		
+  }
+
+  .abierto{
+	  display: block;
+  position: absolute;
+  bottom: -22px;
+  left: -6px;
+  padding: 5px;
+  width: 100%;
+  }
+
+  .start {
+	display: block;
+	margin: auto;
+	width: 100%;
+  }
