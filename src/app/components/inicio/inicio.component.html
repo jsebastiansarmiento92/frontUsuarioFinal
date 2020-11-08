@@ -454,15 +454,21 @@
                                             <div class="profile-photo-small"
                                                 style="margin-top: 5px; margin-left: 15px; width: 20%;">
     
-                                                <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
-                                                    <img class="img-raised rounded img-fluid"
+                                                <div class="estrella" *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
+                                                    
+                                                    <img class="estrella img-raised rounded img-fluid"
                                                         [src]="empresa.retrievedImage">
+                                                        <h5 class="abierto" style="text-align: left; padding-left: 0px;"><span class=" badge badge-pill badge-info" style="font-size: 12px;">Abierto</span></h5>
+                                                        
                                                 </div>
                                                 <ng-template #elseBlockEmpresa1>
-                                                    <td>
-                                                        <img class="img-raised rounded img-fluid"
+                                                    <div class="estrella">
+                                                        <img class="estrella img-raised rounded img-fluid"
                                                             src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                                    </td>
+                                                            <h5 class="abierto" style="text-align: left; padding-left: 0px;"><span class=" badge badge-pill badge-info" style="font-size: 12px;">Abierto</span></h5>
+                                                        
+                                                    </div>
+                                                        
                                                 </ng-template>
     
     
@@ -475,7 +481,28 @@
     
                                                     <h4 class="card-title"
                                                         style="font-size: 1rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
-                                                        {{empresa.razonSocial}}</h4>
+                                                        {{empresa.razonSocial}}
+                                                        
+                                                    </h4>
+                                                    
+                                                        <form class="start" >
+                                                            <div class="row" style="display: -webkit-box; margin: auto;">
+                                                                <span class="badge badge-pill badge-success">5.0</span>
+                                                            <p class="clasificacion ">
+                                                              <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                                                              --><label class="startorange" for="radio1">★</label><!--
+                                                              --><input class="btn" id="radio2" type="radio" name="estrellas" value="4"><!--
+                                                              --><label class="startorange" for="radio2">★</label><!--
+                                                              --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                                                              --><label class="startorange" for="radio3">★</label><!--
+                                                              --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                                                              --><label class="startorange" for="radio4">★</label><!--
+                                                              --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                                                              --><label class="startorange" for="radio5">★</label>
+                                                            </p>
+                                                            </div>
+                                                            
+                                                          </form>
     
                                                     <h6 class="card-category text-success"
                                                         style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
@@ -495,7 +522,7 @@
 
                                 </div>
                                 <div class="container" *ngIf="categoriaActual!='Todas las categorias'">
-                                    <h2 class="section-title">Todas las Categorias</h2>
+                                    <h2 class="section-title">Todas las Categorias</h2> 
                                     <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of totalEmpresas|pipeSearch:searchText">
                                         <button class="btn btn-link " (click)="seleccionEmpresa(empresa)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                         <div class="row" style="margin: auto; ">
@@ -1019,6 +1046,28 @@
             <button (click)="confirmarPedido()" class=" btn btn-danger col-12">Datafono</button>
             <button (click)="confirmarPedido()" class="btn btn-danger col-12 ">Codigo QR</button>
         </form>
+    </div>
+</ng-template>
+
+<ng-template #calificacionModal>
+    <div class="card-body">
+        <form>
+            <h5>Califica la Empresa </h5>
+            <p class="clasificacion " style="text-align: center">
+                 <input id="radio1" type="radio" name="estrellas" value="1"><!--
+              --><label class="starcalificacion" for="radio1">★</label><!--
+              --><input id="radio2" type="radio" name="estrellas" value="2"><!--
+              --><label class="starcalificacion" for="radio2">★</label><!--
+              --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+              --><label class="starcalificacion" for="radio3">★</label><!--
+              --><input id="radio4" type="radio" name="estrellas" value="4"><!--
+              --><label class="starcalificacion" for="radio4">★</label><!--
+              --><input id="radio5" type="radio" name="estrellas" value="5"><!--
+              --><label class="starcalificacion" for="radio5">★</label>
+            </p>
+          </form>
+          <button (click)="confirmarObservacion()" class="btn btn-danger col-12">Aceptar</button>
+        
     </div>
 </ng-template>
 
