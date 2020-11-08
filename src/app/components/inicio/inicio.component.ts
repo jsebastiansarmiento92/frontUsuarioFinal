@@ -624,7 +624,7 @@ export class InicioComponent implements OnInit {
       }
     });
 
-  }
+  } 
   seleccionEmpresa(empresa) {
     this.empresaSelected = true;
     this.empresaSeleccionada = empresa;
