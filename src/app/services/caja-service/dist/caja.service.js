@@ -17,7 +17,7 @@ var cabecera = { headers: new http_1.HttpHeaders({ 'Content-TYpe': 'application/
 var CajaService = /** @class */ (function() {
     function CajaService(http) {
         this.http = http;
-        this.cajaURL = 'http://localhost:8080/cajas';
+        this.cajaURL = 'https://quickdomicilios.herokuapp.com/cajas';
     }
     CajaService.prototype.createCaja = function(caja) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)

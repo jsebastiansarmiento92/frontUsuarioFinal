@@ -876,6 +876,7 @@ export class InicioComponent implements OnInit {
         this.idservicio = data.id;
         console.log("id de servicio " + this.idservicio);
         this.llenarDetalleList(this.idservicio);
+        this.formaPago="";
         //this.llenarDetalle(this.idservicio);
         
 
@@ -896,9 +897,9 @@ export class InicioComponent implements OnInit {
     this.productosCarrito.forEach(element => {
       let detalleServicio = new DetalleServicio();
       detalleServicio.idServicio = idServicio;
-      detalleServicio.producto = element;
-      detalleServicio.valorUnitario = element.valorProducto;
-      detalleServicio.cantidad = element.cantidad;
+      detalleServicio.producto=element;
+      detalleServicio.valorUnitario=element.valorProducto;
+      detalleServicio.cantidad=element.cantidad;
       detalleServicio.valorTotal=element.valorProducto*element.cantidad;
       listDetalleServicio.push(detalleServicio);
     });
@@ -912,7 +913,7 @@ export class InicioComponent implements OnInit {
         console.log(data.mensaje);
         this.solicitarPedido();
         this.notificacionesGeneral();
-        
+        this.formaPago="";
         alert(data.mensaje);
         this.idEmpresa = 0;
         
@@ -920,7 +921,7 @@ export class InicioComponent implements OnInit {
       }, (err: any) => {
         console.log(err.error.mensaje);
       });
-    })
+    });
   }
   llenarDetalle(idServicio: number) {
     let estadoServicio = "Activo";
@@ -938,7 +939,7 @@ export class InicioComponent implements OnInit {
 
         //this.ngOnInit();
         localStorage.removeItem('myCar');
-
+        this.formaPago="";
         this.asignarCosto();
         this.tramitando = false;
       }, (err: any) => {

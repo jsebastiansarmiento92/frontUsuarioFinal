@@ -67,7 +67,7 @@ var InicioComponent = /** @class */ (function() {
          * @var {boolean} searching
          */
         this.searching = false;
-        this.serverUrl = 'http://localhost:8080/' + 'socket';
+        this.serverUrl = 'https://quickdomicilios.herokuapp.com/' + 'socket';
         this.isLoaded = false;
         this.isCustomSocketOpened = false;
         this.messages = [];

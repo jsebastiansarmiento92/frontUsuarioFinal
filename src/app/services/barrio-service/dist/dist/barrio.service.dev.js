@@ -24,7 +24,7 @@ var BarrioService =
     function() {
         function BarrioService(http) {
             this.http = http;
-            this.barrioURL = 'http://localhost:8080/barrios';
+            this.barrioURL = 'https://quickdomicilios.herokuapp.com/barrios';
         }
 
         BarrioService.prototype.getBarrios = function() {

@@ -24,7 +24,7 @@ var DetalleServicioService =
     function() {
         function DetalleServicioService(http) {
             this.http = http;
-            this.detalleservicioURL = 'http://localhost:8080/detalleServicio';
+            this.detalleservicioURL = 'https://quickdomicilios.herokuapp.com/detalleServicio';
         }
 
         DetalleServicioService.prototype.createDetalleServicio = function(detalleServicio) {

@@ -15,7 +15,7 @@ var core_1 = require("@angular/core");
 var ServicioService = /** @class */ (function() {
     function ServicioService(http) {
         this.http = http;
-        this.servicioURL = 'http://localhost:8080/servicio';
+        this.servicioURL = 'https://quickdomicilios.herokuapp.com/servicio';
     }
     ServicioService.prototype.updateServicio = function(servicio) {
         console.log("el ide seleccionado es " + servicio.id);

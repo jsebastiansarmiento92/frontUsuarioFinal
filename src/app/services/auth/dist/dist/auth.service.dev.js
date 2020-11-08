@@ -35,7 +35,7 @@ var AuthService =
     function() {
         function AuthService(httpClient) {
             this.httpClient = httpClient;
-            this.authURL = 'http://localhost:8080/auth/';
+            this.authURL = 'https://quickdomicilios.herokuapp.com/auth/';
         }
 
         AuthService.prototype.login = function(signupReq) {
@@ -47,11 +47,11 @@ var AuthService =
         };
 
         AuthService.prototype.googleLogin = function() {
-            return this.httpClient.get(window.location.href = 'http://localhost:8080/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup');
+            return this.httpClient.get(window.location.href = 'https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup');
         };
 
         AuthService.prototype.getCurrentUser = function() {
-            return this.httpClient.get('http://localhost:8080/usuarios/user/me');
+            return this.httpClient.get('https://quickdomicilios.herokuapp.com/usuarios/user/me');
         };
 
         AuthService.prototype.onRegister = function(signupReq) {
@@ -61,7 +61,7 @@ var AuthService =
 
         AuthService = __decorate([core_1.Injectable({
                 providedIn: 'root'
-            }) //http://localhost:8080/
+            }) //https://quickdomicilios.herokuapp.com/
         ], AuthService);
         return AuthService;
     }();
