@@ -68,7 +68,8 @@ export class InicioComponent implements OnInit {
   @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
   @ViewChild('loginModal', { static: false }) loginModal;
   @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
-  
+  @ViewChild('calificacionModal', { static: false }) calificacionModal;
+
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
@@ -628,7 +629,7 @@ export class InicioComponent implements OnInit {
       }
     });
 
-  }
+  } 
   seleccionEmpresa(empresa) {
     this.empresaSelected = true;
     this.empresaSeleccionada = empresa;
@@ -777,7 +778,8 @@ export class InicioComponent implements OnInit {
         //alert("pendiente id que llega del lugar es: "+data.idLugar);
         window.sessionStorage.setItem("IdLugar",(data.idLugar+""));
         this.lugar.idLugar=data.idLugar;
-
+        console.log("desde promesa crear lugar ");
+        this.formaPago="Pago con: "+this.formaPago;
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
         
@@ -795,7 +797,8 @@ export class InicioComponent implements OnInit {
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
     this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
-      
+      console.log("desdeModificar kugar: "+this.formaPago);
+      this.formaPago=this.formaPago;
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
         this.confirmarTransaccion();
@@ -846,6 +849,7 @@ export class InicioComponent implements OnInit {
   }
 
   confirmarTransaccion() {
+    this.pedido.observaciones="";
     this.pedido.observaciones+=this.formaPago;
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
@@ -878,8 +882,6 @@ export class InicioComponent implements OnInit {
         this.llenarDetalleList(this.idservicio);
         this.formaPago="";
         //this.llenarDetalle(this.idservicio);
-        
-
       })
       this.sendEmail();
     }, (err: any) => {
@@ -915,9 +917,8 @@ export class InicioComponent implements OnInit {
         this.notificacionesGeneral();
         this.formaPago="";
         alert(data.mensaje);
+        this.serviceModal.open(this.calificacionModal);
         this.idEmpresa = 0;
-        
-
       }, (err: any) => {
         console.log(err.error.mensaje);
       });
@@ -1023,6 +1024,7 @@ export class InicioComponent implements OnInit {
   clean() {
     localStorage.removeItem("myCar");
     this.productosCarrito = [];
+    this.formaPago="";
     //this.valorServicio = 0;
     this.totalPedido = 0;
     this.showF();
