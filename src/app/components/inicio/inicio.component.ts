@@ -69,6 +69,7 @@ export class InicioComponent implements OnInit {
   @ViewChild('loginModal', { static: false }) loginModal;
   @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
   @ViewChild('calificacionModal', { static: false }) calificacionModal;
+  @ViewChild('msgCarritoModal', { static: false }) msgCarritoModal;
 
   retrieveResonse: any;
   base64Data: any;
@@ -78,7 +79,7 @@ export class InicioComponent implements OnInit {
   loaderPedido = true;
   loader = false;
   empresaSelected = false;
-
+  formaPago="";
   barrios: Barrio[] = [];
   productosCarrito: Producto[] = [];
   categorias: Categoria[] = [];
@@ -415,9 +416,12 @@ export class InicioComponent implements OnInit {
       console.log(this.empresas);
       //this.empresasTemporal = data;
       data.forEach(element => {
-        console.log("id de las imagenes de los productos" + element.imagen);
+        console.log("id de las imagenes de los productos " + element.imagen);
         if(element.estadoEmpresa=='Activa'){
           this.empresas.push(element);
+        }
+        if(element.imagen==0){
+          element.imagen=1;
         }
         this.imagenService.getImageId(element.imagen).subscribe(data => {
           this.retrieveResonse = data;
@@ -487,6 +491,7 @@ export class InicioComponent implements OnInit {
       console.log(this.productosCarrito);
       localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
       this.serviceModal.dismissAll();
+      this.serviceModal.open(this.msgCarritoModal);
       this.totalPedido = this.calcular();
     }
   }
@@ -638,8 +643,10 @@ export class InicioComponent implements OnInit {
       this.productos = data;
       console.log(this.productos);
       this.productos.forEach(element => {
-        console.log("id de las imagenes de los productos" + element.imagen);
-
+        console.log("id de las imagenes de los productossss" + element.imagen);
+        if(element.imagen==0){
+          element.imagen=1;
+        }
         this.imagenService.getImageId(element.imagen).subscribe(data => {
           this.retrieveResonse = data;
           console.log(data);
@@ -653,7 +660,6 @@ export class InicioComponent implements OnInit {
     });
 
   }
-
   asignarCosto() {
     console.log("barrio en sistema es");
     console.log(this.barrio);
@@ -670,36 +676,44 @@ export class InicioComponent implements OnInit {
     } else if (this.barrio.tipoCosto == "COSTO6") {
       this.valorServicio = 10000;
     }
-
   }
-
   guardarTelefonoModalOpen(){
    // this.telefono="";
-   // alert("se recomienda ingresar numero de contacto ")
-   // this.serviceModal.open(this.guardarTelefonoModal);
+   // alert("se recomienda ingresar numero de contacto ");
+   alert("no tiene un telefono guardado");
+    this.serviceModal.open(this.guardarTelefonoModal);
   }
   guardarTelefono(){
+    this.tramitando = true;
+    this.serviceModal.open(this.tramitandoModal);
     let usuario:Usuario= new Usuario();
         usuario.id=parseInt(window.sessionStorage.getItem("IdSesion"));
+        usuario.name=(window.sessionStorage.getItem("AuthUserName"));
       usuario.telefono=this.telefono;
+      //window.sessionStorage.setItem("AuthUserName",usuario.name);
             if((this.telefono+"").length>6){
         this.usuarioService.updateUsuario(usuario,parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(data=>{
           alert(data.mensaje);
-          window.sessionStorage.setItem("Telefono",this.telefono+"");
+          window.sessionStorage.setItem("Telefono",this.telefono);
           this.serviceModal.dismissAll();
+          this.tramitando = false;
         }, (err: any) => {
           console.log(err.error.mensaje)
           this.telefono=window.sessionStorage.getItem("Telefono");
         });
       }else alert("numero de contacto no valido");
   }
+  confirmMedioPago(formaPago:string){
+    this.formaPago=" Pago con: "+formaPago;
+    if (confirm('¿Estás seguro que desea confirmar el pago '+formaPago+'?')) {
+        this.confirmarPedido();
+      }
+  }
   confirmarPedido() {
-
     console.log("ingreso a confirmar pedido");
     this.serviceModal.dismissAll();
     console.log("datos del lugar");
     console.log(this.lugar);
-
     if (this.productosCarrito.length > 0) {
       if (this.lugar == null) {
         alert("no ha ingresado direccion de pedido");
@@ -713,7 +727,6 @@ export class InicioComponent implements OnInit {
     } else {
       alert("carrito vacio");
     }
-
   }
   cambiarDireccion() {
     // window.scrollTo(0, 0 - 20);
@@ -743,7 +756,8 @@ export class InicioComponent implements OnInit {
       console.log("tiene direccion guardada pero la va a modificar");
       console.log("datos del telefono son:");
       console.log(this.telefono);
-      if(this.telefono=="0"){
+      if(this.telefono==="0"){
+        console.log("ongreso a modal de guardar telefono");
         this.guardarTelefonoModalOpen();
       }else{
         this.promesaModificarLugar();
@@ -835,6 +849,7 @@ export class InicioComponent implements OnInit {
   }
 
   confirmarTransaccion() {
+    this.pedido.observaciones+=this.formaPago;
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
     this.loaderPedido = true;
@@ -864,6 +879,7 @@ export class InicioComponent implements OnInit {
         this.idservicio = data.id;
         console.log("id de servicio " + this.idservicio);
         this.llenarDetalleList(this.idservicio);
+        this.formaPago="";
         //this.llenarDetalle(this.idservicio);
         
         
@@ -885,9 +901,9 @@ export class InicioComponent implements OnInit {
     this.productosCarrito.forEach(element => {
       let detalleServicio = new DetalleServicio();
       detalleServicio.idServicio = idServicio;
-      detalleServicio.producto = element;
-      detalleServicio.valorUnitario = element.valorProducto;
-      detalleServicio.cantidad = element.cantidad;
+      detalleServicio.producto=element;
+      detalleServicio.valorUnitario=element.valorProducto;
+      detalleServicio.cantidad=element.cantidad;
       detalleServicio.valorTotal=element.valorProducto*element.cantidad;
       listDetalleServicio.push(detalleServicio);
     });
@@ -902,14 +918,14 @@ export class InicioComponent implements OnInit {
         
         this.solicitarPedido();
         this.notificacionesGeneral();
-        
+        this.formaPago="";
         alert(data.mensaje);
         this.serviceModal.open(this.calificacionModal);
         this.idEmpresa = 0;
       }, (err: any) => {
         console.log(err.error.mensaje);
       });
-    })
+    });
   }
   llenarDetalle(idServicio: number) {
     let estadoServicio = "Activo";
@@ -927,7 +943,7 @@ export class InicioComponent implements OnInit {
 
         //this.ngOnInit();
         localStorage.removeItem('myCar');
-
+        this.formaPago="";
         this.asignarCosto();
         this.tramitando = false;
       }, (err: any) => {

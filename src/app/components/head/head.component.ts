@@ -33,14 +33,18 @@ export class HeadComponent implements OnInit {
   pedido:Pedido;
   imagePerfil='';
   isImagePerfil=false;
-  
+  passwordNueva="";
+  confirmacionPassword="";
+  usuario:Usuario=new Usuario();
+
   constructor(private tokenService: TokenService,
     private router: Router,
     private lugarService:LugarService,
     private serviceModal:NgbModal,
     private usuarioService:UsuarioService,
     private pedidoService:PedidoService,
-    private detalleServicioService:DetalleServicioService) { }
+    private detalleServicioService:DetalleServicioService,
+    private modalService:NgbModal) { }
 
   ngOnInit() {
     
@@ -209,4 +213,29 @@ this.serviceModal.open(modal);
       this.serviceModal.dismissAll();
     });
   }
+
+  openChangePass(modal){
+    this.modalService.open(modal);
+}
+confirmarPassw(){
+  console.log("contraseña nueva es:"+this.confirmacionPassword);
+  if(this.passwordNueva===this.confirmacionPassword){
+      this.usuario.password=this.confirmacionPassword;
+      this.usuario.name=this.tokenService.getUserName();
+      this.usuario.id=parseInt(this.tokenService.getIdUser());
+      if (confirm('confirma cambio de contraseña para el usuario '+this.usuario.name+'?')) {
+        this.usuarioService.updateContraseñaPerfil(this.usuario,this.usuario.id).subscribe(data=>{
+          alert(data.mensaje);
+         // this.caja.dineroRecibido-=consignacion.valor;
+          this.modalService.dismissAll();
+          this.logOut();
+        },(err: any) =>{
+          alert(err.error);
+        })
+      }
+    }else{
+      alert("contraseña no coincide");
+    }
+
+}
 }
