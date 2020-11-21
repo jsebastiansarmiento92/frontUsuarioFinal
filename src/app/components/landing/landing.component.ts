@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarrioService } from 'src/app/services/barrio-service/barrio.service';
 import { Barrio } from 'src/app/models/barrio';
@@ -6,6 +6,7 @@ import { Lugar } from 'src/app/models/lugar';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { LugarService } from 'src/app/services/lugar-service/lugar.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-landing',
@@ -34,7 +35,7 @@ export class LandingComponent implements OnInit {
   tipoDirecciones: String[] = [];
   barrioSeleccionado: string = '0';
   tipoDireccionSeleccionado: string = '0';
-
+  @ViewChild('tramitandoModal', { static: false }) cargandoModal;
 
   telefono="";
   //busquedaBarrio="";
@@ -44,9 +45,11 @@ export class LandingComponent implements OnInit {
   * @var {boolean} searching
   */
  public searching: boolean = false;
+ 
 
 
   constructor(private router:Router,private barrioService:BarrioService,
+    private serviceModal : NgbModal,
     private authService:AuthService,
     private tokenService:TokenService,
     private serviceLugar:LugarService) { }
@@ -78,6 +81,7 @@ export class LandingComponent implements OnInit {
     }
   }
   autenticarToken(){
+    this.serviceModal.open(this.cargandoModal);
     this.urlTree = this.router.parseUrl(this.router.url);
     this.token = this.urlTree.queryParams['token'];
     this.error = this.urlTree.queryParams['error'];
@@ -109,9 +113,10 @@ export class LandingComponent implements OnInit {
     this.isLoginFail = false;
     this.roles = this.tokenService.getAuthorities();
     localStorage.setItem('isLoggedin', 'true');
-
     this.router.navigate(['inicio']);
+
     this.loader=false;
+
     });
   }
   }
@@ -134,15 +139,14 @@ export class LandingComponent implements OnInit {
     this.isLoginFail = false;
     this.roles = this.tokenService.getAuthorities();
     localStorage.setItem('isLoggedin', 'true');
-
     this.loader=false;
-
     });
   } 
     this.reanudarSesion();
   
   }
-  inicio(){
+  inicio(modal){
+    this.serviceModal.open(modal);
     if(localStorage.getItem('cambioDireccion')){
       if(localStorage.getItem('cambioDireccion')=='false'){
         localStorage.setItem('cambioDireccion','true');
@@ -159,6 +163,7 @@ export class LandingComponent implements OnInit {
       window.sessionStorage.setItem("Telefono",this.telefono);
       console.log("oprimidio inicio")
       this.router.navigate(["inicio"]);
+      this.serviceModal.dismissAll();
     }else{
       this.serviceLugar.createLugar(lugar).subscribe(data=>{
         console.log(data);
@@ -169,10 +174,11 @@ export class LandingComponent implements OnInit {
      
       window.localStorage.setItem("lugar", JSON.stringify(lugar));
       console.log("oprimidio inicio")
+      this.serviceModal.dismissAll();
       this.router.navigate(["inicio"]);
     }
-    
   }
+
   promesaModificarTelefono(){
 
   }

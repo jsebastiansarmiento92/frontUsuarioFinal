@@ -447,10 +447,10 @@
                                 <i style="padding-top: 9px;" class="material-icons">search</i>
                                 <input class="form-control" id="myInput" type="text" [(ngModel)]="searchText" placeholder="Buscar establecimiento" (keyup)="showSearchResults($event)" style="width: 92%; margin: auto; margin-left: 0px;">
                             </div>
-                            <div *ngIf="!empresaisVacia(); else elseBlockListEmpresas">
+                            <div *ngIf="!empresaisVacia(); else elseBlockListEmpresas" style="width: 100%;">
                                 <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of empresas|pipeSearch:searchText">
                                     <button class="btn btn-link " (click)="seleccionEmpresa(empresa)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
-                                        <div class="row" style="margin: auto; ">
+                                        <div class="row" style="margin: auto;">
                                             <div class="profile-photo-small"
                                                 style="margin-top: 5px; margin-left: 15px; width: 20%;">
     
@@ -470,12 +470,7 @@
                                                     </div>
                                                         
                                                 </ng-template>
-    
-    
                                             </div>
-    
-                                            
-    
                                             <div Style=" width: 70%; text-align: left;">
                                                 <div style="margin: 10px; line-height: 1em; ">
     
@@ -484,7 +479,6 @@
                                                         {{empresa.razonSocial}}
                                                         
                                                     </h4>
-                                                    
                                                         <form class="start" >
                                                             <div class="row" style="display: -webkit-box; margin: auto;">
                                                                 <span class="badge badge-pill badge-success">5.0</span>
@@ -502,8 +496,7 @@
                                                             </p>
                                                             </div>
                                                             
-                                                          </form>
-    
+                                                        </form>
                                                     <h6 class="card-category text-success"
                                                         style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
                                                         {{empresa.estadoEmpresa}}
@@ -532,13 +525,15 @@
                                                 <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
                                                     <img class="img-raised rounded img-fluid"
                                                         [src]="empresa.retrievedImage">
+                                                        <h5 class="abierto" style="text-align: left; padding-left: 0px;"><span class=" badge badge-pill badge-info" style="font-size: 12px;">Abierto</span></h5>
                                                 </div>
                                                 <ng-template #elseBlockEmpresa1>
                                                     <td>
                                                         <img class="img-raised rounded img-fluid"
                                                             src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
+                                                            <h5 class="abierto" style="text-align: left; padding-left: 0px;"><span class=" badge badge-pill badge-info" style="font-size: 12px;">Abierto</span></h5>
                                                     </td>
-                                                </ng-template>    
+                                                </ng-template>  
                                             </div>
                                             <div Style=" width: 70%; text-align: left;">
                                                 <div style="margin: 10px; line-height: 1em; ">
@@ -546,7 +541,24 @@
                                                     <h4 class="card-title"
                                                         style="font-size: 1rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
                                                         {{empresa.razonSocial}}</h4>
-    
+                                                        <form class="start" >
+                                                            <div class="row" style="display: -webkit-box; margin: auto;">
+                                                                <span class="badge badge-pill badge-success">5.0</span>
+                                                            <p class="clasificacion ">
+                                                              <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                                                              --><label class="startorange" for="radio1">★</label><!--
+                                                              --><input class="btn" id="radio2" type="radio" name="estrellas" value="4"><!--
+                                                              --><label class="startorange" for="radio2">★</label><!--
+                                                              --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                                                              --><label class="startorange" for="radio3">★</label><!--
+                                                              --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                                                              --><label class="startorange" for="radio4">★</label><!--
+                                                              --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                                                              --><label class="startorange" for="radio5">★</label>
+                                                            </p>
+                                                            </div>
+                                                            
+                                                        </form>
                                                     <h6 class="card-category text-success"
                                                         style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
                                                         {{empresa.estadoEmpresa}}
@@ -985,7 +997,7 @@
             </a>
                 </li>
                 <li>
-                    <a href="http://localhost:4200/privacy-policy">
+                    <a href="https://quickdomicilios.com/privacy-policy">
               Politica de privacidad
             </a>
                 </li>
@@ -1032,10 +1044,10 @@
             <div class="form-group">
                 <h3>Medio de Pago </h3>
                 <h4>Elige la forma de pago</h4>
-            </div >
-            <button (click)="confirmarPedido()" class="btn btn-danger col-12">Efectivo</button>
-            <button (click)="confirmarPedido()" class=" btn btn-danger col-12">Datafono</button>
-            <button (click)="confirmarPedido()" class="btn btn-danger col-12 ">Codigo QR</button>
+            </div>
+            <button (click)="confirmMedioPago('Efectivo')" class="btn btn-danger col-12">Efectivo</button>
+            <button (click)="confirmMedioPago('Datafono')" class=" btn btn-danger col-12">Datafono</button>
+            <button (click)="confirmMedioPago('Codigo QR')" class="btn btn-danger col-12 ">Codigo QR</button>
         </form>
     </div>
 </ng-template>
@@ -1081,16 +1093,44 @@
     </div>
 
 </ng-template>
-<ng-template #guardarTelefonoModal>
-    <div>
-        <label>Ingresar numero de contacto</label>
-        <br>
-        <input type="number" [(ngModel)]="telefono" placeholder="telefono" value="" />
-        <br>
-        <button type="button" (click)="guardarTelefono()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">Guardar</button>
 
+<ng-template #msgCarritoModal>
+    <div class="modal-content">
+        
+        <div class="modal-header">
+            <button type="button" class="close" (click)="confirmarObservacion()" aria-label="Close">
+                <i class="material-icons">clear</i>
+              </button>
+            <br>
+        </div>
+        <div class="modal-body text-center">
+            <div class=" center-loader">
+                <br>
+                <h4>El pedido se agrego al carrito
+                    <span>¡mirar carrio!</span>
+                </h4>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+            <button type="button" (click)="confirmarObservacion()" class="btn  btn-rose btn-round btn-danger">Aceptar</button>
+            <br>
+        </div>
     </div>
+
 </ng-template>
+
+<ng-template #guardarTelefonoModal>
+    <br>
+    <label>Ingresar numero de contacto</label>
+    <br>
+    <input type="number" [(ngModel)]="telefono" placeholder="telefono" value="" />
+    <br>
+    <button type="button" (click)="guardarTelefono()" class="btn  btn-rose btn-round btn-danger">Guardar</button>
+
+</ng-template>
+
 <ng-template #loginModal>
     <!-- <app-footer></app-footer>-->
     <app-login-modal></app-login-modal>
