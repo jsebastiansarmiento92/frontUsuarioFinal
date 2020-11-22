@@ -69,6 +69,7 @@ export class InicioComponent implements OnInit {
   @ViewChild('loginModal', { static: false }) loginModal;
   @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
   @ViewChild('calificacionModal', { static: false }) calificacionModal;
+  @ViewChild('msgCarritoModal', { static: false }) msgCarritoModal;
 
   retrieveResonse: any;
   base64Data: any;
@@ -490,6 +491,7 @@ export class InicioComponent implements OnInit {
       console.log(this.productosCarrito);
       localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
       this.serviceModal.dismissAll();
+      this.serviceModal.open(this.msgCarritoModal);
       this.totalPedido = this.calcular();
     }
   }
