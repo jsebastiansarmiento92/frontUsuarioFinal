@@ -271,8 +271,7 @@
                                             <div class="features-1 text-left" style="padding: 0px;">
                                                 <button class="btn btn-link " style="width: 100%; padding-left: 1px; padding-top: 1px;" (click)="conductor()">
 
-                                                    <img 
-                                                        class="btn-fab img-thumbnail rounded-circle img-fluid "
+                                                    <img class="btn-fab img-thumbnail rounded-circle img-fluid "
                                                         src="./assets/categoria/conductor_elegido_1.png" alt=""
                                                         style=" background-color: transparent; border: none; max-width: 41px ;">
                                                     <span
@@ -334,9 +333,9 @@
                                                         Restaurantes</span>
 
                                                 </button>
-<br>
+                                                <br>
                                                 <a class="btn btn-link " style="width: 100%; padding-left: 1px; padding-top: 1px;" href="https://play.google.com/store/apps/details?id=com.Quickdomicilios.user&hl=es_419">
-                                                    <img  src="assets/img/playstore.png" alt="" style="width: 210%;">
+                                                    <img src="assets/img/playstore.png" alt="" style="width: 210%;">
                                                 </a>
                                             </div>
                                         </div>
@@ -456,126 +455,170 @@
                                         <div class="row" style="margin: auto;">
                                             <div class="profile-photo-small"
                                                 style="margin-top: 5px; margin-left: 15px; width: 20%;">
-    
-                                                <div class="estrella" *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
-                                                    
+
+                                                <div class="estrella"
+                                                    *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
+
                                                     <img class="estrella img-raised rounded img-fluid"
                                                         [src]="empresa.retrievedImage">
-                                                        <h5 class="abierto" style="text-align: left; padding-left: 0px;"><span class=" badge badge-pill badge-info" style="font-size: 12px;">Abierto</span></h5>
-                                                        
+                                                    
+
                                                 </div>
                                                 <ng-template #elseBlockEmpresa1>
                                                     <div class="estrella">
                                                         <img class="estrella img-raised rounded img-fluid"
                                                             src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                                            <h5 class="abierto" style="text-align: left; padding-left: 0px;"><span class=" badge badge-pill badge-info" style="font-size: 12px;">Abierto</span></h5>
                                                         
                                                     </div>
-                                                        
+
                                                 </ng-template>
                                             </div>
                                             <div Style=" width: 70%; text-align: left;">
                                                 <div style="margin: 10px; line-height: 1em; ">
-    
+
                                                     <h4 class="card-title"
                                                         style="font-size: 1rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
                                                         {{empresa.razonSocial}}
-                                                        
+
                                                     </h4>
-                                                        <form class="start" >
-                                                            <div class="row" style="display: -webkit-box; margin: auto;">
-                                                                <span class="badge badge-pill badge-success">5.0</span>
+                                                    <form class="start">
+                                                        <div class="row" style="display: -webkit-box; margin: auto;">
+                                                            <span class="badge badge-pill badge-secondary">5.0</span>
                                                             <p class="clasificacion ">
-                                                              <input id="radio1" type="radio" name="estrellas" value="5"><!--
-                                                              --><label class="startorange" for="radio1">★</label><!--
-                                                              --><input class="btn" id="radio2" type="radio" name="estrellas" value="4"><!--
-                                                              --><label class="startorange" for="radio2">★</label><!--
-                                                              --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-                                                              --><label class="startorange" for="radio3">★</label><!--
-                                                              --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-                                                              --><label class="startorange" for="radio4">★</label><!--
-                                                              --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                                                                <input id="radio1" type="radio" name="estrellas"
+                                                                    value="5">
+                                                                <!--
+                                                              --><label class="startorange" for="radio1">★</label>
+                                                                <!--
+                                                              --><input class="btn" id="radio2" type="radio"
+                                                                    name="estrellas" value="4">
+                                                                <!--
+                                                              --><label class="startorange" for="radio2">★</label>
+                                                                <!--
+                                                              --><input id="radio3" type="radio" name="estrellas"
+                                                                    value="3">
+                                                                <!--
+                                                              --><label class="startorange" for="radio3">★</label>
+                                                                <!--
+                                                              --><input id="radio4" type="radio" name="estrellas"
+                                                                    value="2">
+                                                                <!--
+                                                              --><label class="startorange" for="radio4">★</label>
+                                                                <!--
+                                                              --><input id="radio5" type="radio" name="estrellas"
+                                                                    value="1">
+                                                                <!--
                                                               --><label class="startorange" for="radio5">★</label>
                                                             </p>
-                                                            </div>
-                                                            
-                                                        </form>
-                                                    <h6 class="card-category text-success"
+                                                        </div>
+ 
+                                                    </form>
+                                                    <div *ngIf="empresa.estadoEmpresa !='Activa'; else elseBlockAbierto">
+                                                        <h6 class="card-category text-danger"
                                                         style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
-                                                        {{empresa.estadoEmpresa}}
+                                                        Cerrada
                                                     </h6>
+                                                    </div> 
+                                                    <ng-template #elseBlockAbierto>
+                                                        <h6 class="card-category text-success"
+                                                        style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                        Abierta
+                                                    </h6>
+                                                    </ng-template>
                                                     <br>
                                                     <div class="ui-icon-mail-open">
-                                                        <span class="ui-icon-mail-closed"> {{empresa.email}} </span>
+                                                        <span class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
                                                     </div>
-    
                                                 </div>
                                             </div>
                                         </div>
-    
+
                                     </button>
 
 
                                 </div>
                                 <div class="container" *ngIf="categoriaActual!='Todas las categorias'">
-                                    <h2 class="section-title">Todas las Categorias</h2> 
+                                    <h2 class="section-title">Todas las Categorias</h2>
                                     <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of totalEmpresas|pipeSearch:searchText">
                                         <button class="btn btn-link " (click)="seleccionEmpresa(empresa)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
-                                        <div class="row" style="margin: auto; ">
-                                            <div class="profile-photo-small"
-                                                style="margin-top: 5px; margin-left: 15px; width: 20%;">
-    
-                                                <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
-                                                    <img class="img-raised rounded img-fluid"
-                                                        [src]="empresa.retrievedImage">
-                                                        <h5 class="abierto" style="text-align: left; padding-left: 0px;"><span class=" badge badge-pill badge-info" style="font-size: 12px;">Abierto</span></h5>
-                                                </div>
-                                                <ng-template #elseBlockEmpresa1>
-                                                    <td>
+                                            <div class="row" style="margin: auto; ">
+                                                <div class="profile-photo-small"
+                                                    style="margin-top: 5px; margin-left: 15px; width: 20%;">
+
+                                                    <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
                                                         <img class="img-raised rounded img-fluid"
-                                                            src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                                            <h5 class="abierto" style="text-align: left; padding-left: 0px;"><span class=" badge badge-pill badge-info" style="font-size: 12px;">Abierto</span></h5>
-                                                    </td>
-                                                </ng-template>  
-                                            </div>
-                                            <div Style=" width: 70%; text-align: left;">
-                                                <div style="margin: 10px; line-height: 1em; ">
-    
-                                                    <h4 class="card-title"
-                                                        style="font-size: 1rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
-                                                        {{empresa.razonSocial}}</h4>
-                                                        <form class="start" >
-                                                            <div class="row" style="display: -webkit-box; margin: auto;">
-                                                                <span class="badge badge-pill badge-success">5.0</span>
-                                                            <p class="clasificacion ">
-                                                              <input id="radio1" type="radio" name="estrellas" value="5"><!--
-                                                              --><label class="startorange" for="radio1">★</label><!--
-                                                              --><input class="btn" id="radio2" type="radio" name="estrellas" value="4"><!--
-                                                              --><label class="startorange" for="radio2">★</label><!--
-                                                              --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-                                                              --><label class="startorange" for="radio3">★</label><!--
-                                                              --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-                                                              --><label class="startorange" for="radio4">★</label><!--
-                                                              --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-                                                              --><label class="startorange" for="radio5">★</label>
-                                                            </p>
-                                                            </div>
-                                                            
-                                                        </form>
-                                                    <h6 class="card-category text-success"
-                                                        style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
-                                                        {{empresa.estadoEmpresa}}
-                                                    </h6>
-                                                    <br>
-                                                    <div class="ui-icon-mail-open">
-                                                        <span class="ui-icon-mail-closed"> {{empresa.email}} </span>
+                                                            [src]="empresa.retrievedImage">
+                                                        
                                                     </div>
-    
+                                                    <ng-template #elseBlockEmpresa1>
+                                                        <td>
+                                                            <img class="img-raised rounded img-fluid"
+                                                                src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
+                                                            
+                                                        </td>
+                                                    </ng-template>
+                                                </div>
+                                                <div Style=" width: 70%; text-align: left;">
+                                                    <div style="margin: 10px; line-height: 1em; ">
+
+                                                        <h4 class="card-title"
+                                                            style="font-size: 1rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                                                            {{empresa.razonSocial}}</h4>
+                                                        <form class="start">
+                                                            <div class="row"
+                                                                style="display: -webkit-box; margin: auto;">
+                                                                <span class="badge badge-pill badge-secondary">5.0</span>
+                                                                <p class="clasificacion ">
+                                                                    <input id="radio1" type="radio" name="estrellas"
+                                                                        value="5">
+                                                                    <!--
+                                                              --><label class="startorange" for="radio1">★</label>
+                                                                    <!--
+                                                              --><input class="btn" id="radio2" type="radio"
+                                                                        name="estrellas" value="4">
+                                                                    <!--
+                                                              --><label class="startorange" for="radio2">★</label>
+                                                                    <!--
+                                                              --><input id="radio3" type="radio" name="estrellas"
+                                                                        value="3">
+                                                                    <!--
+                                                              --><label class="startorange" for="radio3">★</label>
+                                                                    <!--
+                                                              --><input id="radio4" type="radio" name="estrellas"
+                                                                        value="2">
+                                                                    <!--
+                                                              --><label class="startorange" for="radio4">★</label>
+                                                                    <!--
+                                                              --><input id="radio5" type="radio" name="estrellas"
+                                                                        value="1">
+                                                                    <!--
+                                                              --><label class="startorange" for="radio5">★</label>
+                                                                </p>
+                                                            </div>
+
+                                                        </form>
+                                                        
+                                                        <div *ngIf="empresa.estadoEmpresa !='Activa'; else elseBlockAbierto">
+                                                            <h6 class="card-category text-danger"
+                                                            style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                            Cerrada
+                                                        </h6>
+                                                        </div> 
+                                                        <ng-template #elseBlockAbierto>
+                                                            <h6 class="card-category text-success"
+                                                            style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                            Abierta
+                                                        </h6>
+                                                        </ng-template>
+                                                        <br>
+                                                        <div class="ui-icon-mail-open">
+                                                            <span class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-    
-                                    </button>
+
+                                        </button>
 
 
                                     </div>
@@ -595,42 +638,82 @@
                                     <h2 class="section-title">Todas las Categorias</h2>
                                     <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of totalEmpresas|pipeSearch:searchText">
                                         <button class="btn btn-link " (click)="seleccionEmpresa(empresa)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
-                                        <div class="row" style="margin: auto; ">
-                                            <div class="profile-photo-small"
-                                                style="margin-top: 5px; margin-left: 15px; width: 20%;">
-    
-                                                <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
-                                                    <img class="img-raised rounded img-fluid"
-                                                        [src]="empresa.retrievedImage">
-                                                </div>
-                                                <ng-template #elseBlockEmpresa1>
-                                                    <td>
+                                            <div class="row" style="margin: auto; ">
+                                                <div class="profile-photo-small"
+                                                    style="margin-top: 5px; margin-left: 15px; width: 20%;">
+
+                                                    <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
                                                         <img class="img-raised rounded img-fluid"
-                                                            src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                                    </td>
-                                                </ng-template>    
-                                            </div>
-                                            <div Style=" width: 70%; text-align: left;">
-                                                <div style="margin: 10px; line-height: 1em; ">
-    
-                                                    <h4 class="card-title"
-                                                        style="font-size: 1rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
-                                                        {{empresa.razonSocial}}</h4>
-    
-                                                    <h6 class="card-category text-success"
-                                                        style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
-                                                        {{empresa.estadoEmpresa}}
-                                                    </h6>
-                                                    <br>
-                                                    <div class="ui-icon-mail-open">
-                                                        <span class="ui-icon-mail-closed"> {{empresa.email}} </span>
+                                                            [src]="empresa.retrievedImage">
                                                     </div>
+                                                    <ng-template #elseBlockEmpresa1>
+                                                        <td>
+                                                            <img class="img-raised rounded img-fluid"
+                                                                src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
+                                                        </td>
+                                                    </ng-template>
+                                                </div>
+                                                <div Style=" width: 70%; text-align: left;">
+                                                    <div style="margin: 10px; line-height: 1em; ">
+
+                                                        <h4 class="card-title"
+                                                            style="font-size: 1rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                                                            {{empresa.razonSocial}}</h4>
+                                                            <form class="start">
+                                                                <div class="row"
+                                                                    style="display: -webkit-box; margin: auto;">
+                                                                    <span class="badge badge-pill badge-secondaryw">5.0</span>
+                                                                    <p class="clasificacion ">
+                                                                        <input id="radio1" type="radio" name="estrellas"
+                                                                            value="5">
+                                                                        <!--
+                                                                  --><label class="startorange" for="radio1">★</label>
+                                                                        <!--
+                                                                  --><input class="btn" id="radio2" type="radio"
+                                                                            name="estrellas" value="4">
+                                                                        <!--
+                                                                  --><label class="startorange" for="radio2">★</label>
+                                                                        <!--
+                                                                  --><input id="radio3" type="radio" name="estrellas"
+                                                                            value="3">
+                                                                        <!--
+                                                                  --><label class="startorange" for="radio3">★</label>
+                                                                        <!--
+                                                                  --><input id="radio4" type="radio" name="estrellas"
+                                                                            value="2">
+                                                                        <!--
+                                                                  --><label class="startorange" for="radio4">★</label>
+                                                                        <!--
+                                                                  --><input id="radio5" type="radio" name="estrellas"
+                                                                            value="1">
+                                                                        <!--
+                                                                  --><label class="startorange" for="radio5">★</label>
+                                                                    </p>
+                                                                </div>
     
+                                                            </form>
+                                                            <div *ngIf="empresa.estadoEmpresa !='Activa'; else elseBlockAbierto">
+                                                                <h6 class="card-category text-danger"
+                                                                style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                                Cerrada
+                                                            </h6>
+                                                            </div> 
+                                                            <ng-template #elseBlockAbierto>
+                                                                <h6 class="card-category text-success"
+                                                                style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                                Abierta
+                                                            </h6>
+                                                            </ng-template>
+                                                        <br>
+                                                        <div class="ui-icon-mail-open">
+                                                            <span class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-    
-                                    </button>
+
+                                        </button>
 
 
                                     </div>
@@ -991,23 +1074,23 @@
             <ul>
                 <li>
                     <a>
-              Boyaca Web
-            </a>
+                        Boyaca Web
+                    </a>
                 </li>
                 <li>
                     <a>
-              Sobre nosotros
-            </a>
+                        Sobre nosotros
+                    </a>
                 </li>
                 <li>
                     <a href="https://quickdomicilios.com/privacy-policy">
-              Politica de privacidad
-            </a>
+                        Politica de privacidad
+                    </a>
                 </li>
                 <li>
                     <a>
-              Licencias
-            </a>
+                        Licencias
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -1029,14 +1112,33 @@
 </ng-template>
 
 <ng-template #confirmarModal>
-    <div class="card-body">
+    <div class="modal-header text-center" style="background-color: red; padding-top: initial;">
+        <h3 class="text-center" style="color: white; width: 100%;">Mi pedido</h3>
+    </div>
+    <div class="modal-body" style="padding-top: 0px ; color: black;">
+        <div>
+            <img class="img-raised rounded img-fluid" style="height: 254px; margin-top: 10px;" [src]="producto.retrievedImage">
+        </div>
         <form>
             <div class="form-group">
-                <h3>Confirmacion </h3>
-                <h4>cantidad de {{producto.nombreProducto}} que deseas </h4>
-                <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad" placeholder="ingresar cantidad" value="1">
+                <div class="row">
+                    <div style="width: 60%; ">
+                        <h4 style="margin-left: 20px;">Cantidad de {{producto.nombreProducto}} que deseas </h4>
+                        <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad" placeholder="ingresar cantidad" value="1" style="margin-left: 20px;">
+                    </div>
+                    <div style="width: 40%; margin: auto; text-align: right;">
+                        <h2 style="color: red; margin-bottom: -15px; margin-right: 20px; ">$ {{producto.valorProducto}}
+                        </h2>
+                        <p style="margin-right: 20px;"><span>Valor del producto</span></p>
+                    </div>
+                </div>
+                <h4>Observaciones</h4>
+                <textarea type="textarea" class="form-control" rows="3" cols="50" [(ngModel)]="observacionesProducto" name="cantidad" placeholder="Agrega observacion del pedido"></textarea>
+                <label>Ejemplo de observaciones: sin cebolla</label>
             </div>
-            <button (click)="confirmarAgregar()" class="btn btn-danger">Confirmar</button>
+
+
+            <button (click)="confirmarAgregar()" style="width: 100%;" class="btn btn-danger">Confirmar Pedído</button>
         </form>
     </div>
 </ng-template>
@@ -1060,50 +1162,105 @@
         <form>
             <h5>Califica la Empresa </h5>
             <p class="clasificacion " style="text-align: center">
-                 <input id="radio1" type="radio" name="estrellas" value="1"><!--
-              --><label class="starcalificacion" for="radio1">★</label><!--
-              --><input id="radio2" type="radio" name="estrellas" value="2"><!--
-              --><label class="starcalificacion" for="radio2">★</label><!--
-              --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-              --><label class="starcalificacion" for="radio3">★</label><!--
-              --><input id="radio4" type="radio" name="estrellas" value="4"><!--
-              --><label class="starcalificacion" for="radio4">★</label><!--
-              --><input id="radio5" type="radio" name="estrellas" value="5"><!--
+                <input id="radio1" type="radio" name="estrellas" value="1">
+                <!--
+              --><label class="starcalificacion" for="radio1">★</label>
+                <!--
+              --><input id="radio2" type="radio" name="estrellas" value="2">
+                <!--
+              --><label class="starcalificacion" for="radio2">★</label>
+                <!--
+              --><input id="radio3" type="radio" name="estrellas" value="3">
+                <!--
+              --><label class="starcalificacion" for="radio3">★</label>
+                <!--
+              --><input id="radio4" type="radio" name="estrellas" value="4">
+                <!--
+              --><label class="starcalificacion" for="radio4">★</label>
+                <!--
+              --><input id="radio5" type="radio" name="estrellas" value="5">
+                <!--
               --><label class="starcalificacion" for="radio5">★</label>
             </p>
-          </form>
-          <button (click)="confirmarObservacion()" class="btn btn-danger col-12">Aceptar</button>
-        
+        </form>
+        <button (click)="confirmarObservacion()" class="btn btn-danger col-12">Aceptar</button>
+
     </div>
 </ng-template>
 
 <ng-template #tramitandoModal>
-    <div class="modal-content">
-        <div class="modal-header">
-            <br>
-        </div>
-        <div class="modal-body text-center">
-            <div class=" center-loader" *ngIf="tramitando">
-                <strong>Tramitando
-                    <span class="loader__dot">.</span>
-                    <span class="loader__dot">.</span>
-                    <span class="loader__dot">.</span></strong>
+    <div class="modal-header">
+        <h3 class="modal-title " style="width: 100%; margin-top: 0px; text-align: center;">Pedido</h3>
+    </div>
+    <div class="modal-body" style="padding: 0px;">
+
+
+        <div class="card-body">
+            <div>
+                <label class="modal-title" style="color: black;">Dirección: {{direccionCompleta}}</label><br>
+                <label class="modal-title" style="color: black;">Barrio: {{barrio.nombreBarrio}}</label><br>
+                <label class="modal-title" style="color: black;">Valor Domicilio: {{valorServicio}}</label><br>
+                <label class="modal-title" style="color: black;">Valor total: {{valorServicio + totalPedido}}</label><br>
             </div>
+
+            <h5 class="modal-title">Detalle de pedido:</h5>
+            <table class="table table-reponsive" style="padding-left: 10px;">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Valor unitario</th>
+                        <th class="text-right">Total</th>
+
+                    </tr>
+                </thead>
+                <tbody *ngFor="let productoCar of productosCarrito">
+                    <tr>
+                        <td><img [src]="productoCar.retrievedImage" style="width: 50px;" alt=""></td>
+                        <td>{{productoCar.nombreProducto}}</td>
+                        <td>{{productoCar.cantidad}}</td>
+                        <td>$ {{productoCar.valorProducto}}</td>
+                        <td class="text-right">$ {{(productoCar.valorProducto*productoCar.cantidad)}}</td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td>Domicilio</td>
+                        <td></td>
+                        <td>$ {{valorServicio}}</td>
+                        <td class="text-right">$ {{valorServicio}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong>Total</strong></td>
+                        <td class="text-right"><strong>$ {{valorServicio + totalPedido}}</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
-        <div class="modal-footer justify-content-center">
-            <br>
-        </div>
+
+
+    </div>
+
+    <div class="modal-footer justify-content-center">
+
+
     </div>
 
 </ng-template>
 
 <ng-template #msgCarritoModal>
     <div class="modal-content">
-        
+
         <div class="modal-header">
             <button type="button" class="close" (click)="confirmarObservacion()">
                 <i class="material-icons">clear</i>
-              </button>
+            </button>
             <br>
         </div>
         <div class="modal-body text-center">
@@ -1115,7 +1272,7 @@
             </div>
         </div>
         <div class="modal-footer justify-content-center">
-            
+
         </div>
     </div>
 

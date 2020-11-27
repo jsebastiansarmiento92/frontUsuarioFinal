@@ -89,7 +89,9 @@ export class InicioComponent implements OnInit {
   totalEmpresas: Empresa[] = [];
   empresasTemporal: Empresa[] = [];
   totalPedido = 0;
+  msgtotalpedido = 0;
   categoriaActual = "Todas las categorias";
+  observacionesProducto="";
 
   /**
   * Shows or hide the search elements
@@ -481,6 +483,8 @@ export class InicioComponent implements OnInit {
 
   }
   confirmarAgregar() {
+    this.pedido.observaciones+=this.producto.nombreProducto+": "+this.observacionesProducto+"\n";
+    this.observacionesProducto="";
     if (this.idEmpresa == 0) {
       this.idEmpresa = this.producto.empresa.idEmpresa;
     } else if (this.idEmpresa != this.producto.empresa.idEmpresa) {
@@ -491,6 +495,7 @@ export class InicioComponent implements OnInit {
       console.log(this.productosCarrito);
       localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
       this.serviceModal.dismissAll();
+      this.show=true;
       this.serviceModal.open(this.msgCarritoModal);
       this.totalPedido = this.calcular();
     }
@@ -772,17 +777,17 @@ export class InicioComponent implements OnInit {
     // console.log(sessionStorage.getItem('IdLugar'));
     //this.lugar.idLugar=parseInt(sessionStorage.getItem('IdLugar'));
     this.lugar.idUsuario = parseInt(this.tokenService.getIdUser());
-    this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
 
     this.serviceLugar.createLugar(this.lugar).subscribe(data => {
       console.log("alerta antes de extraer el id del lugar por primera vez");
         //alert("pendiente id que llega del lugar es: "+data.idLugar);
-        window.sessionStorage.setItem("IdLugar",(data.idLugar+""));
+        window.sessionStorage.setItem("IdLugar",(data.idLugar+""));        
         this.lugar.idLugar=data.idLugar;
-        console.log("desde promesa crear lugar ");
-        this.formaPago="Pago con: "+this.formaPago;
-      if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
+        this.serviceModal.open(this.tramitandoModal);
+      this.msgtotalpedido = this.valorServicio + this.totalPedido;
+    
+      if (confirm('valor total del pedido: $' + this.msgtotalpedido + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
         
         this.confirmarTransaccion();
