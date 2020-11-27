@@ -74,7 +74,7 @@ export class LoginModalComponent implements OnInit {
       this.tokenService.setToken(data.accessToken);
       this.isLogged = true;
       this.isLoginFail = false;
-      this.roles = this.tokenService.getAuthorities();
+     // this.roles = this.tokenService.getAuthorities();
       localStorage.setItem('isLoggedin', 'true');
       this.getUser();
       //window.location.reload();

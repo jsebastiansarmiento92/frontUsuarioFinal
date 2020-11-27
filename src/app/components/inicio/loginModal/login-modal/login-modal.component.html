@@ -54,7 +54,12 @@
 
         <a class="btn btn-rose btn-link btn-lg" (click)="onRegister()">Registrar</a>
     </div>
-    <div *ngIf="logingIn && isLoginFail" class="alert alert-danger mt-3">Error al loguearse: {{ errorMsg }}</div>
+    <div *ngIf="logingIn && isLoginFail" class="alert alert-danger mt-3">Error al loguearse:
+        <a style="background-color: green;" href="https://api.whatsapp.com/send?phone=+57 3124872765">Envíanos un mensaje de WhatsApp si no recuerdas contraseña</a>
+        <i class="materiañ-icons">headset_mic</i>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/240px-WhatsApp.svg.png" width="50" height="50">
+    </div>
+
 </ng-template>
 </div>
 </form>

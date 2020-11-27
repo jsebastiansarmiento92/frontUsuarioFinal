@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarrioService } from 'src/app/services/barrio-service/barrio.service';
 import { Barrio } from 'src/app/models/barrio';
@@ -35,7 +35,7 @@ export class LandingComponent implements OnInit {
   tipoDirecciones: String[] = [];
   barrioSeleccionado: string = '0';
   tipoDireccionSeleccionado: string = '0';
-
+  @ViewChild('tramitandoModal', { static: false }) cargandoModal;
 
   telefono="";
   //busquedaBarrio="";
@@ -45,6 +45,7 @@ export class LandingComponent implements OnInit {
   * @var {boolean} searching
   */
  public searching: boolean = false;
+ 
 
 
   constructor(private router:Router,private barrioService:BarrioService,
@@ -80,6 +81,7 @@ export class LandingComponent implements OnInit {
     }
   }
   autenticarToken(){
+    this.serviceModal.open(this.cargandoModal);
     this.urlTree = this.router.parseUrl(this.router.url);
     this.token = this.urlTree.queryParams['token'];
     this.error = this.urlTree.queryParams['error'];
@@ -111,9 +113,10 @@ export class LandingComponent implements OnInit {
     this.isLoginFail = false;
     this.roles = this.tokenService.getAuthorities();
     localStorage.setItem('isLoggedin', 'true');
-
     this.router.navigate(['inicio']);
+
     this.loader=false;
+
     });
   }
   }
@@ -136,9 +139,7 @@ export class LandingComponent implements OnInit {
     this.isLoginFail = false;
     this.roles = this.tokenService.getAuthorities();
     localStorage.setItem('isLoggedin', 'true');
-
     this.loader=false;
-
     });
   } 
     this.reanudarSesion();

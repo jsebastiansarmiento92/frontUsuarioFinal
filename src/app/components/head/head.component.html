@@ -59,6 +59,12 @@
                             <a data-toggle="modal" data-target="#smallTelefonoModal" style="color: white;" class="btn  btn-rose btn-round">
                         Editar informacion
                     </a>
+                             <br>
+                        </li>
+                        <li class="button-container nav-item iframe-extern" (click)="openChangePass(changePasswordModal)">
+                            <a data-toggle="modal" style="color: white;" class="btn  btn-rose btn-round">
+                        Cambiar contraseña
+                    </a> 
                         </li>
                     </div>
 
@@ -310,9 +316,9 @@
     <div class="modal-body">
         <label class="modal-title ">Empresa pedido: {{pedido.empresa.razonSocial}}</label><br>
         <label class="modal-title">Estado Pedido: {{pedido.estadoPedido}}</label><br>
-        <label class="modal-title">Valor Productos: {{pedido.valorTotalPedido}}</label><br>
-        <label class="modal-title">Valor valor Domicilio: {{pedido.valorGanancia}}</label><br>
-        <label class="modal-title">Valor valor total: {{pedido.valorGanancia+pedido.valorTotalPedido}}</label><br>
+        <label class="modal-title">Valor Productos: $ {{pedido.valorTotalPedido}}</label><br>
+        <label class="modal-title">Valor Domicilio: $ {{pedido.valorGanancia}}</label><br>
+        <label class="modal-title">Valor Total: $ {{pedido.valorGanancia+pedido.valorTotalPedido}}</label><br>
         <br>
         <label class="modal-title">Onservaciones (las observaciones solo son aplicables 10 minutos despues de realizado
             el pedido antes no se garantiza que se ejecuten)</label><br>
@@ -325,6 +331,7 @@
 
         <h5 class="modal-title">Detalle de pedido:</h5>
     </div>
+    
 
     <div class="modal-footer justify-content-center">
 
@@ -344,11 +351,25 @@
 
                     <td>{{detalleServicio.producto.nombreProducto}}</td>
                     <td>{{detalleServicio.cantidad}}</td>
-                    <td>{{detalleServicio.valorUnitario}}</td>
-                    <td class="text-right">{{detalleServicio.valorTotal}}</td>
+                    <td>$ {{detalleServicio.valorUnitario}}</td>
+                    <td class="text-right">$ {{detalleServicio.valorTotal}}</td>
 
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td>Domicilio</td>
+                    <td></td>
+                    <td>$ {{pedido.valorGanancia}}</td>
+                    <td class="text-right">$ {{pedido.valorGanancia}}</td>
+                </tr>
+                <tr>
+                    <td ></td>
+                    <td></td>
+                    <td><strong>Total</strong></td>
+                    <td class="text-right"><strong>$ {{pedido.valorGanancia+pedido.valorTotalPedido}}</strong></td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
@@ -359,4 +380,20 @@
         <textarea type="textarea" class="form-control" rows="10" cols="50" [(ngModel)]="pedido.observaciones" name="cantidad" placeholder="Agrega observacion del pedido"></textarea>
     </div>
     <button (click)="confirmarObservacion()" class="btn btn-danger">Guardar</button>
+</ng-template>
+<ng-template #changePasswordModal>
+    <div class="card-body">
+        <h3>Cambiar password </h3>
+        <div class="card mb-2 overflow-hidden">
+            <div class="card-body p-0">
+                <label class="sr-only">ingresar nueva password</label>
+                <input type="password" class="form-control rounded-0 border-0 text-center" [(ngModel)]="passwordNueva" name="passwordNueva" placeholder="password Nueva" required="">
+                <label class="sr-only">confirmar nueva password</label>
+                <input type="password" class="form-control rounded-0 border-0 text-center" [(ngModel)]="confirmacionPassword" name="confirmacionPassword" placeholder="confirmar password" required="">
+            </div>
+        </div>
+        <div class="">
+            <a class=" btn btn-primary btn-block" (click)="confirmarPassw()">Confirmar <i class="material-icons md-18">arrow_forward</i></a>
+        </div>
+    </div>
 </ng-template>
