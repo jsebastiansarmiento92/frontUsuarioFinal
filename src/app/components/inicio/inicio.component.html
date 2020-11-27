@@ -521,20 +521,14 @@
 
                                                     <img class="estrella img-raised rounded img-fluid"
                                                         [src]="empresa.retrievedImage">
-                                                    <h5 class="abierto" style="text-align: left; padding-left: 0px;">
-                                                        <span class=" badge badge-pill badge-info"
-                                                            style="font-size: 12px;">Abierto</span></h5>
+                                                    
 
                                                 </div>
                                                 <ng-template #elseBlockEmpresa1>
                                                     <div class="estrella">
                                                         <img class="estrella img-raised rounded img-fluid"
                                                             src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                                        <h5 class="abierto"
-                                                            style="text-align: left; padding-left: 0px;"><span
-                                                                class=" badge badge-pill badge-info"
-                                                                style="font-size: 12px;">Abierto</span></h5>
-
+                                                        
                                                     </div>
 
                                                 </ng-template>
@@ -549,7 +543,7 @@
                                                     </h4>
                                                     <form class="start">
                                                         <div class="row" style="display: -webkit-box; margin: auto;">
-                                                            <span class="badge badge-pill badge-success">5.0</span>
+                                                            <span class="badge badge-pill badge-secondary">5.0</span>
                                                             <p class="clasificacion ">
                                                                 <input id="radio1" type="radio" name="estrellas"
                                                                     value="5">
@@ -577,17 +571,24 @@
                                                               --><label class="startorange" for="radio5">★</label>
                                                             </p>
                                                         </div>
-
+ 
                                                     </form>
-                                                    <h6 class="card-category text-success"
+                                                    <div *ngIf="empresa.estadoEmpresa !='Activa'; else elseBlockAbierto">
+                                                        <h6 class="card-category text-danger"
                                                         style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
-                                                        {{empresa.estadoEmpresa}}
+                                                        Cerrada
                                                     </h6>
+                                                    </div> 
+                                                    <ng-template #elseBlockAbierto>
+                                                        <h6 class="card-category text-success"
+                                                        style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                        Abierta
+                                                    </h6>
+                                                    </ng-template>
                                                     <br>
                                                     <div class="ui-icon-mail-open">
-                                                        <span class="ui-icon-mail-closed"> {{empresa.email}} </span>
+                                                        <span class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -610,19 +611,13 @@
                                                     <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
                                                         <img class="img-raised rounded img-fluid"
                                                             [src]="empresa.retrievedImage">
-                                                        <h5 class="abierto"
-                                                            style="text-align: left; padding-left: 0px;"><span
-                                                                class=" badge badge-pill badge-info"
-                                                                style="font-size: 12px;">Abierto</span></h5>
+                                                        
                                                     </div>
                                                     <ng-template #elseBlockEmpresa1>
                                                         <td>
                                                             <img class="img-raised rounded img-fluid"
                                                                 src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                                            <h5 class="abierto"
-                                                                style="text-align: left; padding-left: 0px;"><span
-                                                                    class=" badge badge-pill badge-info"
-                                                                    style="font-size: 12px;">Abierto</span></h5>
+                                                            
                                                         </td>
                                                     </ng-template>
                                                 </div>
@@ -635,7 +630,7 @@
                                                         <form class="start">
                                                             <div class="row"
                                                                 style="display: -webkit-box; margin: auto;">
-                                                                <span class="badge badge-pill badge-success">5.0</span>
+                                                                <span class="badge badge-pill badge-secondary">5.0</span>
                                                                 <p class="clasificacion ">
                                                                     <input id="radio1" type="radio" name="estrellas"
                                                                         value="5">
@@ -665,15 +660,23 @@
                                                             </div>
 
                                                         </form>
-                                                        <h6 class="card-category text-success"
+                                                        
+                                                        <div *ngIf="empresa.estadoEmpresa !='Activa'; else elseBlockAbierto">
+                                                            <h6 class="card-category text-danger"
                                                             style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
-                                                            {{empresa.estadoEmpresa}}
+                                                            Cerrada
                                                         </h6>
+                                                        </div> 
+                                                        <ng-template #elseBlockAbierto>
+                                                            <h6 class="card-category text-success"
+                                                            style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                            Abierta
+                                                        </h6>
+                                                        </ng-template>
                                                         <br>
                                                         <div class="ui-icon-mail-open">
-                                                            <span class="ui-icon-mail-closed"> {{empresa.email}} </span>
+                                                            <span class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -722,14 +725,54 @@
                                                         <h4 class="card-title"
                                                             style="font-size: 1rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
                                                             {{empresa.razonSocial}}</h4>
-
-                                                        <h6 class="card-category text-success"
-                                                            style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
-                                                            {{empresa.estadoEmpresa}}
-                                                        </h6>
+                                                            <form class="start">
+                                                                <div class="row"
+                                                                    style="display: -webkit-box; margin: auto;">
+                                                                    <span class="badge badge-pill badge-secondaryw">5.0</span>
+                                                                    <p class="clasificacion ">
+                                                                        <input id="radio1" type="radio" name="estrellas"
+                                                                            value="5">
+                                                                        <!--
+                                                                  --><label class="startorange" for="radio1">★</label>
+                                                                        <!--
+                                                                  --><input class="btn" id="radio2" type="radio"
+                                                                            name="estrellas" value="4">
+                                                                        <!--
+                                                                  --><label class="startorange" for="radio2">★</label>
+                                                                        <!--
+                                                                  --><input id="radio3" type="radio" name="estrellas"
+                                                                            value="3">
+                                                                        <!--
+                                                                  --><label class="startorange" for="radio3">★</label>
+                                                                        <!--
+                                                                  --><input id="radio4" type="radio" name="estrellas"
+                                                                            value="2">
+                                                                        <!--
+                                                                  --><label class="startorange" for="radio4">★</label>
+                                                                        <!--
+                                                                  --><input id="radio5" type="radio" name="estrellas"
+                                                                            value="1">
+                                                                        <!--
+                                                                  --><label class="startorange" for="radio5">★</label>
+                                                                    </p>
+                                                                </div>
+    
+                                                            </form>
+                                                            <div *ngIf="empresa.estadoEmpresa !='Activa'; else elseBlockAbierto">
+                                                                <h6 class="card-category text-danger"
+                                                                style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                                Cerrada
+                                                            </h6>
+                                                            </div> 
+                                                            <ng-template #elseBlockAbierto>
+                                                                <h6 class="card-category text-success"
+                                                                style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                                Abierta
+                                                            </h6>
+                                                            </ng-template>
                                                         <br>
                                                         <div class="ui-icon-mail-open">
-                                                            <span class="ui-icon-mail-closed"> {{empresa.email}} </span>
+                                                            <span class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
                                                         </div>
 
                                                     </div>
