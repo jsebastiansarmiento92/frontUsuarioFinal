@@ -92,7 +92,7 @@ export class InicioComponent implements OnInit {
   msgtotalpedido = 0;
   categoriaActual = "Todas las categorias";
   observacionesProducto="";
-
+  isDatafono=false;
   /**
   * Shows or hide the search elements
   * @var {boolean} searching
@@ -709,6 +709,12 @@ export class InicioComponent implements OnInit {
       }else alert("numero de contacto no valido");
   }
   confirmMedioPago(formaPago:string){
+    if(formaPago=="Datafono"){
+      this.isDatafono=true;
+      
+        this.valorServicio+=1000;
+      
+    }
     this.formaPago=" Pago con: "+formaPago;
     if (confirm('¿Estás seguro que desea confirmar el pago '+formaPago+'?')) {
         this.confirmarPedido();
@@ -806,6 +812,7 @@ export class InicioComponent implements OnInit {
     this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
       console.log("desdeModificar kugar: "+this.formaPago);
       this.formaPago=this.formaPago;
+      
       if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
         this.confirmarTransaccion();

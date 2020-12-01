@@ -1138,7 +1138,7 @@
             </div>
 
 
-            <button (click)="confirmarAgregar()" style="width: 100%;" class="btn btn-danger">Confirmar Pedído</button>
+            <a (click)="confirmarAgregar()" style="width: 100%;" class="btn btn-danger">Confirmar Pedído</a>
         </form>
     </div>
 </ng-template>
@@ -1232,6 +1232,13 @@
                         <td></td>
                         <td>$ {{valorServicio}}</td>
                         <td class="text-right">$ {{valorServicio}}</td>
+                    </tr>
+                    <tr *ngIf="isDatafono">
+                        <td></td>
+                        <td>Servicio Datafono</td>
+                        <td></td>
+                        <td>$ 1.000</td>
+                        <td class="text-right">$ 1.000</td>
                     </tr>
                     <tr>
                         <td></td>
