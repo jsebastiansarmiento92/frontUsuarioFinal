@@ -11,7 +11,7 @@
         </button>
     </div>
 
-    <div class="card-body " style="width: 233px; height: 200px; overflow-y: scroll;">
+    <div class="card-body " style="width: 233px; max-height: 145px; overflow-y: scroll;">
         <div style="border: 1px solid rgba(153, 153, 153, 0.3);" *ngFor="let productoCarrito of productosCarrito">
             <div class="row" style="margin-bottom: 5px;">
                 <div class="profile-photo-small" style="margin-top: 5px; margin-left: 15px;">
@@ -878,7 +878,7 @@
                                     </div>
                                     <!-- End Carousel Card -->
                                 </div>
-                                <h2 class="section-title">{{ empresaSeleccionada.razonSocial}}</h2>
+                                <h3 class="section-title" style="margin-right: auto; margin-left: 25px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{ empresaSeleccionada.razonSocial}}</h3>
                                 <div class="card-body col-12"
                                     style="width: 100%; padding-bottom: 2px; padding-top: 2px;  "
                                     *ngFor="let producto of productos">
@@ -910,7 +910,7 @@
                                                         {{producto.nombreProducto}}</h4>
 
                                                     <h6 class="card-category text-success"
-                                                        style="line-height: 0em; margin-left: 4px; margin-bottom: 0px;">
+                                                        style="line-height: normal; margin-left: 4px; margin-bottom: -6px; white-space: normal;">
                                                         {{producto.descripcion}}
                                                     </h6>
                                                     <br>
@@ -1190,7 +1190,11 @@
 
 <ng-template #confirmarModal>
     <div class="modal-header text-center" style="background-color: red; padding-top: initial;">
-        <h3 class="text-center" style="color: white; width: 100%;">Mi pedido</h3>
+        <h3 class="text-center" style="color: white; width: 100%;">Mi pedido
+            <button type="button" style="color: white;" class="close" (click)="confirmarObservacion()">
+                <i class="material-icons">clear</i>
+            </button>
+        </h3>
     </div>
     <div class="modal-body" style="padding-top: 0px ; color: black;">
         <div>
@@ -1200,13 +1204,13 @@
         <form>
             <div class="form-group">
                 <div class="row">
-                    <div style="width: 60%; ">
+                    <div style="width: 50%; ">
                         <h4 style="margin-left: 20px;">Cantidad de {{producto.nombreProducto}} que deseas </h4>
                         <input type="number" class="form-control" [(ngModel)]="producto.cantidad" name="cantidad"
                             placeholder="ingresar cantidad" value="1" style="margin-left: 20px;">
                     </div>
-                    <div style="width: 40%; margin: auto; text-align: right;">
-                        <h2 style="color: red; margin-bottom: -15px; margin-right: 20px; ">$ {{producto.valorProducto}}
+                    <div style="width: 50%; margin: auto; text-align: right;">
+                        <h2 style="color: red; margin-bottom: -15px; margin-right: 20px; ">${{producto.valorProducto}}
                         </h2>
                         <p style="margin-right: 20px;"><span>Valor del producto</span></p>
                     </div>
@@ -1217,8 +1221,7 @@
                 <label>Ejemplo de observaciones: sin cebolla</label>
             </div>
 
-
-            <button (click)="confirmarAgregar()" style="width: 100%;" class="btn btn-danger">Confirmar Pedído</button>
+            <a (click)="confirmarAgregar()" style="width: 100%; color: white;" class="btn btn-danger">Confirmar Pedído</a>
         </form>
     </div>
 </ng-template>
@@ -1270,7 +1273,12 @@
 
 <ng-template #tramitandoModal>
     <div class="modal-header">
-        <h3 class="modal-title " style="width: 100%; margin-top: 0px; text-align: center;">Pedido</h3>
+        <h3 class="modal-title " style="width: 100%; margin-top: 0px; text-align: center;">Pedido
+            <button type="button" class="close" (click)="confirmarObservacion()">
+                <i class="material-icons">clear</i>
+            </button>
+        </h3>
+        
     </div>
     <div class="modal-body" style="padding: 0px;">
 
