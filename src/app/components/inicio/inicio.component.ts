@@ -466,7 +466,6 @@ export class InicioComponent implements OnInit {
           //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           console.log(this.retrievedImage);
-
         })
       });
       // this.loader = false;
@@ -483,13 +482,27 @@ export class InicioComponent implements OnInit {
 
   }
   confirmarAgregar() {
+    console.log("ingreso al metodo de confirmar pedido")
     this.pedido.observaciones+=this.producto.nombreProducto+": "+this.observacionesProducto+"\n";
     this.observacionesProducto="";
-    if (this.idEmpresa == 0) {
+
+    if(this.idEmpresa == 0){
+      console.log("ingreso a la condicional de idEmpresa")
       this.idEmpresa = this.producto.empresa.idEmpresa;
+      console.log("ingresa a verificar repetidos")
+      this.verificarRepetidos(this.producto);
+      console.log("agregando al local storage:");
+      console.log(this.productosCarrito);
+      localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
+      this.serviceModal.dismissAll();
+      this.show=true;
+      this.serviceModal.open(this.msgCarritoModal);
+      this.totalPedido = this.calcular();
     } else if (this.idEmpresa != this.producto.empresa.idEmpresa) {
+      console.log("ingreso a la condicional de producto empresa")
       alert("no es posible solicitar productos de dos empresas en un mismo servicio");
     } else {
+      console.log("ingresa a verificar repetidos")
       this.verificarRepetidos(this.producto);
       console.log("agregando al local storage:");
       console.log(this.productosCarrito);
