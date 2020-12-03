@@ -513,27 +513,31 @@
                                     <button class="btn btn-link " (click)="seleccionEmpresa(empresa)"
                                         style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                         <div class="row" style="margin: auto;">
-                                            <div class="profile-photo-small"
-                                                style="margin-top: 5px; margin-left: 15px; width: 20%;">
+                                            <div class="col-5 col-md-2 profile-photo-small"
+                                                style="margin-top: 5px; margin-left: 15px; padding-left: inherit;">
 
-                                                <div class="estrella"
-                                                    *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
+                                                <div class="" *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
 
-                                                    <img class="estrella img-raised rounded img-fluid"
-                                                        [src]="empresa.retrievedImage">
-                                                    
-
+                                                    <div class="caja">
+                                                        <div class="box">
+                                                            <img class=" img-raised rounded img-fluid"
+                                                            [src]="empresa.retrievedImage">
+                                                        </div>
+                                                      </div>
                                                 </div>
                                                 <ng-template #elseBlockEmpresa1>
-                                                    <div class="estrella">
-                                                        <img class="estrella img-raised rounded img-fluid"
-                                                            src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                                        
+                                                    <div class="">
+                                                        <div class="caja">
+                                                            <div class="box">
+                                                                <img class="img-raised rounded img-fluid"
+                                                                src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
+                                                            </div>
+                                                          </div>
                                                     </div>
 
                                                 </ng-template>
                                             </div>
-                                            <div Style=" width: 70%; text-align: left;">
+                                            <div class="col-6 col-md-9" Style="padding-left: inherit; margin-left: -17px; padding-right: 0px;  text-align: left;">
                                                 <div style="margin: 10px; line-height: 1em; ">
 
                                                     <h4 class="card-title"
@@ -605,23 +609,29 @@
                                         <button class="btn btn-link " (click)="seleccionEmpresa(empresa)"
                                             style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                             <div class="row" style="margin: auto; ">
-                                                <div class="profile-photo-small"
-                                                    style="margin-top: 5px; margin-left: 15px; width: 20%;">
+                                                <div class="col-5 col-md-2 profile-photo-small"
+                                                    style="margin-top: 5px; margin-left: 15px; padding-left: inherit;">
 
                                                     <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
-                                                        <img class="img-raised rounded img-fluid"
+                                                        <div class="caja">
+                                                            <div class="box">
+                                                                <img class="img-raised rounded img-fluid"
                                                             [src]="empresa.retrievedImage">
+                                                            </div>
+                                                          </div>
+                                                        
                                                         
                                                     </div>
                                                     <ng-template #elseBlockEmpresa1>
-                                                        <td>
-                                                            <img class="img-raised rounded img-fluid"
+                                                        <div class="caja">
+                                                            <div class="box">
+                                                                <img class="img-raised rounded img-fluid"
                                                                 src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                                            
-                                                        </td>
+                                                            </div>
+                                                          </div>
                                                     </ng-template>
                                                 </div>
-                                                <div Style=" width: 70%; text-align: left;">
+                                                <div class="col-6 col-md-9" Style="padding-left: inherit; margin-left: -17px; padding-right: 0px;  text-align: left;">
                                                     <div style="margin: 10px; line-height: 1em; ">
 
                                                         <h4 class="card-title"
@@ -705,21 +715,28 @@
                                         <button class="btn btn-link " (click)="seleccionEmpresa(empresa)"
                                             style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                             <div class="row" style="margin: auto; ">
-                                                <div class="profile-photo-small"
-                                                    style="margin-top: 5px; margin-left: 15px; width: 20%;">
+                                                <div class="col-5 col-md-2 profile-photo-small"
+                                                    style="margin-top: 5px; margin-left: 15px; padding-left: inherit;">
 
                                                     <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa1">
-                                                        <img class="img-raised rounded img-fluid"
+                                                        <div class="caja">
+                                                            <div class="box">
+                                                                <img class="img-raised rounded img-fluid"
                                                             [src]="empresa.retrievedImage">
+                                                            </div>
+                                                          </div>
+                                                        
                                                     </div>
                                                     <ng-template #elseBlockEmpresa1>
-                                                        <td>
-                                                            <img class="img-raised rounded img-fluid"
+                                                        <div class="caja">
+                                                            <div class="box">
+                                                                <img class="img-raised rounded img-fluid"
                                                                 src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                                        </td>
+                                                            </div>
+                                                          </div>
                                                     </ng-template>
                                                 </div>
-                                                <div Style=" width: 70%; text-align: left;">
+                                                <div class="col-6 col-md-9" Style="padding-left: inherit; margin-left: -17px; padding-right: 0px;  text-align: left;">
                                                     <div style="margin: 10px; line-height: 1em; ">
 
                                                         <h4 class="card-title"
@@ -879,30 +896,36 @@
                                     <!-- End Carousel Card -->
                                 </div>
                                 <h3 class="section-title" style="margin-right: auto; margin-left: 25px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{ empresaSeleccionada.razonSocial}}</h3>
-                                <div class="card-body col-12"
-                                    style="width: 100%; padding-bottom: 2px; padding-top: 2px;  "
+                                <div class="card-body col-12 col-md-12"
+                                    style="width: 100%; padding-bottom: 2px; padding-top: 2px;"
                                     *ngFor="let producto of productos">
                                     <button class="btn btn-link " (click)="ordenarProducto(producto,confirmarModal)"
-                                        style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
-                                        <div class="row" style="margin: auto; ">
-                                            <div class="profile-photo-small"
-                                                style="margin-top: 5px; margin-left: 15px; width: 20%;">
+                                        style="margin: 0px; padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
+                                        <div class="row" style="margin-left: -9px; ">
+                                            <div class="col-5 col-md-2 profile-photo-small"
+                                                style="margin-top: 5px; margin-left: 15px; padding-left: inherit;">
 
-                                                <div *ngIf="producto.retrievedImage; else elseBlockProduct">
-                                                    <img class="img-raised rounded img-fluid"
-                                                        [src]="producto.retrievedImage">
+                                                <div *ngIf="producto.retrievedImage; else elseBlockProduct" >
+                                                    <div class="caja">
+                                                        <div class="box">
+                                                          <img class="img-raised rounded img-fluid" [src]="producto.retrievedImage">
+                                                        </div>
+                                                      </div>                                                    
                                                 </div>
                                                 <ng-template #elseBlockProduct>
-                                                    <td>
-                                                        <img class="img-raised rounded img-fluid"
+                                                   
+                                                    <div class="caja">
+                                                        <div class="box">
+                                                            <img class="img-raised rounded img-fluid"
                                                             src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                                    </td>
+                                                        </div>
+                                                      </div>
                                                 </ng-template>
 
 
                                             </div>
 
-                                            <div Style=" width: 70%; text-align: left;">
+                                            <div class="col-6 col-md-9" Style="padding-left: inherit; margin-left: -17px; padding-right: 0px;  text-align: left;">
                                                 <div style="margin: 10px; line-height: 1em; ">
 
                                                     <h4 class="card-title"
@@ -926,6 +949,9 @@
 
 
                                 </div>
+                                
+                                
+
                             </div>
                         </div>
 
