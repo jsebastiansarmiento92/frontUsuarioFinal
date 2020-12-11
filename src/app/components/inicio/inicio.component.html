@@ -54,11 +54,11 @@
 
     <div class="container tetx-center" style="border-top: 7px;">
         <form>
-            <label for="total">Total: </label>
+            <label for="total">SubTotal: </label>
             <span id="total"><small> &#36;</small>{{totalPedido}}</span>
             <br>
-            <label for="total">Servicio: </label>
-            <span id="total"><small> &#36;</small>{{valorServicio}}</span>
+            <!-- <label for="total">Servicio: </label>
+            <span id="total"><small> &#36;</small>{{valorServicio}}</span>-->
         </form>
 
     </div>
@@ -1204,13 +1204,20 @@
 
 
         <div class="card-body">
-            <div>
+            <div *ngIf="isDatafono;else elsedatafono">
                 <label class="modal-title" style="color: black;">Dirección: {{direccionCompleta}}</label><br>
                 <label class="modal-title" style="color: black;">Barrio: {{barrio.nombreBarrio}}</label><br>
-                <label class="modal-title" style="color: black;">Valor Domicilio: {{valorServicio}}</label><br>
-                <label class="modal-title" style="color: black;">Valor total: {{valorServicio + totalPedido}}</label><br>
+                <label class="modal-title" style="color: black;">Valor Domicilio: {{valorServicio+1000}}</label><br>
+                <label class="modal-title" style="color: black;">Valor total: {{valorServicio + totalPedido+1000}}</label><br>
             </div>
-
+            <template #elsedatafono>
+                <div >
+                    <label class="modal-title" style="color: black;">Dirección: {{direccionCompleta}}</label><br>
+                    <label class="modal-title" style="color: black;">Barrio: {{barrio.nombreBarrio}}</label><br>
+                    <label class="modal-title" style="color: black;">Valor Domicilio: {{valorServicio}}</label><br>
+                    <label class="modal-title" style="color: black;">Valor total: {{valorServicio + totalPedido}}</label><br>
+                </div>
+            </template>
             <h5 class="modal-title">Detalle de pedido:</h5>
             <table class="table table-reponsive" style="padding-left: 10px;">
                 <thead>
@@ -1233,28 +1240,42 @@
 
                     </tr>
                 </tbody>
+
                 <tfoot>
-                    <tr>
+                    <tr *ngIf="isDatafono;else elsedatafono">
                         <td></td>
                         <td>Domicilio</td>
                         <td></td>
-                        <td>$ {{valorServicio}}</td>
-                        <td class="text-right">$ {{valorServicio}}</td>
+                        <td>${{valorServicio+1000}}</td>
+                        <td class="text-right">$ {{valorServicio+1000}}</td>
                     </tr>
-                    <tr *ngIf="isDatafono">
-                        <td></td>
-                        <td>Servicio Datafono</td>
-                        <td></td>
-                        <td>$ 1.000</td>
-                        <td class="text-right">$ 1.000</td>
-                    </tr>
-                    <tr>
+                    <ng-template #elsedatafono>
+                        <tr>
+                            <td></td>
+                            <td>Domicilio</td>
+                            <td></td>
+                            <td>${{valorServicio}}</td>
+                            <td class="text-right">$ {{valorServicio}}</td>
+                        </tr>
+                    </ng-template>
+
+                    <tr *ngIf="isDatafono;else elseDatafono">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td><strong>Total</strong></td>
-                        <td class="text-right"><strong>$ {{valorServicio + totalPedido}}</strong></td>
+                        <td class="text-right"><strong>$ {{valorServicio + totalPedido+1000}}</strong></td>
                     </tr>
+                    <ng-template #elseDatafono>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right"><strong>$ {{valorServicio + totalPedido}}</strong></td>
+                        </tr>
+                    </ng-template>
+
                 </tfoot>
             </table>
         </div>

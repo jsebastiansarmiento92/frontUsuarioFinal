@@ -722,14 +722,14 @@ export class InicioComponent implements OnInit {
       }else alert("numero de contacto no valido");
   }
   confirmMedioPago(formaPago:string){
+    var mensaje="";
     if(formaPago=="Datafono"){
       this.isDatafono=true;
-      
-        this.valorServicio+=1000;
-      
+      //mensaje= " recuerde que el pago con datafono se suman $1.000 al servicio";
+      //  this.valorServicio+=1000;
     }
     this.formaPago=" Pago con: "+formaPago;
-    if (confirm('¿Estás seguro que desea confirmar el pago '+formaPago+'?')) {
+    if (confirm('¿Estás seguro que desea confirmar el pago '+formaPago+'?'+mensaje)) {
         this.confirmarPedido();
       }
   }
@@ -805,14 +805,22 @@ export class InicioComponent implements OnInit {
         this.lugar.idLugar=data.idLugar;
         this.serviceModal.open(this.tramitandoModal);
       this.msgtotalpedido = this.valorServicio + this.totalPedido;
-    
+      if(this.isDatafono){
+       this.msgtotalpedido+=1000;
+        if (confirm('valor total del pedido: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
+        + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
+        
+        this.confirmarTransaccion();
+      }
+      }else{
       if (confirm('valor total del pedido: $' + this.msgtotalpedido + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
         
         this.confirmarTransaccion();
       }
-    }, (err: any) => {
 
+    }
+    }, (err: any) => {
       console.log(err.error.mensaje)
     })
   }
@@ -825,11 +833,22 @@ export class InicioComponent implements OnInit {
     this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
       console.log("desdeModificar kugar: "+this.formaPago);
       this.formaPago=this.formaPago;
-      
-      if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
+      this.msgtotalpedido = this.valorServicio + this.totalPedido;
+      if(this.isDatafono){
+        this.msgtotalpedido+=1000;
+        if (confirm('valor total del pedido: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
+        
         this.confirmarTransaccion();
       }
+      }else{
+      if (confirm('valor total del pedido: $' + this.msgtotalpedido + ' a la direccion ' + this.direccionCompleta
+        + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
+        
+        this.confirmarTransaccion();
+      }
+
+    }
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
         alert("debes ingresar o registrarse para poder confirmar pedido");
@@ -876,7 +895,7 @@ export class InicioComponent implements OnInit {
   }
 
   confirmarTransaccion() {
-    this.pedido.observaciones="";
+    //this.pedido.observaciones="";
     this.pedido.observaciones+=this.formaPago;
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
@@ -943,6 +962,9 @@ export class InicioComponent implements OnInit {
         this.solicitarPedido();
         this.notificacionesGeneral();
         this.formaPago="";
+        this.pedido.observaciones="";
+        this.observacionesProducto="";
+        this.isDatafono=false;
         alert(data.mensaje);
         this.serviceModal.open(this.calificacionModal);
         this.idEmpresa = 0;
@@ -970,6 +992,9 @@ export class InicioComponent implements OnInit {
         this.formaPago="";
         this.asignarCosto();
         this.tramitando = false;
+        this.pedido.observaciones="";
+        this.observacionesProducto="";
+        this.isDatafono=false;
       }, (err: any) => {
         estadoServicio = "Error";
       });
