@@ -805,18 +805,9 @@
                                     </div>
                                     <!-- End Carousel Card -->
                                 </div>
-<<<<<<< HEAD
-                                <h2 class="section-title">{{ empresaSeleccionada.razonSocial}}</h2>
+                                <h3 class="section-title" style="margin-right: auto; margin-left: 25px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{ empresaSeleccionada.razonSocial}}</h3>
                                 <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px;  " *ngFor="let producto of productos">
                                     <button class="btn btn-link " (click)="ordenarProducto(producto,confirmarModal)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
-=======
-                                <h3 class="section-title" style="margin-right: auto; margin-left: 25px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{ empresaSeleccionada.razonSocial}}</h3>
-                                <div class="card-body col-12"
-                                    style="width: 100%; padding-bottom: 2px; padding-top: 2px;  "
-                                    *ngFor="let producto of productos">
-                                    <button class="btn btn-link " (click)="ordenarProducto(producto,confirmarModal)"
-                                        style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
->>>>>>> 6f7d63a8e41eae27e591656408ccc494e39a283d
                                         <div class="row" style="margin: auto; ">
                                             <div class="profile-photo-small"
                                                 style="margin-top: 5px; margin-left: 15px; width: 20%;">
@@ -1150,12 +1141,7 @@
                 <label>Ejemplo de observaciones: sin cebolla</label>
             </div>
 
-<<<<<<< HEAD
-
-            <a (click)="confirmarAgregar()" style="width: 100%;" class="btn btn-danger">Confirmar Pedído</a>
-=======
             <a (click)="confirmarAgregar()" style="width: 100%; color: white;" class="btn btn-danger">Confirmar Pedído</a>
->>>>>>> 6f7d63a8e41eae27e591656408ccc494e39a283d
         </form>
     </div>
 </ng-template>
@@ -1212,7 +1198,7 @@
                 <i class="material-icons">clear</i>
             </button>
         </h3>
-        
+
     </div>
     <div class="modal-body" style="padding: 0px;">
 
@@ -1314,9 +1300,7 @@
     <input type="number" [(ngModel)]="telefono" placeholder="telefono" value="" />
     <br>
     <button type="button" (click)="guardarTelefono()" class="btn  btn-rose btn-round btn-danger">Guardar</button>
-
 </ng-template>
-
 <ng-template #loginModal>
     <!-- <app-footer></app-footer>-->
     <app-login-modal></app-login-modal>
