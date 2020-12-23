@@ -723,8 +723,8 @@ export class InicioComponent implements OnInit {
       //  this.valorServicio+=1000;
       this.pedido.modoPagoPedido =formaPago;
     } else if(formaPago=="Codigo QR"){
-      this.pedido.modoPagoPedido ="Efectivo";
-    }
+      this.pedido.modoPagoPedido ="Codigo QR";
+    }else  this.pedido.modoPagoPedido ="Efectivo";
     this.formaPago=" Pago con: "+formaPago;
     if (confirm('¿Estás seguro que desea confirmar el pago '+formaPago+'?'+mensaje)) {
         this.confirmarPedido();
