@@ -98,18 +98,22 @@
                     </a>
                     <div class="dropdown-menu dropdown-with-icons container " style=" overflow-y:scroll; width:auto; height: 250px;">
                         <div class="container" *ngFor="let pedido of pedidos">
-
-                            <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item cursormanito">
-                                <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
-                            </a>
-                            <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
-                                <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}
-                            </a>
-                            <li class="button-container nav-item iframe-extern" style="text-align: center; margin: auto;">
-                                <a style="color: white; " class="btn btn-rose btn-round" (click)="detallePedido(pedido,detallePedidoModal)">
-                        Detalle
-                    </a>
-                            </li>
+                            <ng-template *ngIf="pedido.estadoPedido!='Cancelado'; else elseCancelado">
+                                <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item cursormanito">
+                                    <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
+                                </a>
+                                <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+                                    <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}
+                                </a>
+                                <li class="button-container nav-item iframe-extern" style="text-align: center; margin: auto;">
+                                    <a style="color: white; " class="btn btn-rose btn-round" (click)="detallePedido(pedido,detallePedidoModal)">
+                            Detalle
+                        </a>
+                                </li>
+                            </ng-template>
+                            <ng-template #elseCancelado>
+                                <label for=""> <h2>No hay pedidos pendientes</h2></label>
+                            </ng-template>
                         </div>
                     </div>
                 </li>
@@ -296,11 +300,7 @@
         <button type="button" (click)="guardarUsuario()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">Guardar</button>
 
     </div>
-
-
-
 </ng-template>
-
 <ng-template #tramitandoModal>
     <div class="modal-header">
         <br>
@@ -318,7 +318,6 @@
     </div>
 </ng-template>
 <ng-template #detallePedidoModal>
-
     <div class="modal-header">
         <h3 class="modal-title">Pedido</h3>
         <button type="button" class="close" (click)="closeModal()" aria-hidden="true"><i
@@ -339,32 +338,25 @@
         <a class="btn btn-chartjs btn-round" (click)="modificarObservacion(modaObesrvacion)">
             Cambiar
         </a>
-
         <h5 class="modal-title">Detalle de pedido:</h5>
     </div>
-
-
     <div class="modal-footer justify-content-center">
 
         <table class="table table-reponsive">
             <thead>
                 <tr>
-
                     <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Valor unitario</th>
                     <th class="text-right">Total</th>
-
                 </tr>
             </thead>
             <tbody *ngFor="let detalleServicio of detalleServicios">
                 <tr>
-
                     <td>{{detalleServicio.producto.nombreProducto}}</td>
                     <td>{{detalleServicio.cantidad}}</td>
                     <td>$ {{detalleServicio.valorUnitario}}</td>
                     <td class="text-right">$ {{detalleServicio.valorTotal}}</td>
-
                 </tr>
             </tbody>
             <tfoot>
@@ -383,8 +375,6 @@
             </tfoot>
         </table>
     </div>
-
-
 </ng-template>
 <ng-template #modaObesrvacion>
     <div class="card-body">

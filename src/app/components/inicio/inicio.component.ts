@@ -242,11 +242,6 @@ export class InicioComponent implements OnInit {
       let messageResult: Message = JSON.parse(message.body);
       console.log(messageResult);
       this.messages.push(messageResult);
-      /**  this.toastr.success("new message recieved", null, {
-         'timeOut': 3000
-       });*/
-      //this.showNotification("Notificación", messageResult.message);
-      //this.showPushNotification("Notificación", "Mensaje recibido");
       console.log("ingreso de vibracion");
       //Haptics.vibrate();
       console.log("ingreso de notificacion local");
@@ -267,7 +262,6 @@ export class InicioComponent implements OnInit {
          console.log('scheduled notifications', notifs); */
 
       // Method called when tapping on a notification
-
     }
   }
 
@@ -727,6 +721,9 @@ export class InicioComponent implements OnInit {
       this.isDatafono=true;
       //mensaje= " recuerde que el pago con datafono se suman $1.000 al servicio";
       //  this.valorServicio+=1000;
+      this.pedido.modoPagoPedido =formaPago;
+    } else if(formaPago=="Codigo QR"){
+      this.pedido.modoPagoPedido ="Efectivo";
     }
     this.formaPago=" Pago con: "+formaPago;
     if (confirm('¿Estás seguro que desea confirmar el pago '+formaPago+'?'+mensaje)) {
@@ -906,7 +903,7 @@ export class InicioComponent implements OnInit {
     let empresa:Empresa=new Empresa();
     empresa.idEmpresa=this.idEmpresa
     this.pedido.empresa = empresa;
-    this.pedido.modoPagoPedido = "Efectivo";
+    //this.pedido.modoPagoPedido = "Efectivo";
     this.pedido.estadoPedido = "En proceso";
     this.pedido.valorComision = 0;
     this.pedido.valorGanancia = 0;
