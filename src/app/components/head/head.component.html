@@ -1,5 +1,5 @@
 <nav class="navbar fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
-    <div class="container">
+    <div class="container" style="width: 100%; padding-left: 0px; padding-right: 0px;">
         <div class="navbar-translate">
             <a class="card-header card-header-image" (click)="inicio()" style="border-bottom: none;height: 73px;padding-top: 0px;">
                 <img src="./assets/imageLogo/IsologotipoCromaticoVectorial.png" height="80px" alt="QuickDomicilos">
@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse ">
             <ul class="navbar-nav ml-auto  " style=" height: 100%;">
                 <li class="dropdown nav-item" *ngIf="getIslogin()">
-                    <a (click)="refresh()" style="padding-bottom: 0%; margin-bottom: 0%; padding-top: inherit;" class="cursormanito nav-link" data-toggle="dropdown">
+                    <a (click)="refresh()" style="padding-bottom: 0%; margin-bottom: 0%; padding-top: inherit; padding-right: 0px;" class="cursormanito nav-link" data-toggle="dropdown">
                         <!--i class="material-icons" style="font-size:30px;color:green">account_circle</i> Cuenta-->
                         <div style="margin-top: 34px;" class="fileinput fileinput-new text-center d-block d-sm-block d-md-none" data-provides="fileinput">
                             <div class=" fileinput-new thumbnail img-circle img-raised">
@@ -24,11 +24,11 @@
                                 </ng-template>
                             </div>
                             <div>
-                                <h5>{{nombreUsuario}}</h5>
+                                <h5><small>Hola</small><br><strong>{{nombreUsuario}}</strong></h5>
                             </div>
                         </div>
 
-                        <div style="margin: 9px; " class="fileinput fileinput-new text-center d-none d-sm-none d-md-block " data-provides="fileinput " *ngIf="!isImagePerfil;else elseImageGrant">
+                        <div style="margin: 9px;  " class="fileinput fileinput-new text-center d-none d-sm-none d-md-block " data-provides="fileinput " *ngIf="!isImagePerfil;else elseImageGrant">
                             <div class="row ">
                                 <img class=" fileinput-new thumbnail img-circle img-raised " src="{{imagePerfil}} " alt=" " style="height: 30px; width: 30px; margin: auto; margin-right: 1px; padding-right: 1px; " srcset="./assets/img/placeholder.jpg">
                                 <small style="width: 60%; ">
@@ -71,7 +71,7 @@
                 </li>
                 <li class="dropdown nav-item" *ngIf="getIslogin()">
 
-                    <a style="margin-left: 0px;" class="cursormanito dropdown-toggle nav-link" data-toggle="dropdown" (click)="refresh()">
+                    <a style="margin-left: 0px; padding-right: 0px; " class="cursormanito dropdown-toggle nav-link" data-toggle="dropdown" (click)="refresh()">
                         <i class="material-icons">location_on</i>Mi Direccion
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
@@ -97,7 +97,7 @@
                 </li>
                 <li class="dropdown nav-item" *ngIf="getIslogin()">
 
-                    <a style="margin-left: 0px;" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown" (click)="cargarPedidosCliente()">
+                    <a style="margin-left: 0px; padding-right: 0px;" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown" (click)="cargarPedidosCliente()">
                         <i class="material-icons">shopping_basket</i>Mis Pedidos
                     </a>
                     <div class="dropdown-menu dropdown-with-icons container " style=" overflow-y:scroll; width:auto; height: 250px;">
@@ -119,8 +119,24 @@
                 </li>
 
                 <li class="dropdown nav-item">
-                    <a href="#" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown">
-                        <i class="material-icons">apps</i> Nuestro servicios y ayuda
+                    <a href="#" class="dropdown-toggle nav-link cursormanito" style="margin-left: 0px; padding-right: 0px;" data-toggle="dropdown">
+                        <i class="material-icons">call</i> Atención al usuario
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons text-center">
+                        <img src="../../../assets/imageLogo/IsologotipoCromaticoVectorial200px.png" alt="">
+                        <div class="tab-pane  m-2" >
+                            <p>
+                            PUEDES SOLICITAR SERVICIOS DE DOMICILIOS, MENSAJERÍA Y ENCARGOS.
+                            <br>
+                            Solicita lo que necesitas a la puerta de casa, contamos con diferentes servicios que te evitaran salir de tu casa.
+                            </p>
+                          </div>
+                    </div>
+                </li>
+
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link cursormanito" data-toggle="dropdown" style="padding-right: 0px; margin-left: 0px;">
+                        <i class="material-icons">apps</i>Sobre la App
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
                         <a class="dropdown-item cursormanito" (click)="privacyPolicy()">
@@ -209,26 +225,26 @@
                     </div>
                 </li>-->
                 <div *ngIf="!getIslogin(); else elseBlock">
-                    <li class="button-container nav-item iframe-extern">
+                    <li class="button-container nav-item iframe-extern" style="margin: 8px;">
 
-                        <a (click)="login()" style="margin-top: 2vh;  color: white;" class="btn  btn-rose   btn-round btn-block">
+                        <a (click)="login()" style="color: white;" class="btn  btn-rose   btn-round btn-block">
                             <i class="material-icons">login</i> Iniciar Sesion
                         </a>
                     </li>
 
                 </div>
                 <div *ngIf="!getIslogin()">
-                    <li class="button-container nav-item iframe-extern">
+                    <li class="button-container nav-item iframe-extern" >
 
-                        <a (click)="onRegister()" style="background-color: #df0000ef; margin-top: 2vh; color: white;" class="btn  btn-rose   btn-round btn-block">
+                        <a (click)="onRegister()" style="background-color: #df0000ef;  color: white;" class="btn  btn-rose   btn-round btn-block">
                             <i class="material-icons">login</i> Registrarse
                         </a>
                     </li>
 
                 </div>
                 <ng-template #elseBlock>
-                    <li class="button-container nav-item iframe-extern">
-                        <a (click)="logOut()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">
+                    <li class="button-container nav-item iframe-extern" style="margin: 4px;">
+                        <a (click)="logOut()" style=" color: white;" class="btn  btn-rose   btn-round btn-block">
                 Cerrar Sesion
             </a>
                     </li>

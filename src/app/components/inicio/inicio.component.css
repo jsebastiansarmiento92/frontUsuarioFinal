@@ -129,3 +129,28 @@
 	margin: auto;
 	width: 100%;
   }
+
+  .caja{
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+	background: transparent;
+  }
+  .box{
+	width: 65x;
+	height: 110px;
+	background: transparent;
+	overflow: hidden;
+	margin-bottom: 5px;
+  }
+  
+  .box img{
+	width: 100%;
+	height: 100%;
+  }
+  @supports(object-fit: cover){
+	  .box img{
+		object-position: center center;
+	  }
+  }
