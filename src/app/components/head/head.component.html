@@ -98,7 +98,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-with-icons container " style=" overflow-y:scroll; width:auto; height: 250px;">
                         <div class="container" *ngFor="let pedido of pedidos">
-                            <ng-template *ngIf="pedido.estadoPedido!='Cancelado'; else elseCancelado">
+                            <div *ngIf="pedido.estadoPedido=='Solicitado'">
                                 <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item cursormanito">
                                     <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
                                 </a>
@@ -110,11 +110,12 @@
                             Detalle
                         </a>
                                 </li>
-                            </ng-template>
-                            <ng-template #elseCancelado>
-                                <label for=""> <h2>No hay pedidos pendientes</h2></label>
-                            </ng-template>
+                            </div>
+
                         </div>
+                        <ng-template #elseCancelado>
+                            <label for=""> <h2>No hay pedidos pendientes</h2></label>
+                        </ng-template>
                     </div>
                 </li>
 
