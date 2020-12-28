@@ -59,15 +59,14 @@
                             <a data-toggle="modal" data-target="#smallTelefonoModal" style="color: white;" class="btn  btn-rose btn-round">
                         Editar informacion
                     </a>
-                             <br>
+                            <br>
                         </li>
                         <li class="button-container nav-item iframe-extern" (click)="openChangePass(changePasswordModal)">
                             <a data-toggle="modal" style="color: white;" class="btn  btn-rose btn-round">
                         Cambiar contraseña
-                    </a> 
+                    </a>
                         </li>
                     </div>
-
                 </li>
                 <li class="dropdown nav-item" *ngIf="getIslogin()">
 
@@ -80,13 +79,10 @@
                             <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite">
                                 {{lugar.direccionLugar}}</marquee>
                         </a>
-
                         <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
-
                             <i style="margin-right: 2px;" class="material-icons">location_on</i>Barrio:
                             <marquee width="100%" scrolldelay="100" scrollamount="5" direction="left" loop="infinite">
                                 {{lugar.barrio.nombreBarrio}}</marquee>
-
                         </a>
                         <li class="button-container nav-item iframe-extern">
                             <a (click)="cambiar()" style="color: white;" class="btn btn-rose btn-round ">
@@ -102,19 +98,24 @@
                     </a>
                     <div class="dropdown-menu dropdown-with-icons container " style=" overflow-y:scroll; width:auto; height: 250px;">
                         <div class="container" *ngFor="let pedido of pedidos">
+                            <div *ngIf="pedido.estadoPedido=='Solicitado'">
+                                <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item cursormanito">
+                                    <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
+                                </a>
+                                <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+                                    <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}
+                                </a>
+                                <li class="button-container nav-item iframe-extern" style="text-align: center; margin: auto;">
+                                    <a style="color: white; " class="btn btn-rose btn-round" (click)="detallePedido(pedido,detallePedidoModal)">
+                            Detalle
+                        </a>
+                                </li>
+                            </div>
 
-                            <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item cursormanito">
-                                <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
-                            </a>
-                            <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
-                                <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}
-                            </a>
-                            <li class="button-container nav-item iframe-extern" style="text-align: center; margin: auto;">
-                                <a style="color: white; " class="btn btn-rose btn-round" (click)="detallePedido(pedido,detallePedidoModal)">
-                        Detalle
-                    </a>
-                            </li>
                         </div>
+                        <ng-template #elseCancelado>
+                            <label for=""> <h2>No hay pedidos pendientes</h2></label>
+                        </ng-template>
                     </div>
                 </li>
 
@@ -124,13 +125,12 @@
                     </a>
                     <div class="dropdown-menu dropdown-with-icons text-center">
                         <img src="../../../assets/imageLogo/IsologotipoCromaticoVectorial200px.png" alt="">
-                        <div class="tab-pane  m-2" >
+                        <div class="tab-pane  m-2">
                             <p>
-                            PUEDES SOLICITAR SERVICIOS DE DOMICILIOS, MENSAJERÍA Y ENCARGOS.
-                            <br>
-                            Solicita lo que necesitas a la puerta de casa, contamos con diferentes servicios que te evitaran salir de tu casa.
+                                PUEDES SOLICITAR SERVICIOS DE DOMICILIOS, MENSAJERÍA Y ENCARGOS.
+                                <br> Solicita lo que necesitas a la puerta de casa, contamos con diferentes servicios que te evitaran salir de tu casa.
                             </p>
-                          </div>
+                        </div>
                     </div>
                 </li>
 
@@ -234,7 +234,7 @@
 
                 </div>
                 <div *ngIf="!getIslogin()">
-                    <li class="button-container nav-item iframe-extern" >
+                    <li class="button-container nav-item iframe-extern">
 
                         <a (click)="onRegister()" style="background-color: #df0000ef;  color: white;" class="btn  btn-rose   btn-round btn-block">
                             <i class="material-icons">login</i> Registrarse
@@ -301,11 +301,7 @@
         <button type="button" (click)="guardarUsuario()" style="margin-top: 2vh; color: white;" class="btn  btn-rose btn-round btn-danger">Guardar</button>
 
     </div>
-
-
-
 </ng-template>
-
 <ng-template #tramitandoModal>
     <div class="modal-header">
         <br>
@@ -323,7 +319,6 @@
     </div>
 </ng-template>
 <ng-template #detallePedidoModal>
-
     <div class="modal-header">
         <h3 class="modal-title">Pedido</h3>
         <button type="button" class="close" (click)="closeModal()" aria-hidden="true"><i
@@ -344,32 +339,25 @@
         <a class="btn btn-chartjs btn-round" (click)="modificarObservacion(modaObesrvacion)">
             Cambiar
         </a>
-
         <h5 class="modal-title">Detalle de pedido:</h5>
     </div>
-    
-
     <div class="modal-footer justify-content-center">
 
         <table class="table table-reponsive">
             <thead>
                 <tr>
-
                     <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Valor unitario</th>
                     <th class="text-right">Total</th>
-
                 </tr>
             </thead>
             <tbody *ngFor="let detalleServicio of detalleServicios">
                 <tr>
-
                     <td>{{detalleServicio.producto.nombreProducto}}</td>
                     <td>{{detalleServicio.cantidad}}</td>
                     <td>$ {{detalleServicio.valorUnitario}}</td>
                     <td class="text-right">$ {{detalleServicio.valorTotal}}</td>
-
                 </tr>
             </tbody>
             <tfoot>
@@ -380,7 +368,7 @@
                     <td class="text-right">$ {{pedido.valorGanancia}}</td>
                 </tr>
                 <tr>
-                    <td ></td>
+                    <td></td>
                     <td></td>
                     <td><strong>Total</strong></td>
                     <td class="text-right"><strong>$ {{pedido.valorGanancia+pedido.valorTotalPedido}}</strong></td>
@@ -388,8 +376,6 @@
             </tfoot>
         </table>
     </div>
-
-
 </ng-template>
 <ng-template #modaObesrvacion>
     <div class="card-body">
