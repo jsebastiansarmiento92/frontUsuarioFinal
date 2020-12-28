@@ -922,40 +922,6 @@
                             </ng-template>
 
 
-                            <!--div class="col-md-4" *ngFor="let empresa of empresas">
-                                <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                                    <div class="card-header card-header-image" style="min-height: 215px;">
-                                        <div *ngIf="empresa.retrievedImage; else elseBlockEmpresa">
-                                            <img [src]="empresa.retrievedImage" style="height: 100%;">
-                                        </div>
-                                        <ng-template #elseBlockEmpresa>
-                                            <td>
-                                                <img src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                            </td>
-                                        </ng-template>
-                                    </div>
-                                    <div class="card-body">
-                                        <a>
-                                            <h4 class="card-title">{{empresa.razonSocial}}</h4>
-                                        </a>
-                                        <p class="description">
-                                            {{empresa.estadoEmpresa}}
-                                        </p>
-                                        <div class="ui-icon-mail-open">
-                                            <span class="ui-icon-mail-closed"> {{empresa.email}} </span>
-                                        </div>
-                                        <div class="card-footer justify-content-between">
-
-                                            <h5>
-                                                <button type="button" (click)="seleccionEmpresa(empresa)"
-                                                    class="btn btn-outline-light float-right"
-                                                    style="margin-left: 10px;">Seleccionar</button></h5>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div-->
-                        </div>
                     </div>
                     <ng-template #elseBlockSelectedEmpresa>
 
@@ -1006,23 +972,6 @@
                                     <!-- End Carousel Card -->
                                 </div>
                                 <h3 class="section-title" style="margin-right: auto; margin-left: 25px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{ empresaSeleccionada.razonSocial}}</h3>
-<<<<<<< HEAD
-                                <div class="card-body col-12 col-md-12"
-                                    style="width: 100%; padding-bottom: 2px; padding-top: 2px;"
-                                    *ngFor="let producto of productos">
-                                    <button class="btn btn-link " (click)="ordenarProducto(producto,confirmarModal)"
-                                        style="margin: 0px; padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
-                                        <div class="row" style="margin-left: -9px; ">
-                                            <div class="col-5 col-md-2 profile-photo-small"
-                                                style="margin-top: 5px; margin-left: 15px; padding-left: inherit;">
-
-                                                <div *ngIf="producto.retrievedImage; else elseBlockProduct" >
-                                                    <div class="caja">
-                                                        <div class="box">
-                                                          <img class="img-raised rounded img-fluid" [src]="producto.retrievedImage">
-                                                        </div>
-                                                      </div>                                                    
-=======
                                 <div class="row" style="border: groove; margin: auto; width: 92%;">
                                     <i style="padding-top: 9px;" class="material-icons">search</i>
                                     <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Buscar producto" (keyup)="showSearchResults($event)" style="width: 92%; margin: auto; margin-left: 0px;">
@@ -1036,7 +985,6 @@
                                                 <div *ngIf="producto.retrievedImage; else elseBlockProduct">
                                                     <img class="img-raised rounded img-fluid"
                                                         [src]="producto.retrievedImage">
->>>>>>> master
                                                 </div>
                                                 <ng-template #elseBlockProduct>
                                                    
@@ -1083,8 +1031,8 @@
                     </ng-template>
 
                 </div>
+
                 <br>
-                <!--
                 <h2 class="section-title">Tendencias</h2>
                 <div class="row">
                     <div class="col-md-4">
@@ -1305,14 +1253,8 @@
         </h3>
     </div> 
     <div class="modal-body" style="padding-top: 0px ; color: black;">
-<<<<<<< HEAD
-        <div class="container caja">
-            <img class="img-raised rounded img-fluid" style="height: 254px; width: 280px; margin-top: 10px;"
-                [src]="producto.retrievedImage">
-=======
         <div>
             <img class="img-raised rounded img-fluid" style="height: 254px; margin-top: 10px;" [src]="producto.retrievedImage">
->>>>>>> master
         </div>
         <form>
             <div class="form-group">
