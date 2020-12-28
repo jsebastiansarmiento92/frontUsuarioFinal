@@ -108,6 +108,9 @@ export class InicioComponent implements OnInit {
 
   messages: Message[] = [];
 
+
+
+  
   searchText = "";
 
   constructor(private productosService: ProductoServiceService,
