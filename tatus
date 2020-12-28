@@ -1,0 +1,1222 @@
+[33mcommit f756adcffdd459b5daa24988b1e9660cfac9c1ca[m[33m ([m[1;36mHEAD -> [m[1;32mramaFront[m[33m)[m
+Merge: d748664 54de71d
+Author: Juan Sebastian Sarmiento <jssarmie@bancolombia.com.co>
+Date:   Tue Dec 1 18:08:19 2020 -0500
+
+    cambio del boton
+
+[33mcommit 54de71d02e0f2ccae179170950368706eb40e822[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Nov 30 09:08:27 2020 -0500
+
+    prueba
+
+[33mcommit d7486648eab0f1e592e6f14dbcc38b89c6f0177a[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 099d9f4 e828d75
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Nov 27 00:11:06 2020 -0500
+
+    ultimos cambios para trabajar en el Pc
+
+[33mcommit e828d75072b4626e960908b3d91f1667e9b99eab[m
+Merge: fa7752e a62b046
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Nov 26 22:12:27 2020 -0500
+
+    Merge branch 'ramaFront' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal into ramaFront
+
+[33mcommit a62b04696bb02c4f26bcf712fd4ac1a3cdb8684d[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Nov 26 22:04:38 2020 -0500
+
+    etiqueta abierto
+
+[33mcommit d7116c4f60b274989254baef08c57fe131528767[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Nov 26 17:09:34 2020 -0500
+
+    tramitando a pedido, tabla de detalles
+
+[33mcommit 099d9f4d7f973e7fce7613befc3be9e173c3e5c6[m
+Merge: d145221 991eda5
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sat Nov 21 21:01:51 2020 -0500
+
+    Merge branch 'master' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal
+
+[33mcommit 991eda5d2660ab1e890aea328596b4d054a26541[m
+Merge: b37b515 ba4add8
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Nov 21 17:48:49 2020 -0500
+
+    Merge branch 'ramaFront'
+
+[33mcommit b37b5158467479478b281a02cc1300bd661c7739[m
+Merge: 8c02923 4382191
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Nov 21 17:48:07 2020 -0500
+
+    Merge branch 'ramaFront' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal
+
+[33mcommit ba4add84bde29497c63f57c6e127adce87617e56[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Nov 21 17:45:50 2020 -0500
+
+    boton play store actualizado
+
+[33mcommit 92256c230d17c99babde4ccd02128bfe86ddcf8f[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Nov 21 17:36:59 2020 -0500
+
+    boton play store
+
+[33mcommit 96d35c501345f1e1ab6078ec3bc65dfb7353e357[m
+Merge: 4382191 8c02923
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Nov 21 17:05:03 2020 -0500
+
+    Merge branch 'master' into ramafront
+
+[33mcommit 8c0292317302ec156a5a9c676be64a31ebe3b5a6[m
+Merge: 9d1fbc2 36bca87
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Nov 21 17:04:16 2020 -0500
+
+    mensaje de agregar al carrito
+
+[33mcommit d14522199e0ef359485eb9535e14ae4f9240bc1d[m
+Merge: 36bca87 fa7752e
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Mon Nov 9 11:49:47 2020 -0500
+
+    agregado al repositorio antes de los cambios de sneider 9/11/2020
+
+[33mcommit fa7752e45a903524096952ac5e2d3e7aae286a14[m
+Merge: fd540d2 4382191
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sun Nov 8 13:04:25 2020 -0500
+
+    Merge branch 'ramaFront' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal into ramaFront
+
+[33mcommit 36bca87b4350a52c8f087e37c1dae46cb3d95d62[m
+Merge: 126ffec fd540d2
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sun Nov 8 13:02:55 2020 -0500
+
+    servicios actualziados
+
+[33mcommit 43821915fbcbba97afa7e06cebcd1cff53257848[m
+Merge: 325b315 9d1fbc2
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sun Nov 8 01:16:46 2020 -0500
+
+     modal de estrellas
+
+[33mcommit 9d1fbc20c7e362cad1413071e17bb71a05e8e759[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sun Nov 8 01:10:41 2020 -0500
+
+    calificacion estrellas y modal de estrellas
+
+[33mcommit 325b315477b3a005c86d666cf82771d0fe895c26[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Nov 7 21:05:04 2020 -0500
+
+    rutas
+
+[33mcommit fd540d2a849aaa2e9ad8d9b1718ec0d91bd8ff7c[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Oct 28 21:58:07 2020 -0500
+
+    cambio front 28/10/2020
+
+[33mcommit 126ffec971d86f4d86048f39cf4567ef86afdd71[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Oct 28 21:45:43 2020 -0500
+
+    cambio 28/10/2020
+
+[33mcommit 55491b1e0012fbd359258a2d4faaa7b13591b19b[m
+Merge: c60f6a6 3de52e9
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Oct 28 21:23:52 2020 -0500
+
+    Merge branch 'ramaFront'
+
+[33mcommit c60f6a66f57427046fbc66c8fb845ee70958251c[m
+Merge: 831b490 6c66cd6
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Oct 28 21:20:13 2020 -0500
+
+    cambios 28/10/2020
+
+[33mcommit 3de52e905a3060f25d3957bbfec3642a2d49b186[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Wed Oct 28 20:52:46 2020 -0500
+
+    modal de cargando
+
+[33mcommit 1c615d3e07d6d7d9ed6a0848d803b2efabb8b27c[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Wed Oct 28 18:28:49 2020 -0500
+
+    boton google play
+
+[33mcommit 9663f3e74cd3e23e4d5117abcb67de49b4cc3fbd[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Wed Oct 28 18:27:26 2020 -0500
+
+    merge 28/10/2020
+
+[33mcommit 831b490565eae34ba4807a48bc025664b1874034[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Oct 21 10:14:50 2020 -0500
+
+    agregar commit
+
+[33mcommit 6c66cd66ccfb59dbeb14582c65cd2ff4947b4d30[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Wed Oct 21 10:08:07 2020 -0500
+
+    push 21/10/2020
+
+[33mcommit 2205b12d66ef0c78c9202ca301dbb5e1e917dd64[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Tue Oct 20 17:19:18 2020 -0500
+
+    head pedidos scroll, nuevo modal de medio de pago, botones de carrito
+
+[33mcommit 87d5055bae4ae2fc7b6c3b43a7ef04370f675fd7[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Tue Oct 20 17:17:44 2020 -0500
+
+    head pedidos
+
+[33mcommit 0d6cf74585903bba445cba4493a19237a0876376[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Oct 19 21:28:47 2020 -0500
+
+    listado de empresas, boton atras
+
+[33mcommit eb1920dbf5388a7a1efe3c3ac14c1d1f7ef14555[m
+Merge: abcf8cf af5b60e
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Oct 19 21:18:25 2020 -0500
+
+    Merge branch 'master' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal
+
+[33mcommit abcf8cfc60d3b3b0c2e7971233b462925406f20d[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Oct 19 21:18:05 2020 -0500
+
+    antes del pull
+
+[33mcommit af5b60e9a27ce44f9411bf00f138a9aa03999fa4[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Mon Oct 19 21:16:35 2020 -0500
+
+    arreglo de bugs de categorias
+
+[33mcommit 27e7f099c645300c25da5b7d0a41a0e7ff5a929c[m
+Merge: 2609207 9a783a9
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Mon Oct 19 20:04:37 2020 -0500
+
+    Merge branch 'ramaFront'
+
+[33mcommit 9a783a9ffe82882f9a9d934f1682bb7d6acba969[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Oct 19 20:02:16 2020 -0500
+
+    botones de registros, todas las categorias, mensaje freedback
+
+[33mcommit 26092079590b94f7bec221340b2c036b0327e8da[m
+Merge: 60deceb 65ee343
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Mon Oct 19 10:26:38 2020 -0500
+
+    Merge branch 'ramaFront'
+
+[33mcommit 60deceb5dfbf8cc65cfe4570fc7a465ace3bec81[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Mon Oct 19 10:24:36 2020 -0500
+
+    cambios antes del merge ultimos cambios
+
+[33mcommit 65ee343cbea40b6d97bdf04350dab72aad077817[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Oct 16 17:55:15 2020 -0500
+
+    botnes azules, categorias y footer
+
+[33mcommit ff908d3d4751c133d2c576d6400f319a59cfcee1[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Oct 15 00:48:01 2020 -0500
+
+    slider mas grande
+
+[33mcommit 86ef22dc157f2c164755ef41ae25c4c8922f0784[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Oct 15 00:40:13 2020 -0500
+
+    categorias ordenadas
+
+[33mcommit 8519244bf1ca93e340bf61e87e592b0740d1d99e[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Oct 14 12:42:43 2020 -0500
+
+    cambios para hacer en el front
+
+[33mcommit f9b92193b39cfd7d69ba0f438c5fcc5ad8235ed4[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Sep 22 18:11:33 2020 -0500
+
+    version web y agregado de observaciones al pedido
+
+[33mcommit 80bfdea162f8e77312c99b520522ab0bb338816c[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Sep 22 16:11:04 2020 -0500
+
+    antes de version para telefono
+
+[33mcommit 814e3f9167281c4f4c602d8cb27e19abbd4b8b7a[m
+Merge: 031b4dc 3c550c3
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Sep 17 23:55:15 2020 -0500
+
+    Merge branch 'ramaFront'
+
+[33mcommit 031b4dc1968df9704cca86155783ab1987d05310[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Sep 17 23:53:54 2020 -0500
+
+    cambios de login
+
+[33mcommit 3c550c328d4a7a24229436a6d5d5f17c31be5679[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Sep 17 23:38:52 2020 -0500
+
+    antes del merge
+
+[33mcommit b823673acadbd29a3077ca30a841671b690cfa23[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Sep 17 21:23:27 2020 -0500
+
+    ultimas modificaciones
+
+[33mcommit e7400bc3f01d86a8095ad2e86eb207889e00e533[m
+Merge: 5ea38b4 a834137
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Sep 3 19:25:07 2020 -0500
+
+    ultima actualziacion boton buscar y previo a la generacion de apk
+
+[33mcommit 5ea38b40ff6de999e824c4370f16d58688747291[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Sep 3 19:10:22 2020 -0500
+
+    antes de los cambios
+
+[33mcommit a8341370199f108fe166e6712089d35fd3aa1bba[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Sep 3 19:03:37 2020 -0500
+
+    cambio de filtro y styles
+
+[33mcommit 0a19b54b448090785033438ba3a986ba56eb3f24[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Sep 3 18:30:07 2020 -0500
+
+    sin imagen landing
+
+[33mcommit db38db0bcf3382b02ebe585b357082ec6dc49f56[m
+Merge: 409ee20 9be58ec
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sat Aug 29 17:40:46 2020 -0500
+
+    antes del merge
+
+[33mcommit 409ee204e199760c8f49d2d8774b9e0b7cde601c[m
+Merge: 40e4887 0247fc6
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Aug 28 02:24:22 2020 -0500
+
+    cambios recientes de front
+
+[33mcommit 9be58ec77faa547b609dccaccc9e0cf173cf3c56[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Aug 28 01:44:43 2020 -0500
+
+    estilos en el head
+
+[33mcommit 59296cfa9461653b6274c785cecbd4e566eac91c[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Aug 28 01:28:01 2020 -0500
+
+    scroll navbar
+
+[33mcommit 40e4887d6cdbb67084d593ae454cdfedc40353b7[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Aug 28 01:09:14 2020 -0500
+
+    cambios antes del merge
+
+[33mcommit 0247fc639819666b9a6f75acadbdc8adfeebc159[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Aug 28 00:59:54 2020 -0500
+
+    mi cuenta en el header
+
+[33mcommit 9c5d0f94c2d1c895bf7e9f071956dab6dda30bf2[m
+Merge: a9c4011 46e7410
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Aug 28 00:42:30 2020 -0500
+
+    modal y configuracion del header
+
+[33mcommit 45364de9bd8af8e3b8cbbf421e396d32efffd5f4[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Aug 27 22:30:02 2020 -0500
+
+    arreglo antes del merge(cambios visuales de pedidos y detalle)
+
+[33mcommit 46e74108b8755a6b2d65e185137bdf7805947941[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 27 19:14:21 2020 -0500
+
+    andes del merge
+
+[33mcommit ad6f608c6dbf777cf1fbcb6dd8c7f1a2d8b748a2[m
+Merge: 1edf1c5 707557a
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 27 18:50:50 2020 -0500
+
+    Merge branch 'master' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal
+
+[33mcommit 707557a61fcb92d7c64c44cb7bbda634c2d0d593[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Aug 27 02:07:43 2020 -0500
+
+    detalle completo de pedido pendiente arreglar diseño
+
+[33mcommit a9c4011c13d4123edaf44442aec5479ad11fb26e[m
+Merge: da37acb 1edf1c5
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 27 00:40:25 2020 -0500
+
+    Merge branch 'master' into ramaFront
+
+[33mcommit 1edf1c596e533085b3976062597ad6da5ef5855e[m
+Merge: cabcce3 9b33000
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 27 00:40:10 2020 -0500
+
+    Merge branch 'master' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal
+
+[33mcommit 9b3300061117ad0ab32a91fe858c6750185dc319[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Aug 27 00:37:08 2020 -0500
+
+    detalle de pedidos optimizado
+
+[33mcommit da37acb50b885a564dc57c00992a361e5fd3d5bc[m
+Merge: 64950ae cabcce3
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 27 00:21:21 2020 -0500
+
+    Merge branch 'master' into ramaFront
+
+[33mcommit cabcce31a77611f33dd0935a5a2e21e95585ad6f[m
+Merge: f109da1 f23888e
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 27 00:21:00 2020 -0500
+
+    Merge branch 'master' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal
+
+[33mcommit 64950aeb44754ab0ea44468b64b27c9fb25bed86[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 27 00:20:31 2020 -0500
+
+    antes de merge
+
+[33mcommit f23888e0bda48a0642f2fb6c65474ef17451c409[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Aug 27 00:14:38 2020 -0500
+
+    detalle de pedidos y editar usuario
+
+[33mcommit 88d9174f20bd4c1432444887fa167fe85842fdee[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Aug 26 01:49:59 2020 -0500
+
+    agreado numero de contacto en base de datos
+
+[33mcommit e8ee7a7cbfaff5f7a8129d320e3cc17807ceded9[m
+Merge: 1075ab1 f109da1
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Wed Aug 26 00:11:40 2020 -0500
+
+    Merge branch 'master' into ramaFront
+
+[33mcommit f109da17d7eed362ba08ba19bea3ec0c489f1b49[m
+Merge: da1acb5 9c96471
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Wed Aug 26 00:10:46 2020 -0500
+
+    Merge branch 'master' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal
+
+[33mcommit 8ddd6448c1abe8de27a8319274a2d01810957fd3[m
+Merge: 9c96471 1075ab1
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Aug 25 19:57:51 2020 -0500
+
+    Merge branch 'ramaFront'
+
+[33mcommit 9c96471f7033fe99c1d7ce2a6af8ecb4490b738f[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Aug 25 19:37:42 2020 -0500
+
+    correcion de errores solicitud de pedido
+
+[33mcommit c058afb17d488164fabac513029091ae2b582a9a[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Aug 25 14:06:27 2020 -0500
+
+    arreglo bug de pedido y guardado de lugar por priemra vez
+
+[33mcommit 1075ab1104360755f9dab89ee9240e561c2f1d90[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Tue Aug 25 11:14:11 2020 -0500
+
+    header
+
+[33mcommit 9394a05d3d57154e72998620453550c542f4e313[m
+Merge: 469d75e da1acb5
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Tue Aug 25 11:02:34 2020 -0500
+
+    pull
+
+[33mcommit e5b92e358cafc0be54dcf2b6d53d2b28acd3537e[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Aug 25 10:40:05 2020 -0500
+
+    push cambios de pedido y lugares de sesion
+
+[33mcommit da1acb599a8ddbcb08116e9c868fb816fac7259a[m
+Merge: c62aef5 e25ae4e
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Tue Aug 25 10:37:39 2020 -0500
+
+    pull
+
+[33mcommit e25ae4eac030d74fdb7a48f87deae63b01e8f3f0[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Mon Aug 24 20:47:33 2020 -0500
+
+    cambios de sesion y bugs de pedido
+
+[33mcommit 507bc6ab9065a3c38b4423d84125e2e11f99e897[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Mon Aug 24 18:21:41 2020 -0500
+
+    commit de nuevos menus en header y componentes modales en logn
+
+[33mcommit 27203e499af2091e073c70cd375548fe115cebbb[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sat Aug 22 11:23:28 2020 -0500
+
+    cambios de funcionalidad y agregado de telefono en landing
+
+[33mcommit 469d75eef41c9835ccfe6e9518555603288f78b2[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 20 18:33:13 2020 -0500
+
+    boton de politicas
+
+[33mcommit 8d3c9c310b7aa67f19855e16f8c8e195163947f0[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 20 18:30:59 2020 -0500
+
+    merge con master
+
+[33mcommit 59fac7753d9a66c0cb28f505ce077f25e5df5352[m
+Merge: 704bee9 e27400b
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 20 18:30:03 2020 -0500
+
+    ramaFront prueba
+
+[33mcommit 704bee9c7407d48f5349e8a1f80f1f31b219e17a[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 20 18:20:23 2020 -0500
+
+    ramaFront
+
+[33mcommit eff92f5e3082e08481b044eb4df6c132a148d303[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 20 18:19:52 2020 -0500
+
+    letra de privacidad y politicas, estilo en  menu y quitar filtro rango de precio
+
+[33mcommit c62aef5aa63ed21d87a7a9004e1427786f95cdaf[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Aug 20 17:11:58 2020 -0500
+
+    clon repositorio
+
+[33mcommit e27400b0625328b7238628080cf5a76d93ec1019[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Aug 19 21:48:49 2020 -0500
+
+    login y registro con facebook
+
+[33mcommit f1ff3692c81991c6d06362c75d77abf95eda0f5a[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Aug 17 22:02:23 2020 -0500
+
+    boton de buscar y direcciones
+
+[33mcommit cf54f073a0a18a7a45086ec19ae4a51fe28e9106[m
+Merge: e6a20be 3b1dcf7
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Mon Aug 17 12:26:03 2020 -0500
+
+    boron busqueda establecimiento
+
+[33mcommit e6a20bebdc00f0ea41c49e54e1fa2f29d3195f44[m
+Merge: af09325 846b600
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sat Aug 15 16:34:05 2020 -0500
+
+    antes del merge boton de busqueda
+
+[33mcommit 3b1dcf77be4d881369692395d9d051ec2fe0fc6c[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Aug 15 16:04:47 2020 -0500
+
+    filtro inicio con estilos
+
+[33mcommit 4de11dd43d47807811dac9b89f93c9b3f3546c91[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Aug 15 15:44:24 2020 -0500
+
+    filtro y  imagen inicio
+
+[33mcommit af093257a7d8fc7811ea3cbd040b81486a7cf9c7[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Aug 14 22:02:13 2020 -0500
+
+    antes del merge de filtros en select dinamico
+
+[33mcommit 846b600204e63f4cfc5f74ca6738a51332b1200d[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Aug 14 21:55:48 2020 -0500
+
+    barrio, cuidad y direccion con filtro
+
+[33mcommit d3d6160c024f56078384163d68061ccdee834940[m
+Merge: d97b10b 9ccdd85
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Aug 11 21:01:40 2020 -0500
+
+    merge con cambios
+
+[33mcommit d97b10bcbd567c35e2a2dbb79860149be454be10[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Aug 11 21:00:15 2020 -0500
+
+    confirmar
+
+[33mcommit c5279c641e6f7c467ba06fa00311f709c0f38b87[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Aug 11 20:59:46 2020 -0500
+
+    filtros de barrios
+
+[33mcommit 315399c2fb5bff9ecb09202d46811c3f615253fd[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Aug 11 20:55:20 2020 -0500
+
+    aplicacion filtro de barrios
+
+[33mcommit 04e3e3abf0dc037309fc1bffa1f7f4be04962263[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Aug 11 16:42:12 2020 -0500
+
+    ultimos arreglos de bugs
+
+[33mcommit 9ccdd857934f154fa237534ac459d34c0565aea7[m
+Merge: 2569d17 e3410cd
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Tue Aug 11 10:59:42 2020 -0500
+
+    head, landing barrio
+
+[33mcommit 2569d17b6a17087791ef2f203f30e1632eacee81[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Tue Aug 11 10:51:56 2020 -0500
+
+    head
+
+[33mcommit e3410cd92b21bf3f3d9b11d9c9ad47a2943565b0[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Aug 11 09:20:39 2020 -0500
+
+    arreglo bugs de carrito
+
+[33mcommit bff575928e77e4efc7b03231e817f4e1d308f792[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Aug 11 08:06:50 2020 -0500
+
+    antes de correcciones
+
+[33mcommit 913802d4991421f577eaf16ea9c3f698b333a149[m
+Merge: 9cd0357 176f5e1
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Aug 8 20:18:24 2020 -0500
+
+    merge con ramaFrond
+
+[33mcommit 9cd03573ecf5516be1b4b2e8ecf3f13dbba39781[m
+Merge: deed277 47073da
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sat Aug 8 12:05:58 2020 -0500
+
+    agregado con merge 08/08/2020 12:05 pm
+
+[33mcommit deed27777a3043e81c43bf0129f4d9b3711a609c[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sat Aug 8 11:59:50 2020 -0500
+
+    manejo de sesiones y menu izquierdo de categorias habilitada por selececion
+
+[33mcommit 176f5e102651922eee505bb5f4852931d9a1229f[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Aug 8 03:39:28 2020 -0500
+
+    8/08/2020
+
+[33mcommit 47073da0819bb53747b24ecc0b54397a1afacf6b[m[33m ([m[1;31morigin/ramaFrond[m[33m)[m
+Merge: 7afbb82 f09e76b
+Author: Snards <56095997+Snards@users.noreply.github.com>
+Date:   Sat Aug 8 03:19:12 2020 -0500
+
+    Merge branch 'master' into ramaFrond
+
+[33mcommit f0ee7ea85c31858a52a75547264bcbfea192be76[m
+Merge: 11a3794 f09e76b
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Aug 8 03:05:20 2020 -0500
+
+    8/08/2020
+
+[33mcommit f09e76b33e0fedf566f428f4bb2ce145eefe4d78[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Aug 8 03:02:29 2020 -0500
+
+    prueba
+
+[33mcommit 11a379479146558e8455c0aceaa421cdfd2cda76[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Aug 8 02:41:06 2020 -0500
+
+    filtros
+
+[33mcommit f375d8a3151aa0e1baef83a10dc0aaf73538b3af[m
+Merge: 1bf3154 c032032
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Aug 8 02:34:31 2020 -0500
+
+    categorias, scroll de imagenes
+
+[33mcommit 1bf3154b413c67c3e799391881f749e11537b735[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Aug 8 02:29:50 2020 -0500
+
+    antes del pull
+
+[33mcommit 79e6fac675529b86e382391574a6a63cf88ccdbc[m
+Merge: c032032 7afbb82
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Aug 7 18:54:18 2020 -0500
+
+    antes del borrado del landing
+
+[33mcommit c03203223ed8d3863032df996b748d1f8620af91[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Aug 7 12:45:08 2020 -0500
+
+    ultimos cambios antes del merge de modificaciones 7/08/2020
+
+[33mcommit 7afbb82431edd7b22a0550bf3934dab5bf6e05a6[m
+Merge: 955fbdf 1af1cee
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Aug 7 02:16:19 2020 -0500
+
+    cambio de estilo de establecimientos y productos, filtros, categorias
+
+[33mcommit 955fbdfaa083ad49aa6b78f8404e4eb71590c70f[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Aug 7 02:05:55 2020 -0500
+
+    antes del pull
+
+[33mcommit 1af1ceee0fa9b8c34ad335a1b37257686163b052[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Jul 17 19:23:13 2020 -0500
+
+    boton de registro y rutas relativas
+
+[33mcommit 45a3ca24ac87b690abafd321069113b3388f40b7[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Jul 17 19:11:39 2020 -0500
+
+    mis direcciones
+
+[33mcommit 79f79fa9459fde458516eab106f60adb54edfbe5[m
+Merge: b5ba742 7ff4f1d
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Jul 17 17:14:47 2020 -0500
+
+    Merge branch 'ramaFrond'
+
+[33mcommit 7ff4f1d677aeea2ac8b669745fd5140c3d69bbe6[m
+Merge: b7203d1 0f9c8c1
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Jul 17 17:06:38 2020 -0500
+
+    Merge branch 'ramaFrond' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal into ramaFrond
+
+[33mcommit b5ba742f8f112c4da2ade1bd3fb94829220063d3[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Jul 17 17:00:34 2020 -0500
+
+    commit produccion 17/07/2020
+
+[33mcommit 0f9c8c170fb83751c2cfe416ad1cbcac0b9553b7[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Jul 17 16:57:54 2020 -0500
+
+    landing Finalizado
+
+[33mcommit 5c06fd0ef7b71780d7b12ca94f846bc64ab8f5e9[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Jul 16 23:13:56 2020 -0500
+
+    implementacion sockets para usuario final
+
+[33mcommit b7203d17299722034960f2240a378d6c30406892[m
+Merge: 4a77aba 6d12b03
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Jul 15 18:27:09 2020 -0500
+
+    Merge branch 'ramaFrond' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal into ramaFrond
+
+[33mcommit 4a77aba941505ebfd5e2dab86ef37a249b3fe900[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Jul 15 18:27:03 2020 -0500
+
+    antes del merge cargar empresas
+
+[33mcommit 6d12b0306246a8dff250215ea934dfb6ea9d3e13[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Wed Jul 15 18:24:59 2020 -0500
+
+    landing
+
+[33mcommit d17f85ac2c3b1c8cd741104abdadc638acaa5be9[m
+Merge: 243e0e6 77fbad5
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Jul 13 06:21:03 2020 -0500
+
+    actualizacion
+
+[33mcommit 243e0e60378d2872e4abec142f79b3a1b80a1cf9[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Jul 13 06:13:58 2020 -0500
+
+    boton atras y diferencia entre dispositivos
+
+[33mcommit 77fbad547f017c11eac745b4cfe847fdf7ada1fd[m
+Merge: 927e8c8 ac09110
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sun Jul 12 17:30:58 2020 -0500
+
+    verificacion de rutas por bug de rutas peresozas
+
+[33mcommit c1136ee9a4c675ec8e45fd5fa83977eac8a53e19[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Jul 11 03:47:01 2020 -0500
+
+    boton atras
+
+[33mcommit ac0911033aee21af2e5adb4cec372d0467fe1b35[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Wed Jul 8 03:23:53 2020 -0500
+
+    categoria responsive y signo pesos
+
+[33mcommit 927e8c8d28d4bb8d1f6540b2eef9bac01901d06e[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Jul 7 23:13:04 2020 -0500
+
+    push aplicacion primera pantalla de empresas
+
+[33mcommit 7cca3c2e50a8dd54e58db35fd6a00d11ff99e679[m
+Merge: 73320ff b4a8172
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Tue Jul 7 15:17:01 2020 -0500
+
+    direccionn funcional
+
+[33mcommit b4a817226eb3809abfdee6529ff07cee2ef58ea9[m
+Merge: 6bc1922 dbe000f
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Mon Jul 6 17:10:40 2020 -0500
+
+    arreglo
+
+[33mcommit 73320ffe2fb91ad0cf88e4e6d566ffc57db98f28[m
+Merge: dbe000f 6bc1922
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Jul 6 09:08:10 2020 -0500
+
+    direccion centrada
+
+[33mcommit 6bc1922e5f26c8e8b79f51762964d29b117f0c4c[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Jul 3 13:04:54 2020 -0500
+
+    solicitud de carrito
+
+[33mcommit dbe000feb0978d4fed6cee916df262d290a0fe07[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Jul 3 06:22:28 2020 -0500
+
+    head
+
+[33mcommit 1d6ebe1b4efd71a34d9c08bb82d8c9ce2a3ec33e[m
+Merge: 475b7fa 1b178a7
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Jul 3 03:02:10 2020 -0500
+
+    Merge branch 'ramaFrond'
+
+[33mcommit 1b178a7b4a86b9d5c527992830235a6422793a78[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Jul 2 23:29:45 2020 -0500
+
+    popupcarrito en inicio con css
+
+[33mcommit 475b7fa76af7c987bc8982be5da5c3403bc4bcac[m
+Merge: e554e1d 8a109ff
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Jul 2 03:03:23 2020 -0500
+
+    Merge branch 'ramaFrond'
+
+[33mcommit e554e1da0b4f8c579e6b44e0c55594d3a91a6f53[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Jul 2 03:01:23 2020 -0500
+
+    implementacion registro normal y login
+
+[33mcommit 8a109ff48b269b9bbc46601257621436a7148d8c[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Jul 2 03:01:18 2020 -0500
+
+    componente popup-carrito
+
+[33mcommit b66510873998180f6d65f3abd122c3399f7bad0f[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Jul 1 16:04:10 2020 -0500
+
+    agregado y en linea api de atuh con google
+
+[33mcommit f7038bdc0d2a01419ee04a90fa5a2e247a6e102b[m
+Merge: da2c946 a0d11a0
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Jun 30 16:22:09 2020 -0500
+
+    registro y login con google
+
+[33mcommit da2c946d780e6107a10afc8cdb36d44e60fd7a45[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Tue Jun 30 15:52:19 2020 -0500
+
+    agregacion de registro con google
+
+[33mcommit a0d11a0d9e131a56285bae686455ce7a5a8cdf31[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Tue Jun 30 08:33:38 2020 -0500
+
+    popup carrito
+
+[33mcommit 70df1704ecdec3cb15f958a0d6c7bfa817a0db74[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Jun 29 21:53:10 2020 -0500
+
+    registrar css
+
+[33mcommit fca04ebd152e08ead394a60e6eca9a8abb92125f[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sun Jun 28 19:12:36 2020 -0500
+
+    activacion ruta de signup
+
+[33mcommit 4cae05c1467cab0d55ac14e83a2aa61091c70638[m
+Merge: 558ae2e c0fc452
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sun Jun 28 18:00:16 2020 -0500
+
+    Merge branch 'ramaFrond'
+
+[33mcommit c0fc4524b2b90cdfc6f5c28cc178fbea50202e6d[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sun Jun 28 07:07:47 2020 -0500
+
+    head y landing
+
+[33mcommit 558ae2e157cb037449d23a3d67d4ee002b193252[m
+Merge: ea9acb8 e7f1d75
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sat Jun 27 22:21:58 2020 -0500
+
+    Merge branch 'ramaFrond'
+
+[33mcommit e7f1d75fcabdf62304131cbb674b92170870d2a7[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Jun 27 22:19:40 2020 -0500
+
+    27/06/2020 10:19 p.m
+
+[33mcommit ea9acb84595b6cffde2a9c275cf55e2baf2c3d2d[m
+Merge: da947bd e6372e0
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Jun 24 13:22:35 2020 -0500
+
+    Merge branch 'ramaFrond'
+
+[33mcommit da947bd7a31abdf25a0ca1b35fe53a5a372d3888[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Jun 24 13:22:00 2020 -0500
+
+    antes del merge de produccion
+
+[33mcommit e6372e02222269158635680cb654154cdc02d21d[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Tue Jun 23 16:50:59 2020 -0500
+
+    imagen icono y head
+
+[33mcommit 9d651630b2effa7acd926396fdfe1c7a2e1a23a8[m
+Merge: b5da464 a133a07
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Jun 19 00:57:46 2020 -0500
+
+    actual 12:57am
+
+[33mcommit b5da4645ffdf6d095ebfb6986e4af53ea8f8c90f[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Jun 19 00:47:04 2020 -0500
+
+    actual
+
+[33mcommit 3343c84122ca4a25564ecb22c0f1373406ec453b[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Jun 19 00:42:55 2020 -0500
+
+    head
+
+[33mcommit a133a072263cf130baad6fd19c5695585849aaff[m
+Merge: d71e967 7c2ac4e
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Jun 18 20:13:54 2020 -0500
+
+    implementacion landing al inicio
+
+[33mcommit 7c2ac4eb67102b923190d8726ca27a846284d6fd[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Jun 18 03:16:34 2020 -0500
+
+    requisito diseño 1 btn
+
+[33mcommit 651ef81ac2cac5f0d976138861d3e8a369b676e2[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Jun 18 02:46:51 2020 -0500
+
+    componente landing y estilos
+
+[33mcommit fec4cddba5182881456e9168338793cb1dc77fd7[m
+Merge: 2f58c04 33fe80e
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Jun 18 02:37:16 2020 -0500
+
+    Merge branch 'master' into ramaFrond
+
+[33mcommit 33fe80e37c6307589b69237cf37dee742becc56a[m
+Merge: 58eda78 ad12481
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Jun 18 02:36:50 2020 -0500
+
+    antes del pull 18/06/2020 2:37am
+
+[33mcommit d71e967d96d2bdd42f20094caf93313a27ce80de[m
+Merge: ad12481 2f58c04
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Wed Jun 17 20:08:43 2020 -0500
+
+    push modificado domicilio
+
+[33mcommit ad12481f220d97cc176dd067a188cc62c1c09069[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Mon Jun 15 11:56:08 2020 -0500
+
+    commit arreglo
+
+[33mcommit 2f58c04b9ad08d9123e4cb772987b30473ee5e91[m
+Merge: f6763c4 58eda78
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Jun 15 02:59:43 2020 -0500
+
+    Merge branch 'master' into ramaFrond
+
+[33mcommit 58eda7824c5633684199343d089719e7e22ce5fc[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Mon Jun 15 02:59:11 2020 -0500
+
+    cambio de imagenes, letras y responsive
+
+[33mcommit 28be59f27b2ccc51f92f5b521f9de730590fda74[m
+Merge: dab6c76 5bb3ae0
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sun Jun 14 00:48:16 2020 -0500
+
+    Merge branch 'master' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal
+
+[33mcommit dab6c76c9d7807182417f13b67bc2ed3c4740b96[m
+Merge: f14c198 aec0ca6
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sun Jun 14 00:48:03 2020 -0500
+
+    antes del pull 14/06/2020 12:42am
+
+[33mcommit 5bb3ae002a416e9d7ba83584ddb2848fe934c3f5[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sun Jun 14 00:40:56 2020 -0500
+
+    optimizacion solicitar pedidos en carrito (direcciones nuevas)
+
+[33mcommit f14c198b583fc7b1cbbcbc16d0ec755e8468cb7e[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Jun 13 19:12:26 2020 -0500
+
+    antes del pull 13/06/2020
+
+[33mcommit aec0ca6068306dbd569b66c7b821c503b0a3d329[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sat Jun 13 17:47:42 2020 -0500
+
+    actualziacion y correcicon de errores
+
+[33mcommit 275f9f12f557b7ceba259af62313cd5b9ac991d8[m
+Merge: 60e0436 a4dfbb4
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sat Jun 13 17:01:48 2020 -0500
+
+    Merge branch 'ramaFrond'
+
+[33mcommit f6763c4a16ef5855d139119240258141e8bb1fa4[m
+Merge: a4dfbb4 60e0436
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Jun 13 16:45:03 2020 -0500
+
+    Merge branch 'master' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal
+
+[33mcommit 60e043651e36f68c82e468d7835ea96c8f0499a3[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Sat Jun 13 16:33:46 2020 -0500
+
+    commit antes del merge 13/06/2020 4:33pm
+
+[33mcommit a4dfbb48f2e50bda010dfb20cd1f17fcd2adada0[m
+Merge: 461ab8b a35581c
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Jun 13 04:04:05 2020 -0500
+
+    actualizacion
+
+[33mcommit 461ab8bdde5c7935ce44ba3f45784f08751fae5f[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Sat Jun 13 03:46:22 2020 -0500
+
+    colores y logo
+
+[33mcommit a35581caa55474ae52a415e4495d39d3014ff481[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Jun 12 16:41:53 2020 -0500
+
+    despliegue
+
+[33mcommit 7506c42136ff7388c5138e583f7fa4231f4539db[m
+Merge: 9d7fc17 163bae4
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Jun 12 15:50:14 2020 -0500
+
+    Merge branch 'master' of https://github.com/jsebastiansarmiento92/frontUsuarioFinal
+
+[33mcommit 9d7fc174729b350238dbbed0a6efcb90fa2adf1c[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Fri Jun 12 15:50:10 2020 -0500
+
+    traduccion
+
+[33mcommit 163bae4b50df66c9ac01b38135f9d71dc4b4551d[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Jun 12 15:34:32 2020 -0500
+
+    ultimos cambios 12/06/2020 3:34pm
+
+[33mcommit 50f939255a5171a1e9a7800494da10745d11f718[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Jun 12 07:28:57 2020 -0500
+
+    actualizado
+
+[33mcommit 23a62ba18371b18124542121af440a4d82bf6949[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Fri Jun 12 00:12:08 2020 -0500
+
+    creacion rutas e implementacion header
+
+[33mcommit 066f5975d28244a98c4bc58f3eec75f08071a9aa[m
+Merge: 03a2ca1 0129b3a
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Jun 11 15:40:59 2020 -0500
+
+    assets
+
+[33mcommit 03a2ca1e69a5cef27f1b6f0a1f8e2e553e9ddf31[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Jun 11 14:53:34 2020 -0500
+
+    remote
+
+[33mcommit 0129b3a4f0289816824b57f6b993fcc03d1295a3[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Jun 11 14:02:29 2020 -0500
+
+    agregacion inicio al routing app
+
+[33mcommit 58015a402a108b3376955fea943b5e1164ab8b0e[m
+Author: Snards <brayan.sierra@usantoto.edu.co>
+Date:   Thu Jun 11 07:10:34 2020 -0500
+
+    implementacion de la plantilla
+
+[33mcommit 433441412e29c6ef3fe63068c5fca668de6e8dbe[m
+Author: jsebastiansarmiento92 <jsebastiansarmiento92@gmail.com>
+Date:   Thu Jun 11 04:43:57 2020 -0500
+
+    initial commit

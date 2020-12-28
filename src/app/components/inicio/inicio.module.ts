@@ -6,6 +6,7 @@ import { InicioComponent } from './inicio.component';
 import { NgbDropdownModule, NgbTabsetModule, NgbDatepickerModule, NgbModalModule  } from '@ng-bootstrap/ng-bootstrap';
 import { PipeSearchPipe } from './pipe/pipe-search.pipe';
 import { LoginModalComponent } from './loginModal/login-modal/login-modal.component';
+import { PipeSearchProductoPipe } from './pipe/pipe-search-producto.pipe';
 
 
 
@@ -18,6 +19,6 @@ import { LoginModalComponent } from './loginModal/login-modal/login-modal.compon
      FormsModule,
      NgbModalModule
   ],
-  declarations: [InicioComponent, PipeSearchPipe, LoginModalComponent]
+  declarations: [InicioComponent, PipeSearchPipe, LoginModalComponent, PipeSearchProductoPipe]
 })
 export class InicioModule { }

@@ -74,7 +74,7 @@ export class InicioComponent implements OnInit {
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
-
+  showProductos: boolean = true;
   show: boolean = false;
   loaderPedido = true;
   loader = false;
@@ -91,7 +91,8 @@ export class InicioComponent implements OnInit {
   totalPedido = 0;
   msgtotalpedido = 0;
   categoriaActual = "Todas las categorias";
-
+  observacionesProducto="";
+  isDatafono=false;
   /**
   * Shows or hide the search elements
   * @var {boolean} searching
@@ -192,6 +193,10 @@ export class InicioComponent implements OnInit {
     //this.cargarCategorias();
   }
 
+  productoShow(show : boolean){
+    this.showProductos= show;
+  }
+
   initializeWebSocketConnection() {
     let ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
@@ -241,11 +246,6 @@ export class InicioComponent implements OnInit {
       let messageResult: Message = JSON.parse(message.body);
       console.log(messageResult);
       this.messages.push(messageResult);
-      /**  this.toastr.success("new message recieved", null, {
-         'timeOut': 3000
-       });*/
-      //this.showNotification("Notificación", messageResult.message);
-      //this.showPushNotification("Notificación", "Mensaje recibido");
       console.log("ingreso de vibracion");
       //Haptics.vibrate();
       console.log("ingreso de notificacion local");
@@ -266,7 +266,6 @@ export class InicioComponent implements OnInit {
          console.log('scheduled notifications', notifs); */
 
       // Method called when tapping on a notification
-
     }
   }
 
@@ -465,7 +464,6 @@ export class InicioComponent implements OnInit {
           //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           console.log(this.retrievedImage);
-
         })
       });
       // this.loader = false;
@@ -482,11 +480,27 @@ export class InicioComponent implements OnInit {
 
   }
   confirmarAgregar() {
-    if (this.idEmpresa == 0) {
+    console.log("ingreso al metodo de confirmar pedido")
+    this.pedido.observaciones+=this.producto.nombreProducto+": "+this.observacionesProducto+"\n";
+    this.observacionesProducto="";
+
+    if(this.idEmpresa == 0){
+      console.log("ingreso a la condicional de idEmpresa")
       this.idEmpresa = this.producto.empresa.idEmpresa;
+      console.log("ingresa a verificar repetidos")
+      this.verificarRepetidos(this.producto);
+      console.log("agregando al local storage:");
+      console.log(this.productosCarrito);
+      localStorage.setItem('myCar', JSON.stringify(this.productosCarrito));
+      this.serviceModal.dismissAll();
+      this.show=true;
+      this.serviceModal.open(this.msgCarritoModal);
+      this.totalPedido = this.calcular();
     } else if (this.idEmpresa != this.producto.empresa.idEmpresa) {
+      console.log("ingreso a la condicional de producto empresa")
       alert("no es posible solicitar productos de dos empresas en un mismo servicio");
     } else {
+      console.log("ingresa a verificar repetidos")
       this.verificarRepetidos(this.producto);
       console.log("agregando al local storage:");
       console.log(this.productosCarrito);
@@ -706,8 +720,17 @@ export class InicioComponent implements OnInit {
       }else alert("numero de contacto no valido");
   }
   confirmMedioPago(formaPago:string){
+    var mensaje="";
+    if(formaPago=="Datafono"){
+      this.isDatafono=true;
+      //mensaje= " recuerde que el pago con datafono se suman $1.000 al servicio";
+      //  this.valorServicio+=1000;
+      this.pedido.modoPagoPedido =formaPago;
+    } else if(formaPago=="Codigo QR"){
+      this.pedido.modoPagoPedido ="Codigo QR";
+    }else  this.pedido.modoPagoPedido ="Efectivo";
     this.formaPago=" Pago con: "+formaPago;
-    if (confirm('¿Estás seguro que desea confirmar el pago '+formaPago+'?')) {
+    if (confirm('¿Estás seguro que desea confirmar el pago '+formaPago+'?'+mensaje)) {
         this.confirmarPedido();
       }
   }
@@ -783,14 +806,22 @@ export class InicioComponent implements OnInit {
         this.lugar.idLugar=data.idLugar;
         this.serviceModal.open(this.tramitandoModal);
       this.msgtotalpedido = this.valorServicio + this.totalPedido;
-    
+      if(this.isDatafono){
+       this.msgtotalpedido+=1000;
+        if (confirm('valor total del pedido: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
+        + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
+        
+        this.confirmarTransaccion();
+      }
+      }else{
       if (confirm('valor total del pedido: $' + this.msgtotalpedido + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
         
         this.confirmarTransaccion();
       }
-    }, (err: any) => {
 
+    }
+    }, (err: any) => {
       console.log(err.error.mensaje)
     })
   }
@@ -801,11 +832,24 @@ export class InicioComponent implements OnInit {
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
     this.serviceLugar.modificarLugar(this.lugar).subscribe(data => {
-      
-      if (confirm('valor total del pedido: $' + (this.valorServicio + this.totalPedido) + ' a la direccion ' + this.direccionCompleta
+      console.log("desdeModificar kugar: "+this.formaPago);
+      this.formaPago=this.formaPago;
+      this.msgtotalpedido = this.valorServicio + this.totalPedido;
+      if(this.isDatafono){
+        this.msgtotalpedido+=1000;
+        if (confirm('valor total del pedido: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
+        
         this.confirmarTransaccion();
       }
+      }else{
+      if (confirm('valor total del pedido: $' + this.msgtotalpedido + ' a la direccion ' + this.direccionCompleta
+        + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
+        
+        this.confirmarTransaccion();
+      }
+
+    }
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
         alert("debes ingresar o registrarse para poder confirmar pedido");
@@ -852,6 +896,7 @@ export class InicioComponent implements OnInit {
   }
 
   confirmarTransaccion() {
+    //this.pedido.observaciones="";
     this.pedido.observaciones+=this.formaPago;
     this.serviceModal.open(this.tramitandoModal);
     this.tramitando = true;
@@ -862,7 +907,7 @@ export class InicioComponent implements OnInit {
     let empresa:Empresa=new Empresa();
     empresa.idEmpresa=this.idEmpresa
     this.pedido.empresa = empresa;
-    this.pedido.modoPagoPedido = "Efectivo";
+    //this.pedido.modoPagoPedido = "Efectivo";
     this.pedido.estadoPedido = "En proceso";
     this.pedido.valorComision = 0;
     this.pedido.valorGanancia = 0;
@@ -884,9 +929,6 @@ export class InicioComponent implements OnInit {
         this.llenarDetalleList(this.idservicio);
         this.formaPago="";
         //this.llenarDetalle(this.idservicio);
-        
-        
-
       })
       this.sendEmail();
     }, (err: any) => {
@@ -918,10 +960,12 @@ export class InicioComponent implements OnInit {
         this.serviceModal.dismissAll();
         this.tramitando = false;
         console.log(data.mensaje);
-        
         this.solicitarPedido();
         this.notificacionesGeneral();
         this.formaPago="";
+        this.pedido.observaciones="";
+        this.observacionesProducto="";
+        this.isDatafono=false;
         alert(data.mensaje);
         this.serviceModal.open(this.calificacionModal);
         this.idEmpresa = 0;
@@ -949,6 +993,9 @@ export class InicioComponent implements OnInit {
         this.formaPago="";
         this.asignarCosto();
         this.tramitando = false;
+        this.pedido.observaciones="";
+        this.observacionesProducto="";
+        this.isDatafono=false;
       }, (err: any) => {
         estadoServicio = "Error";
       });
@@ -1030,6 +1077,7 @@ export class InicioComponent implements OnInit {
   clean() {
     localStorage.removeItem("myCar");
     this.productosCarrito = [];
+    this.formaPago="";
     //this.valorServicio = 0;
     this.totalPedido = 0;
     this.showF();

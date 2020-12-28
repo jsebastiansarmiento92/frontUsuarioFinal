@@ -47,7 +47,7 @@ export class HeadComponent implements OnInit {
     private modalService:NgbModal) { }
 
   ngOnInit() {
-    
+    console.log("ingreso a ngoinit de head");
     if(JSON.parse(localStorage.getItem('lugar'))){
       console.log("hay lugar guardado en el localstorage");
       this.lugar = JSON.parse(localStorage.getItem('lugar'));
@@ -84,6 +84,11 @@ export class HeadComponent implements OnInit {
       }
     }
     this.refreshHead=false;
+    this.pedidoService.getPedidosCurso("Solicitado",parseInt(this.tokenService.getIdUser())).subscribe(data=>{
+      console.log("pedidos extraidos");
+      this.pedidos=data;
+      console.log(data);
+    });
   }
 
 
@@ -182,9 +187,17 @@ export class HeadComponent implements OnInit {
   cargarPedidosCliente(){ 
     this.mensajeTramitando="cargando pedidos";
     this.serviceModal.open(this.tramitandoModal);
-    this.pedidoService.getPedidosCliente(parseInt(window.sessionStorage.getItem("IdSesion"))).subscribe(data=>{
+    this.pedidoService.getPedidosCliente(parseInt(this.tokenService.getIdUser())).subscribe(data=>{
       console.log("pedidos extraidos");
       console.log(data);
+      console.log(this.pedidos);
+     /** data.forEach(element => {
+        console.log(element.estadoPedido+"=="+"Solicitado");
+
+        if(element.estadoPedido=="Solicitado"){
+          this.pedidos.push(element);
+        }
+      });*/
       this.pedidos=data;
       this.serviceModal.dismissAll();
     })
