@@ -74,7 +74,7 @@ export class InicioComponent implements OnInit {
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
-
+  showProductos: boolean = true;
   show: boolean = false;
   loaderPedido = true;
   loader = false;
@@ -191,6 +191,10 @@ export class InicioComponent implements OnInit {
     //this.cargarProductos();
     this.cargarEmpresas();
     //this.cargarCategorias();
+  }
+
+  productoShow(show : boolean){
+    this.showProductos= show;
   }
 
   initializeWebSocketConnection() {

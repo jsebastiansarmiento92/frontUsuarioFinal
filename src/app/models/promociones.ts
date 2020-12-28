@@ -3,4 +3,5 @@ export class Promociones {
     nombrePromocion:string;
     descripcion:string;
     imagen:number;
+    idProducto: number;
 }
