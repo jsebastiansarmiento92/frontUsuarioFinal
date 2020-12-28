@@ -922,6 +922,7 @@
 
 
                     </div>
+                    </div>
                     <ng-template #elseBlockSelectedEmpresa>
 
                         <div class="col-md-9" *ngIf="empresaSelected && !showProductos">
@@ -975,7 +976,8 @@
                                     <i style="padding-top: 9px;" class="material-icons">search</i>
                                     <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Buscar producto" (keyup)="showSearchResults($event)" style="width: 92%; margin: auto; margin-left: 0px;">
                                 </div>
-                                <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px;  " *ngFor="let producto of productos|pipeSearchProducto:searchText">
+                                <br>
+                                <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px;  " *ngFor="let producto of productos |pipeSearchProducto:searchText">
                                     <button class="btn btn-link " (click)="ordenarProducto(producto,confirmarModal)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                         <div class="row" style="margin: auto; ">
                                             <div class="profile-photo-small"
@@ -986,19 +988,16 @@
                                                         [src]="producto.retrievedImage">
                                                 </div>
                                                 <ng-template #elseBlockProduct>
-                                                   
-                                                    <div class="caja">
-                                                        <div class="box">
-                                                            <img class="img-raised rounded img-fluid"
+                                                    <td>
+                                                        <img class="img-raised rounded img-fluid"
                                                             src="assets/imageLogo/IsotipoPositivoVectorial120x120.png">
-                                                        </div>
-                                                      </div>
+                                                    </td>
                                                 </ng-template>
 
 
                                             </div>
 
-                                            <div class="col-6 col-md-9" Style="padding-left: inherit; margin-left: -17px; padding-right: 0px;  text-align: left;">
+                                            <div Style=" width: 70%; text-align: left;">
                                                 <div style="margin: 10px; line-height: 1em; ">
 
                                                     <h4 class="card-title"
@@ -1022,8 +1021,6 @@
 
 
                                 </div>
-                                
-                                
 
                             </div>
                         </div>
@@ -1032,58 +1029,7 @@
                 </div>
 
                 <br>
-                <h2 class="section-title">Tendencias</h2>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card card-background" style="background-image: url(./assets/img/examples/tendencia1.jpg)">
-                            <div class="card-body">
-                                <h6 class="card-category text-info">Tendencia 1</h6>
-                                <a>
-                                    <h3 class="card-title">Nombre del Producto</h3>
-                                </a>
-                                <p class="card-description">
-                                    descripción del Producto, Las mejores tendencias comida 2020 segun los usuairos
-                                </p>
-                                <a class="btn btn-white btn-round">
-                                    <i class="material-icons">subject</i> Ver
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card card-background" style="background-image: url(./assets/img/examples/tendencia2.jpg)">
-                            <div class="card-body">
-                                <h6 class="card-category text-info">Tendencia 1</h6>
-                                <a>
-                                    <h3 class="card-title">Nombre del Producto</h3>
-                                </a>
-                                <p class="card-description">
-                                    descripción del Producto, Las mejores tendencias comida 2020 segun los usuairos
-                                </p>
-                                <a class="btn btn-white btn-round">
-                                    <i class="material-icons">subject</i> Ver
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card card-background" style="background-image: url(./assets/img/examples/tendencia3.jpg)">
-                            <div class="card-body">
-                                <h6 class="card-category text-info">Tendencia 1</h6>
-                                <a>
-                                    <h3 class="card-title">Nombre del Producto</h3>
-                                </a>
-                                <p class="card-description">
-                                    descripción del Producto, Las mejores tendencias comida 2020 segun los usuairos
-                                </p>
-                                <a class="btn btn-white btn-round">
-                                    <i class="material-icons">subject</i> Ver
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-            </div>
+                </div>
         </div>
         <!-- section -->
     </div>
