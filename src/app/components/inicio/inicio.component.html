@@ -393,9 +393,9 @@
                             </div>
                             <h2 class="section-title">{{categoriaActual}}</h2><br>
                             <div class="col-12 row">
-                                <h5 class="" style="margin-top: auto; margin-left: 33px;">Buscar por: </h5> 
+                                <h5 class="" style="margin-top: auto; margin-left: 33px;">Buscar por: </h5>
                                 <div class="form-check m-1">
-                                  <label class="form-check-label " style="padding-left: 20px; color: #3c4858;">
+                                    <label class="form-check-label " style="padding-left: 20px; color: #3c4858;">
                                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" (click)="productoShow(true)" checked="" >
                                     Productos
                                     <span class="circle">
@@ -404,7 +404,7 @@
                                 </label>
                                 </div>
                                 <div class="form-check m-1">
-                                  <label class="form-check-label" style="padding-left: 20px; color: #3c4858;">
+                                    <label class="form-check-label" style="padding-left: 20px; color: #3c4858;">
                                     <input class="form-check-input"  type="radio" name="exampleRadios" id="exampleRadios2" (click)="productoShow(false)"  >
                                     Establecimientos
                                     <span class="circle" >
@@ -412,14 +412,14 @@
                                     </span>
                                   </label>
                                 </div>
-                              </div>
+                            </div>
                             <div class="row" style="border: groove; margin: auto; width: 92%;">
                                 <i style="padding-top: 9px;" class="material-icons">search</i>
                                 <input class="form-control" id="myInput" type="text" [(ngModel)]="searchText" placeholder="Buscar producto" (keyup)="showSearchResults($event)" style="width: 92%; margin: auto; margin-left: 0px;">
                             </div>
-                            
-                                <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px;  " *ngFor="let producto of productos |pipeSearchProducto:searchText">
-                                    <button class="btn btn-link " (click)="ordenarProducto(producto,confirmarModal)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
+
+                            <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px;  " *ngFor="let producto of productos |pipeSearchProducto:searchText">
+                                <button class="btn btn-link " (click)="ordenarProducto(producto,confirmarModal)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                         <div class="row" style="margin: auto; ">
                                             <div class="profile-photo-small"
                                                 style="margin-top: 5px; margin-left: 15px; width: 20%;">
@@ -461,7 +461,7 @@
                                     </button>
 
 
-                                </div>
+                            </div>
                             <ng-template #elseBlockListEmpresas>
                                 <div class="container text-center  ml-auto mr-auto">
                                     <h6>!lo sentimos¡ <br>
@@ -557,8 +557,8 @@
 
                                 </div>
                             </ng-template>
-                           </div>
                         </div>
+                    </div>
 
                     <div class="col-md-9" *ngIf="!empresaSelected && !showProductos; else elseBlockSelectedEmpresa">
 
@@ -608,9 +608,9 @@
                             </div>
                             <h2 class="section-title">{{categoriaActual}}</h2><br>
                             <div class="col-12 row">
-                                <h5 class="" style="margin-top: auto; margin-left: 33px;">Buscar por: </h5> 
+                                <h5 class="" style="margin-top: auto; margin-left: 33px;">Buscar por: </h5>
                                 <div class="form-check m-1">
-                                  <label class="form-check-label " style="padding-left: 20px; color: #3c4858;">
+                                    <label class="form-check-label " style="padding-left: 20px; color: #3c4858;">
                                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" (click)="productoShow(true)" >
                                     Productos
                                     <span class="circle">
@@ -619,7 +619,7 @@
                                 </label>
                                 </div>
                                 <div class="form-check m-1">
-                                  <label class="form-check-label" style="padding-left: 20px; color: #3c4858;">
+                                    <label class="form-check-label" style="padding-left: 20px; color: #3c4858;">
                                     <input class="form-check-input"  type="radio" name="exampleRadios" id="exampleRadios2" (click)="productoShow(false)" checked="" >
                                     Establecimientos
                                     <span class="circle" >
@@ -627,7 +627,7 @@
                                     </span>
                                   </label>
                                 </div>
-                              </div>
+                            </div>
                             <div class="row" style="border: groove; margin: auto; width: 92%;">
                                 <i style="padding-top: 9px;" class="material-icons">search</i>
                                 <input class="form-control" id="myInput" type="text" [(ngModel)]="searchText" placeholder="Buscar establecimiento" (keyup)="showSearchResults($event)" style="width: 92%; margin: auto; margin-left: 0px;">
@@ -921,7 +921,7 @@
                             </ng-template>
 
 
-                    </div>
+                        </div>
                     </div>
                     <ng-template #elseBlockSelectedEmpresa>
 
@@ -1029,7 +1029,7 @@
                 </div>
 
                 <br>
-                </div>
+            </div>
         </div>
         <!-- section -->
     </div>
@@ -1196,7 +1196,7 @@
                 <i class="material-icons">clear</i>
             </button>
         </h3>
-    </div> 
+    </div>
     <div class="modal-body" style="padding-top: 0px ; color: black;">
         <div>
             <img class="img-raised rounded img-fluid" style="height: 254px; margin-top: 10px;" [src]="producto.retrievedImage">
