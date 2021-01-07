@@ -3,5 +3,9 @@ export class Promociones {
     nombrePromocion:string;
     descripcion:string;
     imagen:number;
-    idProducto: number;
+    producto: number;
+
+    retrieveResonse: any;
+    base64Data: any;
+    retrievedImage: any;
 }

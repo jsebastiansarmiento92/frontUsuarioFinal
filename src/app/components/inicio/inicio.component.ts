@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ProductoServiceService } from 'src/app/services/producto-service/producto-service.service';
 import { ImageService } from 'src/app/services/image-service/image.service';
 import { Producto } from 'src/app/models/producto';
@@ -28,6 +28,8 @@ import * as Stomp from 'stompjs';
 import { UsuarioService } from 'src/app/services/usuario-service/usuario.service';
 import { runInThisContext } from 'vm';
 import { Usuario } from 'src/app/models/usuario';
+import { PromocionesService } from 'src/app/services/promociones-service/promociones.service';
+import { Promociones } from 'src/app/models/promociones';
 
 
 
@@ -88,8 +90,10 @@ export class InicioComponent implements OnInit {
   empresas: Empresa[] = [];
   totalEmpresas: Empresa[] = [];
   empresasTemporal: Empresa[] = [];
+  promociones:Promociones[]=[];
   totalPedido = 0;
   msgtotalpedido = 0;
+  @Input() public indice=0;
   categoriaActual = "Todas las categorias";
   observacionesProducto="";
   isDatafono=false;
@@ -127,9 +131,11 @@ export class InicioComponent implements OnInit {
     private empresaService: EmpresaService,
     private socketService: SocketService,
     private usuarioService: UsuarioService,
+    private promocionesService: PromocionesService
   ) { }
 
   ngOnInit() {
+    this.mostrarPromociones();
     //this.llenarTipodirecciones();
     if(localStorage.getItem("reabrirCarrito")){
       if(localStorage.getItem("reabrirCarrito")=='true') 
@@ -199,7 +205,25 @@ export class InicioComponent implements OnInit {
   productoShow(show : boolean){
     this.showProductos= show;
   }
-
+  mostrarPromociones(){
+    console.log("metodo de mostrar promociones");
+    this.promocionesService.listarUsuarioFinal().subscribe(data=>{
+      console.log("mostrar promociones");
+      console.log(data)
+      this.promociones=data;
+      this.promociones.forEach(element => {
+        console.log("mostrar las promociones ")
+        this.imagenService.getImageId(element.imagen).subscribe(data => {
+          this.retrieveResonse = data;
+          console.log(data);
+          this.base64Data = this.retrieveResonse.picByte;
+          //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          console.log(this.retrievedImage);
+        })
+      });
+    })
+  }
   initializeWebSocketConnection() {
     let ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
@@ -458,7 +482,7 @@ export class InicioComponent implements OnInit {
       this.productos = data;
       console.log(this.productos);
       this.productos.forEach(element => {
-        console.log("id de las imagenes de los productos" + element.imagen);
+        console.log("id de las imagenes de los productos " + element.imagen);
 
         this.imagenService.getImageId(element.imagen).subscribe(data => {
           this.retrieveResonse = data;
@@ -939,6 +963,19 @@ export class InicioComponent implements OnInit {
       console.log(err.error.mensaje)
     });
 
+  }
+  getProductoPromocion(idProducto:number,modal){
+    this.productos.forEach(element => {
+      if(idProducto==element.idProducto){
+        this.producto = element;
+      }
+    });
+    if (localStorage.getItem("isLoggedin")) {
+     
+      this.serviceModal.open(modal);
+    } else {
+      this.router.navigate(["login"]);
+    }
   }
   llenarDetalleList(idServicio: number) {
     let estadoServicio = "Activo";
