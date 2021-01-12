@@ -89,6 +89,7 @@ export class InicioComponent implements OnInit {
   productos: Producto[] = [];
   empresas: Empresa[] = [];
   totalEmpresas: Empresa[] = [];
+  totalProducto: Producto[] = [];
   empresasTemporal: Empresa[] = [];
   promociones:Promociones[]=[];
   totalPedido = 0;
@@ -141,10 +142,7 @@ export class InicioComponent implements OnInit {
       if(localStorage.getItem("reabrirCarrito")=='true') 
       this.showF();
     }
-    this.cargarProductos();
-    if (JSON.parse(localStorage.getItem('myCar')) != null) {
-      this.getCarrito();
-    }
+    
     this.initializeWebSocketConnection();
     console.log("verificacion variable de cambio de direccion");
     console.log(localStorage.getItem('cambioDireccion') == 'true');
@@ -199,7 +197,38 @@ export class InicioComponent implements OnInit {
     }
     //this.cargarProductos();
     this.cargarEmpresas();
+    this.cargarProductos();
+    if (JSON.parse(localStorage.getItem('myCar')) != null) {
+      this.getCarrito();
+    }
     //this.cargarCategorias();
+    this.cargarProducto();
+  }
+
+  cargarProducto(){
+    this.productosService.listarUsuarioFinal().subscribe(data => {
+      // this.empresas = data;
+       console.log("productos cargadas");
+       console.log(this.productos);
+       this.totalProducto = this.productos;
+
+       data.forEach(element => {
+         console.log("id de las imagenes de los productos " + element.imagen);
+         
+         if(element.imagen==0){
+           element.imagen=1;
+         }
+         this.imagenService.getImageId(element.imagen).subscribe(data => {
+           this.retrieveResonse = data;
+           console.log(data);
+           this.base64Data = this.retrieveResonse.picByte;
+           //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+           console.log(this.retrievedImage);
+         })
+       });
+     })
+     
   }
 
   productoShow(show : boolean){
@@ -307,7 +336,7 @@ export class InicioComponent implements OnInit {
   }
 
   conductor() {
-    if(this.totalEmpresas.length){
+    if(this.totalEmpresas.length  && !this.showProductos){
       this.empresaSelected = false;
       //this.empresas = this.empresasTemporal;
       console.log("ingreso a conductor padre");
@@ -320,13 +349,27 @@ export class InicioComponent implements OnInit {
         });
       });
       this.empresas = empresasSeleccion;
-      this.categoriaActual = "Conductor";
+      this.categoriaActual = "Varios";
+      this.cargarCategorias();
+    }else if(this.totalProducto && this.showProductos) {
+      console.log("ingreso a conductor padre producto");
+      let productosSeleccion: Producto[] = [];
+      this.totalProducto.forEach(element => {
+        element.empresa.categorias.forEach(element2 => {
+          if (element2.idCategoria == 9) {
+            productosSeleccion.push(element);
+
+          }
+        });
+      });
+      this.productos = productosSeleccion;
+      this.categoriaActual = "Varios";
       this.cargarCategorias();
     }
     
   }
   domicilios() {
-    if(this.totalEmpresas.length){
+    if(this.totalEmpresas.length && !this.showProductos){
       this.empresaSelected = false;
       //this.empresas = this.empresasTemporal;
       console.log("ingreso a domicilios padre");
@@ -341,11 +384,24 @@ export class InicioComponent implements OnInit {
       this.empresas = empresasSeleccion;
       this.categoriaActual = "Domicilio";
       this.cargarCategorias();
+    }else if(this.showProductos) {
+      console.log("ingreso a Domicilio padre");
+      let productosSeleccion: Producto[] = [];
+      this.totalProducto.forEach(element => {
+        element.empresa.categorias.forEach(element2 => {
+          if (element2.idCategoria == 8) {
+            productosSeleccion.push(element);
+          }
+        });
+      });
+      this.productos = productosSeleccion;
+      this.categoriaActual = "Domicilio";
+      this.cargarCategorias();
     }
     
   }
   licores() {
-    if(this.totalEmpresas.length){
+    if(this.totalEmpresas.length && !this.showProductos){
       this.empresaSelected = false;
       //this.empresas = this.empresasTemporal;
       console.log("ingreso a licores padre");
@@ -361,11 +417,25 @@ export class InicioComponent implements OnInit {
       this.empresas = empresasSeleccion;
       this.categoriaActual = "Licores";
       this.cargarCategorias();
+    }else if(this.showProductos) {
+      console.log("ingreso a Licores padre");
+      let productosSeleccion: Producto[] = [];
+      this.totalProducto.forEach(element => {
+        console.log(this.totalProducto[0].nombreProducto);
+        element.empresa.categorias.forEach(element2 => {
+          if (element2.idCategoria == 7) {
+            productosSeleccion.push(element);
+          }
+        });
+      });
+      this.productos = productosSeleccion;
+      this.categoriaActual = "Licores";
+      this.cargarCategorias();
     }else this.cargarEmpresas();
     
   }
   viveres() {
-    if(this.totalEmpresas.length){
+    if(this.totalEmpresas.length && !this.showProductos){
       this.empresaSelected = false;
       //this.empresas = this.empresasTemporal;
       console.log("ingreso a viveres padre");
@@ -380,13 +450,26 @@ export class InicioComponent implements OnInit {
       this.empresas = empresasSeleccion;
       this.categoriaActual = "Viveres";
       this.cargarCategorias();
+    }else if(this.showProductos) {
+      console.log("ingreso a Viveres padre");
+      let productosSeleccion: Producto[] = [];
+      this.totalProducto.forEach(element => {
+        element.empresa.categorias.forEach(element2 => {
+          if (element2.idCategoria == 6) {
+            productosSeleccion.push(element);
+          }
+        });
+      });
+      this.productos = productosSeleccion;
+      this.categoriaActual = "Viveres";
+      this.cargarCategorias();
     }else this.cargarEmpresas();
    
   }
   drogueria() {
     console.log("imprimir todas las empresas");
     console.log(this.totalEmpresas.length);
-    if(this.totalEmpresas.length){
+    if(this.totalEmpresas.length && !this.showProductos){
       this.empresaSelected = false;
       console.log("ingreso a drogueria padre");
      // this.empresas = this.empresasTemporal;
@@ -405,11 +488,24 @@ export class InicioComponent implements OnInit {
       this.empresas = empresasSeleccion;
       this.categoriaActual = "Medicamentos";
       this.cargarCategorias();
+    }else if(this.showProductos) {
+      console.log("ingreso a Medicamentos padre");
+      let productosSeleccion: Producto[] = [];
+      this.totalProducto.forEach(element => {
+        element.empresa.categorias.forEach(element2 => {
+          if (element2.idCategoria == 4) {
+            productosSeleccion.push(element);
+          }
+        });
+      });
+      this.productos = productosSeleccion;
+      this.categoriaActual = "Medicamentos";
+      this.cargarCategorias();
     }else this.cargarEmpresas();
   
   }
-  restaurantes() {
-    if(this.totalEmpresas.length){
+  restaurantes() { 
+    if(this.totalEmpresas.length && !this.showProductos){
       this.empresaSelected = false;
       console.log("ingreso a restaurantes padre");
       //this.empresas = this.empresasTemporal;
@@ -430,6 +526,20 @@ export class InicioComponent implements OnInit {
   
       });
       this.empresas = empresasSeleccion;
+      this.categoriaActual = "Restaurantes";
+      this.cargarCategorias();
+    }else if(this.showProductos) {
+      console.log("ingreso a Restaurantes padre");
+      let productosSeleccion: Producto[] = [];
+      this.totalProducto.forEach(element => {
+        element.empresa.categorias.forEach(element2 => {
+          if (element2.idCategoria == 5) {
+            productosSeleccion.push(element);
+          }
+        });
+      });
+      this.productos = productosSeleccion;
+      
       this.categoriaActual = "Restaurantes";
       this.cargarCategorias();
     }else this.cargarEmpresas();
@@ -495,7 +605,10 @@ export class InicioComponent implements OnInit {
       });
       // this.loader = false;
     });
-
+    this.totalProducto = this.productos;
+    console.log("productos total aqui aqui aqui aqui");
+    console.log(this.totalProducto);
+    console.log(this.productos)
   }
   ordenarProducto(producto: Producto, modal) {
     if (localStorage.getItem("isLoggedin")) {
