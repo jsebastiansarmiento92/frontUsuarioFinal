@@ -336,7 +336,7 @@ export class InicioComponent implements OnInit {
   }
 
   conductor() {
-    if(this.totalEmpresas.length  && !this.showProductos){
+    if(this.totalEmpresas.length ){
       this.empresaSelected = false;
       //this.empresas = this.empresasTemporal;
       console.log("ingreso a conductor padre");
@@ -351,7 +351,9 @@ export class InicioComponent implements OnInit {
       this.empresas = empresasSeleccion;
       this.categoriaActual = "Varios";
       this.cargarCategorias();
-    }else if(this.totalProducto && this.showProductos) {
+    }else this.cargarEmpresas();
+    
+    if(this.totalProducto) {
       console.log("ingreso a conductor padre producto");
       let productosSeleccion: Producto[] = [];
       this.totalProducto.forEach(element => {
@@ -369,7 +371,7 @@ export class InicioComponent implements OnInit {
     
   }
   domicilios() {
-    if(this.totalEmpresas.length && !this.showProductos){
+    if(this.totalEmpresas.length){
       this.empresaSelected = false;
       //this.empresas = this.empresasTemporal;
       console.log("ingreso a domicilios padre");
@@ -384,7 +386,8 @@ export class InicioComponent implements OnInit {
       this.empresas = empresasSeleccion;
       this.categoriaActual = "Domicilio";
       this.cargarCategorias();
-    }else if(this.showProductos) {
+    }else this.cargarEmpresas();
+    if(this.showProductos) {
       console.log("ingreso a Domicilio padre");
       let productosSeleccion: Producto[] = [];
       this.totalProducto.forEach(element => {
@@ -401,7 +404,7 @@ export class InicioComponent implements OnInit {
     
   }
   licores() {
-    if(this.totalEmpresas.length && !this.showProductos){
+    if(this.totalEmpresas.length){
       this.empresaSelected = false;
       //this.empresas = this.empresasTemporal;
       console.log("ingreso a licores padre");
@@ -417,7 +420,9 @@ export class InicioComponent implements OnInit {
       this.empresas = empresasSeleccion;
       this.categoriaActual = "Licores";
       this.cargarCategorias();
-    }else if(this.showProductos) {
+    }else this.cargarEmpresas();
+    
+    if(this.showProductos) {
       console.log("ingreso a Licores padre");
       let productosSeleccion: Producto[] = [];
       this.totalProducto.forEach(element => {
@@ -431,11 +436,11 @@ export class InicioComponent implements OnInit {
       this.productos = productosSeleccion;
       this.categoriaActual = "Licores";
       this.cargarCategorias();
-    }else this.cargarEmpresas();
+    }
     
   }
   viveres() {
-    if(this.totalEmpresas.length && !this.showProductos){
+    if(this.totalEmpresas.length){
       this.empresaSelected = false;
       //this.empresas = this.empresasTemporal;
       console.log("ingreso a viveres padre");
@@ -450,7 +455,9 @@ export class InicioComponent implements OnInit {
       this.empresas = empresasSeleccion;
       this.categoriaActual = "Viveres";
       this.cargarCategorias();
-    }else if(this.showProductos) {
+    }else this.cargarEmpresas();
+    
+    if(this.showProductos) {
       console.log("ingreso a Viveres padre");
       let productosSeleccion: Producto[] = [];
       this.totalProducto.forEach(element => {
@@ -463,13 +470,13 @@ export class InicioComponent implements OnInit {
       this.productos = productosSeleccion;
       this.categoriaActual = "Viveres";
       this.cargarCategorias();
-    }else this.cargarEmpresas();
+    }
    
   }
   drogueria() {
     console.log("imprimir todas las empresas");
     console.log(this.totalEmpresas.length);
-    if(this.totalEmpresas.length && !this.showProductos){
+    if(this.totalEmpresas.length){
       this.empresaSelected = false;
       console.log("ingreso a drogueria padre");
      // this.empresas = this.empresasTemporal;
@@ -488,7 +495,9 @@ export class InicioComponent implements OnInit {
       this.empresas = empresasSeleccion;
       this.categoriaActual = "Medicamentos";
       this.cargarCategorias();
-    }else if(this.showProductos) {
+    }else this.cargarEmpresas();
+    
+    if(this.showProductos) {
       console.log("ingreso a Medicamentos padre");
       let productosSeleccion: Producto[] = [];
       this.totalProducto.forEach(element => {
@@ -501,11 +510,11 @@ export class InicioComponent implements OnInit {
       this.productos = productosSeleccion;
       this.categoriaActual = "Medicamentos";
       this.cargarCategorias();
-    }else this.cargarEmpresas();
+    }
   
   }
   restaurantes() { 
-    if(this.totalEmpresas.length && !this.showProductos){
+    if(this.totalEmpresas.length){
       this.empresaSelected = false;
       console.log("ingreso a restaurantes padre");
       //this.empresas = this.empresasTemporal;
@@ -528,7 +537,8 @@ export class InicioComponent implements OnInit {
       this.empresas = empresasSeleccion;
       this.categoriaActual = "Restaurantes";
       this.cargarCategorias();
-    }else if(this.showProductos) {
+    }else this.cargarEmpresas();
+    if(this.showProductos) {
       console.log("ingreso a Restaurantes padre");
       let productosSeleccion: Producto[] = [];
       this.totalProducto.forEach(element => {
@@ -542,7 +552,7 @@ export class InicioComponent implements OnInit {
       
       this.categoriaActual = "Restaurantes";
       this.cargarCategorias();
-    }else this.cargarEmpresas();
+    }
    
   }
   cargarEmpresas() {
