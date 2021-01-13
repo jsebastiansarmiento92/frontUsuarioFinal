@@ -1062,7 +1062,7 @@ export class InicioComponent implements OnInit {
     this.pedido.valorComision = 0;
     this.pedido.valorGanancia = 0;
     this.pedido.valorTotalPedido = 0;
-    this.serviceModal.dismissAll();
+    //this.serviceModal.dismissAll();
     console.log("valor gananacia " + this.valorServicio);
     this.pedido.valorGanancia = this.valorServicio;
     console.log("ingreso a crear el pedido");

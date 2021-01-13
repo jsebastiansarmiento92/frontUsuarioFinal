@@ -541,7 +541,7 @@
                                                         </h6>
                                                         <br>
                                                         <div class="price-container">
-                                                            <span class="price"> $ {{producto.valorProducto}} </span>
+                                                            <span class="price">${{producto.valorProducto}}</span>
                                                         </div>
     
                                                     </div>
@@ -633,7 +633,7 @@
                                                                 </ng-template>
                                                             <br>
                                                             <div class="ui-icon-mail-open">
-                                                                <span class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
+                                                                <span style="text-overflow: ellipsis; overflow: hidden; white-space: normal;" class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
                                                             </div>
     
                                                         </div>
@@ -654,8 +654,9 @@
     
                             <div class="row">
                                 <h2 class="section-title">{{categoriaActual}}</h2><br>
-                                <div class="col-12 row">
-                                    <h5 class="" style="margin-top: auto; margin-left: 15px;">Buscar por: </h5> 
+                                <div class="col-12">
+                                    <div class="row">
+                                        <h5 class="" style="margin-top: auto; margin-left: 15px;">Buscar por: </h5> 
                                     <div class="form-check m-1">
                                       <label class="form-check-label " style="padding-left: 20px; color: #3c4858;">
                                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" (click)="productoShow(true)" >
@@ -673,6 +674,7 @@
                                           <span class="check" style="left: -1.5px;"></span>
                                         </span>
                                       </label>
+                                    </div>
                                     </div>
                                   </div>
                                 <div class="row" style="border: groove; margin: auto; width: 92%;">
@@ -851,7 +853,7 @@
                                                             </ng-template>
                                                             <br>
                                                             <div class="ui-icon-mail-open">
-                                                                <span class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
+                                                                <span style="text-overflow: ellipsis; overflow: hidden; white-space: normal;" class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -952,7 +954,7 @@
                                                                 </ng-template>
                                                             <br>
                                                             <div class="ui-icon-mail-open">
-                                                                <span class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
+                                                                <span style="text-overflow: ellipsis; overflow: hidden; white-space: normal;" class="ui-icon-mail-closed">Tiempo estimado: 30-40 minutos </span>
                                                             </div>
     
                                                         </div>
@@ -1019,7 +1021,7 @@
                                                         </h6>
                                                         <br>
                                                         <div class="price-container">
-                                                            <span class="price"> $ {{producto.valorProducto}} </span>
+                                                            <span class="price">${{producto.valorProducto}} </span>
                                                         </div>
     
                                                     </div>
@@ -1246,6 +1248,7 @@
             <button (click)="confirmMedioPago('Efectivo')" class="btn btn-danger col-12">Efectivo</button>
             <button (click)="confirmMedioPago('Datafono')" class=" btn btn-danger col-12">Datafono</button>
             <button (click)="confirmMedioPago('Codigo QR')" class="btn btn-danger col-12 ">Codigo QR</button>
+            <button (click)="agregarObservacion(tramitandoModal)" class="btn btn-danger col-12 ">Codigo QR</button>
         </form>
     </div>
 </ng-template>
@@ -1293,84 +1296,85 @@
     <div class="modal-body" style="padding: 0px;">
 
 
-        <div class="card-body table-reponsive">
-            <div *ngIf="isDatafono;else elsedatafono">
+        <div class="card-body">
+            <div *ngIf="isDatafono;else elsedataFono">
                 <label class="modal-title" style="color: black;">Dirección: {{direccionCompleta}}</label><br>
                 <label class="modal-title" style="color: black;">Barrio: {{barrio.nombreBarrio}}</label><br>
                 <label class="modal-title" style="color: black;">Valor Domicilio: {{valorServicio+1000}}</label><br>
                 <label class="modal-title" style="color: black;">Valor total: {{valorServicio + totalPedido+1000}}</label><br>
             </div>
-            <template #elsedatafono>
+            <ng-template #elsedataFono>
                 <div >
                     <label class="modal-title" style="color: black;">Dirección: {{direccionCompleta}}</label><br>
                     <label class="modal-title" style="color: black;">Barrio: {{barrio.nombreBarrio}}</label><br>
                     <label class="modal-title" style="color: black;">Valor Domicilio: {{valorServicio}}</label><br>
                     <label class="modal-title" style="color: black;">Valor total: {{valorServicio + totalPedido}}</label><br>
                 </div>
-            </template>
+            </ng-template>
             <h5 class="modal-title">Detalle de pedido:</h5>
-            <table class="table table-hover " style="padding-left: 10px; overflow-x: scroll;">
-                <thead>
-                    <tr>
-                        <th>Imagen</th>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Valor unitario</th>
-                        <th class="text-right">Total</th>
-
-                    </tr>
-                </thead>
-                <tbody *ngFor="let productoCar of productosCarrito">
-                    <tr>
-                        <td><img [src]="productoCar.retrievedImage" style="width: 50px;" alt=""></td>
-                        <td>{{productoCar.nombreProducto}}</td>
-                        <td>{{productoCar.cantidad}}</td>
-                        <td>$ {{productoCar.valorProducto}}</td>
-                        <td class="text-right">$ {{(productoCar.valorProducto*productoCar.cantidad)}}</td>
-
-                    </tr>
-                </tbody>
-
-                <tfoot>
-                    <tr *ngIf="isDatafono;else elsedatafono">
-                        <td></td>
-                        <td>Domicilio</td>
-                        <td></td>
-                        <td>${{valorServicio+1000}}</td>
-                        <td class="text-right">$ {{valorServicio+1000}}</td>
-                    </tr>
-                    <ng-template #elsedatafono>
+            <div style="overflow-x: auto; display: block;">
+                <table class="table table-reponsive table-hover ">
+                    <thead>
                         <tr>
-                            <td></td>
-                            <td>Domicilio</td>
-                            <td></td>
-                            <td>${{valorServicio}}</td>
-                            <td class="text-right">$ {{valorServicio}}</td>
+                            <th>Imagen</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Valor Unitario</th>
+                            <th class="text-right">Total</th>
+    
                         </tr>
-                    </ng-template>
-
-                    <tr *ngIf="isDatafono;else elseDatafono">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><strong>Total</strong></td>
-                        <td class="text-right"><strong>$ {{valorServicio + totalPedido+1000}}</strong></td>
-                    </tr>
-                    <ng-template #elseDatafono>
+                    </thead>
+                    <tbody *ngFor="let productoCar of productosCarrito">
                         <tr>
+                            <td><img [src]="productoCar.retrievedImage" style="width: 50px;" alt=""></td>
+                            <td>{{productoCar.nombreProducto}}</td>
+                            <td>{{productoCar.cantidad}}</td>
+                            <td>${{productoCar.valorProducto}}</td>
+                            <td class="text-right">${{(productoCar.valorProducto*productoCar.cantidad)}}</td>
+    
+                        </tr>
+                    </tbody>
+    
+                    <tfoot>
+                        <tr *ngIf="isDatafono;else elsedatafono">
+                            <td></td>
+                            <td>Domicilio </td>
+                            <td></td>
+                            <td>${{valorServicio+1000}}</td>
+                            <td class="text-right">${{valorServicio+1000}}</td>
+                        </tr>
+                        <ng-template #elsedatafono>
+                            <tr>
+                                <td></td>
+                                <td>Domicilio </td>
+                                <td></td>
+                                <td>${{valorServicio}}</td>
+                                <td class="text-right">${{valorServicio}}</td>
+                            </tr>
+                        </ng-template>
+    
+                        <tr *ngIf="isDatafono;else elseDatafono">
                             <td></td>
                             <td></td>
                             <td></td>
                             <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>$ {{valorServicio + totalPedido}}</strong></td>
+                            <td class="text-right"><strong>${{valorServicio + totalPedido+1000}}</strong></td>
                         </tr>
-                    </ng-template>
-
-                </tfoot>
-            </table>
+                        <ng-template #elseDatafono>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Total</strong></td>
+                                <td class="text-right"><strong>${{valorServicio + totalPedido}}</strong></td>
+                            </tr>
+                        </ng-template>
+    
+                    </tfoot>
+                </table>
+            </div>
+            
         </div>
-
-
     </div>
 
     <div class="modal-footer justify-content-center">

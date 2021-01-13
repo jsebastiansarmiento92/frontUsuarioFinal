@@ -327,9 +327,9 @@
     <div class="modal-body">
         <label class="modal-title ">Empresa pedido: {{pedido.empresa.razonSocial}}</label><br>
         <label class="modal-title">Estado Pedido: {{pedido.estadoPedido}}</label><br>
-        <label class="modal-title">Valor Productos: $ {{pedido.valorTotalPedido}}</label><br>
-        <label class="modal-title">Valor Domicilio: $ {{pedido.valorGanancia}}</label><br>
-        <label class="modal-title">Valor Total: $ {{pedido.valorGanancia+pedido.valorTotalPedido}}</label><br>
+        <label class="modal-title">Valor Productos: ${{pedido.valorTotalPedido}}</label><br>
+        <label class="modal-title">Valor Domicilio: ${{pedido.valorGanancia}}</label><br>
+        <label class="modal-title">Valor Total: ${{pedido.valorGanancia+pedido.valorTotalPedido}}</label><br>
         <br>
         <label class="modal-title">Onservaciones (las observaciones solo son aplicables 10 minutos despues de realizado
             el pedido antes no se garantiza que se ejecuten)</label><br>
@@ -356,22 +356,22 @@
                 <tr>
                     <td>{{detalleServicio.producto.nombreProducto}}</td>
                     <td>{{detalleServicio.cantidad}}</td>
-                    <td>$ {{detalleServicio.valorUnitario}}</td>
-                    <td class="text-right">$ {{detalleServicio.valorTotal}}</td>
+                    <td>${{detalleServicio.valorUnitario}}</td>
+                    <td class="text-right">${{detalleServicio.valorTotal}}</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
                     <td>Domicilio</td>
                     <td></td>
-                    <td>$ {{pedido.valorGanancia}}</td>
-                    <td class="text-right">$ {{pedido.valorGanancia}}</td>
+                    <td>${{pedido.valorGanancia}}</td>
+                    <td class="text-right">${{pedido.valorGanancia}}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td><strong>Total</strong></td>
-                    <td class="text-right"><strong>$ {{pedido.valorGanancia+pedido.valorTotalPedido}}</strong></td>
+                    <td class="text-right"><strong>${{pedido.valorGanancia+pedido.valorTotalPedido}}</strong></td>
                 </tr>
             </tfoot>
         </table>
