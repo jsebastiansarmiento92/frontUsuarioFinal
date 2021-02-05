@@ -8,7 +8,7 @@ import { Promociones } from 'src/app/models/promociones';
 })
 export class PromocionesService {
 
-  productoURL = 'https://quickdomicilios.herokuapp.com/promociones';
+  productoURL = 'http://localhost:8080/promociones';
   constructor(private httpClient: HttpClient) { }
   
   listarUsuarioFinal() : Observable<any>{

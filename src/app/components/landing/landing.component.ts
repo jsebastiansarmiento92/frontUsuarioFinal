@@ -77,7 +77,7 @@ export class LandingComponent implements OnInit {
     this.tokenService.setAuthorities(data.rol);
     this.tokenService.setIdUser(data.id);
     this.tokenService.setLugar(data.idLugar);
-
+    this.tokenService.setEstadoUsuario(data.estado);
     }
   }
   autenticarToken(){
@@ -109,6 +109,7 @@ export class LandingComponent implements OnInit {
     this.tokenService.setIdUser(data.id);
     this.tokenService.setLugar(data.idLugar);
     this.tokenService.setTelefono(data.telefono);
+    this.tokenService.setEstadoUsuario(data.estado);
     this.isLogged = true;
     this.isLoginFail = false;
     this.roles = this.tokenService.getAuthorities();
@@ -135,6 +136,7 @@ export class LandingComponent implements OnInit {
     this.tokenService.setIdUser(data.id);
     this.tokenService.setLugar(data.idLugar);
     this.tokenService.setTelefono(data.telefono);
+    this.tokenService.setEstadoUsuario(data.estado);
     this.isLogged = true;
     this.isLoginFail = false;
     this.roles = this.tokenService.getAuthorities();

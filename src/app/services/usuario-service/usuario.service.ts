@@ -14,7 +14,7 @@ const cabecera = { headers: new HttpHeaders({ 'Content-TYpe': 'application/json'
 
 
 export class UsuarioService {
-  usuarioURL = 'https://quickdomicilios.herokuapp.com/usuarios';
+  usuarioURL = 'http://localhost:8080/usuarios';
 
 
   constructor(private http: HttpClient) {
@@ -31,6 +31,11 @@ export class UsuarioService {
     console.log("el ide seleccionado es " + usuario.id)
     return this.http.put<any>(this.usuarioURL + `/${id}`, usuario);
   }
+  updateUsuarioEstado(estado: string, id: number):Observable<any>{
+    return this.http.get(this.usuarioURL + `/modificarEstado/${id}`+`&${estado}`);
+  }
+
+
   updateUsuarioLugar(lugar: Lugar, id: number): Observable<any> {
     // console.log("el ide seleccionado es " + usuario.id);
     return this.http.put<any>(this.usuarioURL + `/modificarLugar/${id}`, lugar);

@@ -15,7 +15,7 @@ var core_1 = require("@angular/core");
 var ProductoServiceService = /** @class */ (function() {
     function ProductoServiceService(httpClient) {
         this.httpClient = httpClient;
-        this.productoURL = 'https://quickdomicilios.herokuapp.com/productos';
+        this.productoURL = 'http://localhost:8080/productos';
     }
     ProductoServiceService.prototype.creaProducto = function(producto) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)

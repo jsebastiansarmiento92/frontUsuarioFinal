@@ -15,7 +15,7 @@ var core_1 = require("@angular/core");
 var LugarService = /** @class */ (function() {
     function LugarService(http) {
         this.http = http;
-        this.lugarURL = 'https://quickdomicilios.herokuapp.com/lugar';
+        this.lugarURL = 'http://localhost:8080/lugar';
     }
     LugarService.prototype.createLugar = function(lugar) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)

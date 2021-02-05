@@ -104,6 +104,7 @@ export class LoginModalComponent implements OnInit {
       this.tokenService.setIdUser(data.id);
       this.tokenService.setLugar(data.idLugar);
       this.tokenService.setTelefono(data.telefono);
+      this.tokenService.setEstadoUsuario(data.estado);
       //alert("id del usuario lopueado es "+data.id);
       //window.sessionStorage.setItem("idSesion",data.);
       //window.sessionStorage.setItem("AuthToken",this.tokenService.getToken());
@@ -124,11 +125,11 @@ export class LoginModalComponent implements OnInit {
   }
   loginGoogle() {
     console.log("ingresoa registrer con google");
-    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+    location.href = "http://localhost:8080/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
   }
   loginFacebook(){
     console.log("ingresoa registrer con facebook");
-    location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+    location.href = "http://localhost:8080/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
 
 }

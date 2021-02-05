@@ -15,7 +15,7 @@ var core_1 = require("@angular/core");
 var DetalleServicioService = /** @class */ (function() {
     function DetalleServicioService(http) {
         this.http = http;
-        this.detalleservicioURL = 'https://quickdomicilios.herokuapp.com/detalleServicio';
+        this.detalleservicioURL = 'http://localhost:8080/detalleServicio';
     }
     DetalleServicioService.prototype.createDetalleServicio = function(detalleServicio) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)

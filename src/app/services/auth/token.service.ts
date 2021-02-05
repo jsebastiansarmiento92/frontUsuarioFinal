@@ -9,6 +9,7 @@ const ID_SESION = 'IdSesion';
 const ID_LUGAR = 'IdLugar';
 const TELEFONO = 'Telefono';
 const IMAGEURL='ImageUrl'
+const ESTADO_USUARIO="EstadoUsuario"
 @Injectable({
   providedIn: 'root'
 })
@@ -43,21 +44,28 @@ export class TokenService {
   }
 
   public getUserName(): string {
-    return sessionStorage.getItem(USERNAME_KEY);
+    return window.sessionStorage.getItem(USERNAME_KEY);
   }
   public setTelefono(telefono: string): void {
     window.sessionStorage.removeItem(TELEFONO);
     window.sessionStorage.setItem(TELEFONO, telefono);
   }
+  public setEstadoUsuario(estado: string): void {
+    window.sessionStorage.removeItem(ESTADO_USUARIO);
+    window.sessionStorage.setItem(ESTADO_USUARIO, estado);
+  }
+  public getEstadoUsuario(): string {
+    return window.sessionStorage.getItem(ESTADO_USUARIO);
+  }
   public getTelefono(): string {
-    return sessionStorage.getItem(TELEFONO);
+    return window.sessionStorage.getItem(TELEFONO);
   }
   public setImageUrl(imageUrl: string): void {
     window.sessionStorage.removeItem(IMAGEURL);
     window.sessionStorage.setItem(IMAGEURL, imageUrl);
   }
   public getImageUrl(): string {
-    return sessionStorage.getItem(IMAGEURL);
+    return window.sessionStorage.getItem(IMAGEURL);
   }
 
 
@@ -77,7 +85,7 @@ export class TokenService {
       console.log(123455);
        console.log(sessionStorage.getItem(AUTHORITIES_KEY));
         
-        this.roles.push(JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)));
+        this.roles.push(JSON.parse(window.sessionStorage.getItem(AUTHORITIES_KEY)));
       
     }
     return this.roles;
@@ -85,7 +93,7 @@ export class TokenService {
 
   public logOut(): void {
     window.sessionStorage.clear();
-    sessionStorage.clear();
+    window.sessionStorage.clear();
     window.localStorage.clear();
     localStorage.clear();
   }

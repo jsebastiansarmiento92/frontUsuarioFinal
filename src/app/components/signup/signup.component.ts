@@ -74,6 +74,7 @@ export class SignupComponent implements OnInit {
         this.tokenService.setLugar(data.idLugar);
         this.tokenService.setTelefono(data.telefono);
         this.tokenService.setImageUrl(data.imageUrl);
+        this.tokenService.setEstadoUsuario(data.estado);
         //alert("telefono es:"+data.telefono);
         //alert("id del usuario lopueado es "+data.id);
         //window.sessionStorage.setItem("idSesion",data.);
@@ -109,23 +110,29 @@ export class SignupComponent implements OnInit {
   }
   registerGoogle(){
    // console.log("ingresoa registrer con google");
-    location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+    location.href="http://localhost:8080/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
   }
   registerFacebook(){
     console.log("ingresoa registrer con facebook");
-    location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+    location.href="http://localhost:8080/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
 
 
   registerManual(modal){
     this.serviceModal.open(modal);
-    console.log("datos que se envian para el registro");
-    console.log(this.signupRequest);
+    //console.log("datos que se envian para el registro");
+    //console.log(this.signupRequest);
+    console.log("antes ingreso al if");
     if(this.checkTErminos){
+      
       this.authService.onRegister(this.signupRequest).subscribe(data=>{
-        console.log(data);
-        alert("Registro completo por favor inicie sesion con sus datos para continuar");
-        this.router.navigate(['login']);
+        console.log("datos de usuario: ");
+       // console.log(data);
+        //console.log(data.user);
+        alert(data.mensaje);
+        window.localStorage.setItem("idSesion", JSON.stringify(data.user));
+        this.tokenService.setToken(data.token);
+        this.getUser(data.user);
         this.serviceModal.dismissAll();
       },(err: any) => {
         this.creado = false;
@@ -148,5 +155,24 @@ export class SignupComponent implements OnInit {
     
     console.log("primir"+this.checkTErminos);
 
+  }
+  getUser(data) {
+    console.log("datos que entrarn en get user");
+    console.log(data);
+    this.tokenService.setUserName(data.name);
+      this.tokenService.setAuthorities(data.rol);
+      this.tokenService.setIdUser(data.id);
+      this.tokenService.setLugar(data.idLugar);
+      this.tokenService.setTelefono(data.telefono);
+      this.tokenService.setEstadoUsuario(data.estado);
+      this.isLogged = true;
+      this.isLoginFail = false;
+      this.roles = this.tokenService.getAuthorities();
+      localStorage.setItem('isLoggedin','true');
+      //window.location.reload();
+      
+      this.router.navigate(['']);
+      //this.loader = false;
+      
   }
 }

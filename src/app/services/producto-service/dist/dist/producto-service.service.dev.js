@@ -24,7 +24,7 @@ var ProductoServiceService =
     function() {
         function ProductoServiceService(httpClient) {
             this.httpClient = httpClient;
-            this.productoURL = 'https://quickdomicilios.herokuapp.com/productos';
+            this.productoURL = 'http://localhost:8080/productos';
         }
 
         ProductoServiceService.prototype.creaProducto = function(producto) {
