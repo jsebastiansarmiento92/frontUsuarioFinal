@@ -10,6 +10,7 @@ import { UsuarioService } from 'src/app/services/usuario-service/usuario.service
 import { Pedido } from 'src/app/models/pedido';
 import { PedidoService } from 'src/app/services/pedido-service/pedido.service';
 import { DetalleServicioService } from 'src/app/services/detalleServicio-service/detalle-servicio.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 
 @Component({
@@ -36,7 +37,8 @@ export class HeadComponent implements OnInit {
   passwordNueva="";
   confirmacionPassword="";
   usuario:Usuario=new Usuario();
-
+  isLogged;
+  isLoginFail
   constructor(private tokenService: TokenService,
     private router: Router,
     private lugarService:LugarService,
@@ -44,7 +46,8 @@ export class HeadComponent implements OnInit {
     private usuarioService:UsuarioService,
     private pedidoService:PedidoService,
     private detalleServicioService:DetalleServicioService,
-    private modalService:NgbModal) { }
+    private modalService:NgbModal,
+    private authService:AuthService) { }
 
   ngOnInit() {
     console.log("ingreso a ngoinit de head");
@@ -89,6 +92,7 @@ export class HeadComponent implements OnInit {
       this.pedidos=data;
       console.log(data);
     });
+    this.getUser();
   }
 
 
@@ -250,5 +254,32 @@ confirmarPassw(){
       alert("contraseña no coincide");
     }
 
+}
+getUser() {
+
+  this.authService.getCurrentUser().subscribe(data => {
+    console.log("ingreso de metodo de get currentuser")
+    console.log(data);
+    window.localStorage.setItem("idSesion", JSON.stringify(data));
+    //window.localStorage.setItem("AuthToken", data.token);
+    this.tokenService.setToken(data.token);
+    this.tokenService.setUserName(data.name);
+    this.tokenService.setAuthorities(data.rol);
+    this.tokenService.setIdUser(data.id);
+    this.tokenService.setLugar(data.idLugar);
+    this.tokenService.setTelefono(data.telefono);
+    this.tokenService.setEstadoUsuario(data.estado);
+    //alert("id del usuario lopueado es "+data.id);
+    //window.sessionStorage.setItem("idSesion",data.);
+    //window.sessionStorage.setItem("AuthToken",this.tokenService.getToken());
+    this.isLogged = true;
+    this.isLoginFail = false;
+    this.roles = this.tokenService.getAuthorities();
+    localStorage.setItem('isLoggedin', 'true');
+    //window.location.reload();
+    this.router.navigate(['/inicio']);
+   // this.loader = false;
+    //this.cerrarModal();
+  });
 }
 }

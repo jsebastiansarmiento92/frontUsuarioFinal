@@ -19,8 +19,8 @@ export class TokenService {
   constructor() { }
 
   public setLugar(idLugar: string): void {
-    window.sessionStorage.removeItem(ID_LUGAR);
-    window.sessionStorage.setItem(ID_LUGAR, idLugar);
+    sessionStorage.removeItem(ID_LUGAR);
+    sessionStorage.setItem(ID_LUGAR, idLugar);
   }
 
   public getLugar(): string {
@@ -31,52 +31,52 @@ export class TokenService {
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
   public setIdUser(idUser: string): void {
-    window.sessionStorage.removeItem(ID_SESION);
-    window.sessionStorage.setItem(ID_SESION, idUser);
+    sessionStorage.removeItem(ID_SESION);
+    sessionStorage.setItem(ID_SESION, idUser);
   }
   public getToken(): string {
-    return sessionStorage.getItem(TOKEN_KEY);
+    return window.localStorage.getItem(TOKEN_KEY);
   }
 
   public setUserName(userName: string): void {
-    window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, userName);
+    sessionStorage.removeItem(USERNAME_KEY);
+    sessionStorage.setItem(USERNAME_KEY, userName);
   }
 
   public getUserName(): string {
-    return window.sessionStorage.getItem(USERNAME_KEY);
+    return sessionStorage.getItem(USERNAME_KEY);
   }
   public setTelefono(telefono: string): void {
-    window.sessionStorage.removeItem(TELEFONO);
-    window.sessionStorage.setItem(TELEFONO, telefono);
+    sessionStorage.removeItem(TELEFONO);
+    sessionStorage.setItem(TELEFONO, telefono);
   }
   public setEstadoUsuario(estado: string): void {
-    window.sessionStorage.removeItem(ESTADO_USUARIO);
-    window.sessionStorage.setItem(ESTADO_USUARIO, estado);
+    sessionStorage.removeItem(ESTADO_USUARIO);
+    sessionStorage.setItem(ESTADO_USUARIO, estado);
   }
   public getEstadoUsuario(): string {
-    return window.sessionStorage.getItem(ESTADO_USUARIO);
+    return sessionStorage.getItem(ESTADO_USUARIO);
   }
   public getTelefono(): string {
-    return window.sessionStorage.getItem(TELEFONO);
+    return sessionStorage.getItem(TELEFONO);
   }
   public setImageUrl(imageUrl: string): void {
-    window.sessionStorage.removeItem(IMAGEURL);
-    window.sessionStorage.setItem(IMAGEURL, imageUrl);
+    sessionStorage.removeItem(IMAGEURL);
+    sessionStorage.setItem(IMAGEURL, imageUrl);
   }
   public getImageUrl(): string {
-    return window.sessionStorage.getItem(IMAGEURL);
+    return sessionStorage.getItem(IMAGEURL);
   }
 
 
 
   public  getIdUser(): string {
 
-    return  window.sessionStorage.getItem(ID_SESION);
+    return  sessionStorage.getItem(ID_SESION);
   }
   public setAuthorities(authorities: string[]): void {
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+    sessionStorage.removeItem(AUTHORITIES_KEY);
+    sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
 
   public getAuthorities(): string[] {
@@ -85,14 +85,14 @@ export class TokenService {
       console.log(123455);
        console.log(sessionStorage.getItem(AUTHORITIES_KEY));
         
-        this.roles.push(JSON.parse(window.sessionStorage.getItem(AUTHORITIES_KEY)));
+        this.roles.push(JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)));
       
     }
     return this.roles;
   }
 
   public logOut(): void {
-    window.sessionStorage.clear();
+    sessionStorage.clear();
     window.sessionStorage.clear();
     window.localStorage.clear();
     localStorage.clear();

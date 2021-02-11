@@ -98,7 +98,8 @@ export class LoginModalComponent implements OnInit {
     this.authService.getCurrentUser().subscribe(data => {
       console.log(data);
       window.localStorage.setItem("idSesion", JSON.stringify(data));
-      //this.tokenService.setToken(data.token);
+      window.localStorage.setItem("AuthToken", data.token);
+      this.tokenService.setToken(data.token);
       this.tokenService.setUserName(data.name);
       this.tokenService.setAuthorities(data.rol);
       this.tokenService.setIdUser(data.id);

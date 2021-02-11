@@ -84,4 +84,8 @@ export class UsuarioService {
     console.log("el ide seleccionado es " + usuario.id)
     return this.http.put<any>(this.usuarioURL + `/modificarContraseñaPerfil/${id}`, usuario);
   }
+  updateContraseñaTel(tel: string): Observable<any> {
+    console.log("el ide seleccionado es " + tel)
+    return this.http.get<any>(this.usuarioURL + `/modificarContraseñaTelefono/${tel}`);
+  }
 }
