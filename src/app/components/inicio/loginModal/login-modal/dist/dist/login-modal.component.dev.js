@@ -138,12 +138,12 @@ var LoginModalComponent =
 
         LoginModalComponent.prototype.loginGoogle = function() {
             console.log("ingresoa registrer con google");
-            window.location.href = "http://localhost:8080/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+            window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
         };
         https: //quickdomicilios.herokuapp.com
             LoginModalComponent.prototype.loginFacebook = function() {
                 console.log("ingresoa registrer con facebook");
-                window.location.href = "http://localhost:8080/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+                window.location.href = "https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
             };
         https: //quickdomicilios.herokuapp.com
             __decorate([core_1.ViewChild('registroModal', {

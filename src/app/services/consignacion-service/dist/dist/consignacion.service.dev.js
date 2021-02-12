@@ -24,7 +24,7 @@ var ConsignacionService =
     function() {
         function ConsignacionService(http) {
             this.http = http;
-            this.consignacionURL = 'http://localhost:8080/consignaciones';
+            this.consignacionURL = 'https://quickdomicilios.herokuapp.com/consignaciones';
         }
 
         ConsignacionService.prototype.createConsignacion = function(consignacion) {

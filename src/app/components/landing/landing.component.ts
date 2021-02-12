@@ -55,9 +55,9 @@ export class LandingComponent implements OnInit {
     private serviceLugar:LugarService) { }
 
   ngOnInit() {
-   // this.autenticarToken();
-    this.autenticar();
-    console.log("ingreso metodo ngOninit landing")
+    //this.autenticarToken();
+    //this.autenticar();
+    console.log("ingreso metodo ngOninit landing");
     if(!localStorage.getItem('barrios')){
       this.cargarBarrios();
     }else
@@ -69,7 +69,7 @@ export class LandingComponent implements OnInit {
   }
   
 
-  reanudarSesion(){
+  /**reanudarSesion(){
 
     if(localStorage.getItem("idSesion")!=null){
       let data=JSON.parse(localStorage.getItem('idSesion'));
@@ -79,8 +79,8 @@ export class LandingComponent implements OnInit {
     this.tokenService.setLugar(data.idLugar);
     this.tokenService.setEstadoUsuario(data.estado);
     }
-  }
-  autenticarToken(){
+  }*/
+  /**autenticarToken(){
     this.serviceModal.open(this.cargandoModal);
     this.urlTree = this.router.parseUrl(this.router.url);
     this.token = this.urlTree.queryParams['token'];
@@ -120,9 +120,9 @@ export class LandingComponent implements OnInit {
 
     });
   }
-  }
+  }*/
   
-  autenticar(){
+  /**autenticar(){
  
   if(window.localStorage.getItem('AuthToken')){
     window.sessionStorage.setItem('AuthToken',window.localStorage.getItem('AuthToken'));
@@ -146,7 +146,7 @@ export class LandingComponent implements OnInit {
   } 
     this.reanudarSesion();
   
-  }
+  }*/
   inicio(modal){
     this.serviceModal.open(modal);
     if(localStorage.getItem('cambioDireccion')){
@@ -181,15 +181,14 @@ export class LandingComponent implements OnInit {
     }
   }
 
-  promesaModificarTelefono(){
-
-  }
+ 
   cargarBarrios(){
     this.cargaBarrios=true;
     this.barrioService.getBarrios().subscribe(data=>{
       for (var i = 0; i < data.length; i++) {
         this.barrios.push(data[i]);
       }
+      
       this.barrios=data;
       console.log("barrios cargados");
       console.log(data);
@@ -197,6 +196,7 @@ export class LandingComponent implements OnInit {
       this.cargaBarrios=false;
       location.reload();
     })
+    alert("ingresa direccion");
   }
 
   promesaModificarLugar(lugar:Lugar) {

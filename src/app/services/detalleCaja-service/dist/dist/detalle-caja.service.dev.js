@@ -32,7 +32,7 @@ var DetalleCajaService =
     function() {
         function DetalleCajaService(http) {
             this.http = http;
-            this.detalleCajaURL = 'http://localhost:8080/detalleCajas';
+            this.detalleCajaURL = 'https://quickdomicilios.herokuapp.com/detalleCajas';
         }
 
         DetalleCajaService.prototype.getCajas = function(id) {

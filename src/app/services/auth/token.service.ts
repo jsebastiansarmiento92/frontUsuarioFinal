@@ -8,8 +8,10 @@ const AUTHORITIES_KEY = 'rol';
 const ID_SESION = 'IdSesion';
 const ID_LUGAR = 'IdLugar';
 const TELEFONO = 'Telefono';
-const IMAGEURL='ImageUrl'
-const ESTADO_USUARIO="EstadoUsuario"
+const IMAGEURL='ImageUrl';
+const ESTADO_USUARIO="EstadoUsuario";
+const EMAIL_VERIFIED="emailVerified";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +23,13 @@ export class TokenService {
   public setLugar(idLugar: string): void {
     sessionStorage.removeItem(ID_LUGAR);
     sessionStorage.setItem(ID_LUGAR, idLugar);
+  }
+  public setEmailVerified(verified: string): void {
+    sessionStorage.removeItem(EMAIL_VERIFIED);
+    sessionStorage.setItem(EMAIL_VERIFIED, verified);
+  }
+  public getEmailVerified(): string {
+    return sessionStorage.getItem(EMAIL_VERIFIED);
   }
 
   public getLugar(): string {

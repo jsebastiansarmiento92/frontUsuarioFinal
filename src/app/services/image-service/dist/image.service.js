@@ -17,7 +17,7 @@ var cabecera = { headers: new http_1.HttpHeaders({ 'Content-Type': 'application/
 var ImageService = /** @class */ (function() {
     function ImageService(httpClient) {
         this.httpClient = httpClient;
-        this.imageURL = 'http://localhost:8080/image/';
+        this.imageURL = 'https://quickdomicilios.herokuapp.com/image/';
     }
     ImageService.prototype.onUpload = function(image, id) {
         return this.httpClient.post(this.imageURL + 'upload' + "/" + id, image);

@@ -32,7 +32,7 @@ var EmpresaService =
     function() {
         function EmpresaService(http) {
             this.http = http;
-            this.empresaURL = 'http://localhost:8080/empresas';
+            this.empresaURL = 'https://quickdomicilios.herokuapp.com/empresas';
         }
 
         EmpresaService.prototype.createEmpresa = function(empresa) {

@@ -277,8 +277,8 @@ getUser() {
     this.roles = this.tokenService.getAuthorities();
     localStorage.setItem('isLoggedin', 'true');
     //window.location.reload();
-    this.router.navigate(['/inicio']);
-   // this.loader = false;
+    //this.router.navigate(['/inicio']);
+    //this.loader = false;
     //this.cerrarModal();
   });
 }

@@ -892,8 +892,12 @@ export class InicioComponent implements OnInit {
       //  this.valorServicio+=1000;
       this.pedido.modoPagoPedido =formaPago;
     } else if(formaPago=="Codigo QR"){
+      this.isDatafono=false;
       this.pedido.modoPagoPedido ="Codigo QR";
-    }else  this.pedido.modoPagoPedido ="Efectivo";
+    }else  {
+      this.isDatafono=false;
+      this.pedido.modoPagoPedido ="Efectivo";
+    }
     this.formaPago=" Pago con: "+formaPago;
     if (confirm('¿Estás seguro que desea confirmar el pago '+formaPago+'?'+mensaje)) {
         this.confirmarPedido();
@@ -974,8 +978,8 @@ export class InicioComponent implements OnInit {
         this.serviceModal.open(this.tramitandoModal);
       this.msgtotalpedido = this.valorServicio + this.totalPedido;
       if(this.isDatafono){
-       
-        if (confirm('valor total del pedido: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
+       this.msgtotalpedido+=1000;
+        if (confirm('valor total del pedido con datafono: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
           this.msgtotalpedido+=1000;
         this.confirmarTransaccion();
@@ -1005,8 +1009,8 @@ export class InicioComponent implements OnInit {
       this.formaPago=this.formaPago;
       this.msgtotalpedido = this.valorServicio + this.totalPedido;
       if(this.isDatafono){
-        
-        if (confirm('valor total del pedido: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
+        this.msgtotalpedido+=1000;
+        if (confirm('valor total del pedido con datafono: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
           this.msgtotalpedido+=1000;
         this.confirmarTransaccion();
