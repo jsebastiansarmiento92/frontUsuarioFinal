@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { SignUpRequest } from 'src/app/models/sign-up-request';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RecaptchaErrorParameters } from "ng-recaptcha";
 
 
 @Component({
@@ -148,5 +149,12 @@ export class SignupComponent implements OnInit {
     
     console.log("primir"+this.checkTErminos);
 
+  }
+  public resolved(captchaResponse: string): void {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
+
+  public onError(errorDetails: RecaptchaErrorParameters): void {
+    console.log(`reCAPTCHA error encountered; details:`, errorDetails);
   }
 }

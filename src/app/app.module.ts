@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
+
 //import { CarritoComponent } from './components/carrito/carrito.component';
 //import { CarritoRoutingModule } from './components/carrito/carrito-routing.module';
 @NgModule({
