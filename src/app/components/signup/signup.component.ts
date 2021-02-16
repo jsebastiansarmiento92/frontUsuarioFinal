@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { SignUpRequest } from 'src/app/models/sign-up-request';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RecaptchaErrorParameters } from "ng-recaptcha";
 
 
 @Component({
@@ -130,10 +131,10 @@ export class SignupComponent implements OnInit {
       
       this.authService.onRegister(this.signupRequest).subscribe(data=>{
         console.log("datos de usuario: ");
-        alert("onRegister")
+       // alert("onRegister")
        // console.log(data);
         //console.log(data.user);
-        alert(data.mensaje);
+        //alert(data.mensaje);
         window.localStorage.setItem("idSesion", JSON.stringify(data.user));
         this.tokenService.setToken(data.token);
         this.getUser(data.user);
@@ -173,11 +174,19 @@ export class SignupComponent implements OnInit {
       this.isLogged = true;
       this.isLoginFail = false;
       this.roles = this.tokenService.getAuthorities();
-      alert("cambio de es isloggedin");
+      //alert("cambio de es isloggedin");
       localStorage.setItem('isLoggedin','true');
       //window.location.reload();
       this.router.navigate(['']);
       //this.loader = false;
       
   }
+  public resolved(captchaResponse: string): void {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
+
+  public onError(errorDetails: RecaptchaErrorParameters): void {
+    console.log(`reCAPTCHA error encountered; details:`, errorDetails);
+  }
+
 }

@@ -35,6 +35,7 @@
     "nativescript-email": "^1.6.0",
     "net": "^1.0.2",
     "ng-circle-progress": "^1.5.1",
+    "ng-recaptcha": "^7.0.1",
     "ng2-charts": "2.3.0",
     "ngx-pagination": "^5.0.0",
     "rxjs": "6.5.2",

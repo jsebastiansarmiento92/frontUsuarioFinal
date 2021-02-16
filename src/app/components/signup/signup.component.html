@@ -22,8 +22,8 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
-                                                    <i class="material-icons">face</i>
-                                                </span>
+                                                <i class="material-icons">face</i>
+                                            </span>
                                         </div>
                                         <input type="text" class="form-control" [(ngModel)]="signupRequest.name" name="name" placeholder="Nombre Completo..." required>
                                     </div>
@@ -32,8 +32,8 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
-                                                    <i class="material-icons">mail</i>
-                                                </span>
+                                                <i class="material-icons">mail</i>
+                                            </span>
                                         </div>
                                         <input type="text" class="form-control" [(ngModel)]="signupRequest.email" name="email" placeholder="Correo electronico..." required>
                                     </div>
@@ -42,8 +42,8 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
-                                                    <i class="material-icons">phone</i>
-                                                </span>
+                                                <i class="material-icons">phone</i>
+                                            </span>
                                         </div>
                                         <input type="number" class="form-control" [(ngModel)]="signupRequest.telefono" name="telefono" placeholder="Numero de telefono..." required>
                                     </div>
@@ -53,27 +53,37 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
-                                                    <i class="material-icons">lock_outline</i>
-                                                </span>
+                                                <i class="material-icons">lock_outline</i>
+                                            </span>
                                         </div>
-                                        <input type="password" [(ngModel)]="signupRequest.password" name="password" placeholder="Contaseña..." class="form-control" required/>
+                                        <input type="password" [(ngModel)]="signupRequest.password" name="password" placeholder="Contaseña..." class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="" (change)="capturarCheck()" >
-                                            <span class="form-check-sign">
-                                                <span class="check"></span>
-                                            </span>
-                                            de acuerdo con <a href="">Terminos y condiciones</a>.
-                                        </label>
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            (change)="capturarCheck()">
+                                        <span class="form-check-sign">
+                                            <span class="check"></span>
+                                        </span>
+                                        de acuerdo con <a href="">Terminos y condiciones</a>.
+                                    </label>
+                                    <div class="row mt-5">
+                                        <div class="col-md-9 mx-auto">
+                                            <div class="mt-3">
+                                                <re-captcha (resolved)="resolved($event)" (error)="onError($event)" errorMode="handled" siteKey="6LfqgkoaAAAAAB0oeOy-JF00effuXBUVvCCEAt1C">
+                                                </re-captcha>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="text-center">
 
                                     <button class="btn btn-primary btn-danger btn-round" [disabled]="!f.valid" (click)="registerManual(registrandoModal)">Registrar</button>
                                 </div>
                                 <div *ngIf="failCreado" class="float-left">
-                                    <p class="p-3 bg-danger text-white rounded" style="margin: 10px">Error: {{msjErr}}</p>
+                                    <p class="p-3 bg-danger text-white rounded" style="margin: 10px">Error: {{msjErr}}
+                                    </p>
                                 </div>
                                 <div *ngIf="creado" class="float-left">
                                     <p class="p-3 bg-success text-white rounded" style="margin: 10px">OK: {{msjOK}}</p>
