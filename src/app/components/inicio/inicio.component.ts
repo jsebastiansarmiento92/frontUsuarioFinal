@@ -67,14 +67,14 @@ export class InicioComponent implements OnInit {
 
   telefono="";
 
-  @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
-  @ViewChild('loginModal', { static: false }) loginModal;
-  @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
-  @ViewChild('calificacionModal', { static: false }) calificacionModal;
-  @ViewChild('msgCarritoModal', { static: false }) msgCarritoModal;
-  @ViewChild('activarCuentaModalCarrito', { static: false }) activarCuentaModalCarrito;
-  @ViewChild('activarCuentaModalInicio', { static: false }) activarCuentaModalInicio;
-  @ViewChild('pagoModal', { static: false }) pagoModal;
+  @ViewChild('tramitandoModal') tramitandoModal;
+  @ViewChild('loginModal') loginModal;
+  @ViewChild('guardarTelefonoModal') guardarTelefonoModal;
+  @ViewChild('calificacionModal') calificacionModal;
+  @ViewChild('msgCarritoModal') msgCarritoModal;
+  @ViewChild('activarCuentaModalCarrito') activarCuentaModalCarrito;
+  @ViewChild('activarCuentaModalInicio') activarCuentaModalInicio;
+  @ViewChild('pagoModal') pagoModal;
   
   retrieveResonse: any;
   base64Data: any;

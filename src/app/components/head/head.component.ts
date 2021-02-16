@@ -28,8 +28,8 @@ export class HeadComponent implements OnInit {
   telefono="sin guardar";
   pedidos:Pedido[];
   mensajeTramitando="";
-  @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
-  @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
+  @ViewChild('guardarTelefonoModal') guardarTelefonoModal;
+  @ViewChild('tramitandoModal') tramitandoModal;
   detalleServicios:DetalleServicio[];
   pedido:Pedido;
   imagePerfil='';

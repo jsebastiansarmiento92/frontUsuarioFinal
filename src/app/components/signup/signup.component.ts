@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
   msjOK = '';
   checkTErminos=false;
   autenticando=false;
-  @ViewChild('autenticandoModal',{static:false})autenticandoModal;
+  @ViewChild('autenticandoModal')autenticandoModal;
 
   constructor(private authService:AuthService,
     private router:Router,

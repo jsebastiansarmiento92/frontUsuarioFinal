@@ -27,7 +27,7 @@ export class LoginModalComponent implements OnInit {
   setState = false;
   currentUser: any;
   signupReq: SignUpRequest = new SignUpRequest();
-  @ViewChild('registroModal', { static: false }) registroModal;
+  @ViewChild('registroModal') registroModal;
   
   constructor(private authService: AuthService, private tokenService: TokenService, private router: Router,
     private serviceModal: NgbModal) { }

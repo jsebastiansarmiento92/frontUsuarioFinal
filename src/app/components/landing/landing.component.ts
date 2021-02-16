@@ -35,7 +35,7 @@ export class LandingComponent implements OnInit {
   tipoDirecciones: String[] = [];
   barrioSeleccionado: string = '0';
   tipoDireccionSeleccionado: string = '0';
-  @ViewChild('tramitandoModal', { static: false }) cargandoModal;
+  @ViewChild('tramitandoModal') cargandoModal;
 
   telefono="";
   //busquedaBarrio="";
