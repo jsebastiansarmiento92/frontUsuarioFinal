@@ -262,14 +262,15 @@ getUser() {
     console.log(data);
     window.localStorage.setItem("idSesion", JSON.stringify(data));
     //window.localStorage.setItem("AuthToken", data.token);
-    this.tokenService.setToken(data.token);
+   // window.sessionStorage.setItem("AuthToken", data.token);
+    //this.tokenService.setToken(data.token);
     this.tokenService.setUserName(data.name);
     this.tokenService.setAuthorities(data.rol);
     this.tokenService.setIdUser(data.id);
     this.tokenService.setLugar(data.idLugar);
     this.tokenService.setTelefono(data.telefono);
     this.tokenService.setEstadoUsuario(data.estado);
-    //alert("id del usuario lopueado es "+data.id);
+    this.tokenService.setEmailVerified(data.emailVerified);
     //window.sessionStorage.setItem("idSesion",data.);
     //window.sessionStorage.setItem("AuthToken",this.tokenService.getToken());
     this.isLogged = true;

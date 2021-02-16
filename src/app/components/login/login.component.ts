@@ -56,13 +56,14 @@ export class LoginComponent implements OnInit {
     if(this.token!=null){
       if(this.token.length>1){
         window.sessionStorage.setItem('AuthToken', this.token);
-        window.localStorage.setItem('AuthToken', this.token);
+        //window.localStorage.setItem('AuthToken', this.token);
        }
       
       console.log("token llegando es:");
       console.log(this.token);
       console.log("erro llegando es ");
       console.log(this.error);
+      
       if (window.sessionStorage.getItem('AuthToken')) {
   
         console.log("hay tonken guardado porque ingresa al if");
@@ -96,7 +97,7 @@ export class LoginComponent implements OnInit {
       console.log(data);
       this.tokenService.setToken(data.accessToken);
       window.localStorage.setItem("AuthToken", data.accessToken);
-      window.sessionStorage.setItem("AuthToken", data.accessToken);
+      //window.sessionStorage.setItem("AuthToken", data.accessToken);
       this.isLogged = true;
       this.isLoginFail = false;
      // this.roles = this.tokenService.getAuthorities();
@@ -128,7 +129,7 @@ export class LoginComponent implements OnInit {
       console.log(data);
       window.localStorage.setItem("idSesion", JSON.stringify(data));
       //window.localStorage.setItem("AuthToken", data.token);
-      this.tokenService.setToken(data.token);
+      //this.tokenService.setToken(data.token);
       this.tokenService.setUserName(data.name);
       this.tokenService.setAuthorities(data.rol);
       this.tokenService.setIdUser(data.id);

@@ -25,11 +25,11 @@ export class TokenService {
     sessionStorage.setItem(ID_LUGAR, idLugar);
   }
   public setEmailVerified(verified: string): void {
-    sessionStorage.removeItem(EMAIL_VERIFIED);
-    sessionStorage.setItem(EMAIL_VERIFIED, verified);
+    window.sessionStorage.removeItem(EMAIL_VERIFIED);
+    window.sessionStorage.setItem(EMAIL_VERIFIED, verified);
   }
   public getEmailVerified(): string {
-    return sessionStorage.getItem(EMAIL_VERIFIED);
+    return window.sessionStorage.getItem(EMAIL_VERIFIED);
   }
 
   public getLugar(): string {
@@ -37,16 +37,19 @@ export class TokenService {
   }
   public setToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
+    window.localStorage.setItem(TOKEN_KEY, token);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
   public setIdUser(idUser: string): void {
-    sessionStorage.removeItem(ID_SESION);
-    sessionStorage.setItem(ID_SESION, idUser);
+    window.sessionStorage.removeItem(ID_SESION);
+    window.sessionStorage.setItem(ID_SESION, idUser);
   }
   public getToken(): string {
+    return window.sessionStorage.getItem(TOKEN_KEY);
+  }
+  public getTokenAuth(): string {
     return window.localStorage.getItem(TOKEN_KEY);
   }
-
   public setUserName(userName: string): void {
     sessionStorage.removeItem(USERNAME_KEY);
     sessionStorage.setItem(USERNAME_KEY, userName);

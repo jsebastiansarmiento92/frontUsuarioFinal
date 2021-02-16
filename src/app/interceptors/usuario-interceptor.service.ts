@@ -11,7 +11,7 @@ export class UsuarioInterceptorService {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let autReq = req;
-    const token = this.tokenService.getToken();
+    const token = this.tokenService.getTokenAuth();
     if (token != null) {
       autReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + token) });
     }

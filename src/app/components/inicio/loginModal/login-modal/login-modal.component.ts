@@ -97,8 +97,8 @@ export class LoginModalComponent implements OnInit {
     console.log("get user");
     this.authService.getCurrentUser().subscribe(data => {
       console.log(data);
-      window.localStorage.setItem("idSesion", JSON.stringify(data));
-      window.localStorage.setItem("AuthToken", data.token);
+      //window.localStorage.setItem("idSesion", JSON.stringify(data));
+      //window.localStorage.setItem("AuthToken", data.token);
       this.tokenService.setToken(data.token);
       this.tokenService.setUserName(data.name);
       this.tokenService.setAuthorities(data.rol);
@@ -106,6 +106,7 @@ export class LoginModalComponent implements OnInit {
       this.tokenService.setLugar(data.idLugar);
       this.tokenService.setTelefono(data.telefono);
       this.tokenService.setEstadoUsuario(data.estado);
+      this.tokenService.setEmailVerified(data.emailVerified);
       //alert("id del usuario lopueado es "+data.id);
       //window.sessionStorage.setItem("idSesion",data.);
       //window.sessionStorage.setItem("AuthToken",this.tokenService.getToken());

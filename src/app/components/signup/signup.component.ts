@@ -51,12 +51,13 @@ export class SignupComponent implements OnInit {
       }else{
         if(this.token.length>1){
           window.sessionStorage.setItem('AuthToken', this.token);
-          window.localStorage.setItem('AuthToken', this.token);
+        //  window.localStorage.setItem('AuthToken', this.token);
          }
         console.log("token llegando es:");
         console.log(this.token);
         console.log("error llegando es ");
         console.log(this.error);
+        //alert(window.sessionStorage.getItem('AuthToken'));
       if(window.sessionStorage.getItem('AuthToken')){
         this.serviceModal.open(this.autenticandoModal);
         console.log("hay tonken guardado porque ingresa al if");
@@ -67,6 +68,7 @@ export class SignupComponent implements OnInit {
          
           console.log(data);
         //this.tokenService.setToken(data.token);
+        //window.localStorage.setItem("AuthToken", data.token);
         window.localStorage.setItem("idSesion",JSON.stringify(data));
         this.tokenService.setUserName(data.name);
         this.tokenService.setAuthorities(data.rol);
@@ -75,6 +77,7 @@ export class SignupComponent implements OnInit {
         this.tokenService.setTelefono(data.telefono);
         this.tokenService.setImageUrl(data.imageUrl);
         this.tokenService.setEstadoUsuario(data.estado);
+        this.tokenService.setEmailVerified(data.emailVerified);
         //alert("telefono es:"+data.telefono);
         //alert("id del usuario lopueado es "+data.id);
         //window.sessionStorage.setItem("idSesion",data.);
@@ -127,6 +130,7 @@ export class SignupComponent implements OnInit {
       
       this.authService.onRegister(this.signupRequest).subscribe(data=>{
         console.log("datos de usuario: ");
+        alert("onRegister")
        // console.log(data);
         //console.log(data.user);
         alert(data.mensaje);
@@ -165,12 +169,13 @@ export class SignupComponent implements OnInit {
       this.tokenService.setLugar(data.idLugar);
       this.tokenService.setTelefono(data.telefono);
       this.tokenService.setEstadoUsuario(data.estado);
+      this.tokenService.setEmailVerified(data.emailVerified);
       this.isLogged = true;
       this.isLoginFail = false;
       this.roles = this.tokenService.getAuthorities();
+      alert("cambio de es isloggedin");
       localStorage.setItem('isLoggedin','true');
       //window.location.reload();
-      
       this.router.navigate(['']);
       //this.loader = false;
       
