@@ -32,6 +32,7 @@ export class SignupComponent implements OnInit {
   msjOK = '';
   checkTErminos=false;
   autenticando=false;
+  recapcha: boolean = false; 
   @ViewChild('autenticandoModal')autenticandoModal;
 
   constructor(private authService:AuthService,
@@ -128,24 +129,31 @@ export class SignupComponent implements OnInit {
     //console.log(this.signupRequest);
     console.log("antes ingreso al if");
     if(this.checkTErminos){
-      
-      this.authService.onRegister(this.signupRequest).subscribe(data=>{
-        console.log("datos de usuario: ");
-       // alert("onRegister")
-       // console.log(data);
-        //console.log(data.user);
-        //alert(data.mensaje);
-        window.localStorage.setItem("idSesion", JSON.stringify(data.user));
-        this.tokenService.setToken(data.token);
-        this.getUser(data.user);
-        this.serviceModal.dismissAll();
-      },(err: any) => {
-        this.creado = false;
-        this.failCreado = true;
-        this.msjErr = err.error.mensaje;
-        this.serviceModal.dismissAll();
-        console.log(err.error.mensaje)
-      });
+      if(this.recapcha){
+        this.authService.onRegister(this.signupRequest).subscribe(data=>{
+          console.log("datos de usuario: ");
+         // alert("onRegister")
+         // console.log(data);
+          //console.log(data.user);
+          //alert(data.mensaje);
+          window.localStorage.setItem("idSesion", JSON.stringify(data.user));
+          this.tokenService.setToken(data.token);
+          this.getUser(data.user);
+          this.serviceModal.dismissAll();
+        },(err: any) => {
+          this.creado = false;
+          this.failCreado = true;
+          this.msjErr = err.error.mensaje;
+          this.serviceModal.dismissAll();
+          console.log(err.error.mensaje)
+        });
+      }else{
+        console.log("no registro porque falta el recaptcha");
+      this.creado = false;
+      this.failCreado = true;
+      this.msjErr = "para continuar con el registro es necesario comprobar que no eres un robot";
+      this.serviceModal.dismissAll();
+      }
     }else{
       console.log("no registro porque no acepto terminos y condicieones");
       this.creado = false;
@@ -182,10 +190,12 @@ export class SignupComponent implements OnInit {
       
   }
   public resolved(captchaResponse: string): void {
+    this.recapcha =  true;
     console.log(`Resolved captcha with response: ${captchaResponse}`);
   }
 
   public onError(errorDetails: RecaptchaErrorParameters): void {
+    this.recapcha =  false;
     console.log(`reCAPTCHA error encountered; details:`, errorDetails);
   }
 
