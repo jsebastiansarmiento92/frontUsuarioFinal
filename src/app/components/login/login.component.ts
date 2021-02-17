@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { SignUpRequest } from 'src/app/models/sign-up-request';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer } from '@angular/platform-browser';
+import {UsuarioService} from 'src/app/services/usuario-service/usuario.service'
 
 @Component({
   selector: 'app-login',
@@ -31,11 +32,13 @@ export class LoginComponent implements OnInit {
   signupReq: SignUpRequest = new SignUpRequest();
   @ViewChild('iframe',{ static: true }) iframe: ElementRef;
   urlSafe;
+
   constructor(private authService: AuthService,
     private tokenService: TokenService,
     private router: Router,
     private ngModal:NgbModal,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private usuarioService:UsuarioService
     ) { }
 
   ngOnInit() {
@@ -53,13 +56,14 @@ export class LoginComponent implements OnInit {
     if(this.token!=null){
       if(this.token.length>1){
         window.sessionStorage.setItem('AuthToken', this.token);
-        window.localStorage.setItem('AuthToken', this.token);
+        //window.localStorage.setItem('AuthToken', this.token);
        }
       
       console.log("token llegando es:");
       console.log(this.token);
       console.log("erro llegando es ");
       console.log(this.error);
+      
       if (window.sessionStorage.getItem('AuthToken')) {
   
         console.log("hay tonken guardado porque ingresa al if");
@@ -76,7 +80,12 @@ export class LoginComponent implements OnInit {
   cerrarModal(){
     this.ngModal.dismissAll();
   }
-
+  solicitarPass(){
+    var valor = prompt("ingresa numero de telefono", "");
+    this.usuarioService.updateContraseñaTel(valor).subscribe(data=>{
+      alert(data.mensaje);
+    });
+  }
   onLoggedin(modal) {
     this.ngModal.open(modal);
     // this.usuario = new LoginUsuario(this.usuario.nombreUsuario, this.usuario.password);
@@ -87,6 +96,8 @@ export class LoginComponent implements OnInit {
       console.log("ingreso a la promesa de login");
       console.log(data);
       this.tokenService.setToken(data.accessToken);
+      window.localStorage.setItem("AuthToken", data.accessToken);
+      //window.sessionStorage.setItem("AuthToken", data.accessToken);
       this.isLogged = true;
       this.isLoginFail = false;
      // this.roles = this.tokenService.getAuthorities();
@@ -114,14 +125,18 @@ export class LoginComponent implements OnInit {
   getUser() {
 
     this.authService.getCurrentUser().subscribe(data => {
+      console.log("ingreso de metodo de get currentuser")
       console.log(data);
       window.localStorage.setItem("idSesion", JSON.stringify(data));
+      //window.localStorage.setItem("AuthToken", data.token);
       //this.tokenService.setToken(data.token);
       this.tokenService.setUserName(data.name);
       this.tokenService.setAuthorities(data.rol);
       this.tokenService.setIdUser(data.id);
       this.tokenService.setLugar(data.idLugar);
       this.tokenService.setTelefono(data.telefono);
+      this.tokenService.setEstadoUsuario(data.estado);
+      this.tokenService.setEmailVerified(data.emailVerified)
       //alert("id del usuario lopueado es "+data.id);
       //window.sessionStorage.setItem("idSesion",data.);
       //window.sessionStorage.setItem("AuthToken",this.tokenService.getToken());

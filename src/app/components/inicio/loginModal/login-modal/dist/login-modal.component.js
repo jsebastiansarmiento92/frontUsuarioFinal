@@ -91,6 +91,7 @@ var LoginModalComponent = /** @class */ (function() {
             _this.tokenService.setAuthorities(data.rol);
             _this.tokenService.setIdUser(data.id);
             _this.tokenService.setLugar(data.idLugar);
+
             //alert("id del usuario lopueado es "+data.id);
             //window.sessionStorage.setItem("idSesion",data.);
             //window.sessionStorage.setItem("AuthToken",this.tokenService.getToken());

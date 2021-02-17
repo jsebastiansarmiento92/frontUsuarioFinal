@@ -67,12 +67,15 @@ export class InicioComponent implements OnInit {
 
   telefono="";
 
-  @ViewChild('tramitandoModal', { static: false }) tramitandoModal;
-  @ViewChild('loginModal', { static: false }) loginModal;
-  @ViewChild('guardarTelefonoModal', { static: false }) guardarTelefonoModal;
-  @ViewChild('calificacionModal', { static: false }) calificacionModal;
-  @ViewChild('msgCarritoModal', { static: false }) msgCarritoModal;
-
+  @ViewChild('tramitandoModal') tramitandoModal;
+  @ViewChild('loginModal') loginModal;
+  @ViewChild('guardarTelefonoModal') guardarTelefonoModal;
+  @ViewChild('calificacionModal') calificacionModal;
+  @ViewChild('msgCarritoModal') msgCarritoModal;
+  @ViewChild('activarCuentaModalCarrito') activarCuentaModalCarrito;
+  @ViewChild('activarCuentaModalInicio') activarCuentaModalInicio;
+  @ViewChild('pagoModal') pagoModal;
+  
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
@@ -98,6 +101,7 @@ export class InicioComponent implements OnInit {
   categoriaActual = "Todas las categorias";
   observacionesProducto="";
   isDatafono=false;
+  numeroConfirmacion:string;
   /**
   * Shows or hide the search elements
   * @var {boolean} searching
@@ -203,9 +207,16 @@ export class InicioComponent implements OnInit {
     }
     //this.cargarCategorias();
     this.cargarProducto();
+    
   }
-
+  verificarActivacion(){
+    if(this.tokenService.getEstadoUsuario()=="Inactivo"){
+      alert("ingrese numero de activacion de la cuenta");
+      this.serviceModal.open(this.activarCuentaModalInicio);
+    }
+  }
   cargarProducto(){
+    
     this.productosService.listarUsuarioFinal().subscribe(data => {
       // this.empresas = data;
        console.log("productos cargadas");
@@ -599,21 +610,25 @@ export class InicioComponent implements OnInit {
 
     console.log("metodo de listar productos oinit");
     this.productosService.listarUsuarioFinal().subscribe(data => {
-      this.productos = data;
+      // this.productos = data;
       console.log(this.productos);
-      this.productos.forEach(element => {
-        console.log("id de las imagenes de los productos " + element.imagen);
-
-        this.imagenService.getImageId(element.imagen).subscribe(data => {
-          this.retrieveResonse = data;
-          console.log(data);
-          this.base64Data = this.retrieveResonse.picByte;
-          //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-          element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-          console.log(this.retrievedImage);
-        })
+      data.forEach(element => {
+        console.log("id de las imagenes de los productos " + element.imagen); 
+        if(element.estadoProducto=="Activo"){
+          this.productos.push(element);
+          this.imagenService.getImageId(element.imagen).subscribe(data => {
+            this.retrieveResonse = data;
+            console.log(data);
+            this.base64Data = this.retrieveResonse.picByte;
+            //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+            element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+            console.log(this.retrievedImage);
+          })
+        }
+        
       });
       // this.loader = false;
+      this.verificarActivacion();
     });
     this.totalProducto = this.productos;
     console.log("productos total aqui aqui aqui aqui");
@@ -877,11 +892,17 @@ export class InicioComponent implements OnInit {
       //  this.valorServicio+=1000;
       this.pedido.modoPagoPedido =formaPago;
     } else if(formaPago=="Codigo QR"){
+      this.isDatafono=false;
       this.pedido.modoPagoPedido ="Codigo QR";
-    }else  this.pedido.modoPagoPedido ="Efectivo";
+    }else  {
+      this.isDatafono=false;
+      this.pedido.modoPagoPedido ="Efectivo";
+    }
     this.formaPago=" Pago con: "+formaPago;
     if (confirm('¿Estás seguro que desea confirmar el pago '+formaPago+'?'+mensaje)) {
         this.confirmarPedido();
+      }else{
+
       }
   }
   confirmarPedido() {
@@ -958,10 +979,12 @@ export class InicioComponent implements OnInit {
       this.msgtotalpedido = this.valorServicio + this.totalPedido;
       if(this.isDatafono){
        this.msgtotalpedido+=1000;
-        if (confirm('valor total del pedido: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
+        if (confirm('valor total del pedido con datafono: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
-        
+          this.msgtotalpedido+=1000;
         this.confirmarTransaccion();
+      }else{
+       // this.msgtotalpedido-=1000;
       }
       }else{
       if (confirm('valor total del pedido: $' + this.msgtotalpedido + ' a la direccion ' + this.direccionCompleta
@@ -987,9 +1010,9 @@ export class InicioComponent implements OnInit {
       this.msgtotalpedido = this.valorServicio + this.totalPedido;
       if(this.isDatafono){
         this.msgtotalpedido+=1000;
-        if (confirm('valor total del pedido: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
+        if (confirm('valor total del pedido con datafono: $' + (this.msgtotalpedido) + ' a la direccion ' + this.direccionCompleta
         + '\n barrio:' + this.barrio.nombreBarrio + '¿Estás seguro que desea confirmar el pedido?')) {
-        
+          this.msgtotalpedido+=1000;
         this.confirmarTransaccion();
       }
       }else{
@@ -1269,6 +1292,44 @@ export class InicioComponent implements OnInit {
     this.serviceModal.dismissAll();
   }
   verPagoModal(modal){
-    this.serviceModal.open(modal);
+    if(this.tokenService.getEstadoUsuario()=="Inactivo"){
+      alert("ingrese numero de activacion de la cuenta");
+      this.serviceModal.open(this.activarCuentaModalCarrito);
+    }else{
+      this.serviceModal.open(modal);
+    }
+    
   }
+  verificarNumeroInicio(){
+    console.log("ingreso a la verificacion por numero");
+    var data=JSON.parse(window.localStorage.getItem("idSesion"));
+    if(this.numeroConfirmacion==data.emailVerified){
+      this.usuarioService.updateUsuarioEstado("Activo",parseInt(this.tokenService.getIdUser())).
+      subscribe(data=>{
+        this.serviceModal.dismissAll();
+        alert(data.mensaje);
+        this.tokenService.setEstadoUsuario("Activo");
+      });
+      
+    }else{
+      alert("numero de verificacion no valido");
+    }
+  }
+  verificarNumeroCarrito(){
+    console.log("ingreso a la verificacion por numero");
+    var data=JSON.parse(window.localStorage.getItem("idSesion"));
+    if(this.numeroConfirmacion==data.emailVerified){
+      this.usuarioService.updateUsuarioEstado("Activo",parseInt(this.tokenService.getIdUser())).
+      subscribe(data=>{
+        this.serviceModal.dismissAll();
+        alert(data.mensaje);
+        this.tokenService.setEstadoUsuario("Activo");
+        this.serviceModal.open(this.pagoModal);
+      });
+      
+    }else{
+      alert("numero de verificacion no valido");
+    }
+  }
+
 }

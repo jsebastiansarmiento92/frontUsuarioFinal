@@ -32,7 +32,8 @@ export class SignupComponent implements OnInit {
   msjOK = '';
   checkTErminos=false;
   autenticando=false;
-  @ViewChild('autenticandoModal',{static:false})autenticandoModal;
+  recapcha: boolean = false; 
+  @ViewChild('autenticandoModal')autenticandoModal;
 
   constructor(private authService:AuthService,
     private router:Router,
@@ -52,12 +53,13 @@ export class SignupComponent implements OnInit {
       }else{
         if(this.token.length>1){
           window.sessionStorage.setItem('AuthToken', this.token);
-          window.localStorage.setItem('AuthToken', this.token);
+        //  window.localStorage.setItem('AuthToken', this.token);
          }
         console.log("token llegando es:");
         console.log(this.token);
         console.log("error llegando es ");
         console.log(this.error);
+        //alert(window.sessionStorage.getItem('AuthToken'));
       if(window.sessionStorage.getItem('AuthToken')){
         this.serviceModal.open(this.autenticandoModal);
         console.log("hay tonken guardado porque ingresa al if");
@@ -68,6 +70,7 @@ export class SignupComponent implements OnInit {
          
           console.log(data);
         //this.tokenService.setToken(data.token);
+        //window.localStorage.setItem("AuthToken", data.token);
         window.localStorage.setItem("idSesion",JSON.stringify(data));
         this.tokenService.setUserName(data.name);
         this.tokenService.setAuthorities(data.rol);
@@ -75,6 +78,8 @@ export class SignupComponent implements OnInit {
         this.tokenService.setLugar(data.idLugar);
         this.tokenService.setTelefono(data.telefono);
         this.tokenService.setImageUrl(data.imageUrl);
+        this.tokenService.setEstadoUsuario(data.estado);
+        this.tokenService.setEmailVerified(data.emailVerified);
         //alert("telefono es:"+data.telefono);
         //alert("id del usuario lopueado es "+data.id);
         //window.sessionStorage.setItem("idSesion",data.);
@@ -120,21 +125,35 @@ export class SignupComponent implements OnInit {
 
   registerManual(modal){
     this.serviceModal.open(modal);
-    console.log("datos que se envian para el registro");
-    console.log(this.signupRequest);
+    //console.log("datos que se envian para el registro");
+    //console.log(this.signupRequest);
+    console.log("antes ingreso al if");
     if(this.checkTErminos){
-      this.authService.onRegister(this.signupRequest).subscribe(data=>{
-        console.log(data);
-        alert("Registro completo por favor inicie sesion con sus datos para continuar");
-        this.router.navigate(['login']);
-        this.serviceModal.dismissAll();
-      },(err: any) => {
-        this.creado = false;
-        this.failCreado = true;
-        this.msjErr = err.error.mensaje;
-        this.serviceModal.dismissAll();
-        console.log(err.error.mensaje)
-      });
+      if(this.recapcha){
+        this.authService.onRegister(this.signupRequest).subscribe(data=>{
+          console.log("datos de usuario: ");
+         // alert("onRegister")
+         // console.log(data);
+          //console.log(data.user);
+          //alert(data.mensaje);
+          window.localStorage.setItem("idSesion", JSON.stringify(data.user));
+          this.tokenService.setToken(data.token);
+          this.getUser(data.user);
+          this.serviceModal.dismissAll();
+        },(err: any) => {
+          this.creado = false;
+          this.failCreado = true;
+          this.msjErr = err.error.mensaje;
+          this.serviceModal.dismissAll();
+          console.log(err.error.mensaje)
+        });
+      }else{
+        console.log("no registro porque falta el recaptcha");
+      this.creado = false;
+      this.failCreado = true;
+      this.msjErr = "para continuar con el registro es necesario comprobar que no eres un robot";
+      this.serviceModal.dismissAll();
+      }
     }else{
       console.log("no registro porque no acepto terminos y condicieones");
       this.creado = false;
@@ -150,11 +169,34 @@ export class SignupComponent implements OnInit {
     console.log("primir"+this.checkTErminos);
 
   }
+  getUser(data) {
+    console.log("datos que entrarn en get user");
+    console.log(data);
+    this.tokenService.setUserName(data.name);
+      this.tokenService.setAuthorities(data.rol);
+      this.tokenService.setIdUser(data.id);
+      this.tokenService.setLugar(data.idLugar);
+      this.tokenService.setTelefono(data.telefono);
+      this.tokenService.setEstadoUsuario(data.estado);
+      this.tokenService.setEmailVerified(data.emailVerified);
+      this.isLogged = true;
+      this.isLoginFail = false;
+      this.roles = this.tokenService.getAuthorities();
+      //alert("cambio de es isloggedin");
+      localStorage.setItem('isLoggedin','true');
+      //window.location.reload();
+      this.router.navigate(['']);
+      //this.loader = false;
+      
+  }
   public resolved(captchaResponse: string): void {
+    this.recapcha =  true;
     console.log(`Resolved captcha with response: ${captchaResponse}`);
   }
 
   public onError(errorDetails: RecaptchaErrorParameters): void {
+    this.recapcha =  false;
     console.log(`reCAPTCHA error encountered; details:`, errorDetails);
   }
+
 }

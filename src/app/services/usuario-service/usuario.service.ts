@@ -31,6 +31,11 @@ export class UsuarioService {
     console.log("el ide seleccionado es " + usuario.id)
     return this.http.put<any>(this.usuarioURL + `/${id}`, usuario);
   }
+  updateUsuarioEstado(estado: string, id: number):Observable<any>{
+    return this.http.get(this.usuarioURL + `/modificarEstado/${id}`+`&${estado}`);
+  }
+
+
   updateUsuarioLugar(lugar: Lugar, id: number): Observable<any> {
     // console.log("el ide seleccionado es " + usuario.id);
     return this.http.put<any>(this.usuarioURL + `/modificarLugar/${id}`, lugar);
@@ -78,5 +83,9 @@ export class UsuarioService {
   updateContraseñaPerfil(usuario: Usuario, id: number): Observable<any> {
     console.log("el ide seleccionado es " + usuario.id)
     return this.http.put<any>(this.usuarioURL + `/modificarContraseñaPerfil/${id}`, usuario);
+  }
+  updateContraseñaTel(tel: string): Observable<any> {
+    console.log("el ide seleccionado es " + tel)
+    return this.http.get<any>(this.usuarioURL + `/modificarContraseñaTelefono/${tel}`);
   }
 }

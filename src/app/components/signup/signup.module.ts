@@ -10,7 +10,6 @@ import { RecaptchaModule } from 'ng-recaptcha';
 @NgModule({
   imports: [
       CommonModule,
-     // TranslateModule,
       SignupRoutingModule,
       FormsModule,
       NgbModalModule, 

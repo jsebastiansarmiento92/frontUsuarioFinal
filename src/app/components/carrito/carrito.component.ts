@@ -27,7 +27,7 @@ export class CarritoComponent implements OnInit {
   servicio: Servicio = new Servicio();
   lugar:Lugar=new Lugar();
   lugares:Lugar[]=[];
-  @ViewChild('agregarDireccionNueva', {static: false}) agregarDireccionNueva;
+  @ViewChild('agregarDireccionNueva') agregarDireccionNueva;
   modalDetalle;
   loader=true;
   direccion:string;

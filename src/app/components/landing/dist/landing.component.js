@@ -56,6 +56,7 @@ var LandingComponent = /** @class */ (function() {
             this.tokenService.setAuthorities(data.rol);
             this.tokenService.setIdUser(data.id);
             this.tokenService.setLugar(data.idLugar);
+            this.tokenService.setEstadoUsuario(data.estado);
             //this.router.navigate(['inicio']);
         }
     };

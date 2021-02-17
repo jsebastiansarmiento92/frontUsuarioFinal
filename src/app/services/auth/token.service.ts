@@ -8,7 +8,10 @@ const AUTHORITIES_KEY = 'rol';
 const ID_SESION = 'IdSesion';
 const ID_LUGAR = 'IdLugar';
 const TELEFONO = 'Telefono';
-const IMAGEURL='ImageUrl'
+const IMAGEURL='ImageUrl';
+const ESTADO_USUARIO="EstadoUsuario";
+const EMAIL_VERIFIED="emailVerified";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +21,15 @@ export class TokenService {
   constructor() { }
 
   public setLugar(idLugar: string): void {
-    window.sessionStorage.removeItem(ID_LUGAR);
-    window.sessionStorage.setItem(ID_LUGAR, idLugar);
+    sessionStorage.removeItem(ID_LUGAR);
+    sessionStorage.setItem(ID_LUGAR, idLugar);
+  }
+  public setEmailVerified(verified: string): void {
+    window.sessionStorage.removeItem(EMAIL_VERIFIED);
+    window.sessionStorage.setItem(EMAIL_VERIFIED, verified);
+  }
+  public getEmailVerified(): string {
+    return window.sessionStorage.getItem(EMAIL_VERIFIED);
   }
 
   public getLugar(): string {
@@ -27,6 +37,7 @@ export class TokenService {
   }
   public setToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
+    window.localStorage.setItem(TOKEN_KEY, token);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
   public setIdUser(idUser: string): void {
@@ -34,27 +45,36 @@ export class TokenService {
     window.sessionStorage.setItem(ID_SESION, idUser);
   }
   public getToken(): string {
-    return sessionStorage.getItem(TOKEN_KEY);
+    return window.sessionStorage.getItem(TOKEN_KEY);
   }
-
+  public getTokenAuth(): string {
+    return window.localStorage.getItem(TOKEN_KEY);
+  }
   public setUserName(userName: string): void {
-    window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, userName);
+    sessionStorage.removeItem(USERNAME_KEY);
+    sessionStorage.setItem(USERNAME_KEY, userName);
   }
 
   public getUserName(): string {
     return sessionStorage.getItem(USERNAME_KEY);
   }
   public setTelefono(telefono: string): void {
-    window.sessionStorage.removeItem(TELEFONO);
-    window.sessionStorage.setItem(TELEFONO, telefono);
+    sessionStorage.removeItem(TELEFONO);
+    sessionStorage.setItem(TELEFONO, telefono);
+  }
+  public setEstadoUsuario(estado: string): void {
+    sessionStorage.removeItem(ESTADO_USUARIO);
+    sessionStorage.setItem(ESTADO_USUARIO, estado);
+  }
+  public getEstadoUsuario(): string {
+    return sessionStorage.getItem(ESTADO_USUARIO);
   }
   public getTelefono(): string {
     return sessionStorage.getItem(TELEFONO);
   }
   public setImageUrl(imageUrl: string): void {
-    window.sessionStorage.removeItem(IMAGEURL);
-    window.sessionStorage.setItem(IMAGEURL, imageUrl);
+    sessionStorage.removeItem(IMAGEURL);
+    sessionStorage.setItem(IMAGEURL, imageUrl);
   }
   public getImageUrl(): string {
     return sessionStorage.getItem(IMAGEURL);
@@ -64,11 +84,11 @@ export class TokenService {
 
   public  getIdUser(): string {
 
-    return  window.sessionStorage.getItem(ID_SESION);
+    return  sessionStorage.getItem(ID_SESION);
   }
   public setAuthorities(authorities: string[]): void {
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+    sessionStorage.removeItem(AUTHORITIES_KEY);
+    sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
 
   public getAuthorities(): string[] {
@@ -84,8 +104,8 @@ export class TokenService {
   }
 
   public logOut(): void {
-    window.sessionStorage.clear();
     sessionStorage.clear();
+    window.sessionStorage.clear();
     window.localStorage.clear();
     localStorage.clear();
   }
