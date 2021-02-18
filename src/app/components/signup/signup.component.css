@@ -7,3 +7,15 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+.g-recaptcha {
+    display: inline; 
+    }
+
+.g-recaptcha{
+    width: 100% !important;
+    height: 78px;
+    transform:scale(0.88); 
+    webkit-transform:scale(0.88);
+    
+    }

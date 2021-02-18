@@ -8,6 +8,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer } from '@angular/platform-browser';
 import {UsuarioService} from 'src/app/services/usuario-service/usuario.service'
 
+import { RecaptchaErrorParameters } from "ng-recaptcha";
+import { flatten } from '@angular/compiler';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,6 +18,8 @@ import {UsuarioService} from 'src/app/services/usuario-service/usuario.service'
 })
 
 export class LoginComponent implements OnInit {
+  recapcha: boolean = false;
+  menjRecapcha: boolean = false;
   loader = false;
   logingIn = false;
   usuario: LoginUsuario = new LoginUsuario();
@@ -77,14 +82,32 @@ export class LoginComponent implements OnInit {
 
   }
 
+  mjRecapcha(){
+    if (this.recapcha) {
+      this.menjRecapcha=false;
+      return true;
+    } else {
+      this.menjRecapcha = true;
+      return false;
+  
+    }
+    
+  }
+
   cerrarModal(){
     this.ngModal.dismissAll();
   }
   solicitarPass(){
-    var valor = prompt("ingresa numero de telefono", "");
-    this.usuarioService.updateContraseñaTel(valor).subscribe(data=>{
+    if (this.recapcha) {
+      var valor = prompt("ingresa numero de telefono", "");
+      this.usuarioService.updateContraseñaTel(valor).subscribe(data=>{
       alert(data.mensaje);
+      this.menjRecapcha = false;
     });
+    } else {
+      this.menjRecapcha =true;
+    }
+    
   }
   onLoggedin(modal) {
     this.ngModal.open(modal);
@@ -174,5 +197,17 @@ export class LoginComponent implements OnInit {
     console.log("ingresoa registrer con facebook")
     location.href="https://quickdomicilios.herokuapp.com/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
+  public resolved(captchaResponse: string): void {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
+    if (captchaResponse == null){
+      this.recapcha= false;
+    } else{
+      this.recapcha =  true;
+    }
+  }
 
+  public onError(errorDetails: RecaptchaErrorParameters): void {
+    this.recapcha =  false;
+    console.log(`reCAPTCHA error encountered; details:`, errorDetails);
+  }
 }

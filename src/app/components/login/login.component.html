@@ -57,9 +57,19 @@
                 <a class="btn btn-rose btn-link btn-lg" (click)="onRegister()">Registrar</a>
             </div>
             <div *ngIf="logingIn && isLoginFail" class="alert alert-danger mt-3">Error al loguearse:
-                <a style="background-color: limegreen;" href="https://api.whatsapp.com/send?phone=+57 3124872765">Envíanos un mensaje de WhatsApp si no recuerdas contraseña   </a>
+                <br>
+                Selecciona que no eres un robot
+                <re-captcha (resolved)="resolved($event)" (error)="onError($event)"
+                    errorMode="handled"
+                    siteKey="6LdI0loaAAAAALpReoe8TLSiZz531cZCGReFrDHQ"
+                    >
+                </re-captcha>
+                <a (click)="mjRecapcha()" style="background-color: limegreen;" href="https://api.whatsapp.com/send?phone=+57 3124872765">Envíanos un mensaje de WhatsApp si no recuerdas contraseña   </a>
                 <a href="https://api.whatsapp.com/send?phone=+57 3124872765"><i class="fa fa-whatsapp"></i></a> o solicitar contraseña temporal a tu telefono registrado
-                <button (click)="solicitarPass()"> aqui</button>
+                <button  class="btn-outline-light" (click)="solicitarPass()"> aqui</button>
+                <div *ngIf="menjRecapcha">
+                    Alerta debes seleccionar que no eres un robot
+                </div>
             </div>
         </ng-template>
     </div>

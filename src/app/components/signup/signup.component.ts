@@ -140,6 +140,7 @@ export class SignupComponent implements OnInit {
           this.tokenService.setToken(data.token);
           this.getUser(data.user);
           this.serviceModal.dismissAll();
+          this.recapcha = false;
         },(err: any) => {
           this.creado = false;
           this.failCreado = true;
@@ -190,8 +191,14 @@ export class SignupComponent implements OnInit {
       
   }
   public resolved(captchaResponse: string): void {
-    this.recapcha =  true;
     console.log(`Resolved captcha with response: ${captchaResponse}`);
+    if (captchaResponse == null){
+      this.recapcha= false;
+      console.log('es nulo el recaptcha');
+    } else{
+      console.log('es verdadero el recaptcha');
+      this.recapcha =  true;
+    }
   }
 
   public onError(errorDetails: RecaptchaErrorParameters): void {

@@ -7,13 +7,16 @@ import { FooterRoutingModule } from '../footer/footer-routing.module';
 import { FooterComponent } from '../footer/footer.component';
 import { PipeSafePipe } from './pipe-safe.pipe';
 
+import { RecaptchaModule } from 'ng-recaptcha';
+
 @NgModule({
   imports: [
       CommonModule,
      // TranslateModule,
       LoginRoutingModule,
       FooterRoutingModule,
-      FormsModule
+      FormsModule, 
+      RecaptchaModule
   ],
   declarations: [LoginComponent,FooterComponent, PipeSafePipe]
 })
