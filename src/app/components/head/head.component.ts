@@ -26,6 +26,7 @@ export class HeadComponent implements OnInit {
   refreshHead=false;
   nombreUsuario="";
   telefono="sin guardar";
+  
   pedidos:Pedido[];
   mensajeTramitando="";
   @ViewChild('guardarTelefonoModal') guardarTelefonoModal;
@@ -90,6 +91,7 @@ export class HeadComponent implements OnInit {
     this.pedidoService.getPedidosCurso("Solicitado",parseInt(this.tokenService.getIdUser())).subscribe(data=>{
       console.log("pedidos extraidos");
       this.pedidos=data;
+      console.log("verificar estos son los pedidos del usuario final");
       console.log(data);
     });
     this.getUser();

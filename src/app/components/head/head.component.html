@@ -102,9 +102,13 @@
                                 <a style="margin-left: 10px; margin-right: 2px;" class="dropdown-item cursormanito">
                                     <i style="margin-right: 2px;" class="material-icons">store</i>Estado: {{pedido.estadoPedido}}
                                 </a>
-                                <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
-                                    <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}
-                                </a>
+                                <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item" *ngIf="pedido.modoPagoPedido!='Datafono';else elseDatafono">
+                                    <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia}}</a>
+                                <ng-template #elseDatafono>
+                                    <a style="margin-left: 10px; margin-right: 2px;" class="cursormanito dropdown-item">
+                                        <i style="margin-right: 2px;" class="material-icons">attach_money</i>Valor Total:{{pedido.valorTotalPedido+pedido.valorGanancia+1000}}
+                                    </a>
+                                </ng-template>
                                 <li class="button-container nav-item iframe-extern" style="text-align: center; margin: auto;">
                                     <a style="color: white; " class="btn btn-rose btn-round" (click)="detallePedido(pedido,detallePedidoModal)">
                             Detalle
@@ -130,12 +134,12 @@
                                 PUEDES SOLICITAR SERVICIOS DE DOMICILIOS, MENSAJERÍA Y ENCARGOS.
                                 <br> Solicita lo que necesitas a la puerta de casa, contamos con diferentes servicios que te evitaran salir de tu casa.
                                 <br>!Síguenos en nuestras redes sociales!
-                            </p>                            
+                            </p>
                         </div>
-                        <a href="https://www.facebook.com/Quick-Domicilios-107207270891114" type="button" class="btn btn-just-icon btn-round btn-facebook"  >
+                        <a href="https://www.facebook.com/Quick-Domicilios-107207270891114" type="button" class="btn btn-just-icon btn-round btn-facebook">
                             <i class="fa fa-facebook"></i>
                         </a>
-                        <a href="https://www.facebook.com/Quick-Domicilios-107207270891114"  class="btn btn-just-icon btn-round btn-success"  >
+                        <a href="https://www.facebook.com/Quick-Domicilios-107207270891114" class="btn btn-just-icon btn-round btn-success">
                             <i class="fa fa-whatsapp"></i>
                         </a>
                     </div>
