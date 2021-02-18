@@ -65,7 +65,7 @@
                     >
                 </re-captcha>
                 <a (click)="mjRecapcha()" style="background-color: limegreen;" href="https://api.whatsapp.com/send?phone=+57 3124872765">Envíanos un mensaje de WhatsApp si no recuerdas contraseña   </a>
-                <a href="https://api.whatsapp.com/send?phone=+57 3124872765"><i class="fa fa-whatsapp"></i></a> o solicitar contraseña temporal a tu telefono registrado
+                <a (click)="mjRecapcha()" href="https://api.whatsapp.com/send?phone=+57 3124872765"><i class="fa fa-whatsapp"></i></a> o solicitar contraseña temporal a tu telefono registrado
                 <button  class="btn-outline-light" (click)="solicitarPass()"> aqui</button>
                 <div *ngIf="menjRecapcha">
                     Alerta debes seleccionar que no eres un robot
