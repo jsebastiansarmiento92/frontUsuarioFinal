@@ -99,6 +99,11 @@ export class SignupComponent implements OnInit {
       
     
   }
+
+  terminosCondiciones(){
+    this.router.navigate(['terminos-condiciones']);
+  }
+
   guardarTelefono(){
   if(window.sessionStorage.getItem("telefono")){
     if(window.sessionStorage.getItem("telefono").length>=7){

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TerminosCondicionesComponent } from './components/terminos-condiciones/terminos-condiciones.component';
 //import { AppComponent } from './app.component';
 import { GuardService as guard} from './services/guard.service';
 
@@ -11,6 +12,7 @@ const routes: Routes = [
     { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule)},
     { path: 'head', loadChildren: () => import('./components/head/head.module').then(m => m.HeadModule)},
     { path: 'privacy-policy', loadChildren: () => import('./components/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule)},
+    { path: 'terminos-condiciones', component: TerminosCondicionesComponent},
     { path: 'carrito', loadChildren: () => import('./components/carrito/carrito.module').then(m => m.CarritoModule),
     canActivate:[guard]},
    // { path: 'access-denied', loadChildren: () => import('./access-denied/access-denied.module').then(m => m.AccessDeniedModule) },

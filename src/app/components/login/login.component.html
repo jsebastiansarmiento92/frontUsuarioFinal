@@ -1,5 +1,6 @@
 <div class="login-page sidebar-collapse">
-    <div class="page-header header-filter" style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
+    <div class="page-header header-filter"
+        style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
@@ -21,73 +22,115 @@
                             <div class="card-body ">
                                 <p class="card-description text-center">Datos de usuario</p>
                                 <span class="bmd-form-group">
-                        </span>
+                                </span>
                                 <span class="bmd-form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
                                                 <i class="material-icons">email</i>
                                             </span>
-                            </div>
-                            <input type="email" class="form-control" placeholder="Email..." autofocus="" required="" name="email" [(ngModel)]="signupReq.email">
-                        </div>
-                        </span>
-                        <span class="bmd-form-group">
+                                        </div>
+                                        <input type="email" class="form-control" placeholder="Email..." autofocus=""
+                                            required="" name="email" [(ngModel)]="signupReq.email">
+                                    </div>
+                                </span>
+                                <span class="bmd-form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
                                                 <i class="material-icons">lock_outline</i>
                                             </span>
-                </div>
-                <input type="password" class="form-control" placeholder="Password..." required="" name="password" [(ngModel)]="signupReq.password">
-            </div>
-            </span>
-        </div>
-        <div class="center-loader" *ngIf="loader; else elseBlock">
-            <strong>Verificando
+                                        </div>
+                                        <input type="password" class="form-control" placeholder="Password..."
+                                            required="" name="password" [(ngModel)]="signupReq.password">
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="center-loader" *ngIf="loader; else elseBlock">
+                                <strong>Verificando
                                     <span class="loader__dot">.</span>
                                     <span class="loader__dot">.</span>
                                     <span class="loader__dot">.</span></strong>
-        </div>
-        <ng-template #elseBlock>
-            <div class="card-footer justify-content-center">
+                            </div>
+                            <ng-template #elseBlock>
+                                <div class="card-footer justify-content-center">
 
-                <a class="btn btn-rose btn-link btn-lg" (click)="onLoggedin(cargandoModal)">Confirmar</a>
+                                    <a class="btn btn-rose btn-link btn-lg"
+                                        (click)="onLoggedin(cargandoModal)">Confirmar</a>
 
-                <a class="btn btn-rose btn-link btn-lg" (click)="onRegister()">Registrar</a>
-            </div>
-            <div *ngIf="logingIn && isLoginFail" class="alert alert-danger mt-3">Error al loguearse:
-                <br>
-                Selecciona que no eres un robot
-                <re-captcha (resolved)="resolved($event)" (error)="onError($event)"
-                    errorMode="handled"
-                    siteKey="6LdI0loaAAAAALpReoe8TLSiZz531cZCGReFrDHQ"
-                    >
-                </re-captcha>
-                <a (click)="mjRecapcha()" style="background-color: limegreen;" href="https://wa.link/qi6umn">Envíanos un mensaje de WhatsApp si no recuerdas contraseña   </a>
-                <a (click)="mjRecapcha()" href="https://wa.link/qi6umn"><i class="fa fa-whatsapp"></i></a> o solicitar contraseña temporal a tu telefono registrado
-                <button  class="btn-outline-light" (click)="solicitarPass()"> aqui</button>
-                <div *ngIf="menjRecapcha">
-                    Alerta debes seleccionar que no eres un robot
+                                    <a class="btn btn-rose btn-link btn-lg" (click)="onRegister()">Registrar</a>
+                                </div>
+                                <div *ngIf="logingIn && isLoginFail" class="alert alert-danger mt-3">Error al loguearse:
+                                    <br>
+                                    Selecciona que no eres un robot
+                                    <re-captcha (resolved)="resolved($event)" (error)="onError($event)"
+                                        errorMode="handled" siteKey="6LdI0loaAAAAALpReoe8TLSiZz531cZCGReFrDHQ">
+                                    </re-captcha>
+                                    <a (click)="mjRecapcha()" style="background-color: limegreen;"
+                                        href="https://wa.link/qi6umn">Envíanos un mensaje de WhatsApp si no recuerdas
+                                        contraseña </a>
+                                    <a (click)="mjRecapcha()" href="https://wa.link/qi6umn"><i
+                                            class="fa fa-whatsapp"></i></a> o solicitar contraseña temporal a tu
+                                    telefono registrado
+                                    <button class="btn-outline-light" (click)="solicitarPass()"> aqui</button>
+                                    <div *ngIf="menjRecapcha">
+                                        Alerta debes seleccionar que no eres un robot
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </ng-template>
+        </div>
     </div>
-    </form>
-</div>
-</div>
-</div>
-<app-footer></app-footer>
-</div>
+    <footer class="footer ">
+
+        <div class="container ">
+            <nav class="float-left ">
+                <ul>
+                    <li>
+                        <a href="http://Boyacaweb.com">
+                            Boyaca Web
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            Sobre nosotros
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://quickdomicilios.com/privacy-policy">
+                            Politica de privacidad
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            Licencias
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright float-right ">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>, hecho con <i class="material-icons ">favorite</i> por
+                <a target="_blank ">BoyacaWeb</a>
+            </div>
+        </div>
+    </footer>
 </div>
 
 
 <ng-template #modalFrameGoogle>
-    <iframe width="560" height="315" [src]="urlgoogle|pipeSafe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" [src]="urlgoogle|pipeSafe" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </ng-template>
 
 <ng-template #modalFrameFacebook>
-    <iframe width="560" height="315" [src]="urlfacebook|pipeSafe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" [src]="urlfacebook|pipeSafe" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </ng-template>
 
 <ng-template #cargandoModal>

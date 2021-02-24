@@ -70,7 +70,7 @@
                                         <span class="form-check-sign">
                                             <span class="check"></span>
                                         </span>
-                                        de acuerdo con <a href="">Terminos y condiciones</a>.
+                                        de acuerdo con <a (click)="terminosCondiciones()" [routerLink]="['terminos-condiciones']">Términos y condiciones</a>.
                                     </label>
                                     
                                 </div>
@@ -105,6 +105,42 @@
         </div>
     </div>
 </div>
+<footer class="footer ">
+
+    <div class="container ">
+        <nav class="float-left ">
+            <ul>
+                <li>
+                    <a href="http://Boyacaweb.com">
+                        Boyaca Web
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        Sobre nosotros
+                    </a>
+                </li>
+                <li>
+                    <a href="https://quickdomicilios.com/privacy-policy">
+                        Politica de privacidad
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        Licencias
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright float-right ">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script>, hecho con <i class="material-icons ">favorite</i> por
+            <a target="_blank ">BoyacaWeb</a>
+        </div>
+    </div>
+</footer>
 <ng-template #autenticandoModal>
     <div class="text-center">
         <a class="btn btn-primary btn-danger btn-round">Registrando</a>
