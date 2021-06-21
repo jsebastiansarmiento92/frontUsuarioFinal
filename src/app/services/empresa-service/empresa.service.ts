@@ -10,7 +10,7 @@ const cabecera = {headers: new HttpHeaders({'Content-TYpe': 'application/json'})
   providedIn: 'root'
 })
 export class EmpresaService {
-  empresaURL = 'https://quickdomicilios.herokuapp.com/empresas';
+  empresaURL = 'http://localhost:8080/empresas';
   constructor(private http: HttpClient) { }
 
   createEmpresa(empresa: Empresa): Observable<any> {

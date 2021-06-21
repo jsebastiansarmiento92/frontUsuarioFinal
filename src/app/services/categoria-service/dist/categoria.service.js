@@ -17,7 +17,7 @@ var cabecera = { headers: new http_1.HttpHeaders({ 'Content-TYpe': 'application/
 var CategoriaService = /** @class */ (function() {
     function CategoriaService(http) {
         this.http = http;
-        this.categoriaURL = 'https://quickdomicilios.herokuapp.com/categorias';
+        this.categoriaURL = 'http://localhost:8080/categorias';
     }
     CategoriaService.prototype.createCategoria = function(categoria) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)

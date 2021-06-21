@@ -8,7 +8,7 @@ export class Empresa {
     categorias:Categoria[];
     email: string;
     razonSocial: string;
-    telefonoEmpresa:number;
+    telefonoEmpresa:string;
     idLugar: number;
     imagen: number;
 
