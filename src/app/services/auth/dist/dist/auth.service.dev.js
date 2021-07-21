@@ -55,7 +55,7 @@ var AuthService =
         };
 
         AuthService.prototype.onRegister = function(signupReq) {
-            console.log("registro manual de usuario");
+            //console.log("registro manual de usuario");
             return this.httpClient.post(this.authURL + 'signup', signupReq);
         };
 

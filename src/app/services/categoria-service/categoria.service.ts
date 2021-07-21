@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Categoria } from 'src/app/models/categoria';
 import { Observable } from 'rxjs';
 import { Empresa } from 'src/app/models/empresa';
+import { environment } from 'src/environments/environment';
 
 const cabecera = {headers: new HttpHeaders({'Content-TYpe': 'application/json'})};
 
@@ -10,8 +11,8 @@ const cabecera = {headers: new HttpHeaders({'Content-TYpe': 'application/json'})
   providedIn: 'root'
 })
 export class CategoriaService {
-
-  categoriaURL = 'http://localhost:8080/categorias';
+  url=environment.url;
+  categoriaURL = this.url+'/categorias';
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +30,7 @@ export class CategoriaService {
 
 }
   borrarEmpresaId(categoria:Categoria):Observable<any>{
-    console.log("el ide seleccionado es "+ categoria.idCategoria);
+    //console.log("el ide seleccionado es "+ categoria.idCategoria);
     return this.http.delete<Categoria>(this.categoriaURL+"/"+categoria.idCategoria);
   }
 

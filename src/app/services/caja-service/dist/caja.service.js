@@ -21,7 +21,7 @@ var CajaService = /** @class */ (function() {
     }
     CajaService.prototype.createCaja = function(caja) {
         //alert("nombre que se envia es "+ usuario.nombreUsuario)
-        console.log(caja);
+        //console.log(caja);
         return this.http.post(this.cajaURL, caja);
     };
     CajaService.prototype.getCajas = function() {
@@ -33,23 +33,23 @@ var CajaService = /** @class */ (function() {
         return this.http.get(this.cajaURL + "/all");
     };
     CajaService.prototype.getCajaId = function(id) {
-        console.log("el ide el usuario que asigna id es " + id);
+        //console.log("el ide el usuario que asigna id es " + id);
         return this.http.get(this.cajaURL + "/" + id);
     };
     CajaService.prototype.getCajaUsuario = function(id) {
-        console.log("el ide el usuario que asigna id es " + id);
+        //console.log("el ide el usuario que asigna id es " + id);
         return this.http.get(this.cajaURL + "/getCajaUsuario/" + id);
     };
     CajaService.prototype.updateCajaDar = function(caja, id, valor) {
-        console.log("el ide seleccionado es de dar" + id);
+        //console.log("el ide seleccionado es de dar" + id);
         return this.http.put(this.cajaURL + ("/modificarDar/" + id) + ("&" + valor), caja);
     };
     CajaService.prototype.updateCaja = function(caja, id) {
-        console.log("el ide seleccionado es solo update " + id);
+        //console.log("el ide seleccionado es solo update " + id);
         return this.http.put(this.cajaURL + ("/modificar/" + id), caja);
     };
     CajaService.prototype.updateCajaQuitar = function(caja, id, valor) {
-        console.log("el ide seleccionado es de quitar" + id);
+        //console.log("el ide seleccionado es de quitar" + id);
         return this.http.put(this.cajaURL + ("/modificarQuitar/" + id) + ("&" + valor), caja);
     };
     CajaService = __decorate([

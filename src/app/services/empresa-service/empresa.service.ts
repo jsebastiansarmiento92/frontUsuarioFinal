@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Empresa } from '../../models/empresa';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 const cabecera = {headers: new HttpHeaders({'Content-TYpe': 'application/json'})};
 
@@ -10,7 +11,8 @@ const cabecera = {headers: new HttpHeaders({'Content-TYpe': 'application/json'})
   providedIn: 'root'
 })
 export class EmpresaService {
-  empresaURL = 'http://localhost:8080/empresas';
+  url=environment.url;
+  empresaURL = this.url+'/empresas';
   constructor(private http: HttpClient) { }
 
   createEmpresa(empresa: Empresa): Observable<any> {
@@ -24,7 +26,7 @@ export class EmpresaService {
   }
 
   borrarEmpresaId(empresa:Empresa):Observable<any>{
-    console.log("el ide seleccionado es "+ empresa.idEmpresa);
+    //console.log("el ide seleccionado es "+ empresa.idEmpresa);
     return this.http.delete<Empresa>(this.empresaURL+"/"+empresa.idEmpresa);
   }
 }

@@ -48,11 +48,11 @@ export class CarritoComponent implements OnInit {
     private serviceUsuario:UsuarioService) { }
 
   ngOnInit() {
-    console.log("get carrito en oinit");
+    //console.log("get carrito en oinit");
     this.getCarrito();
     let idLugar=this.tokenService.getLugar();
-    console.log("id de lugar de usuario es ");
-    console.log(idLugar);
+    //console.log("id de lugar de usuario es ");
+    //console.log(idLugar);
     if(idLugar!='0'){
       this.serviceLugar.getLugarId(parseInt(idLugar)).subscribe(data=>{
         this.lugar=data;
@@ -61,32 +61,32 @@ export class CarritoComponent implements OnInit {
     }
   }
   getCarrito() {
-    console.log(JSON.parse(localStorage.getItem('myCar')));
+    //console.log(JSON.parse(localStorage.getItem('myCar')));
     this.productos = JSON.parse(localStorage.getItem('myCar'));
-    console.log(this.productos);
-   // console.log("carrito pendiente");
-   // console.log('objetoObtenido: ', this.productos);
+    //console.log(this.productos);
+   // //console.log("carrito pendiente");
+   // //console.log('objetoObtenido: ', this.productos);
   }
   modalDetallePedido(modal){
-    console.log("detalle de modal activo");
-    console.log(this.getidLugar());
+    //console.log("detalle de modal activo");
+    //console.log(this.getidLugar());
     if (this.getidLugar()==0){
       if (confirm('No tiene direccion guardada de domicilio, ¿desea guardar una?')) {
         this.isPrimeraVezLugar=true;
         this.asignarLugarNuevo();
       }
     }else{
-      console.log("detalle de modal despues de condicional");
+      //console.log("detalle de modal despues de condicional");
       this.modalDetalle=modal;
-      console.log("detalle del pedido es:");
-      console.log(this.pedido);
+      //console.log("detalle del pedido es:");
+      //console.log(this.pedido);
       this.serviceModal.open(modal);
     }
   }
   confirmarPedido() {
     if (!confirm('¿Estás seguro desea confirmar el servicio?')) {
     } else {
-      console.log("id lugar de la sesion es "+ this.getidLugar());
+      //console.log("id lugar de la sesion es "+ this.getidLugar());
       if (this.getidLugar()==0){
         if (confirm('No tiene direccion guardada de domicilio, ¿desea guardar una?')) {
           this.asignarLugarNuevo();
@@ -136,34 +136,34 @@ export class CarritoComponent implements OnInit {
       this.pedido.valorGanancia = 0;
       this.pedido.valorTotalPedido = 0;
       this.serviceModal.dismissAll();
-      console.log("valor gananacia "+ this.ganancia);
+      //console.log("valor gananacia "+ this.ganancia);
       this.pedido.valorGanancia=this.ganancia;
-      console.log("ingreso a crear el pedido");
-      console.log(this.pedido);
+      //console.log("ingreso a crear el pedido");
+      //console.log(this.pedido);
      /** this.pedidoService.createPedido(this.pedido).subscribe(data => {
         this.detalleServicioService.getServicio(this.pedido.idEmpresa, this.pedido.idCliente).subscribe(data => {
-          console.log("servicio extraido es");
-          console.log(data);
+          //console.log("servicio extraido es");
+          //console.log(data);
           this.servicio = data;
           this.idservicio = data.id;
-          console.log("id de servicio " + this.idservicio);
+          //console.log("id de servicio " + this.idservicio);
           this.llenarDetalle(this.idservicio);
           this.solicitarPedido();
         })
       }, (err: any) => {
         
-        console.log(err.error.mensaje)
+        //console.log(err.error.mensaje)
       }); */
      
       
   }
   solicitarPedido(){
-    console.log("listo para extraer pedido ");
-    console.log(this.servicio);
+    //console.log("listo para extraer pedido ");
+    //console.log(this.servicio);
     this.pedidoService.getPedido(this.servicio.idPedido).subscribe(data=>{
      // this.pedido=data;
-     console.log("lugar obtenido es ");
-    console.log(data);
+     //console.log("lugar obtenido es ");
+    //console.log(data);
       this.tokenService.setLugar(data.lugar.idLugar+"");
       this.loaderPedido=false;
     })
@@ -178,7 +178,7 @@ export class CarritoComponent implements OnInit {
   }
   llenarDetalle(idServicio: number) {
     let estadoServicio = "Activo";
-    console.log(this.productos);
+    //console.log(this.productos);
     this.productos.forEach(element => {
       let detalleServicio: DetalleServicio = new DetalleServicio();
       detalleServicio.idServicio = idServicio;
@@ -186,7 +186,7 @@ export class CarritoComponent implements OnInit {
       detalleServicio.valorUnitario = element.valorProducto;
       detalleServicio.cantidad = element.cantidad;
       this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(data => {
-        console.log("detalle servicio agregado");
+        //console.log("detalle servicio agregado");
         //alert("Pedido guardado");
         //this.ngOnInit();
         localStorage.removeItem('myCar');
@@ -198,11 +198,11 @@ export class CarritoComponent implements OnInit {
     
     this.servicio.estadoServicio = estadoServicio;
     this.servicioService.updateServicio(this.servicio).subscribe(data => {
-      console.log(data.mensaje);
+      //console.log(data.mensaje);
       alert(data.mensaje);
       this.ngOnInit();
     }, (err: any) => {
-      console.log(err.error.mensaje);
+      //console.log(err.error.mensaje);
     })
     
   }
@@ -220,16 +220,16 @@ export class CarritoComponent implements OnInit {
     this.serviceModal.open(this.agregarDireccionNueva);
     this.serviceBarrio.getBarrios().subscribe(data=>{
       this.barrios=data;
-      console.log("barrios cargados");
-      console.log(this.barrios);
+      //console.log("barrios cargados");
+      //console.log(this.barrios);
       this.loader=false;
     });
   }
 
   capturar(){
     this.getBarrio();
-    console.log("barrio seleccionado ");
-    console.log(this.barrio);
+    //console.log("barrio seleccionado ");
+    //console.log(this.barrio);
   }
   getBarrio(){
     
@@ -244,8 +244,8 @@ export class CarritoComponent implements OnInit {
     this.lugar.barrio=this.barrio;
     this.lugar.direccionLugar=this.direccion;
     this.lugar.idUsuario=this.getidSesion();
-    console.log("datos de lugar");
-    console.log(this.lugar);
+    //console.log("datos de lugar");
+    //console.log(this.lugar);
     this.totalServicio=this.getValorPedido()
     
       if(this.isPrimeraVezLugar){
@@ -255,7 +255,7 @@ export class CarritoComponent implements OnInit {
           }
         },(err: any) => {
           
-          console.log(err.error.mensaje)
+          //console.log(err.error.mensaje)
         })
         this.serviceModal.dismissAll()
         this.serviceModal.open(this.modalDetalle);
@@ -263,7 +263,7 @@ export class CarritoComponent implements OnInit {
         this.serviceLugar.createLugar(this.lugar).subscribe(data=>{
           alert(data);
         },(err: any) => {
-          console.log(err.error.mensaje)
+          //console.log(err.error.mensaje)
         })
         this.serviceModal.dismissAll()
         this.serviceModal.open(this.modalDetalle);
@@ -274,8 +274,8 @@ export class CarritoComponent implements OnInit {
   }
   getLugaresUsuario1(){
     this.serviceLugar.getLugaresIdUsuario1(parseInt(this.tokenService.getIdUser())).subscribe(data=>{
-      console.log("listado de lugares del usuario");
-      console.log(data);
+      //console.log("listado de lugares del usuario");
+      //console.log(data);
       this.lugares=data;
     })
   }

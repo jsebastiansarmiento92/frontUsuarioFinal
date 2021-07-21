@@ -116,8 +116,7 @@ export class PipeSearchPipe implements PipeTransform {
     searchText = this.removeDiacritics(searchText.toLowerCase());
 
     return items.filter(it => {
-      console.log("variable it");
-      console.log(it);
+      
       return this.removeDiacritics(it.razonSocial.toLowerCase()).includes(searchText);
     });
   }

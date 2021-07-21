@@ -7,6 +7,7 @@ import { NgbDropdownModule, NgbTabsetModule, NgbDatepickerModule, NgbModalModule
 import { PipeSearchPipe } from './pipe/pipe-search.pipe';
 import { LoginModalComponent } from './loginModal/login-modal/login-modal.component';
 import { PipeSearchProductoPipe } from './pipe/pipe-search-producto.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -15,7 +16,7 @@ import { PipeSearchProductoPipe } from './pipe/pipe-search-producto.pipe';
       CommonModule,
       //TranslateModule,
     InicioRoutingModule,
-    
+    NgxPaginationModule,
      FormsModule,
      NgbModalModule
   ],

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { JwtModel } from '../../models/jwt-model';
 import { NuevoUsuario } from '../../models/nuevo-usuario';
 import { SignUpRequest } from 'src/app/models/sign-up-request';
+import { environment } from 'src/environments/environment';
 
 const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
@@ -20,7 +21,7 @@ const headers = new Headers({
 //http://localhost:8080/
 
 export class AuthService {
-  private authURL = 'http://localhost:8080/auth/';
+  private authURL = environment.url+'/auth/';
 
   constructor(private httpClient: HttpClient) { }
   
@@ -33,11 +34,11 @@ export class AuthService {
   }
 
   googleLogin(): Observable<any> {
-    return this.httpClient.get<any>(window.location.href='http://localhost:8080/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup');
+    return this.httpClient.get<any>(window.location.href=environment.url+'/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup');
   }
 
   getCurrentUser(): Observable<any>{
-    return  this.httpClient.get<any>('http://localhost:8080/usuarios/user/me');
+    return  this.httpClient.get<any>(environment.url+'/usuarios/user/me');
   }
 
 

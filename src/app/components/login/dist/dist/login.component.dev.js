@@ -43,12 +43,12 @@ var LoginComponent =
 
         LoginComponent.prototype.ngOnInit = function() {
             /**  if (this.tokenService.getToken()) {
-               console.log("usuario "+this.tokenService.getUserName());
+               //console.log("usuario "+this.tokenService.getUserName());
                this.isLogged = true;
                this.isLoginFail = false;
                this.roles = this.tokenService.getAuthorities();
              }*/
-            // console.log("no hay token guardado");
+            // //console.log("no hay token guardado");
             this.urlTree = this.router.parseUrl(this.router.url);
             this.token = this.urlTree.queryParams['token'];
             this.error = this.urlTree.queryParams['error'];
@@ -59,13 +59,13 @@ var LoginComponent =
                     window.localStorage.setItem('AuthToken', this.token);
                 }
 
-                console.log("token llegando es:");
-                console.log(this.token);
-                console.log("erro llegando es ");
-                console.log(this.error);
+                //console.log("token llegando es:");
+                //console.log(this.token);
+                //console.log("erro llegando es ");
+                //console.log(this.error);
 
                 if (window.sessionStorage.getItem('AuthToken')) {
-                    console.log("hay tonken guardado porque ingresa al if");
+                    //console.log("hay tonken guardado porque ingresa al if");
                     this.getUser();
                 }
             }
@@ -78,8 +78,8 @@ var LoginComponent =
             this.logingIn = true;
             this.loader = true;
             this.authService.login(this.signupReq).subscribe(function(data) {
-                console.log("ingreso a la promesa de login");
-                console.log(data);
+                //console.log("ingreso a la promesa de login");
+                //console.log(data);
 
                 _this.tokenService.setToken(data.accessToken);
 
@@ -99,7 +99,7 @@ var LoginComponent =
                 _this.isLogged = false;
                 _this.isLoginFail = true;
                 _this.errorMsg = err.error.message; //this.router.navigate(['']);
-                console.log("error " + err.error.message);
+                //console.log("error " + err.error.message);
             });
         };
 
@@ -107,7 +107,7 @@ var LoginComponent =
             var _this = this;
 
             this.authService.getCurrentUser().subscribe(function(data) {
-                console.log(data);
+                //console.log(data);
                 window.localStorage.setItem("idSesion", JSON.stringify(data)); //this.tokenService.setToken(data.token);
 
                 _this.tokenService.setUserName(data.name);
@@ -137,12 +137,12 @@ var LoginComponent =
         };
 
         LoginComponent.prototype.loginGoogle = function() {
-            console.log("ingresoa registrer con google");
+            //console.log("ingresoa registrer con google");
             window.location.href = "http://localhost:8080/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
         };
 
         LoginComponent.prototype.loginFacebook = function() {
-            console.log("ingresoa registrer con facebook");
+            //console.log("ingresoa registrer con facebook");
             window.location.href = "http://localhost:8080/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
         };
 

@@ -42,7 +42,7 @@ var LandingComponent = /** @class */ (function() {
     LandingComponent.prototype.ngOnInit = function() {
         // this.autenticarToken();
         this.autenticar();
-        console.log("ingreso metodo ngOninit landing");
+        //console.log("ingreso metodo ngOninit landing");
         if (!localStorage.getItem('barrios')) {
             this.cargarBarrios();
         } else
@@ -66,19 +66,19 @@ var LandingComponent = /** @class */ (function() {
         this.token = this.urlTree.queryParams['token'];
         this.error = this.urlTree.queryParams['error'];
         if (this.token == null) {
-            console.log("no hay token guardado");
+            //console.log("no hay token guardado");
         } else if (this.token.length > 1) {
             window.sessionStorage.setItem('AuthToken', this.token);
             window.localStorage.setItem('AuthToken', this.token);
         }
-        console.log("token llegando es:");
-        console.log(this.token);
-        console.log("error llegando es ");
-        console.log(this.error);
+        //console.log("token llegando es:");
+        //console.log(this.token);
+        //console.log("error llegando es ");
+        //console.log(this.error);
         if (window.sessionStorage.getItem('AuthToken')) {
-            console.log("hay tonken guardado porque ingresa al if");
+            //console.log("hay tonken guardado porque ingresa al if");
             this.authService.getCurrentUser().subscribe(function(data) {
-                console.log(data);
+                //console.log(data);
                 //this.tokenService.setToken(data.token);
                 window.localStorage.setItem("idSesion", JSON.stringify(data));
                 _this.tokenService.setUserName(data.name);
@@ -101,9 +101,9 @@ var LandingComponent = /** @class */ (function() {
         var _this = this;
         if (window.localStorage.getItem('AuthToken')) {
             window.sessionStorage.setItem('AuthToken', window.localStorage.getItem('AuthToken'));
-            console.log("hay tonken guardado porque ingresa al if");
+            //console.log("hay tonken guardado porque ingresa al if");
             this.authService.getCurrentUser().subscribe(function(data) {
-                console.log(data);
+                //console.log(data);
                 //this.tokenService.setToken(data.token);
                 window.localStorage.setItem("idSesion", JSON.stringify(data));
                 _this.tokenService.setUserName(data.name);
@@ -138,17 +138,17 @@ var LandingComponent = /** @class */ (function() {
             this.promesaModificarLugar(lugar);
             window.localStorage.setItem("lugar", JSON.stringify(lugar));
             window.sessionStorage.setItem("telefono", this.telefono);
-            console.log("oprimidio inicio");
+            //console.log("oprimidio inicio");
             this.router.navigate(["inicio"]);
         } else {
             this.serviceLugar.createLugar(lugar).subscribe(function(data) {
-                console.log(data);
+                //console.log(data);
                 _this.serviceLugar.getLugaresIdUsuario1(parseInt(sessionStorage.getItem("IdSesion"))).subscribe(function(data) {
                     sessionStorage.setItem("IdLugar", data[0].idLugar);
                 });
             });
             window.localStorage.setItem("lugar", JSON.stringify(lugar));
-            console.log("oprimidio inicio");
+            //console.log("oprimidio inicio");
             this.router.navigate(["inicio"]);
         }
     };
@@ -161,8 +161,8 @@ var LandingComponent = /** @class */ (function() {
                 _this.barrios.push(data[i]);
             }
             _this.barrios = data;
-            console.log("barrios cargados");
-            console.log(data);
+            //console.log("barrios cargados");
+            //console.log(data);
             localStorage.setItem("barrios", JSON.stringify(data));
             _this.cargaBarrios = false;
             location.reload();
@@ -170,18 +170,18 @@ var LandingComponent = /** @class */ (function() {
     };
     LandingComponent.prototype.promesaModificarLugar = function(lugar) {
         var _this = this;
-        console.log("id del lugar guadados son: ");
-        console.log(sessionStorage.getItem('IdLugar'));
+        //console.log("id del lugar guadados son: ");
+        //console.log(sessionStorage.getItem('IdLugar'));
         localStorage.setItem("lugar", JSON.stringify(lugar));
         lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
         this.serviceLugar.modificarLugar(lugar).subscribe(function(data) {
-            console.log("se ha modificado un lugar");
+            //console.log("se ha modificado un lugar");
         }, function(err) {
             if (err.error.mensaje === undefined) {
                 //alert("debe ingresar o registrarse");
                 _this.router.navigate(["inicio"]);
             }
-            console.log(err.error.mensaje);
+            //console.log(err.error.mensaje);
         });
     };
     LandingComponent.prototype.llenarTipodirecciones = function() {
@@ -197,8 +197,8 @@ var LandingComponent = /** @class */ (function() {
     };
     LandingComponent.prototype.capturarBarrio = function() {
         this.getBarrio();
-        console.log("barrio seleccionado ");
-        console.log(this.barrio);
+        //console.log("barrio seleccionado ");
+        //console.log(this.barrio);
     };
     LandingComponent.prototype.getBarrio = function() {
         var _this = this;

@@ -10,6 +10,7 @@ import {UsuarioService} from 'src/app/services/usuario-service/usuario.service'
 
 import { RecaptchaErrorParameters } from "ng-recaptcha";
 import { flatten } from '@angular/compiler';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -32,8 +33,8 @@ export class LoginComponent implements OnInit {
   error: string;
   setState = false;
   currentUser: any;
-  urlgoogle="http://localhost:8080/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
-  urlfacebook="http://localhost:8080/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+  urlgoogle=environment.url+"/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+  urlfacebook=environment.url+"/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   signupReq: SignUpRequest = new SignUpRequest();
   @ViewChild('iframe',{ static: true }) iframe: ElementRef;
   urlSafe;
@@ -49,12 +50,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     /**  if (this.tokenService.getToken()) {
-       console.log("usuario "+this.tokenService.getUserName());
+       //console.log("usuario "+this.tokenService.getUserName());
        this.isLogged = true;
        this.isLoginFail = false;
        this.roles = this.tokenService.getAuthorities();
      }*/
-    // console.log("no hay token guardado");
+    // //console.log("no hay token guardado");
     this.urlTree = this.router.parseUrl(this.router.url);
     this.token = this.urlTree.queryParams['token'];
     this.error = this.urlTree.queryParams['error'];
@@ -64,14 +65,14 @@ export class LoginComponent implements OnInit {
         //window.localStorage.setItem('AuthToken', this.token);
        }
       
-      console.log("token llegando es:");
-      console.log(this.token);
-      console.log("erro llegando es ");
-      console.log(this.error);
+      //console.log("token llegando es:");
+      //console.log(this.token);
+      //console.log("erro llegando es ");
+      //console.log(this.error);
       
       if (window.sessionStorage.getItem('AuthToken')) {
   
-        console.log("hay tonken guardado porque ingresa al if");
+        //console.log("hay tonken guardado porque ingresa al if");
   
         this.getUser();
       }
@@ -116,8 +117,8 @@ export class LoginComponent implements OnInit {
     this.logingIn = true;
     this.loader = true;
     this.authService.login(this.signupReq).subscribe(data => {
-      console.log("ingreso a la promesa de login");
-      console.log(data);
+      //console.log("ingreso a la promesa de login");
+      //console.log(data);
       this.tokenService.setToken(data.accessToken);
       window.localStorage.setItem("AuthToken", data.accessToken);
       //window.sessionStorage.setItem("AuthToken", data.accessToken);
@@ -139,7 +140,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFail = true;
         this.errorMsg = err.error.message;
         //this.router.navigate(['']);
-        console.log("error "+ err.error.message);
+        //console.log("error "+ err.error.message);
       }
     );
     
@@ -148,8 +149,8 @@ export class LoginComponent implements OnInit {
   getUser() {
 
     this.authService.getCurrentUser().subscribe(data => {
-      console.log("ingreso de metodo de get currentuser")
-      console.log(data);
+      //console.log("ingreso de metodo de get currentuser")
+      //console.log(data);
       window.localStorage.setItem("idSesion", JSON.stringify(data));
       //window.localStorage.setItem("AuthToken", data.token);
       //this.tokenService.setToken(data.token);
@@ -186,19 +187,19 @@ export class LoginComponent implements OnInit {
     //this.urlSafe= (this.url);
     
     //this.ngModal.open(modal);
-   // console.log("ingresoa registrer con google");
-    window.location.href = "http://localhost:8080/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
+   // //console.log("ingresoa registrer con google");
+    window.location.href = environment.url+"/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup";
  // this.iframe.nativeElement.setAttribute('src', "http://localhost:8080/oauth2/authorize/google?redirect_uri=https://quickdomicilios.com/signup&output=embed");
     
   }
 
   loginFacebook(modal){
     //this.ngModal.open(modal);
-    console.log("ingresoa registrer con facebook")
-    location.href="http://localhost:8080/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
+    //console.log("ingresoa registrer con facebook")
+    location.href=environment.url+"/oauth2/authorize/facebook?redirect_uri=https://quickdomicilios.com/signup";
   }
   public resolved(captchaResponse: string): void {
-    console.log(`Resolved captcha with response: ${captchaResponse}`);
+    //console.log(`Resolved captcha with response: ${captchaResponse}`);
     if (captchaResponse == null){
       this.recapcha= false;
     } else{
@@ -208,6 +209,6 @@ export class LoginComponent implements OnInit {
 
   public onError(errorDetails: RecaptchaErrorParameters): void {
     this.recapcha =  false;
-    console.log(`reCAPTCHA error encountered; details:`, errorDetails);
+    //console.log(`reCAPTCHA error encountered; details:`, errorDetails);
   }
 }

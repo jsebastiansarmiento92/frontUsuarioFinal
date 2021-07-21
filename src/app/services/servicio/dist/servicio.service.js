@@ -18,7 +18,7 @@ var ServicioService = /** @class */ (function() {
         this.servicioURL = 'http://localhost:8080/servicio';
     }
     ServicioService.prototype.updateServicio = function(servicio) {
-        console.log("el ide seleccionado es " + servicio.id);
+        //console.log("el ide seleccionado es " + servicio.id);
         return this.http.put(this.servicioURL + "/modificarEstado", servicio);
     };
     ServicioService = __decorate([

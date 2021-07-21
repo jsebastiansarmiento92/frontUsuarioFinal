@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Rol } from '../../models/rol';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 const cabecera = {headers: new HttpHeaders({'Content-TYpe': 'application/json'})};
 
@@ -14,8 +15,8 @@ const cabecera = {headers: new HttpHeaders({'Content-TYpe': 'application/json'})
 export class RolServiceService {
 
  
-
-  rolURL = 'http://localhost:8080/roles';
+url=environment.url;
+  rolURL = this.url+'/roles';
 
 
 
@@ -29,16 +30,16 @@ export class RolServiceService {
   }
 
   updateRol(rol:Rol){
-    console.log("el ide seleccionado es "+ rol.id)
+    //console.log("el ide seleccionado es "+ rol.id)
     return this.http.put<Rol>(this.rolURL,rol); 
   }
 
   getRolId(id:number){
-   // console.log("el ide seleccionado es "+ id)
+   // //console.log("el ide seleccionado es "+ id)
     return this.http.get<Rol>(this.rolURL+"/"+id);
   }
   borrarRolId(rol:Rol){
-    // console.log("el ide seleccionado es "+ id)
+    // //console.log("el ide seleccionado es "+ id)
      return this.http.delete<Rol>(this.rolURL+"/"+rol.id);
    }
 }

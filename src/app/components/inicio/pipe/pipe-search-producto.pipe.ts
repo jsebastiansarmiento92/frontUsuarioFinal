@@ -116,8 +116,7 @@ export class PipeSearchProductoPipe implements PipeTransform {
     searchText = this.removeDiacritics(searchText.toLowerCase());
 
     return items.filter(it => {
-      console.log("variable it");
-      console.log(it);
+   
       return this.removeDiacritics(it.nombreProducto.toLowerCase()).includes(searchText);
     });
   }

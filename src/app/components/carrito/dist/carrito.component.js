@@ -41,11 +41,11 @@ var CarritoComponent = /** @class */ (function() {
     }
     CarritoComponent.prototype.ngOnInit = function() {
         var _this = this;
-        console.log("get carrito en oinit");
+        //console.log("get carrito en oinit");
         this.getCarrito();
         var idLugar = this.tokenService.getLugar();
-        console.log("id de lugar de usuario es ");
-        console.log(idLugar);
+        //console.log("id de lugar de usuario es ");
+        //console.log(idLugar);
         if (idLugar != '0') {
             this.serviceLugar.getLugarId(parseInt(idLugar)).subscribe(function(data) {
                 _this.lugar = data;
@@ -54,32 +54,32 @@ var CarritoComponent = /** @class */ (function() {
         }
     };
     CarritoComponent.prototype.getCarrito = function() {
-        console.log(JSON.parse(localStorage.getItem('myCar')));
+        //console.log(JSON.parse(localStorage.getItem('myCar')));
         this.productos = JSON.parse(localStorage.getItem('myCar'));
-        console.log(this.productos);
-        // console.log("carrito pendiente");
-        // console.log('objetoObtenido: ', this.productos);
+        //console.log(this.productos);
+        // //console.log("carrito pendiente");
+        // //console.log('objetoObtenido: ', this.productos);
     };
     CarritoComponent.prototype.modalDetallePedido = function(modal) {
-        console.log("detalle de modal activo");
-        console.log(this.getidLugar());
+        //console.log("detalle de modal activo");
+        //console.log(this.getidLugar());
         if (this.getidLugar() == 0) {
             if (confirm('No tiene direccion guardada de domicilio, ¿desea guardar una?')) {
                 this.isPrimeraVezLugar = true;
                 this.asignarLugarNuevo();
             }
         } else {
-            console.log("detalle de modal despues de condicional");
+            //console.log("detalle de modal despues de condicional");
             this.modalDetalle = modal;
-            console.log("detalle del pedido es:");
-            console.log(this.pedido);
+            //console.log("detalle del pedido es:");
+            //console.log(this.pedido);
             this.serviceModal.open(modal);
         }
     };
     CarritoComponent.prototype.confirmarPedido = function() {
         var _this = this;
         if (!confirm('¿Estás seguro desea confirmar el servicio?')) {} else {
-            console.log("id lugar de la sesion es " + this.getidLugar());
+            //console.log("id lugar de la sesion es " + this.getidLugar());
             if (this.getidLugar() == 0) {
                 if (confirm('No tiene direccion guardada de domicilio, ¿desea guardar una?')) {
                     this.asignarLugarNuevo();
@@ -121,33 +121,33 @@ var CarritoComponent = /** @class */ (function() {
         this.pedido.valorGanancia = 0;
         this.pedido.valorTotalPedido = 0;
         this.serviceModal.dismissAll();
-        console.log("valor gananacia " + this.ganancia);
+        //console.log("valor gananacia " + this.ganancia);
         this.pedido.valorGanancia = this.ganancia;
-        console.log("ingreso a crear el pedido");
-        console.log(this.pedido);
+        //console.log("ingreso a crear el pedido");
+        //console.log(this.pedido);
         /** this.pedidoService.createPedido(this.pedido).subscribe(data => {
            this.detalleServicioService.getServicio(this.pedido.idEmpresa, this.pedido.idCliente).subscribe(data => {
-             console.log("servicio extraido es");
-             console.log(data);
+             //console.log("servicio extraido es");
+             //console.log(data);
              this.servicio = data;
              this.idservicio = data.id;
-             console.log("id de servicio " + this.idservicio);
+             //console.log("id de servicio " + this.idservicio);
              this.llenarDetalle(this.idservicio);
              this.solicitarPedido();
            })
          }, (err: any) => {
            
-           console.log(err.error.mensaje)
+           //console.log(err.error.mensaje)
          }); */
     };
     CarritoComponent.prototype.solicitarPedido = function() {
         var _this = this;
-        console.log("listo para extraer pedido ");
-        console.log(this.servicio);
+        //console.log("listo para extraer pedido ");
+        //console.log(this.servicio);
         this.pedidoService.getPedido(this.servicio.idPedido).subscribe(function(data) {
             // this.pedido=data;
-            console.log("lugar obtenido es ");
-            console.log(data);
+            //console.log("lugar obtenido es ");
+            //console.log(data);
             _this.tokenService.setLugar(data.lugar.idLugar + "");
             _this.loaderPedido = false;
         });
@@ -161,7 +161,7 @@ var CarritoComponent = /** @class */ (function() {
     CarritoComponent.prototype.llenarDetalle = function(idServicio) {
         var _this = this;
         var estadoServicio = "Activo";
-        console.log(this.productos);
+        //console.log(this.productos);
         this.productos.forEach(function(element) {
             var detalleServicio = new detalle_servicio_1.DetalleServicio();
             detalleServicio.idServicio = idServicio;
@@ -169,7 +169,7 @@ var CarritoComponent = /** @class */ (function() {
             detalleServicio.valorUnitario = element.valorProducto;
             detalleServicio.cantidad = element.cantidad;
             _this.detalleServicioService.createDetalleServicio(detalleServicio).subscribe(function(data) {
-                console.log("detalle servicio agregado");
+                //console.log("detalle servicio agregado");
                 //alert("Pedido guardado");
                 //this.ngOnInit();
                 localStorage.removeItem('myCar');
@@ -179,11 +179,11 @@ var CarritoComponent = /** @class */ (function() {
         });
         this.servicio.estadoServicio = estadoServicio;
         this.servicioService.updateServicio(this.servicio).subscribe(function(data) {
-            console.log(data.mensaje);
+            //console.log(data.mensaje);
             alert(data.mensaje);
             _this.ngOnInit();
         }, function(err) {
-            console.log(err.error.mensaje);
+            //console.log(err.error.mensaje);
         });
     };
     CarritoComponent.prototype.cancelarCarrito = function() {
@@ -200,15 +200,15 @@ var CarritoComponent = /** @class */ (function() {
         this.serviceModal.open(this.agregarDireccionNueva);
         this.serviceBarrio.getBarrios().subscribe(function(data) {
             _this.barrios = data;
-            console.log("barrios cargados");
-            console.log(_this.barrios);
+            //console.log("barrios cargados");
+            //console.log(_this.barrios);
             _this.loader = false;
         });
     };
     CarritoComponent.prototype.capturar = function() {
         this.getBarrio();
-        console.log("barrio seleccionado ");
-        console.log(this.barrio);
+        //console.log("barrio seleccionado ");
+        //console.log(this.barrio);
     };
     CarritoComponent.prototype.getBarrio = function() {
         var _this = this;
@@ -223,8 +223,8 @@ var CarritoComponent = /** @class */ (function() {
         this.lugar.barrio = this.barrio;
         this.lugar.direccionLugar = this.direccion;
         this.lugar.idUsuario = this.getidSesion();
-        console.log("datos de lugar");
-        console.log(this.lugar);
+        //console.log("datos de lugar");
+        //console.log(this.lugar);
         this.totalServicio = this.getValorPedido();
         if (this.isPrimeraVezLugar) {
             this.serviceLugar.createLugar(this.lugar).subscribe(function(data) {
@@ -232,7 +232,7 @@ var CarritoComponent = /** @class */ (function() {
                     _this.confirmarTransaccion();
                 }
             }, function(err) {
-                console.log(err.error.mensaje);
+                //console.log(err.error.mensaje);
             });
             this.serviceModal.dismissAll();
             this.serviceModal.open(this.modalDetalle);
@@ -240,7 +240,7 @@ var CarritoComponent = /** @class */ (function() {
             this.serviceLugar.createLugar(this.lugar).subscribe(function(data) {
                 alert(data);
             }, function(err) {
-                console.log(err.error.mensaje);
+                //console.log(err.error.mensaje);
             });
             this.serviceModal.dismissAll();
             this.serviceModal.open(this.modalDetalle);
@@ -249,8 +249,8 @@ var CarritoComponent = /** @class */ (function() {
     CarritoComponent.prototype.getLugaresUsuario1 = function() {
         var _this = this;
         this.serviceLugar.getLugaresIdUsuario1(parseInt(this.tokenService.getIdUser())).subscribe(function(data) {
-            console.log("listado de lugares del usuario");
-            console.log(data);
+            //console.log("listado de lugares del usuario");
+            //console.log(data);
             _this.lugares = data;
         });
     };

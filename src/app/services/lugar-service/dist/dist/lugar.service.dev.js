@@ -29,22 +29,22 @@ var LugarService =
 
         LugarService.prototype.createLugar = function(lugar) {
             //alert("nombre que se envia es "+ usuario.nombreUsuario)
-            console.log(lugar);
+            //console.log(lugar);
             return this.http.post(this.lugarURL, lugar);
         };
 
         LugarService.prototype.getLugarId = function(id) {
-            // console.log("el ide seleccionado es "+ id)
+            // //console.log("el ide seleccionado es "+ id)
             return this.http.get(this.lugarURL + "/" + id);
         };
 
         LugarService.prototype.getLugaresIdUsuario1 = function(id) {
-            // console.log("el ide seleccionado es "+ id)
+            // //console.log("el ide seleccionado es "+ id)
             return this.http.get(this.lugarURL + "/usuario/" + id);
         };
 
         LugarService.prototype.modificarLugar = function(lugar) {
-            console.log(lugar);
+            //console.log(lugar);
             return this.http.put(this.lugarURL + '/modificarLugar', lugar);
         };
 

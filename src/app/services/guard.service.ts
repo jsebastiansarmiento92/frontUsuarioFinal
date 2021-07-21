@@ -22,12 +22,12 @@ export class GuardService implements CanActivate {
     //|| expectedRol.indexOf(this.realRol) === -1 pendiente por implementar en el if cuando se tenga que restringir acceso dependiendo los roles
   
     if (!this.tokenService.getToken() ) {
-      console.log("error no se ha podido realizar login");
+      //console.log("error no se ha podido realizar login");
       this.router.navigate(['login']);
       return false;
 
     }
-    console.log("login completo");
+    //console.log("login completo");
     return true;
   }
 

@@ -342,14 +342,14 @@
         <label class="modal-title">Valor Domicilio: ${{pedido.valorGanancia}}</label><br>
         <label class="modal-title">Valor Total: ${{pedido.valorGanancia+pedido.valorTotalPedido}}</label><br>
         <br>
-        <label class="modal-title">Onservaciones (las observaciones solo son aplicables 4 minutos despues de realizado
-            el pedido antes no se garantiza que se ejecuten)</label><br>
+      <!--<label class="modal-title">Onservaciones (las observaciones solo son aplicables 4 minutos despues de realizado
+            el pedido antes no se garantiza que se ejecuten)</label><br>-->
         <div class="card-body">
             <textarea type="textarea" class="form-control" disabled rows="5" cols="10" [(ngModel)]="pedido.observaciones" name="cantidad" placeholder="Agrega observacion del pedido"></textarea>
         </div>
-        <a class="btn btn-chartjs btn-round" (click)="modificarObservacion(modaObesrvacion)">
+       <!--<a class="btn btn-chartjs btn-round" (click)="modificarObservacion(modaObesrvacion)">
             Cambiar
-        </a>
+        </a>-->
         <h5 class="modal-title">Detalle de pedido:</h5>
     </div>
     <div class="modal-footer justify-content-center">

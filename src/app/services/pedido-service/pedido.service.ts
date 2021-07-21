@@ -2,19 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Pedido } from 'src/app/models/pedido';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PedidoService {
-  pedidoURL = 'http://localhost:8080/pedido';
+  url=environment.url;
+  pedidoURL = this.url+'/pedido';
 
   constructor(private http: HttpClient) {
 
    }
    createPedido(pedido:Pedido): Observable<any> {
     //alert("nombre que se envia es "+ usuario.nombreUsuario)
-    console.log(pedido);
+    //console.log(pedido);
     return this.http.post<Pedido>(this.pedidoURL, pedido);
   }
 
@@ -28,12 +30,12 @@ export class PedidoService {
   }
 
   modificarPedidoDomiciliario(idPedido:number, idDomiciliario: number,pedido:Pedido): Observable<any>{
-    console.log("el ide seleccionado es de modificarpeidoDom"+ idDomiciliario)
+    //console.log("el ide seleccionado es de modificarpeidoDom"+ idDomiciliario)
     return this.http.put<any>(this.pedidoURL+`/modificarDomiciliario/${idPedido}`+`&${idDomiciliario}`,pedido); 
   }
 
     modificarPedidoObservaciones(idPedido:number,pedido:Pedido): Observable<any>{
-   // console.log("el ide seleccionado es de modificarpeidoDom"+ idDomiciliario)
+   // //console.log("el ide seleccionado es de modificarpeidoDom"+ idDomiciliario)
     return this.http.put<any>(this.pedidoURL+`/modificarObservaciones/${idPedido}`,pedido); 
   }
 

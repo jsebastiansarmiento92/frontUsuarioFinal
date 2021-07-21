@@ -29,8 +29,8 @@ var ConsignacionService =
 
         ConsignacionService.prototype.createConsignacion = function(consignacion) {
             //alert("nombre que se envia es "+ usuario.nombreUsuario)
-            console.log("consignacion lista para enviar por el endpoint");
-            console.log(consignacion);
+            //console.log("consignacion lista para enviar por el endpoint");
+            //console.log(consignacion);
             return this.http.post(this.consignacionURL + '/' + consignacion.caja.idCaja, consignacion);
         };
 

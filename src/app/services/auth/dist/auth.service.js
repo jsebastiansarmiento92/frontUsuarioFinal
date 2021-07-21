@@ -35,7 +35,7 @@ var AuthService = /** @class */ (function() {
         return this.httpClient.get('http://localhost:8080/usuarios/user/me');
     };
     AuthService.prototype.onRegister = function(signupReq) {
-        console.log("registro manual de usuario");
+        //console.log("registro manual de usuario");
         return this.httpClient.post(this.authURL + 'signup', signupReq);
     };
     AuthService = __decorate([

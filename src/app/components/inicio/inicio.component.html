@@ -346,7 +346,7 @@
                         <div class="col-md-12 mr-auto ml-auto d-block d-sm-block d-md-none ">
                             <!-- Carousel Card -->
                             <div class="card card-raised card-carousel">
-                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+                                <div id="carouselExampleIndicators" class="carousel-control" data-ride="carousel" data-interval="3000">
                                     <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="">
                                         </li>
@@ -355,7 +355,7 @@
                                         </li>
                                     </ol>
                                     <div class="carousel-inner">
-                                        <div class="carousel-item active carousel-item-left" *ngIf="promociones[0].retrievedImage; else else0" (click)="getProductoPromocion(promociones[0].producto,confirmarModal)">
+                                        <div class="carousel-item active carousel-item-left" *ngIf="promociones[0]; else else0" (click)="getProductoPromocion(promociones[0].producto,confirmarModal)">
                                             <img style="height: 100px;" class="d-block w-100" [src]="promociones[0].retrievedImage" alt="First slide">
                                             <div class="carousel-caption d-none d-md-block">
                                             </div>
@@ -367,7 +367,7 @@
                                                 </div>
                                             </div>
                                         </ng-template>
-                                        <div class="carousel-item carousel-item-next carousel-item-left" *ngIf="promociones[1].retrievedImage; else else1" (click)="getProductoPromocion(promociones[1].producto,confirmarModal)">
+                                        <div class="carousel-item carousel-item-next carousel-item-left" *ngIf="promociones[1]; else else1" (click)="getProductoPromocion(promociones[1].producto,confirmarModal)">
                                             <img class="d-block w-100" [src]="promociones[1].retrievedImage" style="height: 100px;" alt="Second slide">
                                             <div class="carousel-caption d-none d-md-block">
                                             </div>
@@ -379,7 +379,7 @@
                                                 </div>
                                             </div>
                                         </ng-template>
-                                        <div class="carousel-item" *ngIf="promociones[2].retrievedImage; else else2" (click)="getProductoPromocion(promociones[2].producto,confirmarModal)">
+                                        <div class="carousel-item" *ngIf="promociones[2]; else else2" (click)="getProductoPromocion(promociones[2].producto,confirmarModal)">
                                             <img class="d-block w-100" [src]="promociones[2].retrievedImage" style="height: 100px;" alt="Third slide">
                                             <div class="carousel-caption d-none d-md-block">
                                             </div>
@@ -392,14 +392,7 @@
                                             </div>
                                         </ng-template>
                                     </div>
-                                    <a class="carousel-control-prev" role="button" href="#carouselExampleIndicators" data-slide="prev">
-                                        <i class="material-icons">keyboard_arrow_left</i>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                        <i class="material-icons">keyboard_arrow_right</i>
-                                        <span class="sr-only">Next</span>
-                                    </a>
+                                   
                                 </div>
                             </div>
                             <!-- End Carousel Card -->
@@ -417,7 +410,7 @@
                                         </li>
                                     </ol>
                                     <div class="carousel-inner">
-                                        <div class="carousel-item active carousel-item-left" *ngIf="promociones[0].retrievedImage; else elseEscritorio0" (click)="getProductoPromocion(promociones[0].producto,confirmarModal)">
+                                        <div class="carousel-item active carousel-item-left" *ngIf="promociones[0]; else elseEscritorio0" (click)="getProductoPromocion(promociones[0].producto,confirmarModal)">
                                             <img style="height: 200px;" class="d-block w-100" [src]="promociones[0].retrievedImage" alt="First slide">
                                             <div class="carousel-caption d-none d-md-block">
                                             </div>
@@ -429,7 +422,7 @@
                                                 </div>
                                             </div>
                                         </ng-template>
-                                        <div class="carousel-item carousel-item-next carousel-item-left" *ngIf="promociones[1].retrievedImage; else elseEscritorio1" (click)="getProductoPromocion(promociones[1].producto,confirmarModal)">
+                                        <div class="carousel-item carousel-item-next carousel-item-left" *ngIf="promociones[1]; else elseEscritorio1" (click)="getProductoPromocion(promociones[1].producto,confirmarModal)">
                                             <img class="d-block w-100" [src]="promociones[1].retrievedImage" style="height: 200px;" alt="Second slide">
                                             <div class="carousel-caption d-none d-md-block">
                                             </div>
@@ -454,14 +447,7 @@
                                             </div>
                                         </ng-template>
                                     </div>
-                                    <a class="carousel-control-prev" role="button" href="#carouselExampleIndicatorsEscritorio" data-slide="prev">
-                                        <i class="material-icons">keyboard_arrow_left</i>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#carouselExampleIndicatorsEscritorio" role="button" data-slide="next">
-                                        <i class="material-icons">keyboard_arrow_right</i>
-                                        <span class="sr-only">Next</span>
-                                    </a>
+                                    
                                 </div>
                             </div>
                             <!-- End Carousel Card -->
@@ -500,7 +486,7 @@
                                     <input class="form-control" id="myInput" type="text" [(ngModel)]="searchText" placeholder="Buscar producto" (keyup)="showSearchResults($event)" style="width: 92%; margin: auto; margin-left: 0px;">
                                 </div>
 
-                                <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px;  " *ngFor="let producto of productos |pipeSearchProducto:searchText">
+                                <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px;  " *ngFor="let producto of productos |pipeSearchProducto:searchText| paginate: {id:'listar', itemsPerPage: 10, currentPage: pageActual }">
                                     <button class="btn btn-link " (click)="ordenarProducto(producto,confirmarModal)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                             <div class="row" style="margin: auto; ">
                                                 <div class="profile-photo-small col-5 col-md-2" style="margin-top: 5px; margin-left: 15px; padding-left: inherit;">
@@ -549,6 +535,8 @@
 
 
                                 </div>
+                                <pagination-controls id="listar" (click)="fillProducts(pageActual)" (pageChange)="pageActual = $event" responsive="true">
+                                </pagination-controls>
                                 <ng-template #elseBlockListEmpresas>
                                     <div class="container text-center  ml-auto mr-auto">
                                         <h6>!lo sentimos¡ <br>
@@ -679,7 +667,7 @@
                                     <input class="form-control" id="myInput" type="text" [(ngModel)]="searchText" placeholder="Buscar establecimiento" (keyup)="showSearchResults($event)" style="width: 92%; margin: auto; margin-left: 0px;">
                                 </div>
                                 <div *ngIf="!empresaisVacia(); else elseBlockListEmpresas" style="width: 100%;">
-                                    <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of empresas|pipeSearch:searchText">
+                                    <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of empresas|pipeSearch:searchText|paginate: {id:'listar', itemsPerPage: 10, currentPage: pageActual }">
                                         <button class="btn btn-link " (click)="seleccionEmpresa(empresa)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                             <div class="row" style="margin: auto;">
                                                 <div class="col-5 col-md-2 profile-photo-small"
@@ -769,6 +757,8 @@
 
 
                                     </div>
+                                    <pagination-controls id="listar" (pageChange)="pageActual = $event" responsive="true">
+                                    </pagination-controls>
                                     <div class="container" *ngIf="categoriaActual!='Todas las categorias'">
                                         <h2 class="section-title">Todas las Categorias</h2>
                                         <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px; " *ngFor="let empresa of totalEmpresas|pipeSearch:searchText">
@@ -980,7 +970,7 @@
                                         <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Buscar producto" (keyup)="showSearchResults($event)" style="width: 92%; margin: auto; margin-left: 0px;">
                                     </div>
                                     <br>
-                                    <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px;  " *ngFor="let producto of productos |pipeSearchProducto:searchText">
+                                    <div class="card-body col-12" style="width: 100%; padding-bottom: 2px; padding-top: 2px;  " *ngFor="let producto of productos |pipeSearchProducto:searchText| paginate: {id:'listar', itemsPerPage: 10, currentPage: pageActual }">
                                         <button class="btn btn-link " (click)="ordenarProducto(producto,confirmarModal)" style=" padding: 0px; width: 100%; border: 1px solid rgba(153, 153, 153, 0.3); ">
                                             <div class="row" style="margin: auto; ">
                                                 <div class="profile-photo-small col-5 col-md-2" style="margin-top: 5px; margin-left: 15px; padding-left: inherit;">
@@ -1029,7 +1019,8 @@
 
 
                                     </div>
-
+                                    <pagination-controls class="carousel-control" id="listar"(click)="fillProducts(pageActual)" (pageChange)="pageActual = $event" responsive="true">
+                                    </pagination-controls>
                                 </div>
                             </div>
                         </ng-template>
@@ -1243,7 +1234,7 @@
                 <h4>Elige la forma de pago</h4>
             </div>
             <button (click)="confirmMedioPago('Efectivo')" class="btn btn-danger col-12">Efectivo</button>
-            <button (click)="confirmMedioPago('Datafono')" class=" btn btn-danger col-12">Datafono</button>
+           <!-- <button (click)="confirmMedioPago('Datafono')" class=" btn btn-danger col-12">Datafono</button>-->
             <button (click)="confirmMedioPago('Codigo QR')" class="btn btn-danger col-12 ">Codigo QR</button>
         </form>
     </div>

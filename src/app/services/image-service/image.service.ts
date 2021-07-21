@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 
 import { Image } from 'src/app/models/image';
+import { environment } from 'src/environments/environment';
 
 const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
@@ -13,7 +14,8 @@ const cabecera = { headers: new HttpHeaders({ 'Content-Type': 'application/json'
   providedIn: 'root'
 })
 export class ImageService {
-  private imageURL = 'http://localhost:8080/image/';
+  url=environment.url;
+  private imageURL = this.url+'/image/';
 
   constructor(private httpClient: HttpClient) { }
 

@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Promociones } from 'src/app/models/promociones';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PromocionesService {
-  
-  productoURL = 'http://localhost:8080/promociones';
+  url=environment.url;
+  productoURL =  this.url+'/promociones';
   constructor(private httpClient: HttpClient) { }
   
   listarUsuarioFinal() : Observable<any>{

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="12d9f2f8-956e-4750-b231-aa04571add5f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/carrito/carrito.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/carrito/carrito.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/carrito/dist/carrito.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/carrito/dist/carrito.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/head/dist/head.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/head/dist/head.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/head/head.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/head/head.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/head/head.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/head/head.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/inicio/dist/dist/inicio.component.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/inicio/dist/dist/inicio.component.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/inicio/dist/inicio.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/inicio/dist/inicio.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/inicio/inicio.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/inicio/inicio.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/inicio/inicio.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/inicio/inicio.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/inicio/inicio.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/inicio/inicio.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/inicio/inicio.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/inicio/inicio.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/inicio/loginModal/login-modal/dist/dist/login-modal.component.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/inicio/loginModal/login-modal/dist/dist/login-modal.component.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/inicio/loginModal/login-modal/dist/login-modal.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/inicio/loginModal/login-modal/dist/login-modal.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/inicio/loginModal/login-modal/login-modal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/inicio/loginModal/login-modal/login-modal.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/inicio/pipe/pipe-search-producto.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/inicio/pipe/pipe-search-producto.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/inicio/pipe/pipe-search.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/inicio/pipe/pipe-search.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/landing/dist/landing.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/landing/dist/landing.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/landing/landing.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/landing/landing.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/landing/pipe/search.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/landing/pipe/search.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/login/dist/dist/login.component.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/login/dist/dist/login.component.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/login/dist/login.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/login/dist/login.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/popup-carrito/popup-carrito.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/popup-carrito/popup-carrito.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/signup/dist/dist/signup.component.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/signup/dist/dist/signup.component.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/signup/dist/signup.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/signup/dist/signup.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/components/signup/signup.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/components/signup/signup.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/models/producto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/models/producto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/auth/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/auth/dist/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/auth/dist/auth.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/auth/dist/dist/auth.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/auth/dist/dist/auth.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/auth/dist/token.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/auth/dist/token.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/auth/token.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/auth/token.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/barrio-service/barrio.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/barrio-service/barrio.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/caja-service/caja.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/caja-service/caja.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/caja-service/dist/caja.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/caja-service/dist/caja.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/caja-service/dist/dist/caja.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/caja-service/dist/dist/caja.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/categoria-service/categoria.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/categoria-service/categoria.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/categoria-service/dist/categoria.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/categoria-service/dist/categoria.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/categoria-service/dist/dist/categoria.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/categoria-service/dist/dist/categoria.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/consignacion-service/consignacion.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/consignacion-service/consignacion.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/consignacion-service/dist/consignacion.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/consignacion-service/dist/consignacion.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/consignacion-service/dist/dist/consignacion.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/consignacion-service/dist/dist/consignacion.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/detalleCaja-service/detalle-caja.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/detalleCaja-service/detalle-caja.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/detalleCaja-service/dist/detalle-caja.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/detalleCaja-service/dist/detalle-caja.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/detalleCaja-service/dist/dist/detalle-caja.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/detalleCaja-service/dist/dist/detalle-caja.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/detalleServicio-service/detalle-servicio.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/detalleServicio-service/detalle-servicio.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/detalleServicio-service/dist/detalle-servicio.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/detalleServicio-service/dist/detalle-servicio.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/detalleServicio-service/dist/dist/detalle-servicio.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/detalleServicio-service/dist/dist/detalle-servicio.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/empresa-service/dist/dist/empresa.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/empresa-service/dist/dist/empresa.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/empresa-service/dist/empresa.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/empresa-service/dist/empresa.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/empresa-service/empresa.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/empresa-service/empresa.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/guard.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/guard.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/image-service/image.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/image-service/image.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/lugar-service/dist/dist/lugar.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/lugar-service/dist/dist/lugar.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/lugar-service/dist/lugar.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/lugar-service/dist/lugar.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/lugar-service/lugar.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/lugar-service/lugar.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/pedido-service/dist/dist/pedido.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/pedido-service/dist/dist/pedido.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/pedido-service/dist/pedido.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/pedido-service/dist/pedido.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/pedido-service/pedido.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/pedido-service/pedido.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/producto-service/dist/dist/producto-service.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/producto-service/dist/dist/producto-service.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/producto-service/dist/producto-service.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/producto-service/dist/producto-service.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/producto-service/producto-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/producto-service/producto-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/promociones-service/promociones.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/promociones-service/promociones.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/rol-service/dist/dist/rol-service.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/rol-service/dist/dist/rol-service.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/rol-service/dist/rol-service.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/rol-service/dist/rol-service.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/rol-service/rol-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/rol-service/rol-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/servicio/dist/dist/servicio.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/servicio/dist/dist/servicio.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/servicio/dist/servicio.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/servicio/dist/servicio.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/servicio/servicio.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/servicio/servicio.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/socket-service/socket.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/socket-service/socket.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/usuario-service/dist/dist/usuario.service.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/usuario-service/dist/dist/usuario.service.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/usuario-service/dist/usuario.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/usuario-service/dist/usuario.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/app/services/usuario-service/usuario.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/app/services/usuario-service/usuario.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/assets/js/plugins/jquery.sharrre.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/assets/js/plugins/jquery.sharrre.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1vaUhV9rkUUY508CcQtnG2f6NNi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="12d9f2f8-956e-4750-b231-aa04571add5f" name="Default Changelist" comment="" />
+      <created>1626799812770</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1626799812770</updated>
+    </task>
+    <servers />
+  </component>
+</project>

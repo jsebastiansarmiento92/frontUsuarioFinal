@@ -51,48 +51,48 @@ export class HeadComponent implements OnInit {
     private authService:AuthService) { }
 
   ngOnInit() {
-    console.log("ingreso a ngoinit de head");
+    //console.log("ingreso a ngoinit de head");
     if(JSON.parse(localStorage.getItem('lugar'))){
-      console.log("hay lugar guardado en el localstorage");
+      //console.log("hay lugar guardado en el localstorage");
       this.lugar = JSON.parse(localStorage.getItem('lugar'));
     }
 
     if(window.sessionStorage.getItem("Telefono")){
       if(window.sessionStorage.getItem("Telefono")!="0"){
-        console.log("telefono es "+window.sessionStorage.getItem("Telefono"));
+        //console.log("telefono es "+window.sessionStorage.getItem("Telefono"));
         this.telefono=window.sessionStorage.getItem("Telefono");
       }
     }
     if(window.sessionStorage.getItem("ImageUrl")){
       if(window.sessionStorage.getItem("ImageUrl")!=""){
-        console.log(window.sessionStorage.getItem("ImageUrl"));
+        //console.log(window.sessionStorage.getItem("ImageUrl"));
         this.imagePerfil=window.sessionStorage.getItem("ImageUrl");
         this.isImagePerfil=true;
       }
     }
-    console.log(this.lugar);
-    console.log("verificacion is login");
+    //console.log(this.lugar);
+    //console.log("verificacion is login");
 
     //this.lugar=new Lugar();
     this.mostrarNombreSesion();
     if (this.tokenService.getToken() == null) {
-      console.log("se limpia el locar storage en inicio");
+      //console.log("se limpia el locar storage en inicio");
       localStorage.removeItem("isLoggedin");
       
     }
     if(localStorage.getItem("isLoggedin")&&this.refreshHead){
       if (localStorage.getItem("isLoggedin")=='true') {
-        console.log("ingreso a guardar mi direccions");
+        //console.log("ingreso a guardar mi direccions");
         this.guardarMidireccion();
         this.isLogin = true;
       }
     }
     this.refreshHead=false;
     this.pedidoService.getPedidosCurso("Solicitado",parseInt(this.tokenService.getIdUser())).subscribe(data=>{
-      console.log("pedidos extraidos");
+      //console.log("pedidos extraidos");
       this.pedidos=data;
-      console.log("verificar estos son los pedidos del usuario final");
-      console.log(data);
+      //console.log("verificar estos son los pedidos del usuario final");
+      //console.log(data);
     });
     this.getUser();
   }
@@ -103,7 +103,7 @@ export class HeadComponent implements OnInit {
   }
   guardarMidireccion(){
     if(sessionStorage.getItem("IdLugar")=="0"){
-      console.log("no se extrae lugar de ningun lado");
+      //console.log("no se extrae lugar de ningun lado");
     }else{
       this.lugarService.getLugarId(parseInt(sessionStorage.getItem("IdLugar"))).subscribe(data=>{
         this.lugar=data;
@@ -124,7 +124,7 @@ export class HeadComponent implements OnInit {
 
   guardarUsuario(){
     let usuario:Usuario= new Usuario();
-    console.log("nombre de usuario: "+ this.nombreUsuario);
+    //console.log("nombre de usuario: "+ this.nombreUsuario);
         usuario.name=this.nombreUsuario;
         usuario.id=parseInt(window.sessionStorage.getItem("IdSesion"));
       usuario.telefono=this.telefono;
@@ -137,7 +137,7 @@ export class HeadComponent implements OnInit {
           window.sessionStorage.setItem("Telefono",this.telefono+"");
           this.serviceModal.dismissAll();
         }, (err: any) => {
-          console.log(err.error.mensaje)
+          //console.log(err.error.mensaje)
           this.telefono=window.sessionStorage.getItem("Telefono");
         });
       }else alert("numero de contacto no valido");
@@ -154,7 +154,7 @@ export class HeadComponent implements OnInit {
   logOut(): void {
 
     if (confirm("desea cerrar sesion?")) {
-      console.log("cerrar sesion");
+      //console.log("cerrar sesion");
       this.tokenService.logOut();
       this.isLogin = false;
       this.authority = '';
@@ -171,7 +171,7 @@ export class HeadComponent implements OnInit {
 
   }
   privacyPolicy() {
-    console.log("ingreso a politica de privacidad");
+    //console.log("ingreso a politica de privacidad");
     this.router.navigate(["privacy-policy"]);
 
   }
@@ -194,11 +194,11 @@ export class HeadComponent implements OnInit {
     this.mensajeTramitando="cargando pedidos";
     this.serviceModal.open(this.tramitandoModal);
     this.pedidoService.getPedidosCliente(parseInt(this.tokenService.getIdUser())).subscribe(data=>{
-      console.log("pedidos extraidos");
-      console.log(data);
-      console.log(this.pedidos);
+      //console.log("pedidos extraidos");
+      //console.log(data);
+      //console.log(this.pedidos);
      /** data.forEach(element => {
-        console.log(element.estadoPedido+"=="+"Solicitado");
+        //console.log(element.estadoPedido+"=="+"Solicitado");
 
         if(element.estadoPedido=="Solicitado"){
           this.pedidos.push(element);
@@ -214,8 +214,8 @@ export class HeadComponent implements OnInit {
     this.serviceModal.open(modal);
     
     this.detalleServicioService.getDetalles(pedido.id).subscribe(data=>{
-      console.log("detalles encontrados son: ")
-      console.log(data);
+      //console.log("detalles encontrados son: ")
+      //console.log(data);
       this.detalleServicios=data;
     });
   }
@@ -237,7 +237,7 @@ this.serviceModal.open(modal);
     this.modalService.open(modal);
 }
 confirmarPassw(){
-  console.log("contraseña nueva es:"+this.confirmacionPassword);
+  //console.log("contraseña nueva es:"+this.confirmacionPassword);
   if(this.passwordNueva===this.confirmacionPassword){
       this.usuario.password=this.confirmacionPassword;
       this.usuario.name=this.tokenService.getUserName();
@@ -260,8 +260,8 @@ confirmarPassw(){
 getUser() {
 
   this.authService.getCurrentUser().subscribe(data => {
-    console.log("ingreso de metodo de get currentuser")
-    console.log(data);
+    //console.log("ingreso de metodo de get currentuser")
+    //console.log(data);
     window.localStorage.setItem("idSesion", JSON.stringify(data));
     //window.localStorage.setItem("AuthToken", data.token);
    // window.sessionStorage.setItem("AuthToken", data.token);

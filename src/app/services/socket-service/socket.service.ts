@@ -13,7 +13,7 @@ export class SocketService {
 
   constructor(private http: HttpClient) { }
   
-
+  
   
   postMessage(data: Message): Observable<any>{
     return this.http.post<Message>(this.url, data);

@@ -57,7 +57,7 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
     //this.autenticarToken();
     //this.autenticar();
-    console.log("ingreso metodo ngOninit landing");
+    //console.log("ingreso metodo ngOninit landing");
     if(!localStorage.getItem('barrios')){
       this.cargarBarrios();
     }else
@@ -86,22 +86,22 @@ export class LandingComponent implements OnInit {
     this.token = this.urlTree.queryParams['token'];
     this.error = this.urlTree.queryParams['error'];
     if(this.token==null){
-      console.log("no hay token guardado");
+      //console.log("no hay token guardado");
     }else
     if(this.token.length>1){
       window.sessionStorage.setItem('AuthToken', this.token);
       window.localStorage.setItem('AuthToken', this.token);
      }
-    console.log("token llegando es:");
-    console.log(this.token);
-    console.log("error llegando es ");
-    console.log(this.error);
+    //console.log("token llegando es:");
+    //console.log(this.token);
+    //console.log("error llegando es ");
+    //console.log(this.error);
   if(window.sessionStorage.getItem('AuthToken')){
 
-    console.log("hay tonken guardado porque ingresa al if");
+    //console.log("hay tonken guardado porque ingresa al if");
 
     this.authService.getCurrentUser().subscribe(data=>{
-      console.log(data);
+      //console.log(data);
  
     window.localStorage.setItem("idSesion",JSON.stringify(data));
     this.tokenService.setUserName(data.name);
@@ -126,9 +126,9 @@ export class LandingComponent implements OnInit {
  
   if(window.localStorage.getItem('AuthToken')){
     window.sessionStorage.setItem('AuthToken',window.localStorage.getItem('AuthToken'));
-    console.log("hay tonken guardado porque ingresa al if");
+    //console.log("hay tonken guardado porque ingresa al if");
     this.authService.getCurrentUser().subscribe(data=>{
-      console.log(data);
+      //console.log(data);
 
     window.localStorage.setItem("idSesion",JSON.stringify(data));
     this.tokenService.setUserName(data.name);
@@ -163,19 +163,19 @@ export class LandingComponent implements OnInit {
       
       window.localStorage.setItem("lugar", JSON.stringify(lugar));
       window.sessionStorage.setItem("Telefono",this.telefono);
-      console.log("oprimidio inicio")
+      //console.log("oprimidio inicio")
       this.router.navigate(["inicio"]);
       this.serviceModal.dismissAll();
     }else{
       this.serviceLugar.createLugar(lugar).subscribe(data=>{
-        console.log(data);
+        //console.log(data);
         this.serviceLugar.getLugaresIdUsuario1(parseInt(sessionStorage.getItem("IdSesion"))).subscribe(data=>{
           sessionStorage.setItem("IdLugar",data[0].idLugar);
         })
       });
      
       window.localStorage.setItem("lugar", JSON.stringify(lugar));
-      console.log("oprimidio inicio")
+      //console.log("oprimidio inicio")
       this.serviceModal.dismissAll();
       this.router.navigate(["inicio"]);
     }
@@ -190,8 +190,8 @@ export class LandingComponent implements OnInit {
       }
       
       this.barrios=data;
-      console.log("barrios cargados");
-      console.log(data);
+      //console.log("barrios cargados");
+      //console.log(data);
       localStorage.setItem("barrios", JSON.stringify(data))
       this.cargaBarrios=false;
       location.reload();
@@ -200,19 +200,19 @@ export class LandingComponent implements OnInit {
   }
 
   promesaModificarLugar(lugar:Lugar) {
-    console.log("id del lugar guadados son: ");
-    console.log(sessionStorage.getItem('IdLugar'));
+    //console.log("id del lugar guadados son: ");
+    //console.log(sessionStorage.getItem('IdLugar'));
    
     localStorage.setItem("lugar", JSON.stringify(lugar));
     lugar.idLugar = parseInt(sessionStorage.getItem('IdLugar'));
     this.serviceLugar.modificarLugar(lugar).subscribe(data => {
-      console.log("se ha modificado un lugar");
+      //console.log("se ha modificado un lugar");
     }, (err: any) => {
       if (err.error.mensaje === undefined) {
         //alert("debe ingresar o registrarse");
         this.router.navigate(["inicio"]);
       }
-      console.log(err.error.mensaje)
+      //console.log(err.error.mensaje)
     });
   }
   llenarTipodirecciones() {
@@ -229,8 +229,8 @@ export class LandingComponent implements OnInit {
   }
   capturarBarrio() {
     this.getBarrio();
-    console.log("barrio seleccionado ");
-    console.log(this.barrio);
+    //console.log("barrio seleccionado ");
+    //console.log(this.barrio);
   }
   
   getBarrio() {
