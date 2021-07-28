@@ -7,6 +7,7 @@ import { SignUpRequest } from 'src/app/models/sign-up-request';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RecaptchaErrorParameters } from "ng-recaptcha";
 import { environment } from 'src/environments/environment';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -17,6 +18,9 @@ import { environment } from 'src/environments/environment';
 export class SignupComponent implements OnInit {
 
   urlTree;
+  sitekey: string;
+  varcapcha=false;
+  form: FormGroup;
   token:string;
   error:string;
   setState=false;
@@ -40,7 +44,10 @@ export class SignupComponent implements OnInit {
     private router:Router,
     private tokenService:TokenService,
     private serviceModal:NgbModal) { 
-
+    this.sitekey ="6LfIMsUbAAAAAMmTdRRTHQbPBYsunKrXJvEWfnkx";
+    this.form = new FormGroup({
+      recaptcha1: new FormControl('',[Validators.required])
+    })
     }
 
   ngOnInit(): void {

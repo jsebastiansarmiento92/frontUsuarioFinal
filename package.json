@@ -37,6 +37,7 @@
     "ng-circle-progress": "^1.5.1",
     "ng-recaptcha": "^7.0.1",
     "ng2-charts": "2.3.0",
+    "ngx-captcha": "^9.0.1",
     "ngx-pagination": "^5.0.0",
     "rxjs": "6.6.3",
     "sockjs-client": "^1.4.0",
