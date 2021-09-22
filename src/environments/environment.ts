@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   //http://localhost:8080
+  //https://quickdomicilios.herokuapp.com
   url:"https://quickdomicilios.herokuapp.com"
 };
 

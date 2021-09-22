@@ -1,13 +1,13 @@
 {
-    "appId": "com.Quickdomicilios.user",
-    "appName": "QuickDomicilios",
-    "bundledWebRuntime": false,
-    "npmClient": "npm",
-    "webDir": "dist/usuarioFinalFront",
-    "plugins": {
-        "SplashScreen": {
-            "launchShowDuration": 0
-        }
-    },
-    "cordova": {}
+	"appId": "com.Quickdomicilios.user",
+	"appName": "QuickDomicilios",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "dist/usuarioFinalFront",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0
+		}
+	},
+	"cordova": {}
 }

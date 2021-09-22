@@ -104,6 +104,7 @@ export class InicioComponent implements OnInit {
   observacionesProducto="";
   isDatafono=false;
   numeroConfirmacion:string;
+  filter="";
   /**
   * Shows or hide the search elements
   * @var {boolean} searching
@@ -220,7 +221,7 @@ export class InicioComponent implements OnInit {
       
     }
     console.log("datos de pagina actual",this.paginaActual);
-
+    console.log("todos los productos",this.productos)
     this.productos.forEach(elemento=>{
       this.paginaActual.forEach(elemento2=>{
         if(elemento==elemento2){
@@ -270,23 +271,23 @@ export class InicioComponent implements OnInit {
     this.showProductos= show;
   }
   mostrarPromociones(){
-    //console.log("metodo de mostrar promociones");
     this.promocionesService.listarUsuarioFinal().subscribe(data=>{
-      //console.log("mostrar promociones");
-      //console.log(data)
       this.promociones=data;
       this.promociones.forEach(element => {
-        //console.log("mostrar las promociones ")
+        console.log("mostrar las promociones ")
         this.imagenService.getImageId(element.imagen).subscribe(data => {
           this.retrieveResonse = data;
-          //console.log(data);
+          console.log(data);
           this.base64Data = this.retrieveResonse.picByte;
-          //this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           element.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-          //console.log(this.retrievedImage);
+          console.log(this.retrievedImage);
         })
       });
     })
+  }
+  verPromocion(){
+    alert("seleccionado");
   }
   initializeWebSocketConnection() {
     let ws = new SockJS(this.serverUrl);
@@ -371,12 +372,16 @@ export class InicioComponent implements OnInit {
   }
 
   conductor() {
+    this.pageActual=1;
+    this.filter="conductor";
+    this.productos=this.totalProducto;
+    this.empresas=this.totalEmpresas;
     if(this.totalEmpresas.length ){
       this.empresaSelected = false;
       //this.empresas = this.empresasTemporal;
       //console.log("ingreso a conductor padre");
       let empresasSeleccion: Empresa[] = [];  
-      this.totalEmpresas.forEach(element => {
+      this.empresas.forEach(element => {
         element.categorias.forEach(element2 => {
           if (element2.idCategoria == 9) {
             empresasSeleccion.push(element);
@@ -391,7 +396,7 @@ export class InicioComponent implements OnInit {
     if(this.totalProducto) {
       //console.log("ingreso a conductor padre producto");
       let productosSeleccion: Producto[] = [];
-      this.totalProducto.forEach(element => {
+      this.productos.forEach(element => {
         element.empresa.categorias.forEach(element2 => {
           if (element2.idCategoria == 9) {
             productosSeleccion.push(element);
@@ -403,15 +408,19 @@ export class InicioComponent implements OnInit {
       this.categoriaActual = "Varios";
       this.cargarCategorias();
     }
-    
+    this.fillProducts(1);
   }
   domicilios() {
+    this.pageActual=1;
+    this.filter="domicilios";
+    this.productos=this.totalProducto;
+    this.empresas=this.totalEmpresas;
     if(this.totalEmpresas.length){
       this.empresaSelected = false;
       //this.empresas = this.empresasTemporal;
       //console.log("ingreso a domicilios padre");
       let empresasSeleccion: Empresa[] = [];
-      this.totalEmpresas.forEach(element => {
+      this.empresas.forEach(element => {
         element.categorias.forEach(element2 => {
           if (element2.idCategoria == 8) {
             empresasSeleccion.push(element);
@@ -425,7 +434,7 @@ export class InicioComponent implements OnInit {
     if(this.showProductos) {
       //console.log("ingreso a Domicilio padre");
       let productosSeleccion: Producto[] = [];
-      this.totalProducto.forEach(element => {
+      this.productos.forEach(element => {
         element.empresa.categorias.forEach(element2 => {
           if (element2.idCategoria == 8) {
             productosSeleccion.push(element);
@@ -436,51 +445,20 @@ export class InicioComponent implements OnInit {
       this.categoriaActual = "Domicilio";
       this.cargarCategorias();
     }
-    
+    this.fillProducts(1);
   }
-  licores() {
-    if(this.totalEmpresas.length){
-      this.empresaSelected = false;
-      //this.empresas = this.empresasTemporal;
-      //console.log("ingreso a licores padre");
-      //console.log(this.empresas);
-      let empresasSeleccion: Empresa[] = [];
-      this.totalEmpresas.forEach(element => {
-        element.categorias.forEach(element2 => {
-          if (element2.idCategoria == 7) {
-            empresasSeleccion.push(element);
-          }
-        });
-      });
-      this.empresas = empresasSeleccion;
-      this.categoriaActual = "Licores";
-      this.cargarCategorias();
-    }else this.cargarEmpresas();
-    
-    if(this.showProductos) {
-      //console.log("ingreso a Licores padre");
-      let productosSeleccion: Producto[] = [];
-      this.totalProducto.forEach(element => {
-        //console.log(this.totalProducto[0].nombreProducto);
-        element.empresa.categorias.forEach(element2 => {
-          if (element2.idCategoria == 7) {
-            productosSeleccion.push(element);
-          }
-        });
-      });
-      this.productos = productosSeleccion;
-      this.categoriaActual = "Licores";
-      this.cargarCategorias();
-    }
-    
-  }
+
   viveres() {
+    this.pageActual=1;
+    this.filter="viveres";
+    this.productos=this.totalProducto;
+    this.empresas=this.totalEmpresas;
     if(this.totalEmpresas.length){
       this.empresaSelected = false;
       //this.empresas = this.empresasTemporal;
       //console.log("ingreso a viveres padre");
       let empresasSeleccion: Empresa[] = [];
-      this.totalEmpresas.forEach(element => {
+      this.empresas.forEach(element => {
         element.categorias.forEach(element2 => {
           if (element2.idCategoria == 6) {
             empresasSeleccion.push(element);
@@ -495,7 +473,7 @@ export class InicioComponent implements OnInit {
     if(this.showProductos) {
       //console.log("ingreso a Viveres padre");
       let productosSeleccion: Producto[] = [];
-      this.totalProducto.forEach(element => {
+      this.productos.forEach(element => {
         element.empresa.categorias.forEach(element2 => {
           if (element2.idCategoria == 6) {
             productosSeleccion.push(element);
@@ -509,6 +487,10 @@ export class InicioComponent implements OnInit {
    
   }
   drogueria() {
+    this.pageActual=1;
+    this.filter="drogueria";
+    this.productos=this.totalProducto;
+    this.empresas=this.totalEmpresas;
     //console.log("imprimir todas las empresas");
     //console.log(this.totalEmpresas.length);
     if(this.totalEmpresas.length){
@@ -518,7 +500,7 @@ export class InicioComponent implements OnInit {
   
       let empresasSeleccion: Empresa[] = [];
       //console.log(this.totalEmpresas);
-      this.totalEmpresas.forEach(element => {
+      this.empresas.forEach(element => {
         //console.log("detalle de empresa por empresa")
         //console.log(element);
         element.categorias.forEach(element2 => {
@@ -535,7 +517,7 @@ export class InicioComponent implements OnInit {
     if(this.showProductos) {
       //console.log("ingreso a Medicamentos padre");
       let productosSeleccion: Producto[] = [];
-      this.totalProducto.forEach(element => {
+      this.productos.forEach(element => {
         element.empresa.categorias.forEach(element2 => {
           if (element2.idCategoria == 4) {
             productosSeleccion.push(element);
@@ -546,51 +528,84 @@ export class InicioComponent implements OnInit {
       this.categoriaActual = "Medicamentos";
       this.cargarCategorias();
     }
-  
+    this.fillProducts(1);
   }
-  restaurantes() { 
+
+  licores() {
+    this.pageActual=1;
+    console.log("ingreso a filtro licores")
+    this.filter="licores";
+    this.productos=this.totalProducto;
+    this.empresas=this.totalEmpresas;
     if(this.totalEmpresas.length){
       this.empresaSelected = false;
-      //console.log("ingreso a restaurantes padre");
-      //this.empresas = this.empresasTemporal;
       let empresasSeleccion: Empresa[] = [];
-      this.totalEmpresas.forEach(element => {
-        //console.log(element.razonSocial);
-        //let introIf = false;
+      this.empresas.forEach(element => {
         element.categorias.forEach(element2 => {
-          //console.log("cosas que tiene elemento 2");
-        //  if (!introIf) {
+          if (element2.idCategoria == 7) {
+            empresasSeleccion.push(element);
+          }
+        });
+      });
+      this.empresas = empresasSeleccion;
+      this.categoriaActual = "Licores";
+      this.cargarCategorias();
+    }else this.cargarEmpresas();
+    
+    if(this.showProductos) {
+      let productosSeleccion: Producto[] = [];
+      this.productos.forEach(element => {
+        element.empresa.categorias.forEach(element2 => {
+          if (element2.idCategoria == 7) {
+            productosSeleccion.push(element);
+          }
+        });
+      });
+      console.log("productos seleccion",productosSeleccion);
+      this.productos = productosSeleccion;
+      this.categoriaActual = "Licores";
+      this.cargarCategorias();
+    }
+    this.fillProducts(1);
+  }
+  restaurantes() { 
+    this.pageActual=1;
+    console.log("ingreso a filtro restaurantes")
+    this.filter="restaurantes";
+    this.productos=this.totalProducto;
+    this.empresas=this.totalEmpresas;
+    if(this.totalEmpresas.length){
+      this.empresaSelected = false;
+      let empresasSeleccion: Empresa[] = [];
+      this.empresas.forEach(element => {
+        element.categorias.forEach(element2 => {
             if (element2.idCategoria == 5) {
-              //introIf = true;
               empresasSeleccion.push(element);
             }
-        //  }
-  
         });
-  
       });
       this.empresas = empresasSeleccion;
       this.categoriaActual = "Restaurantes";
       this.cargarCategorias();
     }else this.cargarEmpresas();
     if(this.showProductos) {
-      //console.log("ingreso a Restaurantes padre");
       let productosSeleccion: Producto[] = [];
-      this.totalProducto.forEach(element => {
+      this.productos.forEach(element => {
         element.empresa.categorias.forEach(element2 => {
           if (element2.idCategoria == 5) {
             productosSeleccion.push(element);
           }
         });
       });
+      console.log("productos seleccion",productosSeleccion);
       this.productos = productosSeleccion;
-      
       this.categoriaActual = "Restaurantes";
       this.cargarCategorias();
     }
-   
+    this.fillProducts(1);
   }
   cargarEmpresas() {
+    this.filter="cargarEmpresas";
     this.empresaSelected = false;
     this.empresaService.getEmpresas().subscribe(data => {
       data.forEach(element => {
@@ -608,6 +623,7 @@ export class InicioComponent implements OnInit {
       });
     })
     this.totalEmpresas=this.empresas;
+    console.log("total empresas", this.empresas)
   }
 
   llenarTipodirecciones() {
@@ -626,6 +642,7 @@ export class InicioComponent implements OnInit {
 
     this.productosService.listarUsuarioFinal().subscribe(data => {
       this.productos=data;
+      this.totalProducto=data;
       this.verificarActivacion();
       this.fillProducts(1);
     });
@@ -1100,12 +1117,18 @@ export class InicioComponent implements OnInit {
     });
 
   }
-  getProductoPromocion(idProducto:number,modal){
-    this.productos.forEach(element => {
-      if(idProducto==element.idProducto){
-        this.producto = element;
-      }
-    });
+  getProductoPromocion(producto:Producto,modal){
+    console.log("promociones",this.promociones)
+    console.log(this.productos.length)
+        this.producto=producto;
+        console.log("producto",producto)
+        this.imagenService.getImageId(producto.imagen).subscribe(data => {
+          this.retrieveResonse = data;
+          this.base64Data = this.retrieveResonse.picByte;
+          this.producto.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data; 
+          
+        })
+
     if (localStorage.getItem("isLoggedin")) {
      
       this.serviceModal.open(modal);
